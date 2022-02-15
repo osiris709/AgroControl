@@ -3,25 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/Osiris/Documents/NetBeansProjects/Repositorios/AgroControl/src/agroo/empleadosDAL/conexion.java</file>
-            <file>file:/C:/Users/Osiris/Documents/NetBeansProjects/Repositorios/AgroControl/src/agroo/empleadosGUI/Conexion.java</file>
-            <file>file:/C:/Users/Osiris/Documents/NetBeansProjects/Repositorios/AgroControl/src/agroo/empleadosGUI/frmEmpleados.java</file>
-            <file>file:/C:/Users/Osiris/Documents/NetBeansProjects/Repositorios/AgroControl/src/agroo/empleadosBl/empleadosBl.java</file>
-=======
-<<<<<<< HEAD
-            <file>file:/C:/Users/SENA/Documents/NetBeansProjects/Repositorios/AgroControl/src/Formularios/RegistrarProductos.java</file>
-            <file>file:/C:/Users/SENA/Documents/NetBeansProjects/Repositorios/AgroControl/src/Formularios/RegistrarCompras.java</file>
-            <file>file:/C:/Users/SENA/Documents/NetBeansProjects/Repositorios/AgroControl/src/Formularios/RegistrarProveedor.java</file>
-=======
             <file>file:/C:/Users/usuario/Documents/NetBeansProjects/Repositorios/AgroControl/src/agrocontrol/Login.java</file>
-            <file>file:/C:/Users/usuario/Documents/NetBeansProjects/Repositorios/AgroControl/src/Formularios/RegistrarProveedor.java</file>
             <file>file:/C:/Users/usuario/Documents/NetBeansProjects/Repositorios/AgroControl/src/Formularios/RegistrarCompras.java</file>
-            <file>file:/C:/Users/usuario/Documents/NetBeansProjects/Repositorios/AgroControl/src/Formularios/RegistrarProductos.java</file>
-            <file>file:/C:/Users/usuario/Documents/NetBeansProjects/Repositorios/AgroControl/src/Formularios/RegistrarConsumo.java</file>
             <file>file:/C:/Users/usuario/Documents/NetBeansProjects/Repositorios/AgroControl/src/agrocontrol/MenuPrincipal.java</file>
->>>>>>> 705abf702b8cc4039828eb412ee021cecfb02012
->>>>>>> f7f02f34c7ca11381ea90b04f00e8b45eb905412
         </group>
     </open-files>
 </project-private>
