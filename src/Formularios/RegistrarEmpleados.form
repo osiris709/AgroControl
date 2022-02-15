@@ -154,7 +154,7 @@
     <Component class="javax.swing.JButton" name="btAgrerar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/agroo/recursos/boton-agregar.png"/>
+          <Image iconType="3" name="/Imagenes/boton-agregar.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Agregar"/>
       </Properties>
@@ -165,7 +165,7 @@
     <Component class="javax.swing.JButton" name="btEditar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/agroo/recursos/editar.png"/>
+          <Image iconType="3" name="/Imagenes/editar.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Editar"/>
       </Properties>
@@ -176,7 +176,7 @@
     <Component class="javax.swing.JButton" name="btBorrar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/agroo/recursos/borrar.png"/>
+          <Image iconType="3" name="/Imagenes/borrar.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Borrar"/>
       </Properties>
@@ -187,7 +187,7 @@
     <Component class="javax.swing.JButton" name="btCancelar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/agroo/recursos/prohibicion.png"/>
+          <Image iconType="3" name="/Imagenes/prohibicion.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Cancelar"/>
       </Properties>

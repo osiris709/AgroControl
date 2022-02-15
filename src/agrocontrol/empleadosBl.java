@@ -1,5 +1,5 @@
 
-package agroo.empleadosBl;
+package agrocontrol;
 
 
 public class empleadosBl {

@@ -9,12 +9,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-public class conexion {
+public class conexion_respaldo {
  
     String strConecionDB="jdbc:sqlite:E:/base.s3db";
     Connection conn= null;
     
-    public conexion (){
+    public conexion_respaldo (){
         try {
             Class.forName("org.sqlite.JDBC");
             conn= DriverManager.getConnection(strConecionDB);

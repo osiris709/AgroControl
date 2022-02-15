@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package agroo.empleadosGUI;
+package Formularios;
 
-import agroo.empleadosBl.empleadosBl;
-import agroo.empleadosDAL.conexion;
+import agrocontrol.empleadosBl;
+import Conexion.conexion;
 import java.sql.ResultSet;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author SENA
  */
-public class frmEmpleados extends javax.swing.JFrame {
+public class RegistrarEmpleados extends javax.swing.JFrame {
     
     DefaultTableModel modelo;
     
@@ -24,7 +24,7 @@ public class frmEmpleados extends javax.swing.JFrame {
     /**
      * Creates new form frmEmpleados
      */
-    public frmEmpleados() {
+    public RegistrarEmpleados() {
         initComponents();
         
         String[] titulos = {"ID", "Nombre", "correo"};
@@ -101,7 +101,7 @@ public class frmEmpleados extends javax.swing.JFrame {
 
         txtID.setEditable(false);
 
-        btAgrerar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/agroo/recursos/boton-agregar.png"))); // NOI18N
+        btAgrerar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/boton-agregar.png"))); // NOI18N
         btAgrerar.setText("Agregar");
         btAgrerar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,7 +109,7 @@ public class frmEmpleados extends javax.swing.JFrame {
             }
         });
 
-        btEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/agroo/recursos/editar.png"))); // NOI18N
+        btEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/editar.png"))); // NOI18N
         btEditar.setText("Editar");
         btEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,7 +117,7 @@ public class frmEmpleados extends javax.swing.JFrame {
             }
         });
 
-        btBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/agroo/recursos/borrar.png"))); // NOI18N
+        btBorrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/borrar.png"))); // NOI18N
         btBorrar.setText("Borrar");
         btBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,7 +125,7 @@ public class frmEmpleados extends javax.swing.JFrame {
             }
         });
 
-        btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/agroo/recursos/prohibicion.png"))); // NOI18N
+        btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/prohibicion.png"))); // NOI18N
         btCancelar.setText("Cancelar");
         btCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -312,20 +312,21 @@ public class frmEmpleados extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(frmEmpleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrarEmpleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(frmEmpleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrarEmpleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(frmEmpleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrarEmpleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(frmEmpleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrarEmpleados.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmEmpleados().setVisible(true);
+                new RegistrarEmpleados().setVisible(true);
             }
         });
     }
