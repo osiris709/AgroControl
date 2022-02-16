@@ -203,26 +203,6 @@ public class Login extends javax.swing.JFrame {
             }
         }
 
-        /*if (txtUsuario.getText().equals("Admin") && Clave.equals("123")){
-
-         this.dispose();
-
-         JOptionPane.showMessageDialog(null, "Bienvenido\n ", "Mensaje de bienvenida",
-         JOptionPane.INFORMATION_MESSAGE);
-
-         MenuSuper abrir = new MenuSuper();
-
-         abrir.setVisible(true);
-
-
-   
-        }else {
-
-          JOptionPane.showMessageDialog(null, "Por favor ingrese un usuario y/o contraseña correctos",  
-          "Acceso denegado", JOptionPane.ERROR_MESSAGE);
-          
-        }*/
-
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     /**

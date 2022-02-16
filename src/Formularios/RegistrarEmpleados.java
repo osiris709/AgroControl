@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Formularios;
 
 import agrocontrol.empleadosBl;
@@ -16,24 +11,22 @@ import javax.swing.table.DefaultTableModel;
  * @author SENA
  */
 public class RegistrarEmpleados extends javax.swing.JFrame {
-    
+
     DefaultTableModel modelo;
-    
-    
 
     /**
      * Creates new form frmEmpleados
      */
     public RegistrarEmpleados() {
         initComponents();
-        
+
         String[] titulos = {"ID", "Nombre", "correo"};
-        
-        modelo = new DefaultTableModel (null, titulos);
+
+        modelo = new DefaultTableModel(null, titulos);
         tblEmpleados.setModel(modelo);
-        
-       this.mostrarDatos();
-       this.limpiar();
+
+        this.mostrarDatos();
+        this.limpiar();
     }
 
     /**
@@ -190,111 +183,111 @@ public class RegistrarEmpleados extends javax.swing.JFrame {
 
     private void btAgrerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAgrerarActionPerformed
         // TODO add your handling code here:
-        conexion  objconexion= new conexion(); 
-        
-        empleadosBl OEmpleados= recuperarDatosGUI();
-        
-        String strSentenciaInsert= String.format("INSERT INTO Empleados(ID, Nombre, Correo) VALUES (null, '%s', '%s')", OEmpleados.getNombre(), OEmpleados.getCorreo());
-        
+        conexion objconexion = new conexion();
+
+        empleadosBl OEmpleados = recuperarDatosGUI();
+
+        String strSentenciaInsert = String.format("INSERT INTO Empleados(ID, Nombre, Correo) VALUES (null, '%s', '%s')", OEmpleados.getNombre(), OEmpleados.getCorreo());
+
         objconexion.ejecutarSentenciaSQL(strSentenciaInsert);
-        
+
         this.mostrarDatos();
         this.limpiar();
-       
+
     }//GEN-LAST:event_btAgrerarActionPerformed
 
     private void tblEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEmpleadosMouseClicked
-        if(evt.getClickCount()==1){
-        JTable receptor= (JTable)evt.getSource();
-        
-        txtID.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(),0).toString() );
-        txtNombre.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(),1).toString());
-        txtCorreo.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(),2).toString());
-                
+        if (evt.getClickCount() == 1) {
+            JTable receptor = (JTable) evt.getSource();
+
+            txtID.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 0).toString());
+            txtNombre.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 1).toString());
+            txtCorreo.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 2).toString());
+
         }
-         btAgrerar.setEnabled(false);
+        btAgrerar.setEnabled(false);
         btEditar.setEnabled(true);
         btBorrar.setEnabled(true);
     }//GEN-LAST:event_tblEmpleadosMouseClicked
 
     private void btBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBorrarActionPerformed
-       
-        conexion  objconexion= new conexion(); 
-        
-        empleadosBl OEmpleados= recuperarDatosGUI();
-        
-        String strSentenciaInsert= String.format("DELETE FROM Empleados WHERE ID =%d", OEmpleados.getID());
-        
+
+        conexion objconexion = new conexion();
+
+        empleadosBl OEmpleados = recuperarDatosGUI();
+
+        String strSentenciaInsert = String.format("DELETE FROM Empleados WHERE ID =%d", OEmpleados.getID());
+
         objconexion.ejecutarSentenciaSQL(strSentenciaInsert);
-        
+
         this.mostrarDatos();
         this.limpiar();
-        
+
     }//GEN-LAST:event_btBorrarActionPerformed
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
-        
-       conexion  objconexion= new conexion(); 
-        
-       empleadosBl OEmpleados= recuperarDatosGUI();
-        
-       String strSentenciaInsert= String.format(" UPDATE Empleados SET Nombre='%s'," + "Correo='%s'  WHERE ID=%d", OEmpleados.getNombre(), OEmpleados.getCorreo(),OEmpleados.getID());
-        
-       objconexion.ejecutarSentenciaSQL(strSentenciaInsert);
-        
-       this.mostrarDatos();
+
+        conexion objconexion = new conexion();
+
+        empleadosBl OEmpleados = recuperarDatosGUI();
+
+        String strSentenciaInsert = String.format(" UPDATE Empleados SET Nombre='%s'," + "Correo='%s'  WHERE ID=%d", OEmpleados.getNombre(), OEmpleados.getCorreo(), OEmpleados.getID());
+
+        objconexion.ejecutarSentenciaSQL(strSentenciaInsert);
+
+        this.mostrarDatos();
         this.limpiar();
     }//GEN-LAST:event_btEditarActionPerformed
 
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
         this.limpiar();
     }//GEN-LAST:event_btCancelarActionPerformed
-      public void mostrarDatos(){
-          
-          while(modelo.getRowCount()>0){
-              modelo.removeRow(0);
-          }
-          
-              conexion  objconexion= new conexion();
-                try {
-            ResultSet resultado= objconexion.consultarRegister("SELECT * FROM Empleados");
-            
-            while (resultado.next()){
-            
+    public void mostrarDatos() {
+
+        while (modelo.getRowCount() > 0) {
+            modelo.removeRow(0);
+        }
+
+        conexion objconexion = new conexion();
+        try {
+            ResultSet resultado = objconexion.consultarRegister("SELECT * FROM Empleados");
+
+            while (resultado.next()) {
+
                 System.out.println(resultado.getString("ID"));
-                 System.out.println(resultado.getString("Nombre"));
-                  System.out.println(resultado.getString("Correo"));
-                  
-                  Object[] oUsuario={resultado.getString("ID"),resultado.getString("Nombre"),resultado.getString("Correo")};
-                  modelo.addRow(oUsuario);
+                System.out.println(resultado.getString("Nombre"));
+                System.out.println(resultado.getString("Correo"));
+
+                Object[] oUsuario = {resultado.getString("ID"), resultado.getString("Nombre"), resultado.getString("Correo")};
+                modelo.addRow(oUsuario);
             }
         } catch (Exception e) {
             System.out.println(e);
         }
-      }
-    
-    public empleadosBl recuperarDatosGUI(){
-     empleadosBl oEmpleados= new empleadosBl();
-     
-     int ID = (txtID.getText().isEmpty())?0: Integer.parseInt(txtID.getText());
-     
-     oEmpleados.setID(ID);
-     oEmpleados.setNombre(txtNombre.getText());
-     oEmpleados.setCorreo(txtCorreo.getText());
-     return oEmpleados;
     }
-    
-    public void limpiar(){
-    
+
+    public empleadosBl recuperarDatosGUI() {
+        empleadosBl oEmpleados = new empleadosBl();
+
+        int ID = (txtID.getText().isEmpty()) ? 0 : Integer.parseInt(txtID.getText());
+
+        oEmpleados.setID(ID);
+        oEmpleados.setNombre(txtNombre.getText());
+        oEmpleados.setCorreo(txtCorreo.getText());
+        return oEmpleados;
+    }
+
+    public void limpiar() {
+
         txtID.setText("");
         txtNombre.setText("");
         txtCorreo.setText("");
-        
+
         btAgrerar.setEnabled(true);
         btEditar.setEnabled(false);
         btBorrar.setEnabled(false);
     }
-    
+
     /**
      * @param args the command line arguments
      */
