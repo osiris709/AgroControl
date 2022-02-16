@@ -45,6 +45,21 @@ public class conexion {
         }
         
     }
+    
+    public ResultSet consultarRegister(String strSentenciaSQL){
+        
+        try {
+            
+           PreparedStatement pstm= conn.prepareStatement(strSentenciaSQL);
+           ResultSet respuestas = pstm.executeQuery();
+           return respuestas;
+           
+        } catch (Exception e) {
+            System.out.println(e);
+            return null;
+        }
+    
+    }
 
     /*public ResultSet consultarRegister(String select__from_Usuarios) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
