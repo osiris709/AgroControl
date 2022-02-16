@@ -6,6 +6,8 @@
 package agrocontrol;
 
 import Formularios.RegistrarCompras;
+import Formularios.RegistrarConsumo;
+import Formularios.RegistrarProveedor;
 
 /**
  *
@@ -173,7 +175,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenu2.setText("Proveedores");
 
-        jMenuItem1.setText("Proveedores");
+        jMenuItem1.setText("Registrar Proveedor");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem1);
         jMenu2.add(jSeparator1);
 
@@ -206,6 +213,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu6.setText("Consumos");
 
         jMenuItem6.setText("Registrar");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu6.add(jMenuItem6);
 
         jMenu4.add(jMenu6);
@@ -234,6 +246,20 @@ public class MenuPrincipal extends javax.swing.JFrame {
         Escritorio.add(abrir);
         abrir.show();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        
+        RegistrarConsumo abrir = new RegistrarConsumo();
+        Escritorio.add(abrir);
+        abrir.show();
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        
+        RegistrarProveedor abrir = new RegistrarProveedor();
+        Escritorio.add(abrir);
+        abrir.show();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
