@@ -1,7 +1,7 @@
 
 package Formularios;
 
-import Proveedore.Base.ConexionP;
+import Conexion.ConexionP;
 
 public class RegistrarProveedor extends javax.swing.JInternalFrame {
 
