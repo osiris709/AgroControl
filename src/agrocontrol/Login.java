@@ -18,7 +18,7 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         this.setTitle("AgroControl");
-        this.setLocation(400, 80);
+        this.setLocation(700, 300);
     }
 
     @SuppressWarnings("unchecked")
