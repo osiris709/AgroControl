@@ -12,7 +12,7 @@ import java.sql.SQLException;
  */
 public class conexion {
 
-    String iniciarConexion = "jdbc:sqlite:E:/ARCHIVOS JOSE/INFO JOSE/CONTENEDORES/BASE DATOS AGROCONTROL/Agrocontrol.s3db";
+    String iniciarConexion = "jdbc:sqlite:C:\\Users\\usuario\\Downloads\\BASE DATOS AGROCONTROL/Agrocontrol.s3db";
     Connection conn = null;
 
     public Connection conexion() {
