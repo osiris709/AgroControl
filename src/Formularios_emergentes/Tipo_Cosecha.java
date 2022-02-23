@@ -1,5 +1,5 @@
 
-package Formularios;
+package Formularios_emergentes;
 
 import Conexion.ConexionP;
 
@@ -261,7 +261,7 @@ public class Tipo_Cosecha extends javax.swing.JInternalFrame {
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jLabel10))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
