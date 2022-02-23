@@ -330,9 +330,9 @@ public class MenuSuper extends javax.swing.JFrame {
                 .addGap(1, 1, 1)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 52, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, Short.MAX_VALUE)
                 .addGap(45, 45, 45))
         );
 
@@ -402,6 +402,7 @@ public class MenuSuper extends javax.swing.JFrame {
             /*consulta ingresar y guardar datos*/
             try {
                 PreparedStatement guardar = iniciarConexion.prepareStatement("INSERT INTO Usuarios (Id, TipoUsuario, Usuario, Contrasena, Nombres, Apellidos, Direccion, Telefono) VALUES (?,?,?,?,?,?,?,?)");
+                
                 guardar.setString(2, jTipo.getSelectedItem().toString());
                 guardar.setString(3, txt_Alias.getText());
                 guardar.setString(4, txt_Contra.getText());
@@ -409,9 +410,11 @@ public class MenuSuper extends javax.swing.JFrame {
                 guardar.setString(6, txt_Ape.getText());
                 guardar.setString(7, txt_Direc.getText());
                 guardar.setString(8, txt_Tel.getText());
-
+                
                 guardar.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Sa registrado el usuario correctramente.");
+                
+                guardar.close();
                 
                 /*txt_Alias.getText("");
                 txt_Contra.getText("");

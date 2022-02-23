@@ -174,6 +174,10 @@ public class Login extends javax.swing.JFrame {
                 } else {
                     JOptionPane.showMessageDialog(null, "Por favor ingrese un usuario y/o contraseña correctos");
                 }
+                
+                st.close();
+                rs.close();
+                
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
             }
@@ -197,6 +201,10 @@ public class Login extends javax.swing.JFrame {
                     } else {
                         JOptionPane.showMessageDialog(null, "Por favor ingrese un usuario y/o contraseña correctos");
                     }
+                    
+                    st.close();
+                    rs.close();
+                    
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
                 }
