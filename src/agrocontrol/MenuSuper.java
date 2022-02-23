@@ -18,11 +18,11 @@ public class MenuSuper extends javax.swing.JFrame {
     Statement stmt = null;*/
     public MenuSuper() {
         initComponents();
-        
+
         this.setTitle("AgroControl - Registrar Usuario");
         this.setLocationRelativeTo(null);
         setResizable(false);
-        
+
     }
 
     /**
@@ -228,6 +228,7 @@ public class MenuSuper extends javax.swing.JFrame {
 
         btn_guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Guardar2.png"))); // NOI18N
         btn_guardar.setText("Guardar");
+        btn_guardar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_guardarActionPerformed(evt);
@@ -236,15 +237,19 @@ public class MenuSuper extends javax.swing.JFrame {
 
         btn_editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/editar2.png"))); // NOI18N
         btn_editar.setText("Editar");
+        btn_editar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         btn_elminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/eliminar2.png"))); // NOI18N
         btn_elminar.setText("Eliminar");
+        btn_elminar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         btn_cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/desactivar.png"))); // NOI18N
         btn_cancelar.setText("Cancelar");
+        btn_cancelar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         btnRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/atras.png"))); // NOI18N
         btnRegresar.setText("Regresar");
+        btnRegresar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegresarActionPerformed(evt);
@@ -287,6 +292,7 @@ public class MenuSuper extends javax.swing.JFrame {
 
         btn_lista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lista.png"))); // NOI18N
         btn_lista.setText("Listar Usuarios");
+        btn_lista.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -377,7 +383,7 @@ public class MenuSuper extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_ApeKeyTyped
 
     private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
-         //para obligar a llenar todos los campos.
+        //para obligar a llenar todos los campos.
         String Nom, Ape, Dir, Tel, User, Contra, Tipo;
 
         Nom = txt_Nom.getText();
@@ -399,7 +405,7 @@ public class MenuSuper extends javax.swing.JFrame {
             /*consulta ingresar y guardar datos*/
             try {
                 PreparedStatement guardar = iniciarConexion.prepareStatement("INSERT INTO Usuarios (Id, TipoUsuario, Usuario, Contrasena, Nombres, Apellidos, Direccion, Telefono) VALUES (?,?,?,?,?,?,?,?)");
-                
+
                 guardar.setString(2, jTipo.getSelectedItem().toString());
                 guardar.setString(3, txt_Alias.getText());
                 guardar.setString(4, txt_Contra.getText());
@@ -407,12 +413,12 @@ public class MenuSuper extends javax.swing.JFrame {
                 guardar.setString(6, txt_Ape.getText());
                 guardar.setString(7, txt_Direc.getText());
                 guardar.setString(8, txt_Tel.getText());
-                
+
                 guardar.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Sa registrado el usuario correctramente.");
-                
+
                 guardar.close();
-                
+
                 /*txt_Alias.getText("");
                 txt_Contra.getText("");
                 txt_Nom.getText("");
