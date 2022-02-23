@@ -20,6 +20,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
      */
     public MenuPrincipal() {
         initComponents();
+        
+        this.setTitle("AgroControl - Menu Principal");
+        this.setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     /**
