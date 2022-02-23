@@ -18,8 +18,7 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         this.setTitle("AgroControl");
-        this.setLocation(700, 300);
-        /*this.setLocationRelativeTo(null);*/
+        this.setLocationRelativeTo(null);
         setResizable(false);
     }
 
@@ -150,8 +149,6 @@ public class Login extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
 
-        /*char clave[]=jClave.getPassword();
-        String clavedef=new String(clave);*/
         int resultado;
         String Usuario = txtUsuario.getText();
         String Clave = String.valueOf(jClave.getPassword());

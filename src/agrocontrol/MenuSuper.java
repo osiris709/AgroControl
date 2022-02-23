@@ -18,8 +18,11 @@ public class MenuSuper extends javax.swing.JFrame {
     Statement stmt = null;*/
     public MenuSuper() {
         initComponents();
-        this.setTitle("REGISTRAR USUARIOS");
-        this.setLocation(400, 220);
+
+        this.setTitle("AgroControl - Registrar Usuario");
+        this.setLocationRelativeTo(null);
+        setResizable(false);
+
     }
 
     /**
@@ -380,7 +383,7 @@ public class MenuSuper extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_ApeKeyTyped
 
     private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
-         //para obligar a llenar todos los campos.
+        //para obligar a llenar todos los campos.
         String Nom, Ape, Dir, Tel, User, Contra, Tipo;
 
         Nom = txt_Nom.getText();
@@ -402,7 +405,7 @@ public class MenuSuper extends javax.swing.JFrame {
             /*consulta ingresar y guardar datos*/
             try {
                 PreparedStatement guardar = iniciarConexion.prepareStatement("INSERT INTO Usuarios (Id, TipoUsuario, Usuario, Contrasena, Nombres, Apellidos, Direccion, Telefono) VALUES (?,?,?,?,?,?,?,?)");
-                
+
                 guardar.setString(2, jTipo.getSelectedItem().toString());
                 guardar.setString(3, txt_Alias.getText());
                 guardar.setString(4, txt_Contra.getText());
@@ -410,12 +413,12 @@ public class MenuSuper extends javax.swing.JFrame {
                 guardar.setString(6, txt_Ape.getText());
                 guardar.setString(7, txt_Direc.getText());
                 guardar.setString(8, txt_Tel.getText());
-                
+
                 guardar.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Sa registrado el usuario correctramente.");
-                
+
                 guardar.close();
-                
+
                 /*txt_Alias.getText("");
                 txt_Contra.getText("");
                 txt_Nom.getText("");
