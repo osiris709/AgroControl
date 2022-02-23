@@ -419,7 +419,7 @@ public class MenuSuper extends javax.swing.JFrame {
                 txt_Ape.getText("");
                 txt_Direc.getText("");
                 txt_Tel.getText("");*/
-
+                guardar.close();
             } catch (Exception e) {
 
                 JOptionPane.showMessageDialog(null, e + "No se logro registrar el usuario \n Intente nuevamente.");
