@@ -8,6 +8,7 @@ package agrocontrol;
 import Formularios.RegistrarCompras;
 import Formularios.RegistrarConsumo;
 import Formularios.RegistrarProveedor;
+import java.awt.Component;
 
 /**
  *
@@ -37,21 +38,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         Escritorio = new javax.swing.JDesktopPane();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
+        lbl_logo = new javax.swing.JLabel();
+        lbl_cosecha = new javax.swing.JLabel();
+        lbl_proveedores = new javax.swing.JLabel();
+        lbl_salir = new javax.swing.JLabel();
+        lbl_consumos = new javax.swing.JLabel();
+        lbl_compras = new javax.swing.JLabel();
+        lbl_productos = new javax.swing.JLabel();
+        lbl_reportes = new javax.swing.JLabel();
+        mostrar = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -59,7 +54,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
@@ -68,10 +62,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
+        jMenuItem14 = new javax.swing.JMenuItem();
+        jMenuItem15 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1272, 720));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(1272, 720));
@@ -79,88 +74,88 @@ public class MenuPrincipal extends javax.swing.JFrame {
         Escritorio.setBackground(new java.awt.Color(240, 255, 240));
         Escritorio.setPreferredSize(new java.awt.Dimension(1272, 720));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/LogoGrand.png"))); // NOI18N
+        lbl_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/LogoGrand.png"))); // NOI18N
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/agricola.png"))); // NOI18N
-        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        lbl_cosecha.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lbl_cosecha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_cosecha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Cosecha.png"))); // NOI18N
+        lbl_cosecha.setText("Cosecha");
+        lbl_cosecha.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        lbl_cosecha.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/proveedor2.png"))); // NOI18N
-        jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        lbl_proveedores.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lbl_proveedores.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        lbl_proveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Proveedor.png"))); // NOI18N
+        lbl_proveedores.setText("Proveedores");
+        lbl_proveedores.setToolTipText("");
+        lbl_proveedores.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        lbl_proveedores.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        lbl_proveedores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_proveedoresMouseClicked(evt);
+            }
+        });
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/salida.png"))); // NOI18N
-        jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        lbl_salir.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lbl_salir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Salir.png"))); // NOI18N
+        lbl_salir.setText("Salir");
+        lbl_salir.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        lbl_salir.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/quitar-del-carrito.png"))); // NOI18N
-        jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel5.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        lbl_consumos.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lbl_consumos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_consumos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Consumo.png"))); // NOI18N
+        lbl_consumos.setText("Consumos");
+        lbl_consumos.setToolTipText("");
+        lbl_consumos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        lbl_consumos.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Compra.png"))); // NOI18N
-        jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        lbl_compras.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lbl_compras.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_compras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Compra.png"))); // NOI18N
+        lbl_compras.setText("Compras");
+        lbl_compras.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/reporte_1.png"))); // NOI18N
-        jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel7.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        lbl_productos.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lbl_productos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_productos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Productos.png"))); // NOI18N
+        lbl_productos.setText("Productos");
+        lbl_productos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        lbl_productos.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel8.setText("PROVEEDORES");
+        lbl_reportes.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lbl_reportes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbl_reportes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Reporte.png"))); // NOI18N
+        lbl_reportes.setText("Reportes");
+        lbl_reportes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        lbl_reportes.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel9.setText("PRODUCTOS");
+        mostrar.setBackground(new java.awt.Color(240, 255, 240));
+        mostrar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        mostrar.setPreferredSize(new java.awt.Dimension(802, 530));
+        mostrar.setRequestFocusEnabled(false);
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel10.setText("REPORTES");
+        javax.swing.GroupLayout mostrarLayout = new javax.swing.GroupLayout(mostrar);
+        mostrar.setLayout(mostrarLayout);
+        mostrarLayout.setHorizontalGroup(
+            mostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 798, Short.MAX_VALUE)
+        );
+        mostrarLayout.setVerticalGroup(
+            mostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 526, Short.MAX_VALUE)
+        );
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel11.setText("SALIR");
-        jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jLabel11.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel12.setText("CONSUMOS");
-
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel13.setText("COMPRAS");
-
-        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/carrito-de-supermercado.png"))); // NOI18N
-        jLabel14.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel14.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
-        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel17.setText("CONTROL \nCOSECHAS"); // NOI18N
-
-        Escritorio.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Escritorio.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Escritorio.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Escritorio.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Escritorio.setLayer(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Escritorio.setLayer(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Escritorio.setLayer(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Escritorio.setLayer(jLabel8, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Escritorio.setLayer(jLabel9, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Escritorio.setLayer(jLabel10, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Escritorio.setLayer(jLabel11, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Escritorio.setLayer(jLabel12, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Escritorio.setLayer(jLabel13, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Escritorio.setLayer(jLabel14, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        Escritorio.setLayer(jLabel17, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Escritorio.setLayer(lbl_logo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Escritorio.setLayer(lbl_cosecha, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Escritorio.setLayer(lbl_proveedores, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Escritorio.setLayer(lbl_salir, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Escritorio.setLayer(lbl_consumos, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Escritorio.setLayer(lbl_compras, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Escritorio.setLayer(lbl_productos, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Escritorio.setLayer(lbl_reportes, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        Escritorio.setLayer(mostrar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout EscritorioLayout = new javax.swing.GroupLayout(Escritorio);
         Escritorio.setLayout(EscritorioLayout);
@@ -169,88 +164,48 @@ public class MenuPrincipal extends javax.swing.JFrame {
             .addGroup(EscritorioLayout.createSequentialGroup()
                 .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(EscritorioLayout.createSequentialGroup()
-                        .addGap(152, 152, 152)
+                        .addGap(468, 468, 468)
+                        .addComponent(lbl_logo))
+                    .addGroup(EscritorioLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
                         .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EscritorioLayout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(20, 20, 20)))
-                        .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(EscritorioLayout.createSequentialGroup()
-                                .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(EscritorioLayout.createSequentialGroup()
-                                        .addGap(152, 152, 152)
-                                        .addComponent(jLabel14))
-                                    .addGroup(EscritorioLayout.createSequentialGroup()
-                                        .addGap(165, 165, 165)
-                                        .addComponent(jLabel9)))
-                                .addGap(151, 151, 151)
-                                .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel17)
-                                    .addGroup(EscritorioLayout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addGap(152, 152, 152)
-                                        .addComponent(jLabel7))))
-                            .addGroup(EscritorioLayout.createSequentialGroup()
-                                .addGap(152, 152, 152)
-                                .addComponent(jLabel1))))
-                    .addGroup(EscritorioLayout.createSequentialGroup()
-                        .addGap(1025, 1025, 1025)
-                        .addComponent(jLabel10)))
-                .addContainerGap(153, Short.MAX_VALUE))
-            .addGroup(EscritorioLayout.createSequentialGroup()
-                .addGap(221, 221, 221)
-                .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(EscritorioLayout.createSequentialGroup()
-                        .addComponent(jLabel6)
-                        .addGap(222, 222, 222)
-                        .addComponent(jLabel5)
-                        .addGap(215, 215, 215)
-                        .addComponent(jLabel4)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(EscritorioLayout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(jLabel13)
-                        .addGap(285, 285, 285)
-                        .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel11)
-                        .addGap(281, 281, 281))))
+                            .addComponent(lbl_proveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(lbl_salir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lbl_consumos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lbl_compras, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lbl_productos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lbl_cosecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lbl_reportes, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(155, 155, 155)
+                        .addComponent(mostrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(155, Short.MAX_VALUE))
         );
         EscritorioLayout.setVerticalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EscritorioLayout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addGap(54, 54, 54)
-                .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel17)
-                    .addComponent(jLabel10))
+                .addComponent(lbl_logo)
                 .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(EscritorioLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel14)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbl_proveedores)
+                        .addGap(30, 30, 30)
+                        .addComponent(lbl_productos)
+                        .addGap(30, 30, 30)
+                        .addComponent(lbl_compras)
+                        .addGap(30, 30, 30)
+                        .addComponent(lbl_consumos)
+                        .addGap(30, 30, 30)
+                        .addComponent(lbl_cosecha)
+                        .addGap(30, 30, 30)
+                        .addComponent(lbl_reportes)
+                        .addGap(30, 30, 30)
+                        .addComponent(lbl_salir)
+                        .addGap(93, 93, 93))
                     .addGroup(EscritorioLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel7))))
-                .addGap(84, 84, 84)
-                .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6)
-                    .addGroup(EscritorioLayout.createSequentialGroup()
-                        .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(11, 11, 11)
-                        .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))))
-                .addContainerGap(93, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(mostrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(26, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -261,7 +216,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 699, Short.MAX_VALUE)
+            .addComponent(Escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Archivo");
@@ -280,9 +235,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenuItem5.setText("Registrar Cosecha");
         jMenu1.add(jMenuItem5);
-
-        jMenuItem6.setText("Registrar Hectarea");
-        jMenu1.add(jMenuItem6);
 
         jMenuItem13.setText("Salir");
         jMenu1.add(jMenuItem13);
@@ -306,8 +258,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenuItem11.setText("Listado de Cosechas");
         jMenu2.add(jMenuItem11);
 
-        jMenuItem12.setText("Listado de Hectareas");
+        jMenuItem12.setText("Listado de Areas");
         jMenu2.add(jMenuItem12);
+
+        jMenuItem14.setText("Listado Tipo de Productos");
+        jMenu2.add(jMenuItem14);
+
+        jMenuItem15.setText("Listado Unidades de Medida");
+        jMenu2.add(jMenuItem15);
 
         jMenuBar1.add(jMenu2);
 
@@ -324,11 +282,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 699, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void lbl_proveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_proveedoresMouseClicked
+        
+        RegistrarProveedor ventana = new RegistrarProveedor();
+        mostrar.add(ventana);
+        ventana.show();
+        
+    }//GEN-LAST:event_lbl_proveedoresMouseClicked
 
     /**
      * @param args the command line arguments
@@ -367,21 +333,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane Escritorio;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -391,14 +342,24 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
+    private javax.swing.JMenuItem jMenuItem14;
+    private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lbl_compras;
+    private javax.swing.JLabel lbl_consumos;
+    private javax.swing.JLabel lbl_cosecha;
+    private javax.swing.JLabel lbl_logo;
+    private javax.swing.JLabel lbl_productos;
+    private javax.swing.JLabel lbl_proveedores;
+    private javax.swing.JLabel lbl_reportes;
+    private javax.swing.JLabel lbl_salir;
+    private javax.swing.JDesktopPane mostrar;
     // End of variables declaration//GEN-END:variables
 }
