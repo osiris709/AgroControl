@@ -6,6 +6,10 @@
 package agrocontrol;
 
 import Formularios.RegistrarProveedor;
+import java.awt.Image;
+import java.awt.Graphics;
+import javax.swing.ImageIcon;
+
 
 /**
  *
@@ -34,7 +38,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        Escritorio = new javax.swing.JDesktopPane();
+        ImageIcon icon1 = new ImageIcon(getClass().getResource("/Imagenes/fondo-azul.jpg"));
+        Image image1 = icon1.getImage();
+        Escritorio = new javax.swing.JDesktopPane(){
+
+            public void paintComponent(Graphics g){
+                g.drawImage(image1,0,0,getWidth(),getHeight(),this);
+            }
+        };
         lbl_logo = new javax.swing.JLabel();
         lbl_cosecha = new javax.swing.JLabel();
         lbl_proveedores = new javax.swing.JLabel();
@@ -43,7 +54,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
         lbl_compras = new javax.swing.JLabel();
         lbl_productos = new javax.swing.JLabel();
         lbl_reportes = new javax.swing.JLabel();
-        mostrar = new javax.swing.JDesktopPane();
+        ImageIcon icon = new ImageIcon(getClass().getResource("/Imagenes/fondo-azul.jpg"));
+        Image image = icon.getImage();
+        mostrar = new javax.swing.JDesktopPane(){
+
+            public void paintComponent(Graphics g){
+                g.drawImage(image,0,0,getWidth(),getHeight(),this);
+            }
+
+        };
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -131,20 +150,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
         lbl_reportes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         lbl_reportes.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
-        mostrar.setBackground(new java.awt.Color(240, 255, 240));
-        mostrar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         mostrar.setPreferredSize(new java.awt.Dimension(800, 500));
-        mostrar.setRequestFocusEnabled(false);
 
         javax.swing.GroupLayout mostrarLayout = new javax.swing.GroupLayout(mostrar);
         mostrar.setLayout(mostrarLayout);
         mostrarLayout.setHorizontalGroup(
             mostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 796, Short.MAX_VALUE)
+            .addGap(0, 800, Short.MAX_VALUE)
         );
         mostrarLayout.setVerticalGroup(
             mostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 496, Short.MAX_VALUE)
+            .addGap(0, 500, Short.MAX_VALUE)
         );
 
         Escritorio.setLayer(lbl_logo, javax.swing.JLayeredPane.DEFAULT_LAYER);
