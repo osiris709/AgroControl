@@ -40,11 +40,12 @@ public class Login extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Fondo.setMinimumSize(new java.awt.Dimension(1280, 720));
-        Fondo.setPreferredSize(new java.awt.Dimension(1272, 720));
+        Fondo.setPreferredSize(new java.awt.Dimension(1280, 720));
         Fondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -142,7 +143,10 @@ public class Login extends javax.swing.JFrame {
 
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo-login.jpg"))); // NOI18N
-        Fondo.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -50, 1280, 770));
+        jLabel7.setMaximumSize(new java.awt.Dimension(1280, 720));
+        jLabel7.setMinimumSize(new java.awt.Dimension(1280, 720));
+        jLabel7.setPreferredSize(new java.awt.Dimension(1280, 720));
+        Fondo.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -50, 1280, 720));
 
         getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
 
