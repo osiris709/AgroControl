@@ -150,17 +150,19 @@ public class MenuPrincipal extends javax.swing.JFrame {
         lbl_reportes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         lbl_reportes.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
+        mostrar.setBackground(new java.awt.Color(240, 255, 240));
+        mostrar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         mostrar.setPreferredSize(new java.awt.Dimension(800, 500));
 
         javax.swing.GroupLayout mostrarLayout = new javax.swing.GroupLayout(mostrar);
         mostrar.setLayout(mostrarLayout);
         mostrarLayout.setHorizontalGroup(
             mostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGap(0, 796, Short.MAX_VALUE)
         );
         mostrarLayout.setVerticalGroup(
             mostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGap(0, 496, Short.MAX_VALUE)
         );
 
         Escritorio.setLayer(lbl_logo, javax.swing.JLayeredPane.DEFAULT_LAYER);
