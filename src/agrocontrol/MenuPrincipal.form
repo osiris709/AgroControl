@@ -169,60 +169,62 @@
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JDesktopPane(){&#xa;&#xa;    public void paintComponent(Graphics g){&#xa;        g.drawImage(image1,0,0,getWidth(),getHeight(),this);&#xa;    }&#xa;}"/>
-            <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="ImageIcon icon1 = new ImageIcon(getClass().getResource(&quot;/Imagenes/fondo-azul.jpg&quot;));&#xa;Image image1 = icon1.getImage();"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="ImageIcon icon1 = new ImageIcon(getClass().getResource(&quot;/Imagenes/fondo-menu.jpg&quot;));&#xa;Image image1 = icon1.getImage();"/>
           </AuxValues>
 
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lbl_proveedores" alignment="1" min="-2" pref="130" max="-2" attributes="0"/>
-                              <Component id="lbl_salir" alignment="0" min="-2" pref="130" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lbl_proveedores" alignment="1" min="-2" pref="130" max="-2" attributes="0"/>
+                                  <Component id="lbl_salir" alignment="1" min="-2" pref="130" max="-2" attributes="0"/>
+                                  <Component id="lbl_productos" alignment="1" min="-2" pref="130" max="-2" attributes="0"/>
+                                  <Component id="lbl_compras" alignment="1" min="-2" pref="130" max="-2" attributes="0"/>
+                                  <Component id="lbl_consumos" alignment="1" min="-2" pref="130" max="-2" attributes="0"/>
+                                  <Component id="lbl_cosecha" alignment="1" min="-2" pref="130" max="-2" attributes="0"/>
+                                  <Component id="lbl_reportes" alignment="1" min="-2" pref="130" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <Component id="lbl_productos" min="-2" pref="130" max="-2" attributes="0"/>
-                          <Component id="lbl_compras" min="-2" pref="130" max="-2" attributes="0"/>
-                          <Component id="lbl_consumos" min="-2" pref="130" max="-2" attributes="0"/>
-                          <Component id="lbl_cosecha" min="-2" pref="130" max="-2" attributes="0"/>
-                          <Component id="lbl_reportes" min="-2" pref="130" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                              <Component id="lbl_logo" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="95" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                       <Component id="mostrar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="153" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="lbl_logo" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="350" max="-2" attributes="0"/>
+                      <EmptySpace pref="146" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="lbl_logo" min="-2" pref="138" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="lbl_logo" min="-2" pref="215" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                      <Component id="lbl_proveedores" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Component id="lbl_proveedores" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                              <Component id="lbl_productos" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                              <Component id="lbl_compras" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                              <Component id="lbl_consumos" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                              <Component id="lbl_cosecha" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                              <Component id="lbl_reportes" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="lbl_salir" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="mostrar" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace pref="43" max="32767" attributes="0"/>
+                      <Component id="lbl_productos" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="lbl_compras" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="lbl_consumos" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="lbl_cosecha" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="lbl_reportes" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="lbl_salir" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="64" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="mostrar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -231,7 +233,7 @@
             <Component class="javax.swing.JLabel" name="lbl_logo">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Imagenes/LogoGrand.png"/>
+                  <Image iconType="3" name="/Imagenes/Primera-login.png"/>
                 </Property>
               </Properties>
             </Component>
@@ -258,6 +260,9 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lbl_proveedores">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="12" style="1"/>
                 </Property>
@@ -273,6 +278,7 @@
                   </Border>
                 </Property>
                 <Property name="horizontalTextPosition" type="int" value="4"/>
+                <Property name="opaque" type="boolean" value="true"/>
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbl_proveedoresMouseClicked"/>
@@ -343,6 +349,9 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lbl_productos">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Tahoma" size="12" style="1"/>
                 </Property>
@@ -357,6 +366,7 @@
                   </Border>
                 </Property>
                 <Property name="horizontalTextPosition" type="int" value="4"/>
+                <Property name="opaque" type="boolean" value="true"/>
               </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lbl_productosMouseClicked"/>
@@ -394,10 +404,6 @@
                   <Dimension value="[800, 500]"/>
                 </Property>
               </Properties>
-              <AuxValues>
-                <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JDesktopPane(){&#xa;&#xa;    public void paintComponent(Graphics g){&#xa;        g.drawImage(image,0,0,getWidth(),getHeight(),this);&#xa;    }&#xa;&#xa;}"/>
-                <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="ImageIcon icon = new ImageIcon(getClass().getResource(&quot;/Imagenes/fondo-azul.jpg&quot;));&#xa;Image image = icon.getImage();"/>
-              </AuxValues>
 
               <Layout>
                 <DimensionLayout dim="0">
