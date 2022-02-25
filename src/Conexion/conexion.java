@@ -20,7 +20,7 @@ public class conexion {
             Class.forName("org.sqlite.JDBC");
             conn = DriverManager.getConnection(iniciarConexion);
 
-            System.out.println("Conexion Exitosa");
+            //System.out.println("Conexion Exitosa");
 
         } catch (Exception e) {
 
