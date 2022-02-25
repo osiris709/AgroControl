@@ -5,6 +5,10 @@
  */
 package agrocontrol;
 
+import Formularios.Control_Cosecha;
+import Formularios.RegistrarCompras;
+import Formularios.RegistrarConsumo;
+import Formularios.RegistrarProductos;
 import Formularios.RegistrarProveedor;
 import java.awt.Image;
 import java.awt.Graphics;
@@ -101,6 +105,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         lbl_cosecha.setText("Cosecha");
         lbl_cosecha.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         lbl_cosecha.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        lbl_cosecha.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_cosechaMouseClicked(evt);
+            }
+        });
 
         lbl_proveedores.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lbl_proveedores.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
@@ -121,6 +130,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         lbl_salir.setText("Salir");
         lbl_salir.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         lbl_salir.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        lbl_salir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_salirMouseClicked(evt);
+            }
+        });
 
         lbl_consumos.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lbl_consumos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -129,12 +143,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
         lbl_consumos.setToolTipText("");
         lbl_consumos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         lbl_consumos.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        lbl_consumos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_consumosMouseClicked(evt);
+            }
+        });
 
         lbl_compras.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lbl_compras.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_compras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Compra.png"))); // NOI18N
         lbl_compras.setText("Compras");
         lbl_compras.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        lbl_compras.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_comprasMouseClicked(evt);
+            }
+        });
 
         lbl_productos.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lbl_productos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -142,6 +166,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         lbl_productos.setText("Productos");
         lbl_productos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         lbl_productos.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        lbl_productos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_productosMouseClicked(evt);
+            }
+        });
 
         lbl_reportes.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lbl_reportes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -180,47 +209,46 @@ public class MenuPrincipal extends javax.swing.JFrame {
         EscritorioLayout.setHorizontalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EscritorioLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbl_proveedores, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(lbl_salir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lbl_consumos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lbl_compras, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lbl_productos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lbl_cosecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lbl_reportes, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(156, 156, 156)
+                .addGap(102, 102, 102)
+                .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lbl_proveedores, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lbl_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbl_productos, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_compras, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_consumos, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_cosecha, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_reportes, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(95, 95, 95)
                 .addComponent(mostrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(164, Short.MAX_VALUE))
+                .addContainerGap(153, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EscritorioLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lbl_logo)
-                .addGap(401, 401, 401))
+                .addGap(350, 350, 350))
         );
         EscritorioLayout.setVerticalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EscritorioLayout.createSequentialGroup()
-                .addContainerGap(195, Short.MAX_VALUE)
-                .addComponent(lbl_proveedores)
-                .addGap(30, 30, 30)
-                .addComponent(lbl_productos)
-                .addGap(30, 30, 30)
-                .addComponent(lbl_compras)
-                .addGap(30, 30, 30)
-                .addComponent(lbl_consumos)
-                .addGap(30, 30, 30)
-                .addComponent(lbl_cosecha)
-                .addGap(30, 30, 30)
-                .addComponent(lbl_reportes)
-                .addGap(30, 30, 30)
-                .addComponent(lbl_salir)
-                .addGap(93, 93, 93))
-            .addGroup(EscritorioLayout.createSequentialGroup()
                 .addComponent(lbl_logo, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(mostrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(EscritorioLayout.createSequentialGroup()
+                        .addComponent(lbl_proveedores)
+                        .addGap(41, 41, 41)
+                        .addComponent(lbl_productos)
+                        .addGap(42, 42, 42)
+                        .addComponent(lbl_compras)
+                        .addGap(41, 41, 41)
+                        .addComponent(lbl_consumos)
+                        .addGap(42, 42, 42)
+                        .addComponent(lbl_cosecha)
+                        .addGap(41, 41, 41)
+                        .addComponent(lbl_reportes)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbl_salir))
+                    .addComponent(mostrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -231,7 +259,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 699, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Archivo");
@@ -297,7 +325,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 699, Short.MAX_VALUE)
         );
 
         pack();
@@ -308,8 +336,46 @@ public class MenuPrincipal extends javax.swing.JFrame {
         RegistrarProveedor ventana = new RegistrarProveedor();
         mostrar.add(ventana);
         ventana.show();
-        
+    
     }//GEN-LAST:event_lbl_proveedoresMouseClicked
+
+    private void lbl_productosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_productosMouseClicked
+        
+        RegistrarProductos ventana2 = new RegistrarProductos();
+        mostrar.add(ventana2);
+        ventana2.show();
+        
+    }//GEN-LAST:event_lbl_productosMouseClicked
+
+    private void lbl_comprasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_comprasMouseClicked
+        
+        RegistrarCompras ventana3 = new RegistrarCompras();
+        mostrar.add(ventana3);
+        ventana3.show();
+    }//GEN-LAST:event_lbl_comprasMouseClicked
+
+    private void lbl_consumosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_consumosMouseClicked
+        
+        RegistrarConsumo ventana4 = new RegistrarConsumo();
+        mostrar.add(ventana4);
+        ventana4.show();
+        
+    }//GEN-LAST:event_lbl_consumosMouseClicked
+
+    private void lbl_cosechaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_cosechaMouseClicked
+        
+        Control_Cosecha ventana5 = new Control_Cosecha();
+        mostrar.add(ventana5);
+        ventana5.show();
+        
+    }//GEN-LAST:event_lbl_cosechaMouseClicked
+
+    private void lbl_salirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_salirMouseClicked
+        
+        Login inicio = new Login();
+        inicio.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_lbl_salirMouseClicked
 
     /**
      * @param args the command line arguments
