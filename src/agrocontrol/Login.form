@@ -80,40 +80,16 @@
                       <EmptySpace min="0" pref="48" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-<<<<<<< HEAD
-                              <Component id="jLabel5" min="-2" pref="154" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jClave" alignment="0" pref="261" max="32767" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="Rol" min="-2" pref="184" max="-2" attributes="0"/>
-                                  </Group>
-=======
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtUsuario" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jClave" alignment="0" max="32767" attributes="0"/>
->>>>>>> bb2886e643e78893df8a8dc8f82a21212203f25a
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
                                       <Component id="btnIngresar" min="-2" max="-2" attributes="0"/>
                                   </Group>
-<<<<<<< HEAD
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
-                                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="txtUsuario" alignment="0" max="32767" attributes="0"/>
-=======
                                   <Component id="Rol" pref="261" max="32767" attributes="0"/>
->>>>>>> bb2886e643e78893df8a8dc8f82a21212203f25a
                               </Group>
                               <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                           </Group>
@@ -141,13 +117,7 @@
                       <Component id="Rol" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="btnIngresar" min="-2" max="-2" attributes="0"/>
-<<<<<<< HEAD
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="120" max="32767" attributes="0"/>
-=======
                       <EmptySpace pref="41" max="32767" attributes="0"/>
->>>>>>> bb2886e643e78893df8a8dc8f82a21212203f25a
                   </Group>
               </Group>
             </DimensionLayout>
