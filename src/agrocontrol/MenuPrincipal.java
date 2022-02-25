@@ -42,7 +42,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        ImageIcon icon1 = new ImageIcon(getClass().getResource("/Imagenes/fondo-azul.jpg"));
+        ImageIcon icon1 = new ImageIcon(getClass().getResource("/Imagenes/fondo-menu.jpg"));
         Image image1 = icon1.getImage();
         Escritorio = new javax.swing.JDesktopPane(){
 
@@ -58,15 +58,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         lbl_compras = new javax.swing.JLabel();
         lbl_productos = new javax.swing.JLabel();
         lbl_reportes = new javax.swing.JLabel();
-        ImageIcon icon = new ImageIcon(getClass().getResource("/Imagenes/fondo-azul.jpg"));
-        Image image = icon.getImage();
-        mostrar = new javax.swing.JDesktopPane(){
-
-            public void paintComponent(Graphics g){
-                g.drawImage(image,0,0,getWidth(),getHeight(),this);
-            }
-
-        };
+        mostrar = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -97,7 +89,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         Escritorio.setBackground(new java.awt.Color(240, 255, 240));
         Escritorio.setPreferredSize(new java.awt.Dimension(1280, 720));
 
-        lbl_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/LogoGrand.png"))); // NOI18N
+        lbl_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Primera-login.png"))); // NOI18N
 
         lbl_cosecha.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lbl_cosecha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -111,6 +103,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        lbl_proveedores.setBackground(new java.awt.Color(255, 255, 255));
         lbl_proveedores.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lbl_proveedores.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         lbl_proveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Proveedor.png"))); // NOI18N
@@ -118,6 +111,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         lbl_proveedores.setToolTipText("");
         lbl_proveedores.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         lbl_proveedores.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        lbl_proveedores.setOpaque(true);
         lbl_proveedores.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lbl_proveedoresMouseClicked(evt);
@@ -160,12 +154,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        lbl_productos.setBackground(new java.awt.Color(255, 255, 255));
         lbl_productos.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lbl_productos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lbl_productos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Productos.png"))); // NOI18N
         lbl_productos.setText("Productos");
         lbl_productos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         lbl_productos.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        lbl_productos.setOpaque(true);
         lbl_productos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lbl_productosMouseClicked(evt);
@@ -209,46 +205,48 @@ public class MenuPrincipal extends javax.swing.JFrame {
         EscritorioLayout.setHorizontalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EscritorioLayout.createSequentialGroup()
-                .addGap(102, 102, 102)
-                .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lbl_proveedores, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lbl_salir, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lbl_productos, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_compras, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_consumos, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_cosecha, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbl_reportes, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(95, 95, 95)
+                .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(EscritorioLayout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbl_proveedores, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl_salir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl_productos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl_compras, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl_consumos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl_cosecha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbl_reportes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(EscritorioLayout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(lbl_logo)))
+                .addGap(49, 49, 49)
                 .addComponent(mostrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(153, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EscritorioLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lbl_logo)
-                .addGap(350, 350, 350))
+                .addContainerGap(146, Short.MAX_VALUE))
         );
         EscritorioLayout.setVerticalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EscritorioLayout.createSequentialGroup()
-                .addComponent(lbl_logo, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(lbl_logo, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addComponent(lbl_proveedores)
                 .addGap(18, 18, 18)
-                .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(EscritorioLayout.createSequentialGroup()
-                        .addComponent(lbl_proveedores)
-                        .addGap(41, 41, 41)
-                        .addComponent(lbl_productos)
-                        .addGap(42, 42, 42)
-                        .addComponent(lbl_compras)
-                        .addGap(41, 41, 41)
-                        .addComponent(lbl_consumos)
-                        .addGap(42, 42, 42)
-                        .addComponent(lbl_cosecha)
-                        .addGap(41, 41, 41)
-                        .addComponent(lbl_reportes)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lbl_salir))
-                    .addComponent(mostrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(43, Short.MAX_VALUE))
+                .addComponent(lbl_productos)
+                .addGap(18, 18, 18)
+                .addComponent(lbl_compras)
+                .addGap(18, 18, 18)
+                .addComponent(lbl_consumos)
+                .addGap(18, 18, 18)
+                .addComponent(lbl_cosecha)
+                .addGap(18, 18, 18)
+                .addComponent(lbl_reportes)
+                .addGap(18, 18, 18)
+                .addComponent(lbl_salir)
+                .addContainerGap(64, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EscritorioLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(mostrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(98, 98, 98))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
