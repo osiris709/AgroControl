@@ -38,8 +38,9 @@ public class Login extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1280, 720));
-        setMinimumSize(new java.awt.Dimension(1280, 720));
+        setMaximumSize(new java.awt.Dimension(1280, 700));
+        setMinimumSize(new java.awt.Dimension(1280, 700));
+        setPreferredSize(new java.awt.Dimension(1280, 710));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Fondo.setMaximumSize(new java.awt.Dimension(1280, 720));
@@ -50,6 +51,7 @@ public class Login extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 246, 218));
         jPanel1.setAutoscrolls(true);
         jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel1.setMaximumSize(new java.awt.Dimension(350, 484));
         jPanel1.setOpaque(false);
         jPanel1.setPreferredSize(new java.awt.Dimension(350, 484));
 
@@ -126,11 +128,12 @@ public class Login extends javax.swing.JFrame {
         Fondo.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(461, 118, -1, -1));
 
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo-login.jpg"))); // NOI18N
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo-menu.jpg"))); // NOI18N
         jLabel7.setMaximumSize(new java.awt.Dimension(1280, 720));
         jLabel7.setMinimumSize(new java.awt.Dimension(1280, 720));
         jLabel7.setPreferredSize(new java.awt.Dimension(1280, 720));
-        Fondo.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -50, 1280, 720));
+        Fondo.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
 
         getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
 
