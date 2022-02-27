@@ -59,7 +59,7 @@ public class RegistrarCompras extends javax.swing.JInternalFrame {
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Calibri", 3, 24)); // NOI18N
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Logo AgroControl2.jpg"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/LogoCRUD.png"))); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(240, 255, 240));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
