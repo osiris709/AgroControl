@@ -58,7 +58,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         lbl_compras = new javax.swing.JLabel();
         lbl_productos = new javax.swing.JLabel();
         lbl_reportes = new javax.swing.JLabel();
-        mostrar = new javax.swing.JDesktopPane();
+        ImageIcon icon = new ImageIcon(getClass().getResource("/Imagenes/fondo-ventana.png"));
+        Image image = icon.getImage();
+        mostrar = new javax.swing.JDesktopPane(){
+
+            public void paintComponent(Graphics g){
+                g.drawImage(image,0,0,getWidth(),getHeight(),this);
+            }
+        };
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -184,6 +191,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         mostrar.setBackground(new java.awt.Color(240, 255, 240));
         mostrar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        mostrar.setForeground(new java.awt.Color(240, 255, 240));
         mostrar.setPreferredSize(new java.awt.Dimension(800, 500));
 
         javax.swing.GroupLayout mostrarLayout = new javax.swing.GroupLayout(mostrar);
