@@ -1,6 +1,6 @@
 package Formularios;
 
-import agrocontrol.empleadosBl;
+import Clases.empleadosBl;
 import Conexion.conexion;
 import java.sql.ResultSet;
 import javax.swing.JTable;

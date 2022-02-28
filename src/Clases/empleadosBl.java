@@ -1,5 +1,5 @@
 
-package agrocontrol;
+package Clases;
 
 
 public class empleadosBl {

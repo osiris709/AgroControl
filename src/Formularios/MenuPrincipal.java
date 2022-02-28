@@ -3,13 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package agrocontrol;
+package Formularios;
 
-import Formularios.Control_Cosecha;
-import Formularios.RegistrarCompras;
-import Formularios.RegistrarConsumo;
-import Formularios.RegistrarProductos;
-import Formularios.RegistrarProveedor;
 import java.awt.Image;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
@@ -202,7 +197,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         );
         mostrarLayout.setVerticalGroup(
             mostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 596, Short.MAX_VALUE)
+            .addGap(0, 496, Short.MAX_VALUE)
         );
 
         Escritorio.setLayer(lbl_logo, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -261,8 +256,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
                         .addComponent(lbl_salir))
                     .addGroup(EscritorioLayout.createSequentialGroup()
                         .addGap(60, 60, 60)
-                        .addComponent(mostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(60, Short.MAX_VALUE))
+                        .addComponent(mostrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
