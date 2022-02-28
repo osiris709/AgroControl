@@ -26,6 +26,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         setResizable(false);
     }
+    
+    public void salir(){
+    
+        Login inicio = new Login();
+        inicio.setVisible(true);
+        this.dispose();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -95,7 +102,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         Escritorio.setBackground(new java.awt.Color(240, 255, 240));
         Escritorio.setPreferredSize(new java.awt.Dimension(1280, 720));
 
-        lbl_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Primera-login.png"))); // NOI18N
+        lbl_logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo-login.png"))); // NOI18N
 
         lbl_cosecha.setBackground(new java.awt.Color(255, 255, 255));
         lbl_cosecha.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -289,6 +296,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMenu1.add(jMenuItem5);
 
         jMenuItem13.setText("Salir");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem13);
 
         jMenuBar1.add(jMenu1);
@@ -381,10 +393,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void lbl_salirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_salirMouseClicked
         
-        Login inicio = new Login();
-        inicio.setVisible(true);
-        this.dispose();
+        salir();
     }//GEN-LAST:event_lbl_salirMouseClicked
+
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        salir();
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     /**
      * @param args the command line arguments
