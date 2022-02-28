@@ -148,11 +148,10 @@ public class RegistrarProductos extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel8)
                                 .addGap(78, 78, 78)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txt_nombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txt_codigoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(txt_nombreProducto1)
-                                        .addComponent(txt_descripcionProducto)))))
+                                    .addComponent(txt_nombreProducto1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
+                                    .addComponent(txt_descripcionProducto, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txt_nombreProducto))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(

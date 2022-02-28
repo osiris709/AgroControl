@@ -187,7 +187,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         mostrar.setBackground(new java.awt.Color(240, 255, 240));
         mostrar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         mostrar.setForeground(new java.awt.Color(240, 255, 240));
-        mostrar.setPreferredSize(new java.awt.Dimension(800, 500));
+        mostrar.setPreferredSize(new java.awt.Dimension(800, 600));
 
         javax.swing.GroupLayout mostrarLayout = new javax.swing.GroupLayout(mostrar);
         mostrar.setLayout(mostrarLayout);
@@ -197,7 +197,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         );
         mostrarLayout.setVerticalGroup(
             mostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 496, Short.MAX_VALUE)
+            .addGap(0, 596, Short.MAX_VALUE)
         );
 
         Escritorio.setLayer(lbl_logo, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -257,7 +257,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                     .addGroup(EscritorioLayout.createSequentialGroup()
                         .addGap(60, 60, 60)
                         .addComponent(mostrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
