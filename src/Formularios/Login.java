@@ -21,6 +21,70 @@ public class Login extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         setResizable(false);
     }
+    
+    public void ingresar(){
+    
+        int resultado;
+        String Usuario = txtUsuario.getText();
+        String Clave = String.valueOf(jClave.getPassword());
+        String Tipo = String.valueOf(Rol.getSelectedItem().toString());
+        String SQL = "select * from Usuarios where usuario='" + Usuario + "' and Contrasena='" + Clave + "' and TipoUsuario='" + Tipo + "'";
+
+        if (Rol.getSelectedIndex() == 1) {
+
+            try {
+                Statement st = con.createStatement();
+                ResultSet rs = st.executeQuery(SQL);
+
+                if (rs.next()) {
+
+                    resultado = 1;
+
+                    if (resultado == 1) {
+                        MenuSuper form = new MenuSuper();
+                        form.setVisible(true);
+                        this.dispose();
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Por favor ingrese un usuario y/o contraseña correctos");
+                }
+
+                st.close();
+                rs.close();
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
+            }
+
+        } else {
+            if (Rol.getSelectedIndex() == 2) {
+
+                try {
+                    Statement st = con.createStatement();
+                    ResultSet rs = st.executeQuery(SQL);
+
+                    if (rs.next()) {
+
+                        resultado = 1;
+
+                        if (resultado == 1) {
+                            MenuPrincipal form = new MenuPrincipal();
+                            form.setVisible(true);
+                            this.dispose();
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Por favor ingrese un usuario y/o contraseña correctos");
+                    }
+
+                    st.close();
+                    rs.close();
+
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
+                }
+            }
+        }
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -136,66 +200,7 @@ public class Login extends javax.swing.JFrame {
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
 
-        int resultado;
-        String Usuario = txtUsuario.getText();
-        String Clave = String.valueOf(jClave.getPassword());
-        String Tipo = String.valueOf(Rol.getSelectedItem().toString());
-        String SQL = "select * from Usuarios where usuario='" + Usuario + "' and Contrasena='" + Clave + "' and TipoUsuario='" + Tipo + "'";
-
-        if (Rol.getSelectedIndex() == 1) {
-
-            try {
-                Statement st = con.createStatement();
-                ResultSet rs = st.executeQuery(SQL);
-
-                if (rs.next()) {
-
-                    resultado = 1;
-
-                    if (resultado == 1) {
-                        MenuSuper form = new MenuSuper();
-                        form.setVisible(true);
-                        this.dispose();
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Por favor ingrese un usuario y/o contraseña correctos");
-                }
-
-                st.close();
-                rs.close();
-
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
-            }
-
-        } else {
-            if (Rol.getSelectedIndex() == 2) {
-
-                try {
-                    Statement st = con.createStatement();
-                    ResultSet rs = st.executeQuery(SQL);
-
-                    if (rs.next()) {
-
-                        resultado = 1;
-
-                        if (resultado == 1) {
-                            MenuPrincipal form = new MenuPrincipal();
-                            form.setVisible(true);
-                            this.dispose();
-                        }
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Por favor ingrese un usuario y/o contraseña correctos");
-                    }
-
-                    st.close();
-                    rs.close();
-
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
-                }
-            }
-        }
+        ingresar();
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     /**
