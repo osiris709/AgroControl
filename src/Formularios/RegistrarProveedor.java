@@ -1,15 +1,18 @@
-
 package Formularios;
 
+import Clases.Proveedor;
 import Conexion.ConexionP;
+import Formularios_emergentes.Lista_Proveedores;
+import java.sql.ResultSet;
+import javax.swing.table.DefaultTableModel;
 
 public class RegistrarProveedor extends javax.swing.JInternalFrame {
 
-   
-    
+    DefaultTableModel modelo;
+
     public RegistrarProveedor() {
         initComponents();
-        
+
         this.setTitle("AgroControl - Registrar Proveedor");
         setResizable(false);
 
@@ -151,6 +154,11 @@ public class RegistrarProveedor extends javax.swing.JInternalFrame {
         btn_lista1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lista.png"))); // NOI18N
         btn_lista1.setText("Mostrar listado de los Proveedores");
         btn_lista1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_lista1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_lista1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -175,6 +183,11 @@ public class RegistrarProveedor extends javax.swing.JInternalFrame {
         btn_guardar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Guardar2.png"))); // NOI18N
         btn_guardar2.setText("Guardar");
         btn_guardar2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_guardar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_guardar2ActionPerformed(evt);
+            }
+        });
 
         btn_editar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/editar2.png"))); // NOI18N
         btn_editar2.setText("Editar");
@@ -251,6 +264,56 @@ public class RegistrarProveedor extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_lista1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_lista1ActionPerformed
+        Lista_Proveedores abrir = new Lista_Proveedores();
+        abrir.setVisible(true);
+    }//GEN-LAST:event_btn_lista1ActionPerformed
+
+    private void btn_guardar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardar2ActionPerformed
+        ConexionP objConexion = new ConexionP();
+
+        Proveedor oProveedor = recuperarDatosGUI();
+
+        String strSentenciaInsert = String.format("INSERT INTO Proveedores (NIT,Nombre,Direccion,Correo,Telefono) "
+                + "VALUES ('%d','%s','%s','%s','%s')", oProveedor.getNIt(), oProveedor.getNombre(), oProveedor.getDireccion(), oProveedor.getCorreo(), oProveedor.getTelefono());
+
+        objConexion.ejecutarSentenciaSQL(strSentenciaInsert);
+    }//GEN-LAST:event_btn_guardar2ActionPerformed
+
+    public void mostrardatos() {
+        ConexionP objConexion = new ConexionP();
+        try {
+            ResultSet resultado = objConexion.consultarRegistro("SELECT * FROM Proveedores");
+            while (resultado.next()) {
+                System.out.println(resultado.getString("NIT"));
+                System.out.println(resultado.getString("Nombre"));
+                System.out.println(resultado.getString("Direccion"));
+                System.out.println(resultado.getString("Correo"));
+                System.out.println(resultado.getString("Telefono"));
+
+                Object[] oUsuario = {resultado.getString("NIT"), resultado.getString("Nombre"), resultado.getString("Direccion"), resultado.getString("Correo"), resultado.getString("Telefono")};
+                modelo.addRow(oUsuario);
+
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+    }
+
+    public Proveedor recuperarDatosGUI() {
+        Proveedor oProveedor = new Proveedor();
+
+        int NIt = (txt_nit.getText().isEmpty()) ? 0 : Integer.parseInt(txt_nit.getText());
+
+        oProveedor.setNIt(NIt);
+        oProveedor.setNombre(txt_nombre.getText());
+        oProveedor.setDireccion(txt_direccion.getText());
+        oProveedor.setCorreo(txt_correo.getText());
+        oProveedor.setTelefono(txt_telefono.getText());
+
+        return oProveedor;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_buscar;
