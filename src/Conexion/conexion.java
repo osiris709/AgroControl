@@ -21,18 +21,25 @@ public class conexion {
             conn = DriverManager.getConnection(iniciarConexion);
 
             //System.out.println("Conexion Exitosa");
-
         } catch (Exception e) {
 
             System.out.println("Error de conexion" + e);
         } finally {
 
             return conn;
-
         }
-
     }
 
+    /*public conexion() {
+        try {
+            Class.forName("org.sqlite.JDBC");
+            conn = DriverManager.getConnection(iniciarConexion);
+            System.out.println("Conexion establecida");
+
+        } catch (Exception e) {
+            System.out.println("Error de conexion" + e);
+        }
+    }*/
     public int ejecutarSentenciaSQL(String strSentenciaSQL) {
         try {
             PreparedStatement pstm = conn.prepareStatement(strSentenciaSQL);
@@ -42,7 +49,6 @@ public class conexion {
             System.out.println(e);
             return 0;
         }
-
     }
 
     public ResultSet consultarRegister(String strSentenciaSQL) {
@@ -52,11 +58,9 @@ public class conexion {
             PreparedStatement pstm = conn.prepareStatement(strSentenciaSQL);
             ResultSet respuestas = pstm.executeQuery();
             return respuestas;
-
         } catch (Exception e) {
             System.out.println(e);
             return null;
         }
-
     }
 }

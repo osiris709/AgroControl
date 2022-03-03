@@ -194,6 +194,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         mostrar.setBackground(new java.awt.Color(240, 255, 240));
         mostrar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         mostrar.setForeground(new java.awt.Color(240, 255, 240));
+        mostrar.setAutoscrolls(true);
+        mostrar.setMaximumSize(new java.awt.Dimension(800, 600));
+        mostrar.setMinimumSize(new java.awt.Dimension(800, 600));
         mostrar.setPreferredSize(new java.awt.Dimension(800, 600));
 
         javax.swing.GroupLayout mostrarLayout = new javax.swing.GroupLayout(mostrar);
@@ -236,16 +239,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
                     .addGroup(EscritorioLayout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(lbl_logo)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-                .addComponent(mostrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(143, 143, 143))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
+                .addComponent(mostrar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(98, 98, 98))
         );
         EscritorioLayout.setVerticalGroup(
             EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(EscritorioLayout.createSequentialGroup()
-                .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(EscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(mostrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(EscritorioLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(lbl_logo, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(47, 47, 47)
                         .addComponent(lbl_proveedores)
@@ -260,11 +264,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(lbl_reportes)
                         .addGap(18, 18, 18)
-                        .addComponent(lbl_salir))
-                    .addGroup(EscritorioLayout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(mostrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(60, Short.MAX_VALUE))
+                        .addComponent(lbl_salir)))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

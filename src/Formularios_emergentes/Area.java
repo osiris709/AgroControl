@@ -1,6 +1,6 @@
 package Formularios_emergentes;
 
-import Conexion.ConexionP;
+import Conexion.conexion;
 
 public class Area extends javax.swing.JInternalFrame {
 
@@ -302,7 +302,7 @@ public class Area extends javax.swing.JInternalFrame {
 
     private void btn_nuevo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevo1ActionPerformed
         
-       ConexionP objConexionP = new ConexionP(); 
+       conexion objConexionP = new conexion(); 
         
     }//GEN-LAST:event_btn_nuevo1ActionPerformed
 

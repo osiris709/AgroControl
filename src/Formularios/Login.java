@@ -21,9 +21,9 @@ public class Login extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         setResizable(false);
     }
-    
-    public void ingresar(){
-    
+
+    public void ingresar() {
+
         int resultado;
         String Usuario = txtUsuario.getText();
         String Clave = String.valueOf(jClave.getPassword());

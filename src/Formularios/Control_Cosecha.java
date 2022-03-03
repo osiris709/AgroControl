@@ -1,8 +1,6 @@
 
 package Formularios;
 
-import Conexion.ConexionP;
-
 public class Control_Cosecha extends javax.swing.JInternalFrame {
 
    

@@ -1,8 +1,9 @@
 package Formularios;
 
 import Clases.Proveedor;
-import Conexion.ConexionP;
+import Conexion.conexion;
 import Formularios_emergentes.Lista_Proveedores;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import javax.swing.table.DefaultTableModel;
 
@@ -270,7 +271,8 @@ public class RegistrarProveedor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_lista1ActionPerformed
 
     private void btn_guardar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardar2ActionPerformed
-        ConexionP objConexion = new ConexionP();
+        conexion objConexion = new conexion();
+        Connection con = objConexion.conexion();
 
         Proveedor oProveedor = recuperarDatosGUI();
 
@@ -281,9 +283,9 @@ public class RegistrarProveedor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_guardar2ActionPerformed
 
     public void mostrardatos() {
-        ConexionP objConexion = new ConexionP();
+        conexion objConexion = new conexion();
         try {
-            ResultSet resultado = objConexion.consultarRegistro("SELECT * FROM Proveedores");
+            ResultSet resultado = objConexion.consultarRegister("SELECT * FROM Proveedores");
             while (resultado.next()) {
                 System.out.println(resultado.getString("NIT"));
                 System.out.println(resultado.getString("Nombre"));

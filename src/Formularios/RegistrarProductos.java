@@ -1,8 +1,6 @@
 
 package Formularios;
 
-import Conexion.ConexionP;
-
 public class RegistrarProductos extends javax.swing.JInternalFrame {
 
    
