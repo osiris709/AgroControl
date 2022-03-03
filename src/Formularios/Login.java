@@ -1,6 +1,8 @@
 package Formularios;
 
 import Conexion.conexion;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -20,6 +22,14 @@ public class Login extends javax.swing.JFrame {
         this.setTitle("AgroControl");
         this.setLocationRelativeTo(null);
         setResizable(false);
+    }
+    
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().
+                getImage(ClassLoader.getSystemResource("Imagenes/icono.png"));
+
+        return retValue;
     }
 
     public void ingresar() {
@@ -102,6 +112,7 @@ public class Login extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(getIconImage());
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setPreferredSize(new java.awt.Dimension(1280, 715));

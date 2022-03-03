@@ -7,6 +7,7 @@ package Formularios;
 
 import java.awt.Image;
 import java.awt.Graphics;
+import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 
 
@@ -21,14 +22,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
      */
     public MenuPrincipal() {
         initComponents();
-        
+
         this.setTitle("AgroControl - Menu Principal");
         this.setLocationRelativeTo(null);
         setResizable(false);
     }
-    
-    public void salir(){
-    
+
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().
+                getImage(ClassLoader.getSystemResource("Imagenes/icono.png"));
+
+        return retValue;
+    }
+
+    public void salir() {
+
         Login inicio = new Login();
         inicio.setVisible(true);
         this.dispose();
@@ -89,6 +98,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        setIconImage(getIconImage());
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setPreferredSize(new java.awt.Dimension(1280, 720));
@@ -197,7 +207,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         mostrar.setAutoscrolls(true);
         mostrar.setMaximumSize(new java.awt.Dimension(800, 600));
         mostrar.setMinimumSize(new java.awt.Dimension(800, 600));
-        mostrar.setPreferredSize(new java.awt.Dimension(800, 600));
 
         javax.swing.GroupLayout mostrarLayout = new javax.swing.GroupLayout(mostrar);
         mostrar.setLayout(mostrarLayout);
@@ -354,46 +363,46 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lbl_proveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_proveedoresMouseClicked
-        
+
         RegistrarProveedor ventana = new RegistrarProveedor();
         mostrar.add(ventana);
         ventana.show();
-    
+
     }//GEN-LAST:event_lbl_proveedoresMouseClicked
 
     private void lbl_productosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_productosMouseClicked
-        
+
         RegistrarProductos ventana2 = new RegistrarProductos();
         mostrar.add(ventana2);
         ventana2.show();
-        
+
     }//GEN-LAST:event_lbl_productosMouseClicked
 
     private void lbl_comprasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_comprasMouseClicked
-        
+
         RegistrarCompras ventana3 = new RegistrarCompras();
         mostrar.add(ventana3);
         ventana3.show();
     }//GEN-LAST:event_lbl_comprasMouseClicked
 
     private void lbl_consumosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_consumosMouseClicked
-        
+
         RegistrarConsumo ventana4 = new RegistrarConsumo();
         mostrar.add(ventana4);
         ventana4.show();
-        
+
     }//GEN-LAST:event_lbl_consumosMouseClicked
 
     private void lbl_cosechaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_cosechaMouseClicked
-        
+
         Control_Cosecha ventana5 = new Control_Cosecha();
         mostrar.add(ventana5);
         ventana5.show();
-        
+
     }//GEN-LAST:event_lbl_cosechaMouseClicked
 
     private void lbl_salirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_salirMouseClicked
-        
+
         salir();
     }//GEN-LAST:event_lbl_salirMouseClicked
 
