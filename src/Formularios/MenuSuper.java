@@ -1,6 +1,8 @@
 package Formularios;
 
 import Conexion.conexion;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
@@ -23,6 +25,72 @@ public class MenuSuper extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         setResizable(false);
 
+    }
+    
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().
+                getImage(ClassLoader.getSystemResource("Imagenes/icono.png"));
+
+        return retValue;
+    }
+    
+    public void guardar() {
+        //para obligar a llenar todos los campos.
+        String Nom, Ape, Dir, Tel, User, Contra, Tipo, Email;
+
+        Nom = txt_Nom.getText();
+        Ape = txt_Ape.getText();
+        Dir = txt_Direc.getText();
+        Tel = txt_Tel.getText();
+        User = txt_Alias.getText();
+        Contra = txt_Contra.getText();
+        Tipo = jTipo.getSelectedItem().toString();
+        Email = txt_Email.getText();
+
+        if (txt_Nom.getText().equals("") || (txt_Ape.getText().equals("")) || (txt_Direc.getText().equals("")) || (txt_Tel.getText().equals(""))
+                || (txt_Alias.getText().equals("")) || (txt_Contra.getText().equals("")) || (txt_Email.getText().equals("")) || (jTipo.getSelectedItem().equals("SELECCIONAR"))) {
+
+            javax.swing.JOptionPane.showMessageDialog(this, "Obligatorio llenar todos los campos \n", "AVISO!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            txt_Nom.requestFocus();
+
+        } else {
+
+            /*consulta ingresar y guardar datos*/
+            try {
+                PreparedStatement guardar = iniciarConexion.prepareStatement("INSERT INTO Usuarios (Id, TipoUsuario, Usuario, Contrasena, Nombres, Apellidos, Direccion, Telefono, Email) VALUES (?,?,?,?,?,?,?,?,?)");
+
+                guardar.setString(2, jTipo.getSelectedItem().toString());
+                guardar.setString(3, txt_Alias.getText());
+                guardar.setString(4, txt_Contra.getText());
+                guardar.setString(5, txt_Nom.getText());
+                guardar.setString(6, txt_Ape.getText());
+                guardar.setString(7, txt_Direc.getText());
+                guardar.setString(8, txt_Tel.getText());
+                guardar.setString(9, txt_Email.getText());
+
+                guardar.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Sa registrado el usuario correctramente.");
+
+                guardar.close();
+                //para dejar todos los campos en blanco//
+                jTipo.setSelectedIndex(0);
+                txt_Alias.setText("");
+                txt_Contra.setText("");
+                txt_Nom.setText("");
+                txt_Ape.setText("");
+                txt_Direc.setText("");
+                txt_Tel.setText("");
+                txt_Email.setText("");
+                txt_Alias.requestFocus();
+
+                guardar.close();
+            } catch (Exception e) {
+
+                JOptionPane.showMessageDialog(null, e + " No se logro registrar el usuario \n Intente nuevamente.");
+            }
+
+        }
     }
 
     /**
@@ -54,7 +122,7 @@ public class MenuSuper extends javax.swing.JFrame {
         txt_Direc = new javax.swing.JTextField();
         txt_Tel = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        txt_Direc1 = new javax.swing.JTextField();
+        txt_Email = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         btn_guardar = new javax.swing.JButton();
         btn_editar = new javax.swing.JButton();
@@ -66,6 +134,7 @@ public class MenuSuper extends javax.swing.JFrame {
         Fondo_Super = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(getIconImage());
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setPreferredSize(new java.awt.Dimension(1280, 720));
@@ -172,7 +241,7 @@ public class MenuSuper extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(28, 28, 28)
-                        .addComponent(txt_Direc1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txt_Email, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -222,7 +291,7 @@ public class MenuSuper extends javax.swing.JFrame {
                 .addGap(28, 28, 28)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
-                    .addComponent(txt_Direc1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_Email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(91, 91, 91))
         );
 
@@ -301,6 +370,11 @@ public class MenuSuper extends javax.swing.JFrame {
         btn_lista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lista.png"))); // NOI18N
         btn_lista.setText("Listar Usuarios");
         btn_lista.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_lista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_listaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -360,55 +434,7 @@ public class MenuSuper extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_ApeKeyTyped
 
     private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
-        //para obligar a llenar todos los campos.
-        String Nom, Ape, Dir, Tel, User, Contra, Tipo;
-
-        Nom = txt_Nom.getText();
-        Ape = txt_Ape.getText();
-        Dir = txt_Direc.getText();
-        Tel = txt_Tel.getText();
-        User = txt_Alias.getText();
-        Contra = txt_Contra.getText();
-        Tipo = jTipo.getSelectedItem().toString();
-
-        if (txt_Nom.getText().equals("") || (txt_Ape.getText().equals("")) || (txt_Direc.getText().equals("")) || (txt_Tel.getText().equals(""))
-                || (txt_Alias.getText().equals("")) || (txt_Contra.getText().equals("")) || (jTipo.getSelectedItem().equals("SELECCIONAR"))) {
-
-            javax.swing.JOptionPane.showMessageDialog(this, "Obligatorio llenar todos los campos \n", "AVISO!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-            txt_Nom.requestFocus();
-
-        } else {
-
-            /*consulta ingresar y guardar datos*/
-            try {
-                PreparedStatement guardar = iniciarConexion.prepareStatement("INSERT INTO Usuarios (Id, TipoUsuario, Usuario, Contrasena, Nombres, Apellidos, Direccion, Telefono) VALUES (?,?,?,?,?,?,?,?)");
-
-                guardar.setString(2, jTipo.getSelectedItem().toString());
-                guardar.setString(3, txt_Alias.getText());
-                guardar.setString(4, txt_Contra.getText());
-                guardar.setString(5, txt_Nom.getText());
-                guardar.setString(6, txt_Ape.getText());
-                guardar.setString(7, txt_Direc.getText());
-                guardar.setString(8, txt_Tel.getText());
-
-                guardar.executeUpdate();
-                JOptionPane.showMessageDialog(null, "Sa registrado el usuario correctramente.");
-
-                guardar.close();
-
-                /*txt_Alias.getText("");
-                txt_Contra.getText("");
-                txt_Nom.getText("");
-                txt_Ape.getText("");
-                txt_Direc.getText("");
-                txt_Tel.getText("");*/
-                guardar.close();
-            } catch (Exception e) {
-
-                JOptionPane.showMessageDialog(null, e + "No se logro registrar el usuario \n Intente nuevamente.");
-            }
-
-        }
+        guardar();
     }//GEN-LAST:event_btn_guardarActionPerformed
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
@@ -416,6 +442,11 @@ public class MenuSuper extends javax.swing.JFrame {
         Login Log = new Login();
         Log.setVisible(true);
     }//GEN-LAST:event_btnRegresarActionPerformed
+
+    private void btn_listaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_listaActionPerformed
+        //Datos_Usuarios abrir = new Datos_Usuarios();
+        //abrir.setVisible(true);
+    }//GEN-LAST:event_btn_listaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -490,7 +521,7 @@ public class MenuSuper extends javax.swing.JFrame {
     private javax.swing.JTextField txt_Ape;
     private javax.swing.JPasswordField txt_Contra;
     private javax.swing.JTextField txt_Direc;
-    private javax.swing.JTextField txt_Direc1;
+    private javax.swing.JTextField txt_Email;
     private javax.swing.JTextField txt_Id;
     private javax.swing.JTextField txt_Nom;
     private javax.swing.JTextField txt_Tel;

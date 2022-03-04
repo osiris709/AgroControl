@@ -5,6 +5,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 
@@ -23,7 +24,7 @@ public class Login extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         setResizable(false);
     }
-    
+
     @Override
     public Image getIconImage() {
         Image retValue = Toolkit.getDefaultToolkit().
@@ -34,65 +35,48 @@ public class Login extends javax.swing.JFrame {
 
     public void ingresar() {
 
-        int resultado;
         String Usuario = txtUsuario.getText();
         String Clave = String.valueOf(jClave.getPassword());
-        String Tipo = String.valueOf(Rol.getSelectedItem().toString());
-        String SQL = "select * from Usuarios where usuario='" + Usuario + "' and Contrasena='" + Clave + "' and TipoUsuario='" + Tipo + "'";
+        String SQL = "select * from Usuarios where usuario='" + Usuario + "' and Contrasena='" + Clave + "'";
 
-        if (Rol.getSelectedIndex() == 1) {
+        try {
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(SQL);
 
-            try {
-                Statement st = con.createStatement();
-                ResultSet rs = st.executeQuery(SQL);
+            if (rs.next()) {
 
-                if (rs.next()) {
+                String Tipo = rs.getString("TipoUsuario");
+                System.out.println(con);
 
-                    resultado = 1;
+                if (rs.getString("usuario").equals(Usuario) && rs.getString("Contrasena").equals(Clave)) {
 
-                    if (resultado == 1) {
-                        MenuSuper form = new MenuSuper();
-                        form.setVisible(true);
-                        this.dispose();
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Por favor ingrese un usuario y/o contraseña correctos");
-                }
+                    switch (Tipo) {
 
-                st.close();
-                rs.close();
-
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
-            }
-
-        } else {
-            if (Rol.getSelectedIndex() == 2) {
-
-                try {
-                    Statement st = con.createStatement();
-                    ResultSet rs = st.executeQuery(SQL);
-
-                    if (rs.next()) {
-
-                        resultado = 1;
-
-                        if (resultado == 1) {
-                            MenuPrincipal form = new MenuPrincipal();
+                        case "Super administrador":
+                            MenuSuper form = new MenuSuper();
                             form.setVisible(true);
                             this.dispose();
-                        }
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Por favor ingrese un usuario y/o contraseña correctos");
+                            break;
+
+                        case "Administrador":
+                            MenuPrincipal form1 = new MenuPrincipal();
+                            form1.setVisible(true);
+                            this.dispose();
+                            break;
+
+                        default:
+                            JOptionPane.showMessageDialog(null, "Por favor ingrese un usuario y/o contraseña correctos");
                     }
-
-                    st.close();
-                    rs.close();
-
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
                 }
+            } else {
+
+                JOptionPane.showMessageDialog(null, "Por favor ingrese un usuario y/o contraseña correctos");
             }
+
+            st.close();
+            rs.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error " + e.getMessage());
         }
     }
 
@@ -107,7 +91,6 @@ public class Login extends javax.swing.JFrame {
         txtUsuario = new javax.swing.JTextField();
         jClave = new javax.swing.JPasswordField();
         btnIngresar = new javax.swing.JButton();
-        Rol = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
 
@@ -152,9 +135,6 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        Rol.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        Rol.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECCIONE ROL", "Super administrador", "Administrador" }));
-
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondo-login.png"))); // NOI18N
         jLabel5.setMinimumSize(new java.awt.Dimension(120, 60));
@@ -170,12 +150,11 @@ public class Login extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel1)
                         .addComponent(jLabel2)
-                        .addComponent(txtUsuario)
+                        .addComponent(txtUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
                         .addComponent(jClave)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGap(79, 79, 79)
-                            .addComponent(btnIngresar))
-                        .addComponent(Rol, 0, 261, Short.MAX_VALUE)))
+                            .addComponent(btnIngresar))))
                 .addGap(41, 41, 41))
         );
         jPanel1Layout.setVerticalGroup(
@@ -190,9 +169,7 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jClave, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
-                .addComponent(Rol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(46, 46, 46)
                 .addComponent(btnIngresar)
                 .addContainerGap(95, Short.MAX_VALUE))
         );
@@ -248,7 +225,6 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Fondo;
-    private javax.swing.JComboBox<String> Rol;
     private javax.swing.JButton btnIngresar;
     private javax.swing.JPasswordField jClave;
     private javax.swing.JLabel jLabel1;
