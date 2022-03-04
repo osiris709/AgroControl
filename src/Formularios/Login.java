@@ -46,7 +46,6 @@ public class Login extends javax.swing.JFrame {
             if (rs.next()) {
 
                 String Tipo = rs.getString("TipoUsuario");
-                System.out.println(con);
 
                 if (rs.getString("usuario").equals(Usuario) && rs.getString("Contrasena").equals(Clave)) {
 

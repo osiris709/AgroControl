@@ -399,7 +399,7 @@ public class MenuSuper extends javax.swing.JFrame {
         Fondo_Super.setText("jLabel11");
         jPanel1.add(Fondo_Super, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1667, 1240));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1667, 720));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
