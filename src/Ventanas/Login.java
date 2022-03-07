@@ -1,4 +1,4 @@
-package Formularios;
+package Ventanas;
 
 import Conexion.conexion;
 import java.awt.Image;
@@ -98,6 +98,7 @@ public class Login extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setPreferredSize(new java.awt.Dimension(1280, 715));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Fondo.setMaximumSize(new java.awt.Dimension(1280, 720));

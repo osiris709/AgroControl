@@ -3,8 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Formularios;
+package Ventanas;
 
+import Formularios.Control_Cosecha;
+import Formularios.RegistrarCompras;
+import Formularios.RegistrarConsumo;
+import Formularios.RegistrarProductos;
+import Formularios.RegistrarProveedor;
+import Ventanas.Login;
 import java.awt.Image;
 import java.awt.Graphics;
 import java.awt.Toolkit;

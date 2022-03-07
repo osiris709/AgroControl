@@ -1,7 +1,7 @@
 package Formularios;
 
 import Conexion.conexion;
-import Formularios.MenuPrincipal;
+import Ventanas.MenuPrincipal;
 import java.awt.Component;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
