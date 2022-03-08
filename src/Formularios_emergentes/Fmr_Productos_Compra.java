@@ -8,12 +8,12 @@ package Formularios_emergentes;
  *
  * @author usuario
  */
-public class Productos_compra extends javax.swing.JFrame {
+public class Fmr_Productos_Compra extends javax.swing.JFrame {
 
     /**
      * Creates new form Productos_compra
      */
-    public Productos_compra() {
+    public Fmr_Productos_Compra() {
         initComponents();
     }
 
@@ -99,20 +99,21 @@ public class Productos_compra extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Productos_compra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fmr_Productos_Compra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Productos_compra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fmr_Productos_Compra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Productos_compra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fmr_Productos_Compra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Productos_compra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fmr_Productos_Compra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Productos_compra().setVisible(true);
+                new Fmr_Productos_Compra().setVisible(true);
             }
         });
     }

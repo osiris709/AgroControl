@@ -2,7 +2,7 @@ package Formularios;
 
 import Clases.Proveedor;
 import Conexion.conexion;
-import Formularios_emergentes.Lista_Proveedores;
+import Formularios_emergentes.Fmr_Proveedores;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import javax.swing.table.DefaultTableModel;
@@ -266,7 +266,7 @@ public class RegistrarProveedor extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_lista1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_lista1ActionPerformed
-        Lista_Proveedores abrir = new Lista_Proveedores();
+        Fmr_Proveedores abrir = new Fmr_Proveedores();
         abrir.setVisible(true);
     }//GEN-LAST:event_btn_lista1ActionPerformed
 

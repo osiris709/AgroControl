@@ -12,7 +12,7 @@ import Formularios.RegistrarProveedor;
  *
  * @author andre
  */
-public class Lista_Proveedores extends javax.swing.JFrame {
+public class Fmr_Proveedores extends javax.swing.JFrame {
     DefaultTableModel modelo;
     static void setModel(DefaultTableModel modelo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -21,7 +21,7 @@ public class Lista_Proveedores extends javax.swing.JFrame {
     /**
      * Creates new form Tablas
      */
-    public Lista_Proveedores() {
+    public Fmr_Proveedores() {
         initComponents();
           String[] titulos= {"NIt","Nombre","Direccion","Correo","Telefono"};
          
@@ -32,7 +32,7 @@ public class Lista_Proveedores extends javax.swing.JFrame {
     }
     
 
-    Lista_Proveedores(RegistrarProveedor aThis, boolean b) {
+    Fmr_Proveedores(RegistrarProveedor aThis, boolean b) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -99,14 +99,18 @@ public class Lista_Proveedores extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Lista_Proveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fmr_Proveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Lista_Proveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fmr_Proveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Lista_Proveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fmr_Proveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Lista_Proveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fmr_Proveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -115,7 +119,7 @@ public class Lista_Proveedores extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Lista_Proveedores().setVisible(true);
+                new Fmr_Proveedores().setVisible(true);
             }
         });
     }

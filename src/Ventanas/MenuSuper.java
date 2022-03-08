@@ -1,7 +1,6 @@
 package Ventanas;
 
-import Ventanas.Login;
-import Formularios_emergentes.Datos_Usuarios;
+import Formularios_emergentes.Fmr_Usuarios;
 import Conexion.conexion;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -446,7 +445,7 @@ public class MenuSuper extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btn_listaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_listaActionPerformed
-        Datos_Usuarios abrir = new Datos_Usuarios();
+        Fmr_Usuarios abrir = new Fmr_Usuarios();
         abrir.setVisible(true);
     }//GEN-LAST:event_btn_listaActionPerformed
 
