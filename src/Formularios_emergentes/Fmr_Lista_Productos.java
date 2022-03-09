@@ -15,12 +15,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author ACER
  */
-public class RP_Mostrarlistadoproductos extends javax.swing.JFrame {
+public class Fmr_Lista_Productos extends javax.swing.JFrame {
 
     conexion conn = new conexion();
     Connection iniciarConexion = conn.conexion();
 
-    public RP_Mostrarlistadoproductos() {
+    public Fmr_Lista_Productos() {
         initComponents();
         MostrarlistadoProductos();
     }
@@ -175,20 +175,21 @@ public class RP_Mostrarlistadoproductos extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RP_Mostrarlistadoproductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fmr_Lista_Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RP_Mostrarlistadoproductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fmr_Lista_Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RP_Mostrarlistadoproductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fmr_Lista_Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RP_Mostrarlistadoproductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fmr_Lista_Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RP_Mostrarlistadoproductos().setVisible(true);
+                new Fmr_Lista_Productos().setVisible(true);
             }
         });
     }

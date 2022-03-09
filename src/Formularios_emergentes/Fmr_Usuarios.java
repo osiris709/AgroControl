@@ -16,13 +16,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author SENA
  */
-public class Datos_Usuarios extends javax.swing.JFrame {
+public class Fmr_Usuarios extends javax.swing.JFrame {
 
     //objeto "conn", variable tipo "Connection" se le asigna el metodo "conexion"
     conexion conn = new conexion();
     Connection iniciarConexion = conn.conexion();
 
-    public Datos_Usuarios() {
+    public Fmr_Usuarios() {
         initComponents();
         listarUsuarios();
     }
@@ -150,20 +150,21 @@ public class Datos_Usuarios extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Datos_Usuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fmr_Usuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Datos_Usuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fmr_Usuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Datos_Usuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fmr_Usuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Datos_Usuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fmr_Usuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Datos_Usuarios().setVisible(true);
+                new Fmr_Usuarios().setVisible(true);
             }
         });
     }
