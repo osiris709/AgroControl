@@ -69,8 +69,8 @@ public class RegistrarProductos extends javax.swing.JInternalFrame {
         cbo_categoria = new javax.swing.JComboBox<>();
         txt_descripcionProducto = new javax.swing.JTextField();
         btn_buscar = new javax.swing.JButton();
-        btn_editar1 = new javax.swing.JButton();
-        btn_editar2 = new javax.swing.JButton();
+        btn_TipodeProducto = new javax.swing.JButton();
+        btn_UnidaddeMedidda = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         txt_Ingredienteactivo = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
@@ -139,26 +139,26 @@ public class RegistrarProductos extends javax.swing.JInternalFrame {
         btn_buscar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_buscar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        btn_editar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Nuevo2.png"))); // NOI18N
-        btn_editar1.setText("Crear tipo Producto");
-        btn_editar1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btn_editar1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_TipodeProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Nuevo2.png"))); // NOI18N
+        btn_TipodeProducto.setText("Crear tipo Producto");
+        btn_TipodeProducto.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_TipodeProducto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_editar1MouseClicked(evt);
+                btn_TipodeProductoMouseClicked(evt);
             }
         });
 
-        btn_editar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Nuevo2.png"))); // NOI18N
-        btn_editar2.setText("Crear Unidad de Medida");
-        btn_editar2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btn_editar2.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_UnidaddeMedidda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Nuevo2.png"))); // NOI18N
+        btn_UnidaddeMedidda.setText("Crear Unidad de Medida");
+        btn_UnidaddeMedidda.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_UnidaddeMedidda.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_editar2MouseClicked(evt);
+                btn_UnidaddeMediddaMouseClicked(evt);
             }
         });
-        btn_editar2.addActionListener(new java.awt.event.ActionListener() {
+        btn_UnidaddeMedidda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_editar2ActionPerformed(evt);
+                btn_UnidaddeMediddaActionPerformed(evt);
             }
         });
 
@@ -179,7 +179,7 @@ public class RegistrarProductos extends javax.swing.JInternalFrame {
                         .addGroup(PanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(PanelDatosLayout.createSequentialGroup()
                                 .addGap(147, 147, 147)
-                                .addComponent(btn_editar2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btn_UnidaddeMedidda, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosLayout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addGap(34, 34, 34)
@@ -188,7 +188,7 @@ public class RegistrarProductos extends javax.swing.JInternalFrame {
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
                         .addGroup(PanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btn_editar1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_TipodeProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cbo_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(25, Short.MAX_VALUE))
                     .addGroup(PanelDatosLayout.createSequentialGroup()
@@ -246,8 +246,8 @@ public class RegistrarProductos extends javax.swing.JInternalFrame {
                     .addComponent(cbo_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(PanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_editar2)
-                    .addComponent(btn_editar1))
+                    .addComponent(btn_UnidaddeMedidda)
+                    .addComponent(btn_TipodeProducto))
                 .addGap(29, 29, 29))
         );
 
@@ -467,21 +467,21 @@ public class RegistrarProductos extends javax.swing.JInternalFrame {
         desbloquear();
     }//GEN-LAST:event_btn_nuevoActionPerformed
 
-    private void btn_editar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_editar2MouseClicked
+    private void btn_UnidaddeMediddaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_UnidaddeMediddaMouseClicked
         String unidadmedida = "";
         unidadmedida = JOptionPane.showInputDialog("ingresa nueva unidad de medida");
         cbo_unidadMedida.addItem(unidadmedida);
-    }//GEN-LAST:event_btn_editar2MouseClicked
+    }//GEN-LAST:event_btn_UnidaddeMediddaMouseClicked
 
-    private void btn_editar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editar2ActionPerformed
+    private void btn_UnidaddeMediddaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_UnidaddeMediddaActionPerformed
 
-    }//GEN-LAST:event_btn_editar2ActionPerformed
+    }//GEN-LAST:event_btn_UnidaddeMediddaActionPerformed
 
-    private void btn_editar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_editar1MouseClicked
+    private void btn_TipodeProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_TipodeProductoMouseClicked
         String tipoproducto = "";
         tipoproducto = JOptionPane.showInputDialog("Ingrese el Nuevo Tipo de Producto");
         cbo_categoria.addItem(tipoproducto);
-    }//GEN-LAST:event_btn_editar1MouseClicked
+    }//GEN-LAST:event_btn_TipodeProductoMouseClicked
 
     private void btn_elminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_elminarActionPerformed
 
@@ -490,11 +490,11 @@ public class RegistrarProductos extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelDatos;
+    private javax.swing.JButton btn_TipodeProducto;
+    private javax.swing.JButton btn_UnidaddeMedidda;
     private javax.swing.JButton btn_buscar;
     private javax.swing.JButton btn_cancelar;
     private javax.swing.JButton btn_editar;
-    private javax.swing.JButton btn_editar1;
-    private javax.swing.JButton btn_editar2;
     private javax.swing.JButton btn_elminar;
     private javax.swing.JButton btn_guardar;
     private javax.swing.JButton btn_lista;
