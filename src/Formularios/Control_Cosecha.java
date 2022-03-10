@@ -2,8 +2,6 @@ package Formularios;
 
 import Conexion.conexion;
 import Formularios_emergentes.ListaCosechas;
-import Formularios_emergentes.RP_Mostrarlistadoproductos;
-import java.awt.Component;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.text.DateFormat;

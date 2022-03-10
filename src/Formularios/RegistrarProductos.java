@@ -1,11 +1,15 @@
 package Formularios;
 
 import Conexion.conexion;
+import Ventanas.MenuPrincipal;
 import java.awt.Component;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
-import Formularios_emergentes.Fmr_Lista_Productos;
+import Formularios_emergentes.Fmr_Listado_Productos ;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JTextField;
 
 public class RegistrarProductos extends javax.swing.JInternalFrame {
 
@@ -18,7 +22,7 @@ public class RegistrarProductos extends javax.swing.JInternalFrame {
         this.setTitle("AgroControl - Registrar Productos");
         setResizable(false);
 
-        Fmr_Lista_Productos TablaListadoProductos = new Fmr_Lista_Productos();
+        Fmr_Listado_Productos TablaListadoProductos = new Fmr_Listado_Productos();
         TablaListadoProductos.setVisible(false);
 
     }
@@ -68,8 +72,8 @@ public class RegistrarProductos extends javax.swing.JInternalFrame {
         cbo_categoria = new javax.swing.JComboBox<>();
         txt_descripcionProducto = new javax.swing.JTextField();
         btn_buscar = new javax.swing.JButton();
-        btn_TipodeProducto = new javax.swing.JButton();
-        btn_UnidaddeMedidda = new javax.swing.JButton();
+        btn_editar1 = new javax.swing.JButton();
+        btn_editar2 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         txt_Ingredienteactivo = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
@@ -138,26 +142,26 @@ public class RegistrarProductos extends javax.swing.JInternalFrame {
         btn_buscar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_buscar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
-        btn_TipodeProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Nuevo2.png"))); // NOI18N
-        btn_TipodeProducto.setText("Crear tipo Producto");
-        btn_TipodeProducto.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btn_TipodeProducto.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_editar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Nuevo2.png"))); // NOI18N
+        btn_editar1.setText("Crear tipo Producto");
+        btn_editar1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_editar1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_TipodeProductoMouseClicked(evt);
+                btn_editar1MouseClicked(evt);
             }
         });
 
-        btn_UnidaddeMedidda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Nuevo2.png"))); // NOI18N
-        btn_UnidaddeMedidda.setText("Crear Unidad de Medida");
-        btn_UnidaddeMedidda.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btn_UnidaddeMedidda.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_editar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Nuevo2.png"))); // NOI18N
+        btn_editar2.setText("Crear Unidad de Medida");
+        btn_editar2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_editar2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_UnidaddeMediddaMouseClicked(evt);
+                btn_editar2MouseClicked(evt);
             }
         });
-        btn_UnidaddeMedidda.addActionListener(new java.awt.event.ActionListener() {
+        btn_editar2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_UnidaddeMediddaActionPerformed(evt);
+                btn_editar2ActionPerformed(evt);
             }
         });
 
@@ -166,6 +170,8 @@ public class RegistrarProductos extends javax.swing.JInternalFrame {
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel10.setText("Fecha de Vencimiento:");
+
+        jDate_FechaVencimiento.setDateFormatString("yyyy/MM/dd \n");
 
         javax.swing.GroupLayout PanelDatosLayout = new javax.swing.GroupLayout(PanelDatos);
         PanelDatos.setLayout(PanelDatosLayout);
@@ -178,7 +184,7 @@ public class RegistrarProductos extends javax.swing.JInternalFrame {
                         .addGroup(PanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(PanelDatosLayout.createSequentialGroup()
                                 .addGap(147, 147, 147)
-                                .addComponent(btn_UnidaddeMedidda, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btn_editar2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosLayout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addGap(34, 34, 34)
@@ -187,7 +193,7 @@ public class RegistrarProductos extends javax.swing.JInternalFrame {
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
                         .addGroup(PanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btn_TipodeProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_editar1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cbo_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(25, Short.MAX_VALUE))
                     .addGroup(PanelDatosLayout.createSequentialGroup()
@@ -197,15 +203,15 @@ public class RegistrarProductos extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel9)
                                     .addComponent(jLabel6)
                                     .addComponent(jLabel4))
-                                .addGap(252, 252, 252)
+                                .addGap(243, 243, 243)
                                 .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(PanelDatosLayout.createSequentialGroup()
                                 .addComponent(jLabel10)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jDate_FechaVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jDate_FechaVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(PanelDatosLayout.createSequentialGroup()
                                 .addComponent(jLabel8)
-                                .addGap(78, 78, 78)
+                                .addGap(66, 66, 66)
                                 .addGroup(PanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txt_codigoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txt_Ingredienteactivo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 525, Short.MAX_VALUE)
@@ -225,19 +231,19 @@ public class RegistrarProductos extends javax.swing.JInternalFrame {
                 .addGroup(PanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txt_nombreProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addGap(21, 21, 21)
                 .addGroup(PanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(txt_Ingredienteactivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
+                .addGap(22, 22, 22)
                 .addGroup(PanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel10)
                     .addComponent(jDate_FechaVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addGap(33, 33, 33)
                 .addGroup(PanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txt_descripcionProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(PanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbo_unidadMedida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
@@ -245,8 +251,8 @@ public class RegistrarProductos extends javax.swing.JInternalFrame {
                     .addComponent(cbo_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(PanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_UnidaddeMedidda)
-                    .addComponent(btn_TipodeProducto))
+                    .addComponent(btn_editar2)
+                    .addComponent(btn_editar1))
                 .addGap(29, 29, 29))
         );
 
@@ -396,21 +402,25 @@ public class RegistrarProductos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbo_categoriaActionPerformed
 
     private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
-        String cp, np, dp, um, catg;
+        String cp, np, dp, um, catg, ia;
 
         cp = txt_codigoProducto.getText();
-        np = txt_nombreProducto.getText();
+        np = txt_nombreProducto.getText(); 
         dp = txt_descripcionProducto.getText();
         um = cbo_unidadMedida.getSelectedItem().toString();
         catg = cbo_categoria.getSelectedItem().toString();
-
+        ia = txt_Ingredienteactivo.getText().toString();
+        
+            
         if (txt_codigoProducto.getText().equals("") || txt_nombreProducto.getText().equals("") || txt_descripcionProducto.getText().equals("") || (cbo_unidadMedida.getSelectedItem().equals("Seleccionar"))
-                || (cbo_categoria.getSelectedItem().equals("Seleccionar"))) {
+                || (cbo_categoria.getSelectedItem().equals("Seleccionar")) || txt_Ingredienteactivo.getText().equals(""))  {
 
             javax.swing.JOptionPane.showMessageDialog(this, "Obligatorio llenar todos los campos \n", "AVISO!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
             txt_nombreProducto.requestFocus();
 
         }
+         
+         
         try {
             PreparedStatement guardar = iniciarConexion.prepareStatement("INSERT INTO Productos (Codigo,Nombre,Descripcion,IngredienteActivo,FechadeVencimiento,UnidaddeMedida,TipodeProducto)VALUES (?,?,?,?,?,?,?)");
             /*consulta ingresar y guardar datos*/
@@ -418,13 +428,18 @@ public class RegistrarProductos extends javax.swing.JInternalFrame {
             guardar.setString(1, txt_codigoProducto.getText());
             guardar.setString(2, txt_nombreProducto.getText());
             guardar.setString(3, txt_descripcionProducto.getText());
-            guardar.setString(4, txt_Ingredienteactivo.getText());
-            guardar.setString(5, jDate_FechaVencimiento.getDateFormatString());
+            guardar.setString(4, txt_Ingredienteactivo.getText());     
+            guardar.setString(5, ((JTextField)jDate_FechaVencimiento.getDateEditor().getUiComponent()).getText());
             guardar.setString(6, cbo_unidadMedida.getSelectedItem().toString());
             guardar.setString(7, cbo_categoria.getSelectedItem().toString());
+         
+//           SimpleDateFormat dFormat=new SimpleDateFormat("dd-MM-yyyy");
+//            String date=dFormat.format(jDate_FechaVencimiento.getDate());
+//           tcliente.addRow(new Object []{ (date)});
 
             guardar.executeUpdate();
-
+           
+            
             JOptionPane.showMessageDialog(null, "Datos Ingresados Correctamente.");
             bloquear();
             guardar.close();
@@ -436,7 +451,7 @@ public class RegistrarProductos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_guardarActionPerformed
 
     private void btn_listaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_listaActionPerformed
-        Fmr_Lista_Productos ventana = new Fmr_Lista_Productos();
+        Fmr_Listado_Productos ventana = new Fmr_Listado_Productos();
         ventana.setVisible(true);
     }//GEN-LAST:event_btn_listaActionPerformed
 
@@ -466,21 +481,21 @@ public class RegistrarProductos extends javax.swing.JInternalFrame {
         desbloquear();
     }//GEN-LAST:event_btn_nuevoActionPerformed
 
-    private void btn_UnidaddeMediddaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_UnidaddeMediddaMouseClicked
+    private void btn_editar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_editar2MouseClicked
         String unidadmedida = "";
         unidadmedida = JOptionPane.showInputDialog("ingresa nueva unidad de medida");
         cbo_unidadMedida.addItem(unidadmedida);
-    }//GEN-LAST:event_btn_UnidaddeMediddaMouseClicked
+    }//GEN-LAST:event_btn_editar2MouseClicked
 
-    private void btn_UnidaddeMediddaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_UnidaddeMediddaActionPerformed
+    private void btn_editar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editar2ActionPerformed
 
-    }//GEN-LAST:event_btn_UnidaddeMediddaActionPerformed
+    }//GEN-LAST:event_btn_editar2ActionPerformed
 
-    private void btn_TipodeProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_TipodeProductoMouseClicked
+    private void btn_editar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_editar1MouseClicked
         String tipoproducto = "";
         tipoproducto = JOptionPane.showInputDialog("Ingrese el Nuevo Tipo de Producto");
         cbo_categoria.addItem(tipoproducto);
-    }//GEN-LAST:event_btn_TipodeProductoMouseClicked
+    }//GEN-LAST:event_btn_editar1MouseClicked
 
     private void btn_elminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_elminarActionPerformed
 
@@ -489,18 +504,18 @@ public class RegistrarProductos extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelDatos;
-    private javax.swing.JButton btn_TipodeProducto;
-    private javax.swing.JButton btn_UnidaddeMedidda;
     private javax.swing.JButton btn_buscar;
     private javax.swing.JButton btn_cancelar;
     private javax.swing.JButton btn_editar;
+    private javax.swing.JButton btn_editar1;
+    private javax.swing.JButton btn_editar2;
     private javax.swing.JButton btn_elminar;
     private javax.swing.JButton btn_guardar;
     private javax.swing.JButton btn_lista;
     private javax.swing.JButton btn_nuevo;
-    private javax.swing.JComboBox<String> cbo_categoria;
-    private javax.swing.JComboBox<String> cbo_unidadMedida;
-    private com.toedter.calendar.JDateChooser jDate_FechaVencimiento;
+    public static javax.swing.JComboBox<String> cbo_categoria;
+    public static javax.swing.JComboBox<String> cbo_unidadMedida;
+    public static com.toedter.calendar.JDateChooser jDate_FechaVencimiento;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
@@ -511,10 +526,10 @@ public class RegistrarProductos extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField txt_Ingredienteactivo;
-    private javax.swing.JTextField txt_codigoProducto;
-    private javax.swing.JTextField txt_descripcionProducto;
-    private javax.swing.JTextField txt_nombreProducto;
+    public static javax.swing.JTextField txt_Ingredienteactivo;
+    public static javax.swing.JTextField txt_codigoProducto;
+    public static javax.swing.JTextField txt_descripcionProducto;
+    public static javax.swing.JTextField txt_nombreProducto;
     // End of variables declaration//GEN-END:variables
 
 }

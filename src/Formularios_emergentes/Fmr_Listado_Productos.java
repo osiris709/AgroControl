@@ -5,22 +5,26 @@
 package Formularios_emergentes;
 
 import Conexion.conexion;
+import Formularios.RegistrarProductos;
+import static Formularios.RegistrarProductos.jDate_FechaVencimiento;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author ACER
  */
-public class Fmr_Lista_Productos extends javax.swing.JFrame {
+public class Fmr_Listado_Productos extends javax.swing.JFrame {
 
     conexion conn = new conexion();
     Connection iniciarConexion = conn.conexion();
 
-    public Fmr_Lista_Productos() {
+    public Fmr_Listado_Productos() {
         initComponents();
         MostrarlistadoProductos();
     }
@@ -48,13 +52,18 @@ public class Fmr_Lista_Productos extends javax.swing.JFrame {
         DefaultTableModel tcliente = new DefaultTableModel();
         tcliente.addColumn("Codigo");
         tcliente.addColumn("Nombre");
-        tcliente.addColumn("IngredienteActivo");
+        tcliente.addColumn("Descripción");
+        tcliente.addColumn("Ingrediente Activo");
+        tcliente.addColumn("Fecha de Vencimiento");
         tcliente.addColumn("Unidad de Medida");
         tcliente.addColumn("Tipo de Producto");
+                
+
+
 
         TablaCliente.setModel(tcliente);
-
-        String[] datos = new String[5];
+            
+        String[] datos = new String[7];
 
         try {
             Statement leer = iniciarConexion.createStatement();
@@ -66,6 +75,12 @@ public class Fmr_Lista_Productos extends javax.swing.JFrame {
                 datos[2] = resultado.getString(3);
                 datos[3] = resultado.getString(4);
                 datos[4] = resultado.getString(5);
+                datos[5] = resultado.getString(6);
+                datos[6] = resultado.getString(7);
+                
+            
+                
+               
                 tcliente.addRow(datos);
             }
             TablaCliente.setModel(tcliente);
@@ -92,21 +107,23 @@ public class Fmr_Lista_Productos extends javax.swing.JFrame {
 
         TablaCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
-                "Codigo", "Nombre", "Ingrediente Activo", "Unidad de Medida", "Tipo de Producto"
+                "Codigo", "Nombre", "Descripcion", "Ingrediente Activo", "Fecha de Vencimiento", "Unidad de Medida", "Tipo de Producto"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+        });
+        TablaCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaClienteMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(TablaCliente);
@@ -126,25 +143,24 @@ public class Fmr_Lista_Productos extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 519, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(220, 220, 220)
-                        .addComponent(jButton1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(220, 220, 220)
+                .addComponent(jButton1)
+                .addContainerGap(665, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(178, 178, 178))
+                .addGap(380, 380, 380))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
                 .addGap(14, 14, 14)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)
@@ -157,6 +173,28 @@ public class Fmr_Lista_Productos extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void TablaClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaClienteMouseClicked
+       
+         if (evt.getClickCount () ==1){
+             
+             JTable receptor = (JTable) evt.getSource();
+             RegistrarProductos.txt_codigoProducto.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(),0).toString());
+             RegistrarProductos.txt_nombreProducto.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(),1).toString());
+             RegistrarProductos.txt_descripcionProducto.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(),2).toString());
+             RegistrarProductos.txt_Ingredienteactivo.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(),3).toString());
+             RegistrarProductos.jDate_FechaVencimiento.setDateFormatString(receptor.getModel().getValueAt(receptor.getSelectedRow(),4).toString());
+             RegistrarProductos.cbo_unidadMedida.setSelectedItem(receptor.getModel().getValueAt(receptor.getSelectedRow(),5).toString());
+             RegistrarProductos.cbo_categoria.setSelectedItem(receptor.getModel().getValueAt(receptor.getSelectedRow(),6).toString());
+             
+             
+           //  RegistrarProductos.cbo_unidadMedida.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(),0).toString());
+          //   RegistrarProductos.cbo_categoria.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(),0).toString());
+             
+            
+                                     
+         }
+    }//GEN-LAST:event_TablaClienteMouseClicked
 
     /**
      * @param args the command line arguments
@@ -175,13 +213,13 @@ public class Fmr_Lista_Productos extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Fmr_Lista_Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fmr_Listado_Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Fmr_Lista_Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fmr_Listado_Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Fmr_Lista_Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fmr_Listado_Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Fmr_Lista_Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fmr_Listado_Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -189,15 +227,17 @@ public class Fmr_Lista_Productos extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Fmr_Lista_Productos().setVisible(true);
+                new Fmr_Listado_Productos().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable TablaCliente;
+    public static javax.swing.JTable TablaCliente;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+    
 }
