@@ -1,7 +1,7 @@
 package Formularios;
 
 import Conexion.conexion;
-import Formularios_emergentes.ListaCosechas;
+import Formularios_emergentes.Fmr_ListaCosechas;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.text.DateFormat;
@@ -117,6 +117,11 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
         btn_buscar.setText("Buscar");
         btn_buscar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_buscar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btn_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_buscarActionPerformed(evt);
+            }
+        });
 
         txt_IdCosecha.setPreferredSize(new java.awt.Dimension(6, 23));
 
@@ -177,12 +182,10 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
                                         .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(225, 225, 225))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addGap(0, 0, Short.MAX_VALUE)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(btn_TipoCosecha, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(0, 0, Short.MAX_VALUE)
-                                                .addComponent(btn_TipoCosecha, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGap(0, 0, Short.MAX_VALUE)
                                                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(33, 33, 33)
                                                 .addComponent(cbo_TipoCosecha, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -415,8 +418,8 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
     }
     
     private void btn_lista1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_lista1ActionPerformed
-        ListaCosechas Cosechas = new ListaCosechas();
-        Cosechas.setVisible(true);
+        Fmr_ListaCosechas Cosecha = new Fmr_ListaCosechas();
+        Cosecha.setVisible(true);
         
     }//GEN-LAST:event_btn_lista1ActionPerformed
 
@@ -428,6 +431,11 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
         Limpiar();
         Desbloquear();
     }//GEN-LAST:event_btn_nuevo1ActionPerformed
+
+    private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
+        
+        
+    }//GEN-LAST:event_btn_buscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
