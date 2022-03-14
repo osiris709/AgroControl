@@ -480,6 +480,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_proveedores;
     private javax.swing.JLabel lbl_reportes;
     private javax.swing.JLabel lbl_salir;
-    private javax.swing.JDesktopPane mostrar;
+    public static javax.swing.JDesktopPane mostrar;
     // End of variables declaration//GEN-END:variables
 }

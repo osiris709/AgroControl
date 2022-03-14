@@ -2,9 +2,12 @@ package Formularios;
 
 import Conexion.conexion;
 import Formularios_emergentes.Fmr_ListaCosechas;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.text.DateFormat;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class Control_Cosecha extends javax.swing.JInternalFrame {
@@ -19,8 +22,42 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
 
         this.setTitle("AgroControl - Control Cosechas");
         setResizable(false);
+        Bloquear();
     }
 
+    public void Guardar(){
+                // Si hay algun campo vacio, genera error
+        if (txt_IdCosecha.getText().equals("") || txt_NombreCosecha.getText().equals("") || (cbo_TipoCultivo.getSelectedItem().equals("Seleccionar"))
+                || (cbo_TipoCosecha.getSelectedItem().equals("Seleccionar")) || txt_FechaSiembra.getDate().equals("") || txt_FechaRecoleccion.getDate().equals("")) {
+
+            javax.swing.JOptionPane.showMessageDialog(this, "Obligatorio llenar todos los campos \n", "AVISO!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            txt_IdCosecha.requestFocus();
+        } else {
+        // Guardar datos en la base de datos
+        try {
+            PreparedStatement guardar = con.prepareStatement("INSERT INTO Cosecha (IdCosecha,Nombre_Cosecha,Tipo_Cultivo,Tipo_Cosecha,Fecha_Siembra,Fecha_Recoleccion) VALUES (?,?,?,?,?,?)");
+            guardar.setString(1, txt_IdCosecha.getText());
+            guardar.setString(2, txt_NombreCosecha.getText());
+            guardar.setString(3, cbo_TipoCultivo.getSelectedItem().toString());
+            guardar.setString(4, cbo_TipoCosecha.getSelectedItem().toString());
+            guardar.setString(5, df.format(txt_FechaSiembra.getDate()));
+            guardar.setString(6, df.format(txt_FechaRecoleccion.getDate()));
+            
+            guardar.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Cosecha Registrada exitosamente");
+            Bloquear();
+            guardar.close();
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e + "Error, No se registro la Cosecha");
+        }
+    }
+    }
+    public void Eliminar(){
+                
+    }
     public void Desbloquear() {
 
         this.txt_IdCosecha.setEnabled(true);
@@ -31,7 +68,6 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
         this.txt_FechaRecoleccion.setEnabled(true);
         txt_IdCosecha.requestFocus();
     }
-
     public void Bloquear() {
 
         this.txt_IdCosecha.setEnabled(false);
@@ -42,15 +78,12 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
         this.txt_FechaRecoleccion.setEnabled(false);
         txt_IdCosecha.requestFocus();
     }   
-    
     public void Limpiar() {
         
         txt_IdCosecha.setText("");
         txt_NombreCosecha.setText("");
         cbo_TipoCultivo.setSelectedIndex(0);
         cbo_TipoCosecha.setSelectedIndex(0);
-        txt_FechaSiembra.setDateFormatString("");
-        txt_FechaRecoleccion.setDateFormatString("");
         txt_IdCosecha.requestFocus();
     }
 
@@ -58,14 +91,20 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
+        ImageIcon icon1 = new ImageIcon(getClass().getResource("/Imagenes/fondo-submenu4.jpg"));
+        Image image1 = icon1.getImage();
+        jd_Cosecha = new javax.swing.JDesktopPane(){
+
+            public void paintComponent(Graphics g){
+                g.drawImage(image1,0,0,getWidth(),getHeight(),this);
+            }
+        }
+        ;
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        txt_NombreCosecha = new javax.swing.JTextField();
         btn_buscar = new javax.swing.JButton();
-        txt_IdCosecha = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         txt_FechaSiembra = new com.toedter.calendar.JDateChooser();
         jLabel13 = new javax.swing.JLabel();
@@ -74,6 +113,8 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
         btn_TipoCosecha = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         cbo_TipoCultivo = new javax.swing.JComboBox<>();
+        txt_IdCosecha = new javax.swing.JTextField();
+        txt_NombreCosecha = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         btn_lista1 = new javax.swing.JButton();
@@ -93,7 +134,8 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
         setAutoscrolls(true);
         setPreferredSize(new java.awt.Dimension(800, 600));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jd_Cosecha.setBackground(new java.awt.Color(255, 255, 255));
+        jd_Cosecha.setForeground(new java.awt.Color(255, 255, 255));
 
         jPanel1.setBackground(new java.awt.Color(240, 255, 240));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -111,8 +153,6 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
         jLabel9.setText("Tipo cosecha:");
         jLabel9.setPreferredSize(new java.awt.Dimension(82, 23));
 
-        txt_NombreCosecha.setPreferredSize(new java.awt.Dimension(6, 23));
-
         btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lupa.png"))); // NOI18N
         btn_buscar.setText("Buscar");
         btn_buscar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -123,25 +163,25 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
             }
         });
 
-        txt_IdCosecha.setPreferredSize(new java.awt.Dimension(6, 23));
-
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel12.setText("ID Cosecha:");
         jLabel12.setPreferredSize(new java.awt.Dimension(72, 23));
 
+        txt_FechaSiembra.setMinimumSize(new java.awt.Dimension(27, 23));
         txt_FechaSiembra.setPreferredSize(new java.awt.Dimension(80, 23));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel13.setText("Fecha de Recoleccion:");
         jLabel13.setPreferredSize(new java.awt.Dimension(132, 23));
 
+        txt_FechaRecoleccion.setMinimumSize(new java.awt.Dimension(27, 23));
         txt_FechaRecoleccion.setPreferredSize(new java.awt.Dimension(80, 23));
 
         cbo_TipoCosecha.setEditable(true);
         cbo_TipoCosecha.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Tomate" }));
+        cbo_TipoCosecha.setMinimumSize(new java.awt.Dimension(98, 23));
         cbo_TipoCosecha.setPreferredSize(new java.awt.Dimension(79, 23));
 
-        btn_TipoCosecha.setBackground(new java.awt.Color(255, 255, 255));
         btn_TipoCosecha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Nuevo2.png"))); // NOI18N
         btn_TipoCosecha.setText("Crear tipo Cosecha");
         btn_TipoCosecha.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -157,7 +197,14 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
 
         cbo_TipoCultivo.setEditable(true);
         cbo_TipoCultivo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Transitorio", "Permanente" }));
+        cbo_TipoCultivo.setMinimumSize(new java.awt.Dimension(98, 23));
         cbo_TipoCultivo.setPreferredSize(new java.awt.Dimension(83, 23));
+
+        txt_IdCosecha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_IdCosechaKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -167,80 +214,71 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(txt_IdCosecha, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                                        .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(225, 225, 225))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(btn_TipoCosecha, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(33, 33, 33)
-                                                .addComponent(cbo_TipoCosecha, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(27, 27, 27))))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(40, 40, 40)
-                                .addComponent(txt_NombreCosecha, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 27, Short.MAX_VALUE))))
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(54, 54, 54)
+                        .addComponent(cbo_TipoCultivo, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(cbo_TipoCosecha, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40)
+                        .addComponent(txt_FechaSiembra, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(152, 152, 152)
+                        .addComponent(btn_TipoCosecha, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
+                        .addComponent(txt_FechaRecoleccion, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(78, 78, 78)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(cbo_TipoCultivo, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txt_FechaSiembra, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txt_FechaRecoleccion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(367, 367, 367))))))
+                                .addComponent(txt_IdCosecha, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(54, 54, 54)
+                                .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txt_NombreCosecha, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_IdCosecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_buscar))
+                    .addComponent(txt_IdCosecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txt_NombreCosecha, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbo_TipoCultivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_NombreCosecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(39, 39, 39)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbo_TipoCosecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbo_TipoCultivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbo_TipoCosecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(38, 38, 38)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_FechaSiembra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_FechaSiembra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_TipoCosecha, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txt_FechaRecoleccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(33, Short.MAX_VALUE))
+                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_FechaRecoleccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         jLabel10.setBackground(new java.awt.Color(255, 255, 255));
         jLabel10.setFont(new java.awt.Font("Calibri", 3, 24)); // NOI18N
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/LogoCRUD.png"))); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/LogoCRUD2.png"))); // NOI18N
 
         jPanel4.setBackground(new java.awt.Color(240, 255, 240));
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -293,7 +331,6 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
             }
         });
 
-        btn_editar1.setBackground(new java.awt.Color(255, 255, 255));
         btn_editar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/editar2.png"))); // NOI18N
         btn_editar1.setText("Editar");
         btn_editar1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -310,6 +347,11 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
         btn_cancelar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/desactivar.png"))); // NOI18N
         btn_cancelar1.setText("Cancelar");
         btn_cancelar1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_cancelar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cancelar1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -341,22 +383,27 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        jd_Cosecha.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jd_Cosecha.setLayer(jLabel10, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jd_Cosecha.setLayer(jPanel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jd_Cosecha.setLayer(jPanel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jd_CosechaLayout = new javax.swing.GroupLayout(jd_Cosecha);
+        jd_Cosecha.setLayout(jd_CosechaLayout);
+        jd_CosechaLayout.setHorizontalGroup(
+            jd_CosechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_CosechaLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jd_CosechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        jd_CosechaLayout.setVerticalGroup(
+            jd_CosechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_CosechaLayout.createSequentialGroup()
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -364,18 +411,18 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 31, Short.MAX_VALUE))
+                .addGap(0, 38, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jd_Cosecha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 784, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jd_Cosecha, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
         );
 
         pack();
@@ -386,41 +433,13 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_TipoCosechaActionPerformed
 
     private void btn_guardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardar1ActionPerformed
-
-        // Si hay algun campo vacio, genera error
-        if (txt_IdCosecha.getText().equals("") || txt_NombreCosecha.getText().equals("") || (cbo_TipoCultivo.getSelectedItem().equals("Seleccionar"))
-                || (cbo_TipoCosecha.getSelectedItem().equals("Seleccionar")) || txt_FechaSiembra.getDate().equals("") || txt_FechaRecoleccion.getDate().equals("")) {
-
-            javax.swing.JOptionPane.showMessageDialog(this, "Obligatorio llenar todos los campos \n", "AVISO!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-            txt_IdCosecha.requestFocus();
-        } else {
-        // Guardar datos en la base de datos
-        try {
-            PreparedStatement guardar = con.prepareStatement("INSERT INTO Cosecha (IdCosecha,Nombre_Cosecha,Tipo_Cultivo,Tipo_Cosecha,Fecha_Siembra,Fecha_Recoleccion) VALUES (?,?,?,?,?,?)");
-            guardar.setString(1, txt_IdCosecha.getText());
-            guardar.setString(2, txt_NombreCosecha.getText());
-            guardar.setString(3, cbo_TipoCultivo.getSelectedItem().toString());
-            guardar.setString(4, cbo_TipoCosecha.getSelectedItem().toString());
-            guardar.setString(5, df.format(txt_FechaSiembra.getDate()));
-            guardar.setString(6, df.format(txt_FechaRecoleccion.getDate()));
-            
-            guardar.executeUpdate();
-
-            JOptionPane.showMessageDialog(null, "Cosecha Registrada exitosamente");
-            Bloquear();
-            guardar.close();
-
-        } catch (Exception e) {
-
-            JOptionPane.showMessageDialog(null, e + "Error, No se registro la Cosecha");
-        }
+        Guardar();
     }//GEN-LAST:event_btn_guardar1ActionPerformed
-    }
+   
     
     private void btn_lista1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_lista1ActionPerformed
         Fmr_ListaCosechas Cosecha = new Fmr_ListaCosechas();
         Cosecha.setVisible(true);
-        
     }//GEN-LAST:event_btn_lista1ActionPerformed
 
     private void btn_editar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editar1ActionPerformed
@@ -433,9 +452,21 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_nuevo1ActionPerformed
 
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
-        
-        
+        Fmr_ListaCosechas Cosecha = new Fmr_ListaCosechas();
+        Cosecha.setVisible(true);
     }//GEN-LAST:event_btn_buscarActionPerformed
+
+    private void btn_cancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelar1ActionPerformed
+        Limpiar();
+        Bloquear();
+    }//GEN-LAST:event_btn_cancelar1ActionPerformed
+
+    private void txt_IdCosechaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_IdCosechaKeyTyped
+        /*char carac = evt.getKeyChar();
+        if ((carac < '0' || carac > '9')) {
+            evt.consume();
+        }*/
+    }//GEN-LAST:event_txt_IdCosechaKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -457,12 +488,13 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JDesktopPane jd_Cosecha;
     private com.toedter.calendar.JDateChooser txt_FechaRecoleccion;
     private com.toedter.calendar.JDateChooser txt_FechaSiembra;
     private javax.swing.JTextField txt_IdCosecha;
     private javax.swing.JTextField txt_NombreCosecha;
     // End of variables declaration//GEN-END:variables
+
 }
