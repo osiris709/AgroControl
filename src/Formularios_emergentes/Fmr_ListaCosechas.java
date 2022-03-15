@@ -1,6 +1,7 @@
 package Formularios_emergentes;
 
 import Conexion.conexion;
+import Formularios.Control_Cosecha;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.sql.Connection;
@@ -8,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class Fmr_ListaCosechas extends javax.swing.JFrame {
@@ -16,12 +18,12 @@ public class Fmr_ListaCosechas extends javax.swing.JFrame {
     Connection iniciarConexion = conn.conexion();
 
     public Fmr_ListaCosechas() {
-        
+
         initComponents();
         this.setTitle("AgroControl - Lista Cosechas");
         this.setLocationRelativeTo(null);
         setResizable(false);
-        
+
         MostrarListaCosechas();
     }
 
@@ -38,7 +40,7 @@ public class Fmr_ListaCosechas extends javax.swing.JFrame {
         TablaCosechas.setModel(tCosechas);
 
         String[] datos = new String[6];
-  
+
         try {
             Statement leer = iniciarConexion.createStatement();
             ResultSet resultado = leer.executeQuery("SELECT * FROM Cosecha");
@@ -58,8 +60,8 @@ public class Fmr_ListaCosechas extends javax.swing.JFrame {
         }
     }
 
-    public void busqueda(String buscar){
-        
+    public void busqueda(String buscar) {
+
         DefaultTableModel tCosechas = new DefaultTableModel();
         tCosechas.addColumn("Id Cosecha");
         tCosechas.addColumn("Nombre Cosecha");
@@ -71,10 +73,10 @@ public class Fmr_ListaCosechas extends javax.swing.JFrame {
         TablaCosechas.setModel(tCosechas);
 
         String[] datos = new String[6];
-  
+
         try {
             Statement leer = iniciarConexion.createStatement();
-            ResultSet resultado = leer.executeQuery("SELECT * FROM Cosecha WHERE IdCosecha LIKE '%"+buscar+"%' OR Nombre_Cosecha LIKE '%"+buscar+"%'");
+            ResultSet resultado = leer.executeQuery("SELECT * FROM Cosecha WHERE IdCosecha LIKE '%" + buscar + "%' OR Nombre_Cosecha LIKE '%" + buscar + "%'");
 
             while (resultado.next()) {
                 datos[0] = resultado.getString(1);
@@ -90,6 +92,11 @@ public class Fmr_ListaCosechas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e + "Error en la Consulta");
         }
     }
+
+    public void clic() {
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -118,7 +125,6 @@ public class Fmr_ListaCosechas extends javax.swing.JFrame {
         setBackground(new java.awt.Color(240, 255, 240));
         setMaximumSize(new java.awt.Dimension(800, 600));
         setMinimumSize(new java.awt.Dimension(800, 600));
-        setPreferredSize(new java.awt.Dimension(800, 600));
 
         jDesktopPane1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -130,6 +136,11 @@ public class Fmr_ListaCosechas extends javax.swing.JFrame {
 
             }
         ));
+        TablaCosechas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaCosechasMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(TablaCosechas);
 
         jLabel1.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
@@ -162,27 +173,23 @@ public class Fmr_ListaCosechas extends javax.swing.JFrame {
                         .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 602, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2))
                 .addGap(39, 39, 39))
-            .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                    .addGap(267, 267, 267)
-                    .addComponent(jLabel1)
-                    .addContainerGap(293, Short.MAX_VALUE)))
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addGap(267, 267, 267)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGap(67, 67, 67)
+                .addGap(17, 17, 17)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(342, Short.MAX_VALUE))
-            .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jLabel1)
-                    .addContainerGap(557, Short.MAX_VALUE)))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(333, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -201,9 +208,27 @@ public class Fmr_ListaCosechas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txt_buscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_buscarKeyReleased
-        
         busqueda(txt_buscar.getText());
     }//GEN-LAST:event_txt_buscarKeyReleased
+
+    private void TablaCosechasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaCosechasMouseClicked
+        
+        if (evt.getClickCount()==1) {
+
+            JTable receptor = (JTable) evt.getSource();
+            Control_Cosecha.txt_IdCosecha.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 0).toString());
+            Control_Cosecha.txt_NombreCosecha.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 1).toString());
+            Control_Cosecha.cbo_TipoCultivo.setSelectedItem(receptor.getModel().getValueAt(receptor.getSelectedRow(), 2).toString());
+            Control_Cosecha.cbo_TipoCosecha.setSelectedItem(receptor.getModel().getValueAt(receptor.getSelectedRow(), 3).toString());
+            Control_Cosecha.txt_FechaSiembra.setDateFormatString(receptor.getModel().getValueAt(receptor.getSelectedRow(), 4).toString());
+            Control_Cosecha.txt_FechaRecoleccion.setDateFormatString(receptor.getModel().getValueAt(receptor.getSelectedRow(), 5).toString());
+
+            this.hide();
+        } else {
+          
+        }
+        
+    }//GEN-LAST:event_TablaCosechasMouseClicked
 
     /**
      * @param args the command line arguments

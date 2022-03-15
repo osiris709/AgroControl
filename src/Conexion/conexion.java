@@ -63,4 +63,8 @@ public class conexion {
             return null;
         }
     }
+
+    public PreparedStatement prepareStatement(String insert_into_Cosecha_IDTipo_CosechaNombre_) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -2,6 +2,7 @@ package Formularios;
 
 import Conexion.conexion;
 import Formularios_emergentes.Fmr_ListaCosechas;
+import Formularios_emergentes.Fmr_TipoCosecha;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.sql.Connection;
@@ -55,9 +56,11 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
         }
     }
     }
+    
     public void Eliminar(){
                 
     }
+    
     public void Desbloquear() {
 
         this.txt_IdCosecha.setEnabled(true);
@@ -68,6 +71,7 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
         this.txt_FechaRecoleccion.setEnabled(true);
         txt_IdCosecha.requestFocus();
     }
+    
     public void Bloquear() {
 
         this.txt_IdCosecha.setEnabled(false);
@@ -77,7 +81,8 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
         this.txt_FechaSiembra.setEnabled(false);
         this.txt_FechaRecoleccion.setEnabled(false);
         txt_IdCosecha.requestFocus();
-    }   
+    }  
+    
     public void Limpiar() {
         
         txt_IdCosecha.setText("");
@@ -418,18 +423,21 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jd_Cosecha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 784, Short.MAX_VALUE)
+            .addComponent(jd_Cosecha, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jd_Cosecha, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
+            .addComponent(jd_Cosecha)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_TipoCosechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TipoCosechaActionPerformed
-        // TODO add your handling code here:
+        Fmr_TipoCosecha TipoCosecha = new Fmr_TipoCosecha();
+        TipoCosecha.setVisible(true);
+        TipoCosecha.toFront();
+        TipoCosecha.setAlwaysOnTop(true);
     }//GEN-LAST:event_btn_TipoCosechaActionPerformed
 
     private void btn_guardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardar1ActionPerformed
@@ -440,6 +448,8 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
     private void btn_lista1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_lista1ActionPerformed
         Fmr_ListaCosechas Cosecha = new Fmr_ListaCosechas();
         Cosecha.setVisible(true);
+        Cosecha.toFront();
+        Cosecha.setAlwaysOnTop(true);
     }//GEN-LAST:event_btn_lista1ActionPerformed
 
     private void btn_editar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editar1ActionPerformed
@@ -454,6 +464,8 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
         Fmr_ListaCosechas Cosecha = new Fmr_ListaCosechas();
         Cosecha.setVisible(true);
+        Cosecha.toFront();
+        Cosecha.setAlwaysOnTop(true);
     }//GEN-LAST:event_btn_buscarActionPerformed
 
     private void btn_cancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelar1ActionPerformed
@@ -478,8 +490,8 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
     private javax.swing.JButton btn_guardar1;
     private javax.swing.JButton btn_lista1;
     private javax.swing.JButton btn_nuevo1;
-    private javax.swing.JComboBox<String> cbo_TipoCosecha;
-    private javax.swing.JComboBox<String> cbo_TipoCultivo;
+    public static javax.swing.JComboBox<String> cbo_TipoCosecha;
+    public static javax.swing.JComboBox<String> cbo_TipoCultivo;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -491,10 +503,10 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JDesktopPane jd_Cosecha;
-    private com.toedter.calendar.JDateChooser txt_FechaRecoleccion;
-    private com.toedter.calendar.JDateChooser txt_FechaSiembra;
-    private javax.swing.JTextField txt_IdCosecha;
-    private javax.swing.JTextField txt_NombreCosecha;
+    public static com.toedter.calendar.JDateChooser txt_FechaRecoleccion;
+    public static com.toedter.calendar.JDateChooser txt_FechaSiembra;
+    public static javax.swing.JTextField txt_IdCosecha;
+    public static javax.swing.JTextField txt_NombreCosecha;
     // End of variables declaration//GEN-END:variables
 
 }
