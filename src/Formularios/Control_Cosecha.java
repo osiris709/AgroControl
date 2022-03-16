@@ -227,6 +227,7 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
         jLabel12.setText("ID Cosecha:");
         jLabel12.setPreferredSize(new java.awt.Dimension(72, 23));
 
+        txt_FechaSiembra.setDateFormatString("dd/MM/yyyy");
         txt_FechaSiembra.setMinimumSize(new java.awt.Dimension(27, 23));
         txt_FechaSiembra.setPreferredSize(new java.awt.Dimension(80, 23));
 
@@ -234,6 +235,7 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
         jLabel13.setText("Fecha de Recoleccion:");
         jLabel13.setPreferredSize(new java.awt.Dimension(132, 23));
 
+        txt_FechaRecoleccion.setDateFormatString("dd/MM/yyyy");
         txt_FechaRecoleccion.setMinimumSize(new java.awt.Dimension(27, 23));
         txt_FechaRecoleccion.setPreferredSize(new java.awt.Dimension(80, 23));
 
@@ -360,14 +362,14 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(269, 269, 269)
                 .addComponent(btn_lista1)
-                .addContainerGap(264, Short.MAX_VALUE))
+                .addContainerGap(250, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btn_lista1)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel5.setBackground(new java.awt.Color(240, 255, 240));
