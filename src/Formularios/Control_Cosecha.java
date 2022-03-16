@@ -26,39 +26,68 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
         Bloquear();
     }
 
-    public void Guardar(){
-                // Si hay algun campo vacio, genera error
+    public void Guardar() {
+        // Si hay algun campo vacio, genera error
         if (txt_IdCosecha.getText().equals("") || txt_NombreCosecha.getText().equals("") || (cbo_TipoCultivo.getSelectedItem().equals("Seleccionar"))
                 || (cbo_TipoCosecha.getSelectedItem().equals("Seleccionar")) || txt_FechaSiembra.getDate().equals("") || txt_FechaRecoleccion.getDate().equals("")) {
 
             javax.swing.JOptionPane.showMessageDialog(this, "Obligatorio llenar todos los campos \n", "AVISO!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
             txt_IdCosecha.requestFocus();
         } else {
-        // Guardar datos en la base de datos
-        try {
-            PreparedStatement guardar = con.prepareStatement("INSERT INTO Cosecha (IdCosecha,Nombre_Cosecha,Tipo_Cultivo,Tipo_Cosecha,Fecha_Siembra,Fecha_Recoleccion) VALUES (?,?,?,?,?,?)");
-            guardar.setString(1, txt_IdCosecha.getText());
-            guardar.setString(2, txt_NombreCosecha.getText());
-            guardar.setString(3, cbo_TipoCultivo.getSelectedItem().toString());
-            guardar.setString(4, cbo_TipoCosecha.getSelectedItem().toString());
-            guardar.setString(5, df.format(txt_FechaSiembra.getDate()));
-            guardar.setString(6, df.format(txt_FechaRecoleccion.getDate()));
-            
-            guardar.executeUpdate();
+            // Guardar datos en la base de datos
+            try {
+                PreparedStatement guardar = con.prepareStatement("INSERT INTO Cosecha (IdCosecha,Nombre_Cosecha,Tipo_Cultivo,Tipo_Cosecha,Fecha_Siembra,Fecha_Recoleccion) VALUES (?,?,?,?,?,?)");
+                guardar.setString(1, txt_IdCosecha.getText());
+                guardar.setString(2, txt_NombreCosecha.getText());
+                guardar.setString(3, cbo_TipoCultivo.getSelectedItem().toString());
+                guardar.setString(4, cbo_TipoCosecha.getSelectedItem().toString());
+                guardar.setString(5, df.format(txt_FechaSiembra.getDate()));
+                guardar.setString(6, df.format(txt_FechaRecoleccion.getDate()));
 
-            JOptionPane.showMessageDialog(null, "Cosecha Registrada exitosamente");
-            Bloquear();
-            guardar.close();
+                guardar.executeUpdate();
 
-        } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Cosecha Registrada exitosamente");
+                Bloquear();
+                guardar.close();
 
-            JOptionPane.showMessageDialog(null, e + "Error, No se registro la Cosecha");
+            } catch (Exception e) {
+
+                JOptionPane.showMessageDialog(null, e + "Error, No se registro la Cosecha");
+            }
         }
     }
+
+    public void Modificar(String IdCosecha) {
+        if (txt_IdCosecha.getText().equals("") || txt_NombreCosecha.getText().equals("") || (cbo_TipoCultivo.getSelectedItem().equals("Seleccionar"))
+                || (cbo_TipoCosecha.getSelectedItem().equals("Seleccionar")) || txt_FechaSiembra.getDate().equals("") || txt_FechaRecoleccion.getDate().equals("")) {
+
+            javax.swing.JOptionPane.showMessageDialog(this, "Obligatorio llenar todos los campos \n", "AVISO!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            txt_IdCosecha.requestFocus();
+        } else {
+            try {
+                PreparedStatement guardar = con.prepareStatement("UPDATE Cosecha SET IdCosecha=?,Nombre_Cosecha=?,Tipo_Cultivo=?,Tipo_Cosecha=?,Fecha_Siembra=?,Fecha_Recoleccion=? WHERE IdCosecha=?");
+                guardar.setString(1, txt_IdCosecha.getText());
+                guardar.setString(2, txt_NombreCosecha.getText());
+                guardar.setString(3, cbo_TipoCultivo.getSelectedItem().toString());
+                guardar.setString(4, cbo_TipoCosecha.getSelectedItem().toString());
+                guardar.setString(5, df.format(txt_FechaSiembra.getDate()));
+                guardar.setString(6, df.format(txt_FechaRecoleccion.getDate()));
+
+                guardar.executeUpdate();
+
+                JOptionPane.showMessageDialog(null, "Cosecha Registrada exitosamente");
+                Bloquear();
+                guardar.close();
+
+            } catch (Exception e) {
+
+                JOptionPane.showMessageDialog(null, e + "Error, No se registro la Cosecha");
+            }
+        }
     }
-    
-    public void Eliminar(String eliminar){
-          /*if (txt_IdCosecha.getText().equals("") || txt_NombreCosecha.getText().equals("") || (cbo_TipoCultivo.getSelectedItem().equals("Seleccionar"))
+
+    public void Eliminar(String IdCosecha) {
+        if (txt_IdCosecha.getText().equals("") || txt_NombreCosecha.getText().equals("") || (cbo_TipoCultivo.getSelectedItem().equals("Seleccionar"))
                 || (cbo_TipoCosecha.getSelectedItem().equals("Seleccionar")) || txt_FechaSiembra.getDate().equals("") || txt_FechaRecoleccion.getDate().equals("")) {
 
             javax.swing.JOptionPane.showMessageDialog(this, "Debe Seleccionar algun campo \n", "AVISO!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
@@ -66,7 +95,7 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
         } else {
         // Eliminar datos en la base de datos
         try {
-            PreparedStatement guardar = con.prepareStatement("DELETE FROM Cosecha WHERE IdCosecha=?);
+            PreparedStatement guardar = con.prepareStatement("DELETE FROM Cosecha WHERE IdCosecha=?");
             guardar.setString(1, txt_IdCosecha.getText());
             guardar.setString(2, txt_NombreCosecha.getText());
             guardar.setString(3, cbo_TipoCultivo.getSelectedItem().toString());
@@ -84,9 +113,9 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
 
             JOptionPane.showMessageDialog(null, e + "Error, No se registro la Cosecha");
         }
-    } */     
+    } 
     }
-    
+
     public void Desbloquear() {
 
         this.txt_IdCosecha.setEnabled(true);
@@ -97,7 +126,7 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
         this.txt_FechaRecoleccion.setEnabled(true);
         txt_IdCosecha.requestFocus();
     }
-    
+
     public void Bloquear() {
 
         this.txt_IdCosecha.setEnabled(false);
@@ -107,10 +136,10 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
         this.txt_FechaSiembra.setEnabled(false);
         this.txt_FechaRecoleccion.setEnabled(false);
         txt_IdCosecha.requestFocus();
-    }  
-    
+    }
+
     public void Limpiar() {
-        
+
         txt_IdCosecha.setText("");
         txt_NombreCosecha.setText("");
         cbo_TipoCultivo.setSelectedIndex(0);
@@ -469,8 +498,8 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
     private void btn_guardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardar1ActionPerformed
         Guardar();
     }//GEN-LAST:event_btn_guardar1ActionPerformed
-   
-    
+
+
     private void btn_lista1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_lista1ActionPerformed
         Fmr_ListaCosechas Cosecha = new Fmr_ListaCosechas();
         Cosecha.setVisible(true);
