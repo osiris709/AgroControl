@@ -7,6 +7,8 @@ import java.awt.Image;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -210,12 +212,29 @@ public class Fmr_ListaCosechas extends javax.swing.JFrame {
     private void TablaCosechasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaCosechasMouseClicked
 
         JTable receptor = (JTable) evt.getSource();
-        Control_Cosecha.txt_IdCosecha.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 0).toString());
+
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+
+        String fechaSiembra = TablaCosechas.getValueAt(TablaCosechas.getSelectedRow(), 4).toString().trim();
+        String fechaRecoleccion = TablaCosechas.getValueAt(TablaCosechas.getSelectedRow(), 5).toString().trim();
+        Date dato, dato1 = null;
+
+        try {
+            dato = (Date) formato.parse(fechaSiembra);
+            dato1 = (Date) formato.parse(fechaRecoleccion);
+
+            Control_Cosecha.txt_FechaSiembra.setDate(dato);
+            Control_Cosecha.txt_FechaRecoleccion.setDate(dato1);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+
+        Control_Cosecha.txt_IdCosecha.setText(TablaCosechas.getValueAt(TablaCosechas.getSelectedRow(), 0).toString());
+        //Control_Cosecha.txt_IdCosecha.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 0).toString());
         Control_Cosecha.txt_NombreCosecha.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 1).toString());
         Control_Cosecha.cbo_TipoCultivo.setSelectedItem(receptor.getModel().getValueAt(receptor.getSelectedRow(), 2).toString());
         Control_Cosecha.cbo_TipoCosecha.setSelectedItem(receptor.getModel().getValueAt(receptor.getSelectedRow(), 3).toString());
-        Control_Cosecha.txt_FechaSiembra.setDateFormatString(receptor.getModel().getValueAt(receptor.getSelectedRow(), 4).toString());
-        Control_Cosecha.txt_FechaRecoleccion.setDateFormatString(receptor.getModel().getValueAt(receptor.getSelectedRow(), 5).toString());
 
         this.hide();
     }//GEN-LAST:event_TablaCosechasMouseClicked
