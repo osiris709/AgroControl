@@ -7,9 +7,6 @@ package Formularios;
  */
 public class RegistrarCompras extends javax.swing.JInternalFrame {
 
-    public static void main(String[] args) {
-        
-    }
     public RegistrarCompras() {
         initComponents();
     }
