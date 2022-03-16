@@ -1,10 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Formularios_emergentes;
 
 import Conexion.conexion;
+import Ventanas.MenuSuper;
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -75,7 +73,7 @@ public class Fmr_Usuarios extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblD_Usuarios = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        Titulo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -89,12 +87,17 @@ public class Fmr_Usuarios extends javax.swing.JFrame {
 
             }
         ));
+        tblD_Usuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblD_UsuariosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblD_Usuarios);
 
-        jLabel1.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Listado de Usuarios");
-        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        Titulo.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        Titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Titulo.setText("Listado de Usuarios");
+        Titulo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -102,21 +105,23 @@ public class Fmr_Usuarios extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(270, 270, 270))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 682, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(Titulo)
+                        .addGap(270, 270, 270))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(Titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -127,11 +132,55 @@ public class Fmr_Usuarios extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tblD_UsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblD_UsuariosMouseClicked
+        int filaseleccionada;
+
+        try {
+
+            filaseleccionada = tblD_Usuarios.getSelectedRow();
+
+            if (filaseleccionada == -1) {
+
+                JOptionPane.showMessageDialog(null, "No se ha seleccionado ninguna fila");
+
+            } else {
+
+                DefaultTableModel modelotabla = (DefaultTableModel) tblD_Usuarios.getModel();
+
+                String Id = (String) modelotabla.getValueAt(filaseleccionada, 0);
+                String TipoUsuario = (String) modelotabla.getValueAt(filaseleccionada, 1);
+                String Usuario = (String) modelotabla.getValueAt(filaseleccionada, 2);
+                String Contraseña = (String) modelotabla.getValueAt(filaseleccionada, 3);
+                String Nombres = (String) modelotabla.getValueAt(filaseleccionada, 4);
+                String Apellidos = (String) modelotabla.getValueAt(filaseleccionada, 5);
+                String Dirección = (String) modelotabla.getValueAt(filaseleccionada, 6);
+                String Telefono = (String) modelotabla.getValueAt(filaseleccionada, 7);
+                String Email = (String) modelotabla.getValueAt(filaseleccionada, 8);
+
+                MenuSuper.txt_Id.setText(Id);
+                MenuSuper.jTipo.setSelectedItem(TipoUsuario);
+                MenuSuper.txt_Alias.setText(Usuario);
+                MenuSuper.txt_Contra.setText(Contraseña);
+                MenuSuper.txt_Nom.setText(Nombres);
+                MenuSuper.txt_Ape.setText(Apellidos);
+                MenuSuper.txt_Direc.setText(Dirección);
+                MenuSuper.txt_Tel.setText(Telefono);
+                MenuSuper.txt_Email.setText(Email);
+                this.dispose();
+            }
+
+        } catch (HeadlessException ex) {
+
+            JOptionPane.showMessageDialog(null, "Error: " + ex + "\nInténtelo nuevamente", " .::Error En la Operacion::.", JOptionPane.ERROR_MESSAGE);
+
+        }
+    }//GEN-LAST:event_tblD_UsuariosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -160,6 +209,8 @@ public class Fmr_Usuarios extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -170,7 +221,7 @@ public class Fmr_Usuarios extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel Titulo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblD_Usuarios;

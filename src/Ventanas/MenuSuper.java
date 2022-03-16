@@ -1,12 +1,18 @@
 package Ventanas;
 
+import Ventanas.Login;
 import Formularios_emergentes.Fmr_Usuarios;
 import Conexion.conexion;
+import java.awt.HeadlessException;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,6 +22,8 @@ public class MenuSuper extends javax.swing.JFrame {
 
     conexion conn = new conexion();
     Connection iniciarConexion = conn.conexion();
+
+    DefaultTableModel modelo = new DefaultTableModel();
 
     /*Connection conn = null;
     Statement stmt = null;*/
@@ -27,7 +35,7 @@ public class MenuSuper extends javax.swing.JFrame {
         setResizable(false);
 
     }
-    
+
     @Override
     public Image getIconImage() {
         Image retValue = Toolkit.getDefaultToolkit().
@@ -35,19 +43,17 @@ public class MenuSuper extends javax.swing.JFrame {
 
         return retValue;
     }
-    
+
     public void guardar() {
         //para obligar a llenar todos los campos.
-        String Nom, Ape, Dir, Tel, User, Contra, Tipo, Email;
-
-        Nom = txt_Nom.getText();
-        Ape = txt_Ape.getText();
-        Dir = txt_Direc.getText();
-        Tel = txt_Tel.getText();
-        User = txt_Alias.getText();
-        Contra = txt_Contra.getText();
-        Tipo = jTipo.getSelectedItem().toString();
-        Email = txt_Email.getText();
+        /*String Nom = txt_Nom.getText();
+        String Ape = txt_Ape.getText();
+        String Dir = txt_Direc.getText();
+        String Tel = txt_Tel.getText();
+        String User = txt_Alias.getText();
+        String Contra = txt_Contra.getText();
+        String Tipo = jTipo.getSelectedItem().toString();
+        String Email = txt_Email.getText();*/
 
         if (txt_Nom.getText().equals("") || (txt_Ape.getText().equals("")) || (txt_Direc.getText().equals("")) || (txt_Tel.getText().equals(""))
                 || (txt_Alias.getText().equals("")) || (txt_Contra.getText().equals("")) || (txt_Email.getText().equals("")) || (jTipo.getSelectedItem().equals("SELECCIONAR"))) {
@@ -75,6 +81,7 @@ public class MenuSuper extends javax.swing.JFrame {
 
                 guardar.close();
                 //para dejar todos los campos en blanco//
+
                 jTipo.setSelectedIndex(0);
                 txt_Alias.setText("");
                 txt_Contra.setText("");
@@ -89,6 +96,59 @@ public class MenuSuper extends javax.swing.JFrame {
             } catch (Exception e) {
 
                 JOptionPane.showMessageDialog(null, e + " No se logro registrar el usuario \n Intente nuevamente.");
+            }
+
+        }
+    }
+
+    public void modificar(String Usuario, String Contraseña, String Nombres, String Apellidos, String Dirección,
+            String Telefono, String Email, String Id) {
+        int confirmar = JOptionPane.showConfirmDialog(null, "¿Desea modificar los datos?");
+        if (confirmar == JOptionPane.YES_OPTION) {
+            Connection conexion = null;
+            try {
+                conexion = iniciarConexion;
+                String Ssql = "UPDATE Usuarios SET Usuario=?, Contrasena=?, Nombres=?, Apellidos=?, Direccion=?, Telefono=?, Email=? WHERE Id=?";
+
+                PreparedStatement prest = conexion.prepareStatement(Ssql);
+                prest.setString(1, Usuario);
+                prest.setString(2, Contraseña);
+                prest.setString(3, Nombres);
+                prest.setString(4, Apellidos);
+                prest.setString(5, Dirección);
+                prest.setString(6, Telefono);
+                prest.setString(7, Email);
+                prest.setString(8, Id);
+
+                txt_Id.setText("");
+                jTipo.setSelectedIndex(0);
+                txt_Alias.setText("");
+                txt_Contra.setText("");
+                txt_Nom.setText("");
+                txt_Ape.setText("");
+                txt_Direc.setText("");
+                txt_Tel.setText("");
+                txt_Email.setText("");
+                txt_Alias.requestFocus();
+
+                if (prest.executeUpdate() > 0) {
+                    JOptionPane.showMessageDialog(null, "datos modificados");
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "no se pudo modifcar los datos");
+                }
+
+            } catch (HeadlessException | SQLException e) {
+                JOptionPane.showMessageDialog(null, "no se pudo modifcar los datos" + e);
+
+            } finally {
+                if (conexion != null) {
+                    try {
+                        conexion.close();
+                    } catch (SQLException e) {
+                        JOptionPane.showMessageDialog(null, "Error al intentar cerrar la conexion" + e);
+                    }
+                }
             }
 
         }
@@ -314,6 +374,11 @@ public class MenuSuper extends javax.swing.JFrame {
         btn_editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/editar2.png"))); // NOI18N
         btn_editar.setText("Editar");
         btn_editar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_editarActionPerformed(evt);
+            }
+        });
 
         btn_elminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/eliminar2.png"))); // NOI18N
         btn_elminar.setText("Eliminar");
@@ -398,7 +463,7 @@ public class MenuSuper extends javax.swing.JFrame {
 
         Fondo_Super.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/menu-super.jpg"))); // NOI18N
         Fondo_Super.setText("jLabel11");
-        jPanel1.add(Fondo_Super, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jPanel1.add(Fondo_Super, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1667, 720));
 
@@ -449,6 +514,16 @@ public class MenuSuper extends javax.swing.JFrame {
         abrir.setVisible(true);
     }//GEN-LAST:event_btn_listaActionPerformed
 
+    private void btn_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editarActionPerformed
+        if (txt_Id.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "no hay datos para modificar");
+        } else {
+            modificar(txt_Alias.getText(), txt_Contra.getText(), txt_Nom.getText(), txt_Ape.getText(), txt_Direc.getText(),
+                    txt_Tel.getText(), txt_Email.getText(), txt_Id.getText());
+
+        }
+    }//GEN-LAST:event_btn_editarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -486,6 +561,10 @@ public class MenuSuper extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -517,14 +596,14 @@ public class MenuSuper extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JComboBox<String> jTipo;
-    private javax.swing.JTextField txt_Alias;
-    private javax.swing.JTextField txt_Ape;
-    private javax.swing.JPasswordField txt_Contra;
-    private javax.swing.JTextField txt_Direc;
-    private javax.swing.JTextField txt_Email;
-    private javax.swing.JTextField txt_Id;
-    private javax.swing.JTextField txt_Nom;
-    private javax.swing.JTextField txt_Tel;
+    public static javax.swing.JComboBox<String> jTipo;
+    public static javax.swing.JTextField txt_Alias;
+    public static javax.swing.JTextField txt_Ape;
+    public static javax.swing.JPasswordField txt_Contra;
+    public static javax.swing.JTextField txt_Direc;
+    public static javax.swing.JTextField txt_Email;
+    public static javax.swing.JTextField txt_Id;
+    public static javax.swing.JTextField txt_Nom;
+    public static javax.swing.JTextField txt_Tel;
     // End of variables declaration//GEN-END:variables
 }
