@@ -57,8 +57,34 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
     }
     }
     
-    public void Eliminar(){
-                
+    public void Eliminar(String eliminar){
+          /*if (txt_IdCosecha.getText().equals("") || txt_NombreCosecha.getText().equals("") || (cbo_TipoCultivo.getSelectedItem().equals("Seleccionar"))
+                || (cbo_TipoCosecha.getSelectedItem().equals("Seleccionar")) || txt_FechaSiembra.getDate().equals("") || txt_FechaRecoleccion.getDate().equals("")) {
+
+            javax.swing.JOptionPane.showMessageDialog(this, "Debe Seleccionar algun campo \n", "AVISO!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            txt_IdCosecha.requestFocus();
+        } else {
+        // Eliminar datos en la base de datos
+        try {
+            PreparedStatement guardar = con.prepareStatement("DELETE FROM Cosecha WHERE IdCosecha=?);
+            guardar.setString(1, txt_IdCosecha.getText());
+            guardar.setString(2, txt_NombreCosecha.getText());
+            guardar.setString(3, cbo_TipoCultivo.getSelectedItem().toString());
+            guardar.setString(4, cbo_TipoCosecha.getSelectedItem().toString());
+            guardar.setString(5, df.format(txt_FechaSiembra.getDate()));
+            guardar.setString(6, df.format(txt_FechaRecoleccion.getDate()));
+            
+            guardar.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Cosecha Registrada exitosamente");
+            Bloquear();
+            guardar.close();
+
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e + "Error, No se registro la Cosecha");
+        }
+    } */     
     }
     
     public void Desbloquear() {
@@ -465,7 +491,7 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
         Fmr_ListaCosechas Cosecha = new Fmr_ListaCosechas();
         Cosecha.setVisible(true);
         Cosecha.toFront();
-        Cosecha.setAlwaysOnTop(true);
+//        Cosecha.setAlwaysOnTop(true);
     }//GEN-LAST:event_btn_buscarActionPerformed
 
     private void btn_cancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelar1ActionPerformed

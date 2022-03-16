@@ -1,6 +1,10 @@
 package Formularios_emergentes;
 
 import Conexion.conexion;
+import static Formularios.Control_Cosecha.cbo_TipoCosecha;
+import static Formularios.Control_Cosecha.cbo_TipoCultivo;
+import static Formularios.Control_Cosecha.txt_IdCosecha;
+import static Formularios.Control_Cosecha.txt_NombreCosecha;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import java.awt.Graphics;
@@ -19,22 +23,20 @@ public class Fmr_TipoCosecha extends javax.swing.JFrame {
         this.setTitle("AgroControl - Tipo Cosechas");
         this.setLocationRelativeTo(null);
         setResizable(false);
-        toFront();
 
         Bloquear();
     }
 
     public void Guardar() {
 
-        if (txt_IDTipoCosecha.getText().equals("") || txt_nombreTipoCosecha.getText().equals("")) {
+        if (txt_nombreTipoCosecha.getText().equals("")) {
 
             javax.swing.JOptionPane.showMessageDialog(this, "Obligatorio llenar todos los campos \n", "AVISO!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-            txt_IDTipoCosecha.requestFocus();
+            txt_nombreTipoCosecha.requestFocus();
         } else {
             // Guardar datos en la base de datos
             try {
                 PreparedStatement guardar = conn.prepareStatement("INSERT INTO Cosecha (IDTipo_Cosecha,Nombre_TipoCosecha) VALUES (?,?)");
-                guardar.setString(1, txt_IDTipoCosecha.getText());
                 guardar.setString(2, txt_nombreTipoCosecha.getText());
 
                 guardar.executeUpdate();
@@ -50,17 +52,18 @@ public class Fmr_TipoCosecha extends javax.swing.JFrame {
     }
 
     public void Bloquear() {
-
-        this.txt_IDTipoCosecha.setEnabled(false);
         this.txt_nombreTipoCosecha.setEnabled(false);
-        txt_IDTipoCosecha.requestFocus();
+        txt_nombreTipoCosecha.requestFocus();
     }
 
     public void Desbloquear() {
-
-        this.txt_IDTipoCosecha.setEnabled(true);
         this.txt_nombreTipoCosecha.setEnabled(true);
-        txt_IDTipoCosecha.requestFocus();
+        txt_nombreTipoCosecha.requestFocus();
+    }
+    
+    public void Limpiar() {    
+        txt_nombreTipoCosecha.setText("");
+        txt_nombreTipoCosecha.requestFocus();
     }
 
     /**
@@ -84,7 +87,6 @@ public class Fmr_TipoCosecha extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         txt_nombreTipoCosecha = new javax.swing.JTextField();
-        txt_IDTipoCosecha = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         btn_nuevo = new javax.swing.JButton();
@@ -107,40 +109,34 @@ public class Fmr_TipoCosecha extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setText("Nombre:");
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jLabel12.setText("ID Tipo Cosecha:");
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel12.setText("Tipo de Cosecha");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel12))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txt_IDTipoCosecha, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(txt_nombreTipoCosecha, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(343, 343, 343))))
+                .addGap(165, 165, 165)
+                .addComponent(jLabel12)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addComponent(txt_nombreTipoCosecha, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addGap(23, 23, 23)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_IDTipoCosecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12))
-                .addGap(31, 31, 31)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_nombreTipoCosecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addContainerGap(21, Short.MAX_VALUE))
+                    .addComponent(jLabel5)
+                    .addComponent(txt_nombreTipoCosecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33))
         );
 
         jPanel5.setBackground(new java.awt.Color(240, 255, 240));
@@ -158,6 +154,11 @@ public class Fmr_TipoCosecha extends javax.swing.JFrame {
         btn_guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Guardar2.png"))); // NOI18N
         btn_guardar.setText("Guardar");
         btn_guardar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_guardarActionPerformed(evt);
+            }
+        });
 
         btn_editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/editar2.png"))); // NOI18N
         btn_editar.setText("Editar");
@@ -219,7 +220,7 @@ public class Fmr_TipoCosecha extends javax.swing.JFrame {
                     .addComponent(jLabel11)
                     .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 419, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         jDesktopPane1Layout.setVerticalGroup(
@@ -230,7 +231,7 @@ public class Fmr_TipoCosecha extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -250,6 +251,10 @@ public class Fmr_TipoCosecha extends javax.swing.JFrame {
     private void btn_nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevoActionPerformed
         Desbloquear();
     }//GEN-LAST:event_btn_nuevoActionPerformed
+
+    private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
+        Guardar();
+    }//GEN-LAST:event_btn_guardarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -298,7 +303,6 @@ public class Fmr_TipoCosecha extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JTextField txt_IDTipoCosecha;
     private javax.swing.JTextField txt_nombreTipoCosecha;
     // End of variables declaration//GEN-END:variables
 }
