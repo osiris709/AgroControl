@@ -8,6 +8,7 @@ import java.awt.Image;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.text.DateFormat;
+import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -57,15 +58,48 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
         }
     }
 
-    public void Modificar(String IdCosecha) {
+    public void Modificar(String IdCosecha, String Nombre_Cosecha, String Tipo_Cultivo, String Tipo_Cosecha, Date Fecha_Siembra, Date Fecha_Recoleccion) {
         if (txt_IdCosecha.getText().equals("") || txt_NombreCosecha.getText().equals("") || (cbo_TipoCultivo.getSelectedItem().equals("Seleccionar"))
                 || (cbo_TipoCosecha.getSelectedItem().equals("Seleccionar")) || txt_FechaSiembra.getDate().equals("") || txt_FechaRecoleccion.getDate().equals("")) {
 
             javax.swing.JOptionPane.showMessageDialog(this, "Obligatorio llenar todos los campos \n", "AVISO!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
             txt_IdCosecha.requestFocus();
         } else {
+            int confirmar = JOptionPane.showConfirmDialog(null, "¿Desea modificar los datos?");
+            if (confirmar == JOptionPane.YES_OPTION) {
+                try {
+                    PreparedStatement guardar = con.prepareStatement("UPDATE Cosecha SET Nombre_Cosecha=?,Tipo_Cultivo=?,Tipo_Cosecha=?,Fecha_Siembra=?,Fecha_Recoleccion=? WHERE IdCosecha=?");
+                    guardar.setString(1, txt_NombreCosecha.getText());
+                    guardar.setString(2, cbo_TipoCultivo.getSelectedItem().toString());
+                    guardar.setString(3, cbo_TipoCosecha.getSelectedItem().toString());
+                    guardar.setString(4, df.format(txt_FechaSiembra.getDate()));
+                    guardar.setString(5, df.format(txt_FechaRecoleccion.getDate()));
+                    guardar.setString(6, txt_IdCosecha.getText());
+
+                    guardar.executeUpdate();
+
+                    JOptionPane.showMessageDialog(null, "Cosecha Modificada exitosamente");
+                    Bloquear();
+                    guardar.close();
+
+                } catch (Exception e) {
+
+                    JOptionPane.showMessageDialog(null, e + "Error, No se Modifico la Cosecha");
+                }
+            }
+        }
+    }
+
+    public void Eliminar(String IdCosecha) {
+        if (txt_IdCosecha.getText().equals("") || txt_NombreCosecha.getText().equals("") || (cbo_TipoCultivo.getSelectedItem().equals("Seleccionar"))
+                || (cbo_TipoCosecha.getSelectedItem().equals("Seleccionar")) || txt_FechaSiembra.getDate().equals("") || txt_FechaRecoleccion.getDate().equals("")) {
+
+            javax.swing.JOptionPane.showMessageDialog(this, "Debe Seleccionar algun campo \n", "AVISO!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            txt_IdCosecha.requestFocus();
+        } else {
+            // Eliminar datos en la base de datos
             try {
-                PreparedStatement guardar = con.prepareStatement("UPDATE Cosecha SET IdCosecha=?,Nombre_Cosecha=?,Tipo_Cultivo=?,Tipo_Cosecha=?,Fecha_Siembra=?,Fecha_Recoleccion=? WHERE IdCosecha=?");
+                PreparedStatement guardar = con.prepareStatement("DELETE FROM Cosecha WHERE IdCosecha=?");
                 guardar.setString(1, txt_IdCosecha.getText());
                 guardar.setString(2, txt_NombreCosecha.getText());
                 guardar.setString(3, cbo_TipoCultivo.getSelectedItem().toString());
@@ -84,36 +118,6 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, e + "Error, No se registro la Cosecha");
             }
         }
-    }
-
-    public void Eliminar(String IdCosecha) {
-        if (txt_IdCosecha.getText().equals("") || txt_NombreCosecha.getText().equals("") || (cbo_TipoCultivo.getSelectedItem().equals("Seleccionar"))
-                || (cbo_TipoCosecha.getSelectedItem().equals("Seleccionar")) || txt_FechaSiembra.getDate().equals("") || txt_FechaRecoleccion.getDate().equals("")) {
-
-            javax.swing.JOptionPane.showMessageDialog(this, "Debe Seleccionar algun campo \n", "AVISO!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-            txt_IdCosecha.requestFocus();
-        } else {
-        // Eliminar datos en la base de datos
-        try {
-            PreparedStatement guardar = con.prepareStatement("DELETE FROM Cosecha WHERE IdCosecha=?");
-            guardar.setString(1, txt_IdCosecha.getText());
-            guardar.setString(2, txt_NombreCosecha.getText());
-            guardar.setString(3, cbo_TipoCultivo.getSelectedItem().toString());
-            guardar.setString(4, cbo_TipoCosecha.getSelectedItem().toString());
-            guardar.setString(5, df.format(txt_FechaSiembra.getDate()));
-            guardar.setString(6, df.format(txt_FechaRecoleccion.getDate()));
-            
-            guardar.executeUpdate();
-
-            JOptionPane.showMessageDialog(null, "Cosecha Registrada exitosamente");
-            Bloquear();
-            guardar.close();
-
-        } catch (Exception e) {
-
-            JOptionPane.showMessageDialog(null, e + "Error, No se registro la Cosecha");
-        }
-    } 
     }
 
     public void Desbloquear() {
@@ -362,14 +366,14 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(269, 269, 269)
                 .addComponent(btn_lista1)
-                .addContainerGap(250, Short.MAX_VALUE))
+                .addContainerGap(264, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btn_lista1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         jPanel5.setBackground(new java.awt.Color(240, 255, 240));
@@ -394,7 +398,7 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
         });
 
         btn_editar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/editar2.png"))); // NOI18N
-        btn_editar1.setText("Editar");
+        btn_editar1.setText("Modificar");
         btn_editar1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_editar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -405,6 +409,11 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
         btn_elminar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/eliminar2.png"))); // NOI18N
         btn_elminar1.setText("Eliminar");
         btn_elminar1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_elminar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_elminar1ActionPerformed(evt);
+            }
+        });
 
         btn_cancelar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/desactivar.png"))); // NOI18N
         btn_cancelar1.setText("Cancelar");
@@ -501,7 +510,6 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
         Guardar();
     }//GEN-LAST:event_btn_guardar1ActionPerformed
 
-
     private void btn_lista1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_lista1ActionPerformed
         Fmr_ListaCosechas Cosecha = new Fmr_ListaCosechas();
         Cosecha.setVisible(true);
@@ -510,7 +518,7 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_lista1ActionPerformed
 
     private void btn_editar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editar1ActionPerformed
-        Desbloquear();
+        Modificar(txt_IdCosecha.getText(), txt_NombreCosecha.getText(), cbo_TipoCultivo.getSelectedItem().toString(), cbo_TipoCosecha.getSelectedItem().toString(), txt_FechaSiembra.getDate(), txt_FechaRecoleccion.getDate());
     }//GEN-LAST:event_btn_editar1ActionPerformed
 
     private void btn_nuevo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevo1ActionPerformed
@@ -536,6 +544,10 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
             evt.consume();
         }*/
     }//GEN-LAST:event_txt_IdCosechaKeyTyped
+
+    private void btn_elminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_elminar1ActionPerformed
+        Eliminar(txt_IdCosecha.getText());
+    }//GEN-LAST:event_btn_elminar1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
