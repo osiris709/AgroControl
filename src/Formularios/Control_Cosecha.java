@@ -3,6 +3,7 @@ package Formularios;
 import Conexion.conexion;
 import Formularios_emergentes.Fmr_ListaCosechas;
 import Formularios_emergentes.Fmr_TipoCosecha;
+import com.toedter.calendar.JDateChooser;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.sql.Connection;
@@ -149,6 +150,8 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
         cbo_TipoCultivo.setSelectedIndex(0);
         cbo_TipoCosecha.setSelectedIndex(0);
         txt_IdCosecha.requestFocus();
+        txt_FechaSiembra.setDate(null);
+        txt_FechaRecoleccion.setDate(null);
     }
 
     @SuppressWarnings("unchecked")
