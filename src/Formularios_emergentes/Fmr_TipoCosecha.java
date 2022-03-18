@@ -46,6 +46,7 @@ public class Fmr_TipoCosecha extends javax.swing.JFrame {
                 guardar.close();
                 Limpiar();
                 
+                
             } catch (Exception e) {
 
                 JOptionPane.showMessageDialog(null, e + "Error, No se registro el Tipo de Cosecha");
@@ -163,6 +164,11 @@ public class Fmr_TipoCosecha extends javax.swing.JFrame {
         btn_cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/desactivar.png"))); // NOI18N
         btn_cancelar.setText("Cancelar");
         btn_cancelar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -237,6 +243,10 @@ public class Fmr_TipoCosecha extends javax.swing.JFrame {
     private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
         Guardar();
     }//GEN-LAST:event_btn_guardarActionPerformed
+
+    private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
+        Bloquear();
+    }//GEN-LAST:event_btn_cancelarActionPerformed
 
     /**
      * @param args the command line arguments

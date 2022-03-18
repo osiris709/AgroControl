@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.text.DateFormat;
 import java.util.Date;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 public class Control_Cosecha extends javax.swing.JInternalFrame {
@@ -28,6 +29,8 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
         this.setTitle("AgroControl - Control Cosechas");
         setResizable(false);
         Bloquear();
+        
+        LlamarComboBox();
     }
 
     public void Guardar() {
@@ -159,9 +162,12 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
 
         try {
 
-            Statement leer = con.createStatement();
-            ResultSet resultado = leer.executeQuery("SELECT Nombre_TipoCosecha FROM Tipo_Cosecha");
-
+            cbo_TipoCosecha.removeAllItems();
+            cbo_TipoCosecha.addItem("Seleccionar");
+            String consulta = "SELECT Nombre_TipoCosecha FROM Tipo_Cosecha ORDER BY Nombre_TipoCosecha ASC";
+            PreparedStatement leer = con.prepareStatement(consulta);
+            ResultSet resultado = leer.executeQuery();
+            
             while (resultado.next()) {
                 cbo_TipoCosecha.addItem(resultado.getString("Nombre_TipoCosecha"));
             }
@@ -264,7 +270,7 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
         txt_FechaRecoleccion.setPreferredSize(new java.awt.Dimension(80, 23));
 
         cbo_TipoCosecha.setEditable(true);
-        cbo_TipoCosecha.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Tomate" }));
+        cbo_TipoCosecha.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
         cbo_TipoCosecha.setMinimumSize(new java.awt.Dimension(98, 23));
         cbo_TipoCosecha.setPreferredSize(new java.awt.Dimension(79, 23));
 
@@ -528,7 +534,7 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
         Fmr_TipoCosecha TipoCosecha = new Fmr_TipoCosecha();
         TipoCosecha.setVisible(true);
         TipoCosecha.toFront();
-        TipoCosecha.setAlwaysOnTop(true);
+//        TipoCosecha.setAlwaysOnTop(true);
     }//GEN-LAST:event_btn_TipoCosechaActionPerformed
 
     private void btn_guardar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardar1ActionPerformed
@@ -547,7 +553,6 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_editar1ActionPerformed
 
     private void btn_nuevo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevo1ActionPerformed
-        Limpiar();
         Desbloquear();
     }//GEN-LAST:event_btn_nuevo1ActionPerformed
 
