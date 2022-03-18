@@ -1,6 +1,5 @@
 package Ventanas;
 
-import Ventanas.Login;
 import Formularios_emergentes.Fmr_Usuarios;
 import Conexion.conexion;
 import java.awt.HeadlessException;
@@ -8,9 +7,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -46,14 +43,6 @@ public class MenuSuper extends javax.swing.JFrame {
 
     public void guardar() {
         //para obligar a llenar todos los campos.
-        /*String Nom = txt_Nom.getText();
-        String Ape = txt_Ape.getText();
-        String Dir = txt_Direc.getText();
-        String Tel = txt_Tel.getText();
-        String User = txt_Alias.getText();
-        String Contra = txt_Contra.getText();
-        String Tipo = jTipo.getSelectedItem().toString();
-        String Email = txt_Email.getText();*/
 
         if (txt_Nom.getText().equals("") || (txt_Ape.getText().equals("")) || (txt_Direc.getText().equals("")) || (txt_Tel.getText().equals(""))
                 || (txt_Alias.getText().equals("")) || (txt_Contra.getText().equals("")) || (txt_Email.getText().equals("")) || (jTipo.getSelectedItem().equals("SELECCIONAR"))) {
@@ -63,7 +52,7 @@ public class MenuSuper extends javax.swing.JFrame {
 
         } else {
 
-            /*consulta ingresar y guardar datos*/
+            //Consulta ingresar y guardar datos.
             try {
                 PreparedStatement guardar = iniciarConexion.prepareStatement("INSERT INTO Usuarios (Id, TipoUsuario, Usuario, Contrasena, Nombres, Apellidos, Direccion, Telefono, Email) VALUES (?,?,?,?,?,?,?,?,?)");
 
@@ -77,11 +66,12 @@ public class MenuSuper extends javax.swing.JFrame {
                 guardar.setString(9, txt_Email.getText());
 
                 guardar.executeUpdate();
-                JOptionPane.showMessageDialog(null, "Sa registrado el usuario correctramente.");
+                JOptionPane.showMessageDialog(null, "Sea registrado el usuario correctamente.");
 
                 guardar.close();
                 //para dejar todos los campos en blanco//
 
+                txt_Id.setText("");
                 jTipo.setSelectedIndex(0);
                 txt_Alias.setText("");
                 txt_Contra.setText("");
@@ -103,14 +93,17 @@ public class MenuSuper extends javax.swing.JFrame {
 
     public void modificar(String Usuario, String Contraseña, String Nombres, String Apellidos, String Dirección,
             String Telefono, String Email, String Id) {
+
+        //Ejecutar cuadro dialogo de confirmacion de la acción.
         int confirmar = JOptionPane.showConfirmDialog(null, "¿Desea modificar los datos?");
         if (confirmar == JOptionPane.YES_OPTION) {
             Connection conexion = null;
+
             try {
-                conexion = iniciarConexion;
+                //Sentencia acutlizar.
                 String Ssql = "UPDATE Usuarios SET Usuario=?, Contrasena=?, Nombres=?, Apellidos=?, Direccion=?, Telefono=?, Email=? WHERE Id=?";
 
-                PreparedStatement prest = conexion.prepareStatement(Ssql);
+                PreparedStatement prest = iniciarConexion.prepareStatement(Ssql);
                 prest.setString(1, Usuario);
                 prest.setString(2, Contraseña);
                 prest.setString(3, Nombres);
@@ -130,16 +123,68 @@ public class MenuSuper extends javax.swing.JFrame {
                 txt_Tel.setText("");
                 txt_Email.setText("");
                 txt_Alias.requestFocus();
+                System.out.println(prest.execute());
 
                 if (prest.executeUpdate() > 0) {
-                    JOptionPane.showMessageDialog(null, "datos modificados");
+                    JOptionPane.showMessageDialog(null, "Datos modificados con exito");
 
                 } else {
-                    JOptionPane.showMessageDialog(null, "no se pudo modifcar los datos");
+                    JOptionPane.showMessageDialog(null, "No se pudo realizar la modificación\n Intentelo nuevamente.");
                 }
 
             } catch (HeadlessException | SQLException e) {
-                JOptionPane.showMessageDialog(null, "no se pudo modifcar los datos" + e);
+                JOptionPane.showMessageDialog(null, "No se pudo modifcar los datos" + e);
+
+            } finally {
+                if (conexion != null) {
+                    try {
+                        conexion.close();
+                    } catch (SQLException e) {
+                        JOptionPane.showMessageDialog(null, "Error al intentar cerrar la conexion" + e);
+                    }
+                }
+            }
+
+        }
+    }
+
+    public void elminar(String Id) {
+
+        Connection conexion = null;
+
+        int confirmar = JOptionPane.showConfirmDialog(null, "¿Desea eliminar el usuario registrado?");
+
+        if (confirmar == JOptionPane.OK_OPTION) {
+
+            try {
+                String sql = "DELETE FROM Usuarios WHERE Id=?";
+
+                PreparedStatement prest = iniciarConexion.prepareStatement(sql);
+                prest.setString(1, Id);
+
+                txt_Id.setText("");
+                jTipo.setSelectedIndex(0);
+                txt_Alias.setText("");
+                txt_Contra.setText("");
+                txt_Nom.setText("");
+                txt_Ape.setText("");
+                txt_Direc.setText("");
+                txt_Tel.setText("");
+                txt_Email.setText("");
+                txt_Alias.requestFocus();
+
+                if (prest.executeUpdate() > 0) {
+
+                    JOptionPane.showMessageDialog(null, "El registro se ha eliminado con exito");
+
+                } else {
+
+                    JOptionPane.showMessageDialog(null, "No se ha podido eliminar el registro.\n Intentelo nuevamente.");
+
+                }
+
+            } catch (HeadlessException | SQLException e) {
+                JOptionPane.showMessageDialog(null, "El registro no se pudo eliminar.\n" + "Inténtelo nuevamente\n" + e);
 
             } finally {
                 if (conexion != null) {
@@ -383,10 +428,20 @@ public class MenuSuper extends javax.swing.JFrame {
         btn_elminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/eliminar2.png"))); // NOI18N
         btn_elminar.setText("Eliminar");
         btn_elminar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_elminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_elminarActionPerformed(evt);
+            }
+        });
 
         btn_cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/desactivar.png"))); // NOI18N
         btn_cancelar.setText("Cancelar");
         btn_cancelar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cancelarActionPerformed(evt);
+            }
+        });
 
         btnRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/atras.png"))); // NOI18N
         btnRegresar.setText("Regresar");
@@ -523,6 +578,23 @@ public class MenuSuper extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_btn_editarActionPerformed
+
+    private void btn_elminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_elminarActionPerformed
+        elminar(txt_Id.getText());
+    }//GEN-LAST:event_btn_elminarActionPerformed
+
+    private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
+        txt_Id.setText("");
+        jTipo.setSelectedIndex(0);
+        txt_Alias.setText("");
+        txt_Contra.setText("");
+        txt_Nom.setText("");
+        txt_Ape.setText("");
+        txt_Direc.setText("");
+        txt_Tel.setText("");
+        txt_Email.setText("");
+        txt_Alias.requestFocus();
+    }//GEN-LAST:event_btn_cancelarActionPerformed
 
     /**
      * @param args the command line arguments

@@ -3,14 +3,20 @@ package Formularios;
 import Clases.Proveedor;
 import Conexion.conexion;
 import Formularios_emergentes.Fmr_Proveedores;
+import java.awt.HeadlessException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class RegistrarProveedor extends javax.swing.JInternalFrame {
 
+    conexion conn = new conexion();
+    Connection iniciarConexion = conn.conexion();
     DefaultTableModel modelo;
-    
+
     public RegistrarProveedor() {
         initComponents();
 
@@ -316,7 +322,7 @@ public class RegistrarProveedor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_lista1ActionPerformed
 
     private void btn_guardar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardar2ActionPerformed
-        
+
         conexion objConexion = new conexion();
         Connection con = objConexion.conexion();
 
@@ -338,7 +344,7 @@ public class RegistrarProveedor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_guardar2ActionPerformed
 
     private void btn_eliminar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminar2ActionPerformed
-        
+
         conexion objConexion = new conexion();
         Connection con = objConexion.conexion();
 
@@ -358,7 +364,7 @@ public class RegistrarProveedor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_eliminar2ActionPerformed
 
     private void btn_editar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editar2ActionPerformed
-        
+
         conexion objConexion = new conexion();
         Connection con = objConexion.conexion();
 
@@ -369,15 +375,22 @@ public class RegistrarProveedor extends javax.swing.JInternalFrame {
             javax.swing.JOptionPane.showMessageDialog(this, "Obligatorio llenar todos los campos \n", "AVISO!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
             txt_nit.requestFocus();
         } else {
-            String strSentenciaInsert = String.format("UPDATE proveedores SET Nombre='%s',Direccion='%s', Correo='%s', Telefono='%s' WHERE Nit=%s ", oProveedor.getNombre(), oProveedor.getDireccion(), oProveedor.getCorreo(), oProveedor.getTelefono(), oProveedor.getNIt());
 
-            objConexion.ejecutarSentenciaSQL(strSentenciaInsert);
-            mostrardatos();
-            limpiar();
+            int confirmar = JOptionPane.showConfirmDialog(null, "¿Desea modificar los datos?");
+            if (confirmar == JOptionPane.YES_OPTION) {
 
-            btn_nuevo1.setEnabled(true);
-            btn_guardar2.setEnabled(true);
-            btn_eliminar2.setEnabled(true);
+                String strSentenciaInsert = String.format("UPDATE Proveedores SET Nombre='%s',Direccion='%s', Correo='%s', Telefono='%s' WHERE NIT=%s ", oProveedor.getNombre(), oProveedor.getDireccion(), oProveedor.getCorreo(), oProveedor.getTelefono(), oProveedor.getNIt());
+
+                objConexion.ejecutarSentenciaSQL(strSentenciaInsert);
+                System.out.println(objConexion.ejecutarSentenciaSQL(strSentenciaInsert));
+                JOptionPane.showMessageDialog(null, "Datos modificados con exito");
+                mostrardatos();
+                limpiar();
+
+                btn_nuevo1.setEnabled(true);
+                btn_guardar2.setEnabled(true);
+                btn_eliminar2.setEnabled(true);
+            }
         }
     }//GEN-LAST:event_btn_editar2ActionPerformed
 

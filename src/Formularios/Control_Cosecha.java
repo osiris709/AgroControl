@@ -3,7 +3,6 @@ package Formularios;
 import Conexion.conexion;
 import Formularios_emergentes.Fmr_ListaCosechas;
 import Formularios_emergentes.Fmr_TipoCosecha;
-import com.toedter.calendar.JDateChooser;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.sql.Connection;
