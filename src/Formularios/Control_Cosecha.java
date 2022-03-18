@@ -159,7 +159,7 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
         try {
 
             Statement leer = con.createStatement();
-            ResultSet resultado = leer.executeQuery("SELECT Nombre_TipoCosecha FROM Tipo_Cosecha");
+            ResultSet resultado = leer.executeQuery("SELECT Nombre_TipoCosecha FROM Cosecha");
 
             while (resultado.next()) {
                 cbo_TipoCosecha.addItem(resultado.getString("Nombre_TipoCosecha"));
@@ -263,7 +263,7 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
         txt_FechaRecoleccion.setPreferredSize(new java.awt.Dimension(80, 23));
 
         cbo_TipoCosecha.setEditable(true);
-        cbo_TipoCosecha.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Tomate" }));
+        cbo_TipoCosecha.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
         cbo_TipoCosecha.setMinimumSize(new java.awt.Dimension(98, 23));
         cbo_TipoCosecha.setPreferredSize(new java.awt.Dimension(79, 23));
 
@@ -281,7 +281,7 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
         jLabel7.setPreferredSize(new java.awt.Dimension(96, 23));
 
         cbo_TipoCultivo.setEditable(true);
-        cbo_TipoCultivo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Transitorio", "Permanente" }));
+        cbo_TipoCultivo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
         cbo_TipoCultivo.setMinimumSize(new java.awt.Dimension(98, 23));
         cbo_TipoCultivo.setPreferredSize(new java.awt.Dimension(83, 23));
 
@@ -388,14 +388,14 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(277, Short.MAX_VALUE)
+                .addContainerGap(261, Short.MAX_VALUE)
                 .addComponent(btn_lista1)
                 .addGap(272, 272, 272))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_lista1)
                 .addContainerGap())
         );
