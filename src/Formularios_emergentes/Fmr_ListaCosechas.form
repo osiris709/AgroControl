@@ -86,8 +86,8 @@
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jScrollPane2" min="-2" pref="162" max="-2" attributes="0"/>
-                  <EmptySpace pref="333" max="32767" attributes="0"/>
+                  <Component id="jScrollPane2" min="-2" pref="58" max="-2" attributes="0"/>
+                  <EmptySpace pref="437" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
