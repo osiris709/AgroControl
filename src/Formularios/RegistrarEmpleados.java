@@ -250,7 +250,7 @@ public class RegistrarEmpleados extends javax.swing.JFrame {
 
         conexion objconexion = new conexion();
         try {
-            ResultSet resultado = objconexion.consultarRegister("SELECT * FROM Empleados");
+            ResultSet resultado = objconexion.consultarRegistro("SELECT * FROM Empleados");
 
             while (resultado.next()) {
 

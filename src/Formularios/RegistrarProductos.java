@@ -1,14 +1,11 @@
 package Formularios;
 
 import Conexion.conexion;
-import Ventanas.MenuPrincipal;
 import java.awt.Component;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 import Formularios_emergentes.Fmr_Listado_Productos ;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.swing.JTextField;
 
 public class RegistrarProductos extends javax.swing.JInternalFrame {

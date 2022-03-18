@@ -6,8 +6,7 @@ package Clases;
  */
 public class Proveedor {
 
-    int NIt;
-    String Nombre, Direccion, Correo, Telefono;
+    String NIt,Nombre, Direccion, Correo, Telefono;
 
     public Proveedor() {
         this.NIt = NIt;
@@ -17,11 +16,11 @@ public class Proveedor {
         this.Telefono = Telefono;
     }
 
-    public int getNIt() {
+    public String getNIt() {
         return NIt;
     }
 
-    public void setNIt(int NIt) {
+    public void setNIt(String NIt) {
         this.NIt = NIt;
     }
 
