@@ -5,36 +5,69 @@
  */
 package Formularios_emergentes;
 
+import java.sql.ResultSet;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import Conexion.conexion;
 import Formularios.RegistrarProveedor;
+import java.sql.Connection;
 
 /**
  *
  * @author andre
  */
 public class Fmr_Proveedores extends javax.swing.JFrame {
+
     DefaultTableModel modelo;
-    static void setModel(DefaultTableModel modelo) {
+
+    /*static void setModel(DefaultTableModel modelo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    }*/
 
     /**
      * Creates new form Tablas
      */
     public Fmr_Proveedores() {
         initComponents();
-          String[] titulos= {"NIt","Nombre","Direccion","Correo","Telefono"};
-         
-         modelo= new DefaultTableModel(null,titulos);
-         tblProveedor.setModel(modelo);
-         
-        
-    }
-    
+        String[] titulos = {"NIt", "Nombre", "Direccion", "Correo", "Telefono"};
 
-    Fmr_Proveedores(RegistrarProveedor aThis, boolean b) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        modelo = new DefaultTableModel(null, titulos);
+        tblProveedor.setModel(modelo);
+        mostrardatos();
+        this.setLocationRelativeTo(null);
+        setResizable(false);
+        this.setTitle("AgroControl - Tabla Proveedores");
+
     }
+
+    public void mostrardatos() {
+        
+        conexion objConexion = new conexion();
+        Connection con = objConexion.conexion();
+        
+        try {
+            ResultSet resultado = objConexion.consultarRegistro("SELECT * FROM proveedores");
+            while (resultado.next()) {
+                /*System.out.println(resultado.getString("Nit"));
+                System.out.println(resultado.getString("Nombre"));
+                System.out.println(resultado.getString("Direccion"));
+                System.out.println(resultado.getString("Correo"));
+                System.out.println(resultado.getString("Telefono"));*/
+
+                Object[] oUsuario = {resultado.getString("Nit"), resultado.getString("Nombre"), resultado.getString("Direccion"), resultado.getString("Correo"), resultado.getString("Telefono")};
+                modelo.addRow(oUsuario);
+
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+    }
+
+    /*Fmr_Proveedores(RegistrarProveedor aThis, boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }*/
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,6 +80,7 @@ public class Fmr_Proveedores extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tblProveedor = new javax.swing.JTable();
+        txtBuscar = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -61,7 +95,18 @@ public class Fmr_Proveedores extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblProveedor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblProveedorMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblProveedor);
+
+        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -71,16 +116,87 @@ public class Fmr_Proveedores extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
+                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tblProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblProveedorMouseClicked
+
+        if (evt.getClickCount() == 1) {
+
+            JTable receptor = (JTable) evt.getSource();
+            RegistrarProveedor.txt_nit.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 0).toString());
+            RegistrarProveedor.txt_nombre.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 1).toString());;
+            RegistrarProveedor.txt_direccion.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 2).toString());
+            RegistrarProveedor.txt_correo.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 3).toString());
+            RegistrarProveedor.txt_telefono.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 4).toString());
+            RegistrarProveedor.btn_editar2.setEnabled(true);
+            RegistrarProveedor.btn_guardar2.setEnabled(false);
+            RegistrarProveedor.btn_nuevo1.setEnabled(false);
+
+
+    }//GEN-LAST:event_tblProveedorMouseClicked
+        this.hide();
+    }
+
+    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
+        busqueda(txtBuscar.getText());
+
+    }//GEN-LAST:event_txtBuscarActionPerformed
+    public void busqueda(String buscar) {
+
+        conexion objConexion = new conexion();
+        Connection con = objConexion.conexion();
+
+        DefaultTableModel tbProveedor = new DefaultTableModel();
+        tbProveedor.addColumn("NIT");
+        tbProveedor.addColumn("Nombre");
+        tbProveedor.addColumn("Direccion");
+        tbProveedor.addColumn("Correo");
+        tbProveedor.addColumn("Telefono");
+
+        tblProveedor.setModel(tbProveedor);
+
+        String[] datos = new String[6];
+
+        try {
+
+            ResultSet resultado = objConexion.consultarRegistro("SELECT * FROM  proveedores WHERE Nit LIKE '%" + buscar + "%' OR Nombre LIKE '%" + buscar + "%'");
+
+            while (resultado.next()) {
+                datos[0] = resultado.getString(1);
+                datos[1] = resultado.getString(2);
+                datos[2] = resultado.getString(3);
+                datos[3] = resultado.getString(4);
+                datos[4] = resultado.getString(5);
+                tbProveedor.addRow(datos);
+            }
+            tblProveedor.setModel(tbProveedor);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e + "Error en la Consulta");
+        }
+    }
+
+    public void bloquear() {
+        txtBuscar.setEnabled(false);
+    }
+
+    public void desbloquear() {
+        txtBuscar.setEnabled(true);
+    }
 
     /**
      * @param args the command line arguments
@@ -127,7 +243,7 @@ public class Fmr_Proveedores extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblProveedor;
+    public static javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
-
 
 }

@@ -10,7 +10,6 @@ import Formularios.RegistrarCompras;
 import Formularios.RegistrarConsumo;
 import Formularios.RegistrarProductos;
 import Formularios.RegistrarProveedor;
-import Ventanas.Login;
 import java.awt.Image;
 import java.awt.Graphics;
 import java.awt.Toolkit;
