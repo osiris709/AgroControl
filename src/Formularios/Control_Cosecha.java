@@ -8,6 +8,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.text.DateFormat;
 import java.util.Date;
 import javax.swing.ImageIcon;
@@ -51,7 +53,8 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(null, "Cosecha Registrada exitosamente");
                 Bloquear();
                 guardar.close();
-
+                Limpiar();
+                
             } catch (Exception e) {
 
                 JOptionPane.showMessageDialog(null, e + "Error, No se registro la Cosecha");
@@ -69,19 +72,19 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
             int confirmar = JOptionPane.showConfirmDialog(null, "¿Desea modificar los datos?");
             if (confirmar == JOptionPane.YES_OPTION) {
                 try {
-                    PreparedStatement guardar = con.prepareStatement("UPDATE Cosecha SET Nombre_Cosecha=?,Tipo_Cultivo=?,Tipo_Cosecha=?,Fecha_Siembra=?,Fecha_Recoleccion=? WHERE IdCosecha=?");
-                    guardar.setString(1, txt_NombreCosecha.getText());
-                    guardar.setString(2, cbo_TipoCultivo.getSelectedItem().toString());
-                    guardar.setString(3, cbo_TipoCosecha.getSelectedItem().toString());
-                    guardar.setString(4, df.format(txt_FechaSiembra.getDate()));
-                    guardar.setString(5, df.format(txt_FechaRecoleccion.getDate()));
-                    guardar.setString(6, txt_IdCosecha.getText());
+                    PreparedStatement modificar = con.prepareStatement("UPDATE Cosecha SET Nombre_Cosecha=?,Tipo_Cultivo=?,Tipo_Cosecha=?,Fecha_Siembra=?,Fecha_Recoleccion=? WHERE IdCosecha=?");
+                    modificar.setString(1, txt_NombreCosecha.getText());
+                    modificar.setString(2, cbo_TipoCultivo.getSelectedItem().toString());
+                    modificar.setString(3, cbo_TipoCosecha.getSelectedItem().toString());
+                    modificar.setString(4, df.format(txt_FechaSiembra.getDate()));
+                    modificar.setString(5, df.format(txt_FechaRecoleccion.getDate()));
+                    modificar.setString(6, txt_IdCosecha.getText());
 
-                    guardar.executeUpdate();
+                    modificar.executeUpdate();
 
                     JOptionPane.showMessageDialog(null, "Cosecha Modificada exitosamente");
                     Bloquear();
-                    guardar.close();
+                    modificar.close();
 
                 } catch (Exception e) {
 
@@ -99,24 +102,22 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
             txt_IdCosecha.requestFocus();
         } else {
             // Eliminar datos en la base de datos
-            try {
-                PreparedStatement guardar = con.prepareStatement("DELETE FROM Cosecha WHERE IdCosecha=?");
-                guardar.setString(1, txt_IdCosecha.getText());
-                guardar.setString(2, txt_NombreCosecha.getText());
-                guardar.setString(3, cbo_TipoCultivo.getSelectedItem().toString());
-                guardar.setString(4, cbo_TipoCosecha.getSelectedItem().toString());
-                guardar.setString(5, df.format(txt_FechaSiembra.getDate()));
-                guardar.setString(6, df.format(txt_FechaRecoleccion.getDate()));
+            int confirmar = JOptionPane.showConfirmDialog(null, "¿Desea Eliminar los datos?");
+            if (confirmar == JOptionPane.YES_OPTION) {
+                try {
+                    PreparedStatement eliminar = con.prepareStatement("DELETE FROM Cosecha WHERE IdCosecha=?");
+                    eliminar.setString(1, txt_IdCosecha.getText());
 
-                guardar.executeUpdate();
+                    eliminar.executeUpdate();
 
-                JOptionPane.showMessageDialog(null, "Cosecha Registrada exitosamente");
-                Bloquear();
-                guardar.close();
+                    JOptionPane.showMessageDialog(null, "Cosecha Eliminada exitosamente");
+                    Limpiar();
+                    eliminar.close();
 
-            } catch (Exception e) {
+                } catch (Exception e) {
 
-                JOptionPane.showMessageDialog(null, e + "Error, No se registro la Cosecha");
+                    JOptionPane.showMessageDialog(null, e + "Error, No se elimino la Cosecha");
+                }
             }
         }
     }
@@ -154,7 +155,23 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
         txt_FechaRecoleccion.setDate(null);
     }
 
-    @SuppressWarnings("unchecked")
+    public void LlamarComboBox() {
+
+        try {
+
+            Statement leer = con.createStatement();
+            ResultSet resultado = leer.executeQuery("SELECT Nombre_TipoCosecha FROM Tipo_Cosecha");
+
+            while (resultado.next()) {
+                cbo_TipoCosecha.addItem(resultado.getString("Nombre_TipoCosecha"));
+            }
+            }catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e + "Error");
+        }
+        }
+
+        @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -283,20 +300,6 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(54, 54, 54)
-                        .addComponent(cbo_TipoCultivo, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(cbo_TipoCosecha, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addComponent(txt_FechaSiembra, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(152, 152, 152)
-                        .addComponent(btn_TipoCosecha, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(txt_FechaRecoleccion, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -310,7 +313,26 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
                                 .addComponent(txt_IdCosecha, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(54, 54, 54)
                                 .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txt_NombreCosecha, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txt_NombreCosecha, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(40, 40, 40)
+                                .addComponent(txt_FechaSiembra, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(54, 54, 54)
+                                .addComponent(cbo_TipoCultivo, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(37, 37, 37)
+                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33)
+                                .addComponent(cbo_TipoCosecha, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(152, 152, 152)
+                                .addComponent(btn_TipoCosecha, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -354,7 +376,7 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
         jPanel4.setPreferredSize(new java.awt.Dimension(730, 52));
 
         btn_lista1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lista.png"))); // NOI18N
-        btn_lista1.setText("Mostrar listado de los Proveedores");
+        btn_lista1.setText("Mostrar listado de los Cosechas");
         btn_lista1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_lista1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -366,17 +388,17 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(269, 269, 269)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(277, Short.MAX_VALUE)
                 .addComponent(btn_lista1)
-                .addContainerGap(264, Short.MAX_VALUE))
+                .addGap(272, 272, 272))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(14, Short.MAX_VALUE)
                 .addComponent(btn_lista1)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jPanel5.setBackground(new java.awt.Color(240, 255, 240));

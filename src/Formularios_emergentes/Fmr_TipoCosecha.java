@@ -14,8 +14,8 @@ import javax.swing.JOptionPane;
 
 public class Fmr_TipoCosecha extends javax.swing.JFrame {
 
-    conexion conn = new conexion();
-    Connection iniciarConexion = conn.conexion();
+    conexion objConexion = new conexion();
+    Connection con = objConexion.conexion();
 
     public Fmr_TipoCosecha() {
 
@@ -36,14 +36,16 @@ public class Fmr_TipoCosecha extends javax.swing.JFrame {
         } else {
             // Guardar datos en la base de datos
             try {
-                PreparedStatement guardar = conn.prepareStatement("INSERT INTO Cosecha (IDTipo_Cosecha,Nombre_TipoCosecha) VALUES (?,?)");
+                PreparedStatement guardar = con.prepareStatement("INSERT INTO Tipo_Cosecha (IDTipoCosecha, Nombre_TipoCosecha) VALUES (?,?)");
                 guardar.setString(2, txt_nombreTipoCosecha.getText());
 
                 guardar.executeUpdate();
 
-                JOptionPane.showMessageDialog(null, "Tio de Cosecha Registrada exitosamente");
+                JOptionPane.showMessageDialog(null, "Tipo de Cosecha Registrada exitosamente");
                 Bloquear();
                 guardar.close();
+                Limpiar();
+                
             } catch (Exception e) {
 
                 JOptionPane.showMessageDialog(null, e + "Error, No se registro el Tipo de Cosecha");
@@ -91,8 +93,6 @@ public class Fmr_TipoCosecha extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         btn_nuevo = new javax.swing.JButton();
         btn_guardar = new javax.swing.JButton();
-        btn_editar = new javax.swing.JButton();
-        btn_elminar = new javax.swing.JButton();
         btn_cancelar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -160,14 +160,6 @@ public class Fmr_TipoCosecha extends javax.swing.JFrame {
             }
         });
 
-        btn_editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/editar2.png"))); // NOI18N
-        btn_editar.setText("Editar");
-        btn_editar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        btn_elminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/eliminar2.png"))); // NOI18N
-        btn_elminar.setText("Eliminar");
-        btn_elminar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
         btn_cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/desactivar.png"))); // NOI18N
         btn_cancelar.setText("Cancelar");
         btn_cancelar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -181,29 +173,19 @@ public class Fmr_TipoCosecha extends javax.swing.JFrame {
                 .addComponent(btn_nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(btn_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(btn_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addComponent(btn_elminar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(90, 90, 90))
+                .addGap(26, 26, 26))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_editar)
                     .addComponent(btn_guardar)
-                    .addComponent(btn_nuevo))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_elminar)
+                    .addComponent(btn_nuevo)
                     .addComponent(btn_cancelar))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         jDesktopPane1.setLayer(jLabel11, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -231,7 +213,7 @@ public class Fmr_TipoCosecha extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -293,8 +275,6 @@ public class Fmr_TipoCosecha extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_cancelar;
-    private javax.swing.JButton btn_editar;
-    private javax.swing.JButton btn_elminar;
     private javax.swing.JButton btn_guardar;
     private javax.swing.JButton btn_nuevo;
     private javax.swing.JDesktopPane jDesktopPane1;

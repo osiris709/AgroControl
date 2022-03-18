@@ -16,8 +16,8 @@ import javax.swing.table.DefaultTableModel;
 
 public class Fmr_ListaCosechas extends javax.swing.JFrame {
 
-    conexion conn = new conexion();
-    Connection iniciarConexion = conn.conexion();
+    conexion objConexion = new conexion();
+    Connection con = objConexion.conexion();
 
     public Fmr_ListaCosechas() {
 
@@ -44,7 +44,7 @@ public class Fmr_ListaCosechas extends javax.swing.JFrame {
         String[] datos = new String[6];
 
         try {
-            Statement leer = iniciarConexion.createStatement();
+            Statement leer = con.createStatement();
             ResultSet resultado = leer.executeQuery("SELECT * FROM Cosecha");
 
             while (resultado.next()) {
@@ -77,7 +77,7 @@ public class Fmr_ListaCosechas extends javax.swing.JFrame {
         String[] datos = new String[6];
 
         try {
-            Statement leer = iniciarConexion.createStatement();
+            Statement leer = con.createStatement();
             ResultSet resultado = leer.executeQuery("SELECT * FROM Cosecha WHERE IdCosecha LIKE '%" + buscar + "%' OR Nombre_Cosecha LIKE '%" + buscar + "%'");
 
             while (resultado.next()) {
@@ -186,8 +186,8 @@ public class Fmr_ListaCosechas extends javax.swing.JFrame {
                     .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(333, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(437, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -211,8 +211,6 @@ public class Fmr_ListaCosechas extends javax.swing.JFrame {
 
     private void TablaCosechasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaCosechasMouseClicked
 
-        JTable receptor = (JTable) evt.getSource();
-
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 
         String fechaSiembra = TablaCosechas.getValueAt(TablaCosechas.getSelectedRow(), 4).toString().trim();
@@ -232,9 +230,9 @@ public class Fmr_ListaCosechas extends javax.swing.JFrame {
 
         Control_Cosecha.txt_IdCosecha.setText(TablaCosechas.getValueAt(TablaCosechas.getSelectedRow(), 0).toString());
         //Control_Cosecha.txt_IdCosecha.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 0).toString());
-        Control_Cosecha.txt_NombreCosecha.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 1).toString());
-        Control_Cosecha.cbo_TipoCultivo.setSelectedItem(receptor.getModel().getValueAt(receptor.getSelectedRow(), 2).toString());
-        Control_Cosecha.cbo_TipoCosecha.setSelectedItem(receptor.getModel().getValueAt(receptor.getSelectedRow(), 3).toString());
+        Control_Cosecha.txt_NombreCosecha.setText(TablaCosechas.getModel().getValueAt(TablaCosechas.getSelectedRow(), 1).toString());
+        Control_Cosecha.cbo_TipoCultivo.setSelectedItem(TablaCosechas.getModel().getValueAt(TablaCosechas.getSelectedRow(), 2).toString());
+        Control_Cosecha.cbo_TipoCosecha.setSelectedItem(TablaCosechas.getModel().getValueAt(TablaCosechas.getSelectedRow(), 3).toString());
 
         this.hide();
     }//GEN-LAST:event_TablaCosechasMouseClicked
