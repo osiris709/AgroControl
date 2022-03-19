@@ -1,5 +1,6 @@
 package Formularios_emergentes;
 
+import Clases.ComunicationPopUp;
 import Conexion.conexion;
 import static Formularios.Control_Cosecha.cbo_TipoCosecha;
 import static Formularios.Control_Cosecha.cbo_TipoCultivo;
@@ -16,6 +17,7 @@ public class Fmr_TipoCosecha extends javax.swing.JFrame {
 
     conexion objConexion = new conexion();
     Connection con = objConexion.conexion();
+    private ComunicationPopUp comu;
 
     public Fmr_TipoCosecha() {
 
@@ -23,9 +25,13 @@ public class Fmr_TipoCosecha extends javax.swing.JFrame {
         this.setTitle("AgroControl - Tipo Cosechas");
         this.setLocationRelativeTo(null);
         setResizable(false);
-
         Bloquear();
     }
+
+    public void setComu(ComunicationPopUp comu) {
+        this.comu = comu;
+    }
+    
 
     public void Guardar() {
 
@@ -41,6 +47,7 @@ public class Fmr_TipoCosecha extends javax.swing.JFrame {
 
                 guardar.executeUpdate();
 
+                comu.updateBD();
                 JOptionPane.showMessageDialog(null, "Tipo de Cosecha Registrada exitosamente");
                 Bloquear();
                 guardar.close();

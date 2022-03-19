@@ -1,5 +1,6 @@
 package Formularios;
 
+import Clases.ComunicationPopUp;
 import Conexion.conexion;
 import Formularios_emergentes.Fmr_ListaCosechas;
 import Formularios_emergentes.Fmr_TipoCosecha;
@@ -16,7 +17,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
-public class Control_Cosecha extends javax.swing.JInternalFrame {
+public class Control_Cosecha  extends javax.swing.JInternalFrame implements ComunicationPopUp   {
 
     conexion objConexion = new conexion();
     Connection con = objConexion.conexion();
@@ -30,6 +31,11 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
         setResizable(false);
         Bloquear();
 
+        LlamarComboBox();
+    }
+    
+    @Override
+    public void updateBD(){
         LlamarComboBox();
     }
 
@@ -544,6 +550,7 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
 
     private void btn_TipoCosechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TipoCosechaActionPerformed
         Fmr_TipoCosecha TipoCosecha = new Fmr_TipoCosecha();
+        TipoCosecha.setComu(this);
         TipoCosecha.setVisible(true);
         TipoCosecha.toFront();
 //        TipoCosecha.setAlwaysOnTop(true);

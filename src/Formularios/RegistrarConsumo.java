@@ -1,6 +1,8 @@
 package Formularios;
 
 import Clases.Consumos;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  *
@@ -12,7 +14,16 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame {
 
     public RegistrarConsumo() {
         initComponents();
-        
+        cbo_TipoCultivo.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                System.out.println("item: " + cbo_TipoCultivo.getSelectedItem().toString());
+                
+                
+            }
+            
+        });
         cargar_combobox.Cargar_TipoCultivo(cbo_TipoCultivo);
         cargar_combobox.Cargar_Cosecha(cbo_Cosecha);
         cargar_combobox.Cargar_Area(cbo_Area);
@@ -207,6 +218,12 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Tipo de Cultivo:");
 
+        cbo_TipoCultivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbo_TipoCultivoActionPerformed(evt);
+            }
+        });
+
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setText("Cantidad:");
 
@@ -262,7 +279,7 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txt_fechaConsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(cbo_TipoCultivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -334,6 +351,10 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame {
     private void btn_nuevo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevo2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_nuevo2ActionPerformed
+
+    private void cbo_TipoCultivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_TipoCultivoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbo_TipoCultivoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_buscar;
