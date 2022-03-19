@@ -53,7 +53,7 @@ public class Fmr_TipoCosecha extends javax.swing.JFrame {
                 guardar.close();
                 Limpiar();
                 
-                
+            this.hide();    
             } catch (Exception e) {
 
                 JOptionPane.showMessageDialog(null, e + "Error, No se registro el Tipo de Cosecha");
