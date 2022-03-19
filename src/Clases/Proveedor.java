@@ -8,12 +8,19 @@ public class Proveedor {
 
     String NIt,Nombre, Direccion, Correo, Telefono;
 
-    public Proveedor() {
+    public Proveedor(String NIt, String Nombre, String Direccion, String Correo, String Telefono) {
         this.NIt = NIt;
         this.Nombre = Nombre;
         this.Direccion = Direccion;
         this.Correo = Correo;
         this.Telefono = Telefono;
+    }
+    
+    
+    
+
+    public Proveedor() {
+        
     }
 
     public String getNIt() {

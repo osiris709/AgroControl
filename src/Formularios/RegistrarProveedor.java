@@ -27,9 +27,14 @@ public class RegistrarProveedor extends javax.swing.JInternalFrame {
         limpiar();
         bloquear();
         this.setTitle("AgroControl - Registro Proveedores");
+        
+        
+        Proveedor pro = new Proveedor("9.146.779-1","samuel","los patios","momail@hmail.com","3212652244");
+        
     }
 
-    public void bloquear() {
+    public  void bloquear() {
+        
 
         this.txt_direccion.setEnabled(false);
         this.txt_correo.setEnabled(false);

@@ -29,52 +29,60 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
         this.setTitle("AgroControl - Control Cosechas");
         setResizable(false);
         Bloquear();
-        
+
         LlamarComboBox();
     }
 
     public void Guardar() {
-        // Si hay algun campo vacio, genera error
+        // Si hay algun campo vacio, genera mensaje de advertencia
         if (txt_IdCosecha.getText().equals("") || txt_NombreCosecha.getText().equals("") || (cbo_TipoCultivo.getSelectedItem().equals("Seleccionar"))
                 || (cbo_TipoCosecha.getSelectedItem().equals("Seleccionar")) || txt_FechaSiembra.getDate().equals("") || txt_FechaRecoleccion.getDate().equals("")) {
 
             javax.swing.JOptionPane.showMessageDialog(this, "Obligatorio llenar todos los campos \n", "AVISO!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
             txt_IdCosecha.requestFocus();
         } else {
-            // Guardar datos en la base de datos
-            try {
-                PreparedStatement guardar = con.prepareStatement("INSERT INTO Cosecha (IdCosecha,Nombre_Cosecha,Tipo_Cultivo,Tipo_Cosecha,Fecha_Siembra,Fecha_Recoleccion) VALUES (?,?,?,?,?,?)");
-                guardar.setString(1, txt_IdCosecha.getText());
-                guardar.setString(2, txt_NombreCosecha.getText());
-                guardar.setString(3, cbo_TipoCultivo.getSelectedItem().toString());
-                guardar.setString(4, cbo_TipoCosecha.getSelectedItem().toString());
-                guardar.setString(5, df.format(txt_FechaSiembra.getDate()));
-                guardar.setString(6, df.format(txt_FechaRecoleccion.getDate()));
+            int confirmar = JOptionPane.showConfirmDialog(null, "¿Desea Guardar los datos?");
+            if (confirmar == JOptionPane.YES_OPTION) {
+                // Guardar datos en la base de datos
+                try {
+                    // Definir Sentencia en base de Datos SQL
+                    PreparedStatement guardar = con.prepareStatement("INSERT INTO Cosecha (IdCosecha,Nombre_Cosecha,Tipo_Cultivo,Tipo_Cosecha,Fecha_Siembra,Fecha_Recoleccion) VALUES (?,?,?,?,?,?)");
+                    guardar.setString(1, txt_IdCosecha.getText());
+                    guardar.setString(2, txt_NombreCosecha.getText());
+                    guardar.setString(3, cbo_TipoCultivo.getSelectedItem().toString());
+                    guardar.setString(4, cbo_TipoCosecha.getSelectedItem().toString());
+                    guardar.setString(5, df.format(txt_FechaSiembra.getDate()));
+                    guardar.setString(6, df.format(txt_FechaRecoleccion.getDate()));
 
-                guardar.executeUpdate();
+                    // Ejecuta la sentencia y obtiene el resultado
+                    guardar.executeUpdate();
 
-                JOptionPane.showMessageDialog(null, "Cosecha Registrada exitosamente");
-                Bloquear();
-                guardar.close();
-                Limpiar();
-                
-            } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Cosecha Registrada exitosamente");
+                    Bloquear();
+                    guardar.close();
+                    Limpiar();
 
-                JOptionPane.showMessageDialog(null, e + "Error, No se registro la Cosecha");
+                } catch (Exception e) {
+
+                    JOptionPane.showMessageDialog(null, e + "Error, No se registro la Cosecha");
+                }
             }
         }
     }
 
     public void Modificar(String IdCosecha, String Nombre_Cosecha, String Tipo_Cultivo, String Tipo_Cosecha, Date Fecha_Siembra, Date Fecha_Recoleccion) {
+        // Si hay algun campo vacio, genera mensaje de advertencia
         if (txt_IdCosecha.getText().equals("") || txt_NombreCosecha.getText().equals("") || (cbo_TipoCultivo.getSelectedItem().equals("Seleccionar"))
                 || (cbo_TipoCosecha.getSelectedItem().equals("Seleccionar")) || txt_FechaSiembra.getDate().equals("") || txt_FechaRecoleccion.getDate().equals("")) {
 
             javax.swing.JOptionPane.showMessageDialog(this, "Obligatorio llenar todos los campos \n", "AVISO!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
             txt_IdCosecha.requestFocus();
         } else {
-            int confirmar = JOptionPane.showConfirmDialog(null, "¿Desea modificar los datos?");
+            int confirmar = JOptionPane.showConfirmDialog(null, "¿Desea Modificar los datos?");
             if (confirmar == JOptionPane.YES_OPTION) {
+                // Guardar datos en la base de datos
                 try {
+                    // Definir Sentencia en base de Datos SQL
                     PreparedStatement modificar = con.prepareStatement("UPDATE Cosecha SET Nombre_Cosecha=?,Tipo_Cultivo=?,Tipo_Cosecha=?,Fecha_Siembra=?,Fecha_Recoleccion=? WHERE IdCosecha=?");
                     modificar.setString(1, txt_NombreCosecha.getText());
                     modificar.setString(2, cbo_TipoCultivo.getSelectedItem().toString());
@@ -83,6 +91,7 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
                     modificar.setString(5, df.format(txt_FechaRecoleccion.getDate()));
                     modificar.setString(6, txt_IdCosecha.getText());
 
+                    // Ejecuta la sentencia y obtiene el resultado modificado
                     modificar.executeUpdate();
 
                     JOptionPane.showMessageDialog(null, "Cosecha Modificada exitosamente");
@@ -98,6 +107,7 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
     }
 
     public void Eliminar(String IdCosecha) {
+        // Si hay algun campo vacio, genera mensaje de advertencia
         if (txt_IdCosecha.getText().equals("") || txt_NombreCosecha.getText().equals("") || (cbo_TipoCultivo.getSelectedItem().equals("Seleccionar"))
                 || (cbo_TipoCosecha.getSelectedItem().equals("Seleccionar")) || txt_FechaSiembra.getDate().equals("") || txt_FechaRecoleccion.getDate().equals("")) {
 
@@ -105,12 +115,14 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
             txt_IdCosecha.requestFocus();
         } else {
             // Eliminar datos en la base de datos
-            int confirmar = JOptionPane.showConfirmDialog(null, "¿Desea Eliminar los datos?");
+            int confirmar = JOptionPane.showConfirmDialog(null, "¿Seguro que desea ELIMINAR los datos?");
             if (confirmar == JOptionPane.YES_OPTION) {
                 try {
+                    // Definir Sentencia en base de Datos SQL
                     PreparedStatement eliminar = con.prepareStatement("DELETE FROM Cosecha WHERE IdCosecha=?");
                     eliminar.setString(1, txt_IdCosecha.getText());
 
+                    // Ejecuta la sentencia y obtiene el resultado de eliminar
                     eliminar.executeUpdate();
 
                     JOptionPane.showMessageDialog(null, "Cosecha Eliminada exitosamente");
@@ -167,17 +179,17 @@ public class Control_Cosecha extends javax.swing.JInternalFrame {
             String consulta = "SELECT Nombre_TipoCosecha FROM Tipo_Cosecha ORDER BY Nombre_TipoCosecha ASC";
             PreparedStatement leer = con.prepareStatement(consulta);
             ResultSet resultado = leer.executeQuery();
-            
+
             while (resultado.next()) {
                 cbo_TipoCosecha.addItem(resultado.getString("Nombre_TipoCosecha"));
             }
-            }catch (Exception e) {
+        } catch (Exception e) {
 
             JOptionPane.showMessageDialog(null, e + "Error");
         }
-        }
+    }
 
-        @SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
