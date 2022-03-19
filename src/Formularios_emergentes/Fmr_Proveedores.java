@@ -146,6 +146,8 @@ public class Fmr_Proveedores extends javax.swing.JFrame {
             RegistrarProveedor.btn_editar2.setEnabled(true);
             RegistrarProveedor.btn_guardar2.setEnabled(false);
             RegistrarProveedor.btn_nuevo1.setEnabled(false);
+            
+           //RegistrarProveedor.txt_nit.setEnabled(false);
 
 
     }//GEN-LAST:event_tblProveedorMouseClicked
