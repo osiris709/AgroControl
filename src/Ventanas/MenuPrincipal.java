@@ -5,10 +5,10 @@
  */
 package Ventanas;
 
-import Formularios.Control_Cosecha;
-import Formularios.RegistrarCompras;
+import Formularios.RegistrarCosecha;
+import Formularios.RegistrarCompra;
 import Formularios.RegistrarConsumo;
-import Formularios.RegistrarProductos;
+import Formularios.RegistrarProducto;
 import Formularios.RegistrarProveedor;
 import java.awt.Image;
 import java.awt.Graphics;
@@ -377,7 +377,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void lbl_productosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_productosMouseClicked
 
-        RegistrarProductos ventana2 = new RegistrarProductos();
+        RegistrarProducto ventana2 = new RegistrarProducto();
         mostrar.add(ventana2);
         ventana2.show();
 
@@ -385,7 +385,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void lbl_comprasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_comprasMouseClicked
 
-        RegistrarCompras ventana3 = new RegistrarCompras();
+        RegistrarCompra ventana3 = new RegistrarCompra();
         mostrar.add(ventana3);
         ventana3.show();
     }//GEN-LAST:event_lbl_comprasMouseClicked
@@ -400,7 +400,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void lbl_cosechaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_cosechaMouseClicked
 
-        Control_Cosecha ventana5 = new Control_Cosecha();
+        RegistrarCosecha ventana5 = new RegistrarCosecha();
         mostrar.add(ventana5);
         ventana5.show();
 

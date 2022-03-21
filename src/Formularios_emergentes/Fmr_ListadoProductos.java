@@ -5,8 +5,8 @@
 package Formularios_emergentes;
 
 import Conexion.conexion;
-import Formularios.RegistrarProductos;
-import static Formularios.RegistrarProductos.jDate_FechaVencimiento;
+import Formularios.RegistrarProducto;
+import static Formularios.RegistrarProducto.jDate_FechaVencimiento;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -14,17 +14,20 @@ import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 
 /**
  *
  * @author ACER
  */
-public class Fmr_Listado_Productos extends javax.swing.JFrame {
+public class Fmr_ListadoProductos extends javax.swing.JFrame {
 
     conexion conn = new conexion();
     Connection iniciarConexion = conn.conexion();
 
-    public Fmr_Listado_Productos() {
+    public Fmr_ListadoProductos() {
         initComponents();
         MostrarlistadoProductos();
     }
@@ -98,29 +101,34 @@ public class Fmr_Listado_Productos extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        ImageIcon icon1 = new ImageIcon(getClass().getResource("/Imagenes/fondo-submenu2.jpg"));
+        Image image1 = icon1.getImage();
+        jDP_ListaProductos = new javax.swing.JDesktopPane(){
+
+            public void paintComponent(Graphics g){
+                g.drawImage(image1,0,0,getWidth(),getHeight(),this);
+            }
+        }
+        ;
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaCliente = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(800, 600));
+
+        jDP_ListaProductos.setBackground(new java.awt.Color(255, 255, 255));
 
         TablaCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Codigo", "Nombre", "Descripcion", "Ingrediente Activo", "Fecha de Vencimiento", "Unidad de Medida", "Tipo de Producto"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class
-            };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
             }
-        });
+        ));
         TablaCliente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TablaClienteMouseClicked(evt);
@@ -128,64 +136,75 @@ public class Fmr_Listado_Productos extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(TablaCliente);
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
         jLabel1.setText("Listado de Productos");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setText("Buscar:");
+
+        jDP_ListaProductos.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDP_ListaProductos.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDP_ListaProductos.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDP_ListaProductos.setLayer(jTextField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jDP_ListaProductosLayout = new javax.swing.GroupLayout(jDP_ListaProductos);
+        jDP_ListaProductos.setLayout(jDP_ListaProductosLayout);
+        jDP_ListaProductosLayout.setHorizontalGroup(
+            jDP_ListaProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDP_ListaProductosLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(jDP_ListaProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jDP_ListaProductosLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(50, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDP_ListaProductosLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(276, 276, 276))
+        );
+        jDP_ListaProductosLayout.setVerticalGroup(
+            jDP_ListaProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDP_ListaProductosLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addGroup(jDP_ListaProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(352, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(220, 220, 220)
-                .addComponent(jButton1)
-                .addContainerGap(665, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(380, 380, 380))
+            .addComponent(jDP_ListaProductos)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jDP_ListaProductos, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void TablaClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaClienteMouseClicked
        
          if (evt.getClickCount () ==1){
              
              JTable receptor = (JTable) evt.getSource();
-             RegistrarProductos.txt_codigoProducto.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(),0).toString());
-             RegistrarProductos.txt_nombreProducto.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(),1).toString());
-             RegistrarProductos.txt_descripcionProducto.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(),2).toString());
-             RegistrarProductos.txt_Ingredienteactivo.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(),3).toString());
-             RegistrarProductos.jDate_FechaVencimiento.setDateFormatString(receptor.getModel().getValueAt(receptor.getSelectedRow(),4).toString());
-             RegistrarProductos.cbo_unidadMedida.setSelectedItem(receptor.getModel().getValueAt(receptor.getSelectedRow(),5).toString());
-             RegistrarProductos.cbo_categoria.setSelectedItem(receptor.getModel().getValueAt(receptor.getSelectedRow(),6).toString());
+             RegistrarProducto.txt_codigoProducto.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(),0).toString());
+             RegistrarProducto.txt_nombreProducto.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(),1).toString());
+             RegistrarProducto.txt_descripcionProducto.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(),2).toString());
+             RegistrarProducto.txt_Ingredienteactivo.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(),3).toString());
+             RegistrarProducto.jDate_FechaVencimiento.setDateFormatString(receptor.getModel().getValueAt(receptor.getSelectedRow(),4).toString());
+             RegistrarProducto.cbo_unidadMedida.setSelectedItem(receptor.getModel().getValueAt(receptor.getSelectedRow(),5).toString());
+             RegistrarProducto.cbo_categoria.setSelectedItem(receptor.getModel().getValueAt(receptor.getSelectedRow(),6).toString());
              
              
            //  RegistrarProductos.cbo_unidadMedida.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(),0).toString());
@@ -213,30 +232,34 @@ public class Fmr_Listado_Productos extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Fmr_Listado_Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fmr_ListadoProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Fmr_Listado_Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fmr_ListadoProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Fmr_Listado_Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fmr_ListadoProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Fmr_Listado_Productos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fmr_ListadoProductos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Fmr_Listado_Productos().setVisible(true);
+                new Fmr_ListadoProductos().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JTable TablaCliente;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JDesktopPane jDP_ListaProductos;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
     
