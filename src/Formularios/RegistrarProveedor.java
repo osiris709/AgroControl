@@ -37,8 +37,6 @@ public class RegistrarProveedor extends javax.swing.JInternalFrame {
     }
 
     public  void bloquear() {
-        
-
         this.txt_direccion.setEnabled(false);
         this.txt_correo.setEnabled(false);
         this.txt_telefono.setEnabled(false);
@@ -432,11 +430,7 @@ public class RegistrarProveedor extends javax.swing.JInternalFrame {
 
     private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
         limpiar();
-        this.txt_direccion.setEnabled(false);
-        this.txt_correo.setEnabled(false);
-        this.txt_telefono.setEnabled(false);
-        this.txt_nit.setEnabled(false);
-        this.txt_nombre.setEnabled(false);
+        bloquear();
     }//GEN-LAST:event_btn_cancelarActionPerformed
 
     private void btn_nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevoActionPerformed

@@ -14,7 +14,9 @@ import java.awt.Image;
 import java.awt.Graphics;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
-
+import javax.swing.JDesktopPane;
+import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -46,6 +48,23 @@ public class MenuPrincipal extends javax.swing.JFrame {
         Login inicio = new Login();
         inicio.setVisible(true);
         this.dispose();
+    }
+
+    public boolean JInternalFrames_Abiertos(JInternalFrame jif) {
+        // Creamos un metodo publico de tipo boolean.
+        JInternalFrame[] jif_Activos = MenuPrincipal.mostrar.getAllFrames();
+        // Este arreglo almacena todos los JInternalFrames que esten abierto en el jDesktopPane.
+
+        for (int i = 0; i < jif_Activos.length; i++) {
+            // Creamos un ciclo for para recorrer nuestro arreglo utilizando la propiedad length de nuestro arreglo.
+
+            // Validamos con un if si nuestro arreglo en la posición i es igual al JInternalFrame que esta activo en el jDesktopPane, si es igual devolverá true.
+            if (jif.getClass().isInstance(jif_Activos[i])) {
+                JOptionPane.showMessageDialog(null, "La ventana que esta intentando abrir ya esta abierta.", "Información", JOptionPane.INFORMATION_MESSAGE);
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -84,21 +103,21 @@ public class MenuPrincipal extends javax.swing.JFrame {
         };
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        jMI_RProveedor = new javax.swing.JMenuItem();
+        jMI_RProducto = new javax.swing.JMenuItem();
+        jMI_RCompra = new javax.swing.JMenuItem();
+        jMI_RConsumo = new javax.swing.JMenuItem();
+        jMI_RCosecha = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
-        jMenuItem14 = new javax.swing.JMenuItem();
-        jMenuItem15 = new javax.swing.JMenuItem();
+        jMI_LProveedores = new javax.swing.JMenuItem();
+        jMI_LProductos = new javax.swing.JMenuItem();
+        jMI_LCompras = new javax.swing.JMenuItem();
+        jMI_LConsumos = new javax.swing.JMenuItem();
+        jMI_LCosechas = new javax.swing.JMenuItem();
+        jMI_LAreas = new javax.swing.JMenuItem();
+        jMI_LTipoProductos = new javax.swing.JMenuItem();
+        jMI_LUnidaddeMedida = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -295,20 +314,45 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenu1.setText("Archivo");
 
-        jMenuItem1.setText("Registrar Proveedor");
-        jMenu1.add(jMenuItem1);
+        jMI_RProveedor.setText("Registrar Proveedor");
+        jMI_RProveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMI_RProveedorActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMI_RProveedor);
 
-        jMenuItem2.setText("Registrar Producto");
-        jMenu1.add(jMenuItem2);
+        jMI_RProducto.setText("Registrar Producto");
+        jMI_RProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMI_RProductoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMI_RProducto);
 
-        jMenuItem3.setText("Registrar Compra");
-        jMenu1.add(jMenuItem3);
+        jMI_RCompra.setText("Registrar Compra");
+        jMI_RCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMI_RCompraActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMI_RCompra);
 
-        jMenuItem4.setText("Registrar Consumo");
-        jMenu1.add(jMenuItem4);
+        jMI_RConsumo.setText("Registrar Consumo");
+        jMI_RConsumo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMI_RConsumoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMI_RConsumo);
 
-        jMenuItem5.setText("Registrar Cosecha");
-        jMenu1.add(jMenuItem5);
+        jMI_RCosecha.setText("Registrar Cosecha");
+        jMI_RCosecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMI_RCosechaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMI_RCosecha);
 
         jMenuItem13.setText("Salir");
         jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
@@ -322,29 +366,29 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jMenu2.setText("Ver");
 
-        jMenuItem7.setText("Listado de Proveedores");
-        jMenu2.add(jMenuItem7);
+        jMI_LProveedores.setText("Listado de Proveedores");
+        jMenu2.add(jMI_LProveedores);
 
-        jMenuItem8.setText("Listado de Productos");
-        jMenu2.add(jMenuItem8);
+        jMI_LProductos.setText("Listado de Productos");
+        jMenu2.add(jMI_LProductos);
 
-        jMenuItem9.setText("Listado de Compras");
-        jMenu2.add(jMenuItem9);
+        jMI_LCompras.setText("Listado de Compras");
+        jMenu2.add(jMI_LCompras);
 
-        jMenuItem10.setText("Listado de Consumos");
-        jMenu2.add(jMenuItem10);
+        jMI_LConsumos.setText("Listado de Consumos");
+        jMenu2.add(jMI_LConsumos);
 
-        jMenuItem11.setText("Listado de Cosechas");
-        jMenu2.add(jMenuItem11);
+        jMI_LCosechas.setText("Listado de Cosechas");
+        jMenu2.add(jMI_LCosechas);
 
-        jMenuItem12.setText("Listado de Areas");
-        jMenu2.add(jMenuItem12);
+        jMI_LAreas.setText("Listado de Areas");
+        jMenu2.add(jMI_LAreas);
 
-        jMenuItem14.setText("Listado Tipo de Productos");
-        jMenu2.add(jMenuItem14);
+        jMI_LTipoProductos.setText("Listado Tipo de Productos");
+        jMenu2.add(jMI_LTipoProductos);
 
-        jMenuItem15.setText("Listado Unidades de Medida");
-        jMenu2.add(jMenuItem15);
+        jMI_LUnidaddeMedida.setText("Listado Unidades de Medida");
+        jMenu2.add(jMI_LUnidaddeMedida);
 
         jMenuBar1.add(jMenu2);
 
@@ -368,52 +412,92 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lbl_proveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_proveedoresMouseClicked
-
         RegistrarProveedor ventana = new RegistrarProveedor();
-        mostrar.add(ventana);
-        ventana.show();
-
+        if (JInternalFrames_Abiertos(ventana) == false) {
+            mostrar.add(ventana);
+            ventana.show();
+        }
     }//GEN-LAST:event_lbl_proveedoresMouseClicked
 
     private void lbl_productosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_productosMouseClicked
-
         RegistrarProducto ventana2 = new RegistrarProducto();
-        mostrar.add(ventana2);
-        ventana2.show();
-
+        if (JInternalFrames_Abiertos(ventana2) == false) {
+            mostrar.add(ventana2);
+            ventana2.show();
+        }
     }//GEN-LAST:event_lbl_productosMouseClicked
 
     private void lbl_comprasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_comprasMouseClicked
-
         RegistrarCompra ventana3 = new RegistrarCompra();
-        mostrar.add(ventana3);
-        ventana3.show();
+        if (JInternalFrames_Abiertos(ventana3) == false) {
+            mostrar.add(ventana3);
+            ventana3.show();
+        }
     }//GEN-LAST:event_lbl_comprasMouseClicked
 
     private void lbl_consumosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_consumosMouseClicked
-
         RegistrarConsumo ventana4 = new RegistrarConsumo();
-        mostrar.add(ventana4);
-        ventana4.show();
-
+        if (JInternalFrames_Abiertos(ventana4) == false) {
+            mostrar.add(ventana4);
+            ventana4.show();
+        }
     }//GEN-LAST:event_lbl_consumosMouseClicked
 
     private void lbl_cosechaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_cosechaMouseClicked
-
         RegistrarCosecha ventana5 = new RegistrarCosecha();
-        mostrar.add(ventana5);
-        ventana5.show();
-
+        if (JInternalFrames_Abiertos(ventana5) == false) {
+            mostrar.add(ventana5);
+            ventana5.show();
+        }
     }//GEN-LAST:event_lbl_cosechaMouseClicked
 
     private void lbl_salirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_salirMouseClicked
-
         salir();
     }//GEN-LAST:event_lbl_salirMouseClicked
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
         salir();
     }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+    private void jMI_RProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMI_RProveedorActionPerformed
+        RegistrarProveedor ventana = new RegistrarProveedor();
+        if (JInternalFrames_Abiertos(ventana) == false) {
+            mostrar.add(ventana);
+            ventana.show();
+        }
+    }//GEN-LAST:event_jMI_RProveedorActionPerformed
+
+    private void jMI_RProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMI_RProductoActionPerformed
+        RegistrarProducto ventana2 = new RegistrarProducto();
+        if (JInternalFrames_Abiertos(ventana2) == false) {
+            mostrar.add(ventana2);
+            ventana2.show();
+        }
+    }//GEN-LAST:event_jMI_RProductoActionPerformed
+
+    private void jMI_RCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMI_RCompraActionPerformed
+        RegistrarCompra ventana3 = new RegistrarCompra();
+        if (JInternalFrames_Abiertos(ventana3) == false) {
+            mostrar.add(ventana3);
+            ventana3.show();
+        }
+    }//GEN-LAST:event_jMI_RCompraActionPerformed
+
+    private void jMI_RConsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMI_RConsumoActionPerformed
+        RegistrarConsumo ventana4 = new RegistrarConsumo();
+        if (JInternalFrames_Abiertos(ventana4) == false) {
+            mostrar.add(ventana4);
+            ventana4.show();
+        }
+    }//GEN-LAST:event_jMI_RConsumoActionPerformed
+
+    private void jMI_RCosechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMI_RCosechaActionPerformed
+        RegistrarCosecha ventana5 = new RegistrarCosecha();
+        if (JInternalFrames_Abiertos(ventana5) == false) {
+            mostrar.add(ventana5);
+            ventana5.show();
+        }
+    }//GEN-LAST:event_jMI_RCosechaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -451,26 +535,26 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane Escritorio;
+    public static javax.swing.JDesktopPane Escritorio;
+    private javax.swing.JMenuItem jMI_LAreas;
+    private javax.swing.JMenuItem jMI_LCompras;
+    private javax.swing.JMenuItem jMI_LConsumos;
+    private javax.swing.JMenuItem jMI_LCosechas;
+    private javax.swing.JMenuItem jMI_LProductos;
+    private javax.swing.JMenuItem jMI_LProveedores;
+    private javax.swing.JMenuItem jMI_LTipoProductos;
+    private javax.swing.JMenuItem jMI_LUnidaddeMedida;
+    private javax.swing.JMenuItem jMI_RCompra;
+    private javax.swing.JMenuItem jMI_RConsumo;
+    private javax.swing.JMenuItem jMI_RCosecha;
+    private javax.swing.JMenuItem jMI_RProducto;
+    private javax.swing.JMenuItem jMI_RProveedor;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
-    private javax.swing.JMenuItem jMenuItem14;
-    private javax.swing.JMenuItem jMenuItem15;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
-    private javax.swing.JPanel jPanel1;
+    public javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbl_compras;
     private javax.swing.JLabel lbl_consumos;
     private javax.swing.JLabel lbl_cosecha;
@@ -481,4 +565,5 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_salir;
     public static javax.swing.JDesktopPane mostrar;
     // End of variables declaration//GEN-END:variables
+
 }

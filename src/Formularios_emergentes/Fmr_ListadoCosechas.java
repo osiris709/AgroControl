@@ -2,8 +2,11 @@ package Formularios_emergentes;
 
 import Conexion.conexion;
 import Formularios.RegistrarCosecha;
+import Ventanas.MenuPrincipal;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -20,13 +23,12 @@ public class Fmr_ListadoCosechas extends javax.swing.JFrame {
     Connection con = objConexion.conexion();
 
     public Fmr_ListadoCosechas() {
-
         initComponents();
         this.setTitle("AgroControl - Lista Cosechas");
         this.setLocationRelativeTo(null);
         setResizable(false);
-
         MostrarListaCosechas();
+        
     }
 
     public void MostrarListaCosechas() {
@@ -288,11 +290,11 @@ public class Fmr_ListadoCosechas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable TablaCosechas;
+    public static javax.swing.JTable TablaCosechas;
     private javax.swing.JDesktopPane jDP_ListaCosechas;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField txt_buscar;
+    public static javax.swing.JTextField txt_buscar;
     // End of variables declaration//GEN-END:variables
 }

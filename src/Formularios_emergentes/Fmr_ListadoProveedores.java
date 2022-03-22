@@ -28,7 +28,7 @@ public class Fmr_ListadoProveedores extends javax.swing.JFrame {
      */
     public Fmr_ListadoProveedores() {
         initComponents();
-        String[] titulos = {"NIt", "Nombre", "Direccion", "Correo", "Telefono"};
+        String[] titulos = {"Nit", "Nombre", "Direccion", "Correo", "Telefono"};
 
         modelo = new DefaultTableModel(null, titulos);
         tblProveedor.setModel(modelo);
@@ -268,22 +268,6 @@ public class Fmr_ListadoProveedores extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Fmr_ListadoProveedores.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
