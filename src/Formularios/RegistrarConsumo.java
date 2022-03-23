@@ -397,6 +397,7 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
     private void cbo_CosechaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbo_CosechaItemStateChanged
         
         cbo_TipoCosecha.removeAllItems();
+        cbo_TipoCosecha.addItem("Seleccionar");
         if (evt.getStateChange() == ItemEvent.SELECTED) {
             cargar_combobox.Cargar_TipoCosecha(cbo_TipoCosecha, cbo_Cosecha.getSelectedItem().toString());
         }
@@ -405,6 +406,7 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
     private void cbo_TipoCultivoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbo_TipoCultivoItemStateChanged
         
         cbo_Cosecha.removeAllItems();
+        cbo_Cosecha.addItem("Seleccionar");
         if (evt.getStateChange() == ItemEvent.SELECTED) {
 
             cargar_combobox.Cargar_Cosecha(cbo_Cosecha, cbo_TipoCultivo.getSelectedItem().toString());
