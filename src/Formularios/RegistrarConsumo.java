@@ -4,12 +4,14 @@ import Clases.ComunicationPopUp;
 import Clases.Consumos;
 import Formularios_emergentes.Fmr_Area;
 import Ventanas.MenuPrincipal;
+import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ItemEvent;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -91,8 +93,6 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
 
         setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
-        setIconifiable(true);
-        setMaximizable(true);
         setResizable(true);
         setTitle("Registar Consumos");
         setToolTipText("");
@@ -388,10 +388,9 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_CrearAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CrearAreaActionPerformed
-        Fmr_Area Area = new Fmr_Area();
-        MenuPrincipal.mostrar.add(Area);
-        Area.setVisible(true);
-        //Area.toFront();
+        Frame Area = JOptionPane.getFrameForComponent(this);
+        Fmr_Area ventana = new Fmr_Area(Area, true);
+        ventana.show();
     }//GEN-LAST:event_btn_CrearAreaActionPerformed
 
     private void cbo_CosechaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbo_CosechaItemStateChanged

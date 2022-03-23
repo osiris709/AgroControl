@@ -159,19 +159,19 @@ public class RegistrarCosecha  extends javax.swing.JInternalFrame implements Com
 
     public void Bloquear() {
 
-        this.txt_IdCosecha.setEnabled(false);
-        this.txt_NombreCosecha.setEnabled(false);
-        this.cbo_TipoCultivo.setEnabled(false);
-        this.cbo_TipoCosecha.setEnabled(false);
-        this.txt_FechaSiembra.setEnabled(false);
-        this.txt_FechaRecoleccion.setEnabled(false);
-        this.btn_guardar.setEnabled(false);
-        this.btn_modificar.setEnabled(false);
-        this.btn_cancelar.setEnabled(false);
-        this.btn_eliminar.setEnabled(false);
-        this.btn_TipoCosecha.setEnabled(false);
-        this.btn_nuevo.setEnabled(true);
-        this.btn_buscar.setEnabled(true);
+        txt_IdCosecha.setEnabled(false);
+        txt_NombreCosecha.setEnabled(false);
+        cbo_TipoCultivo.setEnabled(false);
+        cbo_TipoCosecha.setEnabled(false);
+        txt_FechaSiembra.setEnabled(false);
+        txt_FechaRecoleccion.setEnabled(false);
+        btn_guardar.setEnabled(false);
+        btn_modificar.setEnabled(false);
+        btn_cancelar.setEnabled(false);
+        btn_eliminar.setEnabled(false);
+        btn_TipoCosecha.setEnabled(false);
+        btn_nuevo.setEnabled(true);
+        btn_buscar.setEnabled(true);
         txt_IdCosecha.requestFocus();
     }
 
@@ -245,8 +245,6 @@ public class RegistrarCosecha  extends javax.swing.JInternalFrame implements Com
 
         setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
-        setIconifiable(true);
-        setMaximizable(true);
         setResizable(true);
         setTitle("Control Cosechas");
         setAutoscrolls(true);
@@ -423,7 +421,7 @@ public class RegistrarCosecha  extends javax.swing.JInternalFrame implements Com
         jP_ListadoLayout.setHorizontalGroup(
             jP_ListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_ListadoLayout.createSequentialGroup()
-                .addContainerGap(277, Short.MAX_VALUE)
+                .addContainerGap(261, Short.MAX_VALUE)
                 .addComponent(btn_lista1)
                 .addGap(272, 272, 272))
         );
@@ -432,7 +430,7 @@ public class RegistrarCosecha  extends javax.swing.JInternalFrame implements Com
             .addGroup(jP_ListadoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btn_lista1)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jP_Botones.setBackground(new java.awt.Color(240, 255, 240));
@@ -574,8 +572,8 @@ public class RegistrarCosecha  extends javax.swing.JInternalFrame implements Com
     private void btn_lista1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_lista1ActionPerformed
         Fmr_ListadoCosechas Cosecha = new Fmr_ListadoCosechas();
         Cosecha.setVisible(true);
-        Cosecha.toFront();
-        Cosecha.setAlwaysOnTop(true);
+        //Cosecha.toFront();
+        //Cosecha.setAlwaysOnTop(true);
         Cosecha.TablaCosechas.setEnabled(false);
     }//GEN-LAST:event_btn_lista1ActionPerformed
 
@@ -588,17 +586,17 @@ public class RegistrarCosecha  extends javax.swing.JInternalFrame implements Com
     private void btn_nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevoActionPerformed
         Desbloquear();
         Limpiar();
-        this.btn_nuevo.setEnabled(false);
-        this.btn_eliminar.setEnabled(false);
-        this.btn_buscar.setEnabled(false);
-        this.btn_modificar.setEnabled(false);
+        btn_nuevo.setEnabled(false);
+        btn_eliminar.setEnabled(false);
+        btn_buscar.setEnabled(false);
+        btn_modificar.setEnabled(false);
     }//GEN-LAST:event_btn_nuevoActionPerformed
 
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
         Fmr_ListadoCosechas Cosecha = new Fmr_ListadoCosechas();
         Cosecha.setVisible(true);
-        Cosecha.toFront();
-        Cosecha.setAlwaysOnTop(true);
+        //Cosecha.toFront();
+        //Cosecha.setAlwaysOnTop(true);
         
     }//GEN-LAST:event_btn_buscarActionPerformed
 

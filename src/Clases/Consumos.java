@@ -31,7 +31,6 @@ public class Consumos {
                     ResultSet resultado = leer.executeQuery(SSQL);
 
                     //LLenamos nuestro ComboBox
-                    //cbo_Cosecha.addItem("Seleccionar");
 
                     while (resultado.next()) {
 
@@ -54,8 +53,7 @@ public class Consumos {
                     ResultSet resultado = leer.executeQuery(SSQL2);
 
                     //LLenamos nuestro ComboBox
-                    //cbo_Cosecha.addItem("Seleccionar");
-
+    
                     while (resultado.next()) {
 
                         cbo_Cosecha.addItem(resultado.getString("Nombre_Cosecha"));
@@ -79,8 +77,7 @@ public class Consumos {
             ResultSet resultado = leer.executeQuery(SSQL);
 
             //LLenamos nuestro ComboBox
-            //cbo_Area.addItem("Seleccionar");
-
+         
             while (resultado.next()) {
 
                 cbo_Area.addItem(resultado.getString("Area"));
@@ -102,7 +99,6 @@ public class Consumos {
             ResultSet resultado = leer.executeQuery(SSQL);
 
             //LLenamos nuestro ComboBox
-            //cbo_TipoCosecha.addItem("Seleccionar");
 
             while (resultado.next()) {
 

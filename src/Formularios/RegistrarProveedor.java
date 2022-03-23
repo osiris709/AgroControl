@@ -3,11 +3,8 @@ package Formularios;
 import Clases.Proveedor;
 import Conexion.conexion;
 import Formularios_emergentes.Fmr_ListadoProveedores;
-import java.awt.HeadlessException;
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Graphics;
@@ -86,8 +83,6 @@ public class RegistrarProveedor extends javax.swing.JInternalFrame {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
-        setIconifiable(true);
-        setMaximizable(true);
         setResizable(true);
         setTitle("Registrar Proveedores");
         setAutoscrolls(true);
@@ -327,7 +322,7 @@ public class RegistrarProveedor extends javax.swing.JInternalFrame {
             .addGroup(jDP_RProveedorLayout.createSequentialGroup()
                 .addComponent(LogoCRUD)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jP_Datos, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
+                .addComponent(jP_Datos, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jP_Listado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)

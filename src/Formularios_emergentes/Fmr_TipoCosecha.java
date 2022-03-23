@@ -59,7 +59,7 @@ public class Fmr_TipoCosecha extends javax.swing.JFrame {
 
     public void Bloquear() {
         this.txt_nombreTipoCosecha.setEnabled(false);
-        txt_nombreTipoCosecha.requestFocus();
+        //txt_nombreTipoCosecha.requestFocus();
     }
 
     public void Desbloquear() {
