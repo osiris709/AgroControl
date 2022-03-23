@@ -1,5 +1,6 @@
 package Formularios;
 
+import Clases.ComunicationPopUp;
 import Clases.Consumos;
 import Formularios_emergentes.Fmr_Area;
 import Ventanas.MenuPrincipal;
@@ -14,7 +15,7 @@ import javax.swing.ImageIcon;
  *
  * @author Osiris
  */
-public class RegistrarConsumo extends javax.swing.JInternalFrame {
+public class RegistrarConsumo extends javax.swing.JInternalFrame implements ComunicationPopUp {
 
     Consumos cargar_combobox = new Consumos();
 
@@ -30,7 +31,15 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame {
         });
 
         cargar_combobox.Cargar_Area(cbo_Area);
-        cargar_combobox.Cargar_TipoCosecha(cbo_TipoCosecha);
+        //cargar_combobox.Cargar_TipoCosecha(cbo_TipoCosecha);
+    }
+    
+    @Override
+    public void updateBD(){
+      
+        cargar_combobox.Cargar_TipoCosecha(cbo_TipoCosecha, cbo_Cosecha.getSelectedItem().toString());
+        cargar_combobox.Cargar_Cosecha(cbo_Cosecha, cbo_TipoCultivo.getSelectedItem().toString());
+        
     }
 
     /**
@@ -114,12 +123,17 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("Tipo de Cosecha:");
 
+        cbo_TipoCosecha.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
+
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setText("Area:");
+
+        cbo_Area.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel10.setText("Cosecha:");
 
+        cbo_Cosecha.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
         cbo_Cosecha.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cbo_CosechaItemStateChanged(evt);
@@ -222,7 +236,7 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame {
                     .addGroup(jP_DatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3)
                         .addComponent(cbo_TipoCultivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(jP_DatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbo_Cosecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
@@ -381,10 +395,16 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_CrearAreaActionPerformed
 
     private void cbo_CosechaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbo_CosechaItemStateChanged
-
+        
+        cbo_TipoCosecha.removeAllItems();
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            cargar_combobox.Cargar_TipoCosecha(cbo_TipoCosecha, cbo_Cosecha.getSelectedItem().toString());
+        }
     }//GEN-LAST:event_cbo_CosechaItemStateChanged
 
     private void cbo_TipoCultivoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbo_TipoCultivoItemStateChanged
+        
+        cbo_Cosecha.removeAllItems();
         if (evt.getStateChange() == ItemEvent.SELECTED) {
 
             cargar_combobox.Cargar_Cosecha(cbo_Cosecha, cbo_TipoCultivo.getSelectedItem().toString());
@@ -422,4 +442,5 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txt_producto;
     private javax.swing.JTextField txt_producto1;
     // End of variables declaration//GEN-END:variables
+
 }

@@ -92,9 +92,9 @@ public class Consumos {
         }
     }
 
-    public void Cargar_TipoCosecha(JComboBox cbo_TipoCosecha) {
+    public void Cargar_TipoCosecha(JComboBox cbo_TipoCosecha, String Cosecha) {
 
-        String SSQL = "SELECT Tipo_Cosecha FROM Cosecha ORDER BY Tipo_Cosecha ASC";
+        String SSQL = "SELECT Tipo_Cosecha FROM Cosecha WHERE Nombre_Cosecha= '" +Cosecha+ "'ORDER BY Tipo_Cosecha ASC";
 
         try {
 
@@ -102,7 +102,7 @@ public class Consumos {
             ResultSet resultado = leer.executeQuery(SSQL);
 
             //LLenamos nuestro ComboBox
-            cbo_TipoCosecha.addItem("Seleccionar");
+            //cbo_TipoCosecha.addItem("Seleccionar");
 
             while (resultado.next()) {
 
