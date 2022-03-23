@@ -33,13 +33,13 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
         cargar_combobox.Cargar_Area(cbo_Area);
         //cargar_combobox.Cargar_TipoCosecha(cbo_TipoCosecha);
     }
-    
+
     @Override
-    public void updateBD(){
-      
+    public void updateBD() {
+
         cargar_combobox.Cargar_TipoCosecha(cbo_TipoCosecha, cbo_Cosecha.getSelectedItem().toString());
         cargar_combobox.Cargar_Cosecha(cbo_Cosecha, cbo_TipoCultivo.getSelectedItem().toString());
-        
+
     }
 
     /**
@@ -395,7 +395,7 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
     }//GEN-LAST:event_btn_CrearAreaActionPerformed
 
     private void cbo_CosechaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbo_CosechaItemStateChanged
-        
+
         cbo_TipoCosecha.removeAllItems();
         cbo_TipoCosecha.addItem("Seleccionar");
         if (evt.getStateChange() == ItemEvent.SELECTED) {
@@ -404,7 +404,7 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
     }//GEN-LAST:event_cbo_CosechaItemStateChanged
 
     private void cbo_TipoCultivoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbo_TipoCultivoItemStateChanged
-        
+
         cbo_Cosecha.removeAllItems();
         cbo_Cosecha.addItem("Seleccionar");
         if (evt.getStateChange() == ItemEvent.SELECTED) {
