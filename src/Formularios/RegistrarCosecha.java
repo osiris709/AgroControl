@@ -4,19 +4,14 @@ import Clases.ComunicationPopUp;
 import Conexion.conexion;
 import Formularios_emergentes.Fmr_ListadoCosechas;
 import Formularios_emergentes.Fmr_TipoCosecha;
-import Formularios.RegistrarCosecha;
-import Ventanas.MenuPrincipal;
-import com.toedter.calendar.JDateChooser;
 import javax.swing.ImageIcon;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.text.DateFormat;
 import java.util.Date;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 public class RegistrarCosecha  extends javax.swing.JInternalFrame implements ComunicationPopUp   {

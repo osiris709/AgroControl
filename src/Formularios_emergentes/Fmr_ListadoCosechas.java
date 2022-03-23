@@ -2,11 +2,8 @@ package Formularios_emergentes;
 
 import Conexion.conexion;
 import Formularios.RegistrarCosecha;
-import Ventanas.MenuPrincipal;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -14,7 +11,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class Fmr_ListadoCosechas extends javax.swing.JFrame {

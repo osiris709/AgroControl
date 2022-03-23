@@ -2,10 +2,6 @@ package Formularios_emergentes;
 
 import Clases.ComunicationPopUp;
 import Conexion.conexion;
-import static Formularios.RegistrarCosecha.cbo_TipoCosecha;
-import static Formularios.RegistrarCosecha.cbo_TipoCultivo;
-import static Formularios.RegistrarCosecha.txt_IdCosecha;
-import static Formularios.RegistrarCosecha.txt_NombreCosecha;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import java.awt.Graphics;

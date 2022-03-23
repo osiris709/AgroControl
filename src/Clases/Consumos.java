@@ -14,81 +14,63 @@ import javax.swing.JOptionPane;
  */
 public class Consumos {
 
-    //Pool metodospool = new Pool();
     conexion objConexion = new conexion();
     Connection con = objConexion.conexion();
 
-    public void Cargar_TipoCultivo(JComboBox cbo_TipoCultivo) {
+    public void Cargar_Cosecha(JComboBox cbo_Cosecha, String TipoCultivo) {
 
-        String SSQL = "SELECT Tipo_Cultivo FROM Cosecha ORDER BY Tipo_Cultivo ASC";
+        switch (TipoCultivo) {
 
-        try {
+            case "Transitorio":
 
-            Statement leer = con.createStatement();
-            ResultSet resultado = leer.executeQuery(SSQL);
+                String SSQL = "SELECT Nombre_Cosecha FROM Cosecha WHERE Tipo_Cultivo= 'Transitorio' ORDER BY Nombre_Cosecha ASC";
 
-            //LLenamos nuestro ComboBox
-            cbo_TipoCultivo.addItem("Seleccionar");
-
-            while (resultado.next()) {
-
-                cbo_TipoCultivo.addItem(resultado.getString("Tipo_Cultivo"));
-            }
-
-        } catch (SQLException e) {
-
-            JOptionPane.showMessageDialog(null, e);
-
-        } finally {
-
-            /*if (con != null) {
                 try {
-                    con.close();
-                    con = null;
-                } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, ex);
+
+                    Statement leer = con.createStatement();
+                    ResultSet resultado = leer.executeQuery(SSQL);
+
+                    //LLenamos nuestro ComboBox
+                    cbo_Cosecha.addItem("Seleccionar");
+
+                    while (resultado.next()) {
+
+                        cbo_Cosecha.addItem(resultado.getString("Nombre_Cosecha"));
+                    }
+
+                } catch (SQLException e) {
+
+                    JOptionPane.showMessageDialog(null, e);
                 }
-            }*/
+                break;
+
+            case "Permanente":
+
+                String SSQL2 = "SELECT Nombre_Cosecha FROM Cosecha WHERE Tipo_Cultivo= 'Permanente' ORDER BY Nombre_Cosecha ASC";
+
+                try {
+
+                    Statement leer = con.createStatement();
+                    ResultSet resultado = leer.executeQuery(SSQL2);
+
+                    //LLenamos nuestro ComboBox
+                    cbo_Cosecha.addItem("Seleccionar");
+
+                    while (resultado.next()) {
+
+                        cbo_Cosecha.addItem(resultado.getString("Nombre_Cosecha"));
+                    }
+
+                } catch (SQLException e) {
+
+                    JOptionPane.showMessageDialog(null, e);
+                }
+                break;
         }
     }
 
-    public void Cargar_Cosecha(JComboBox cbo_Cosecha) {
-        
-        String SSQL = "SELECT Nombre_Cosecha FROM Cosecha ORDER BY Nombre_Cosecha ASC";
-
-        try {
-
-            Statement leer = con.createStatement();
-            ResultSet resultado = leer.executeQuery(SSQL);
-
-            //LLenamos nuestro ComboBox
-            cbo_Cosecha.addItem("Seleccionar");
-
-            while (resultado.next()) {
-
-                cbo_Cosecha.addItem(resultado.getString("Nombre_Cosecha"));
-            }
-
-        } catch (SQLException e) {
-
-            JOptionPane.showMessageDialog(null, e);
-
-        } finally {
-
-            /*if (con != null) {
-                try {
-                    con.close();
-                    con = null;
-                } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, ex);
-                }
-            }*/
-        }
-
-    }
-    
     public void Cargar_Area(JComboBox cbo_Area) {
-        
+
         String SSQL = "SELECT Area FROM Consumos ORDER BY Area ASC";
 
         try {
@@ -107,23 +89,11 @@ public class Consumos {
         } catch (SQLException e) {
 
             JOptionPane.showMessageDialog(null, e);
-
-        } finally {
-
-           /* if (con != null) {
-                try {
-                    con.close();
-                    con = null;
-                } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, ex);
-                }
-            }*/
         }
-
     }
-    
+
     public void Cargar_TipoCosecha(JComboBox cbo_TipoCosecha) {
-        
+
         String SSQL = "SELECT Tipo_Cosecha FROM Cosecha ORDER BY Tipo_Cosecha ASC";
 
         try {
@@ -142,19 +112,6 @@ public class Consumos {
         } catch (SQLException e) {
 
             JOptionPane.showMessageDialog(null, e);
-
-        } finally {
-
-            if (con != null) {
-                try {
-                    con.close();
-                    con = null;
-                } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, ex);
-                }
-            }
         }
-
     }
-
 }

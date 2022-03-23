@@ -1,10 +1,13 @@
 package Formularios;
 
 import Clases.Consumos;
+import Formularios_emergentes.Fmr_Area;
+import Ventanas.MenuPrincipal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.ItemEvent;
 import javax.swing.ImageIcon;
 
 /**
@@ -12,23 +15,20 @@ import javax.swing.ImageIcon;
  * @author Osiris
  */
 public class RegistrarConsumo extends javax.swing.JInternalFrame {
-    
+
     Consumos cargar_combobox = new Consumos();
 
     public RegistrarConsumo() {
         initComponents();
-        cbo_TipoCultivo.addActionListener(new ActionListener(){
+        cbo_TipoCultivo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
-                System.out.println("item: " + cbo_TipoCultivo.getSelectedItem().toString());
-                
-                
+
+                //System.out.println("item: " + cbo_TipoCultivo.getSelectedItem().toString());
             }
-            
+
         });
-        cargar_combobox.Cargar_TipoCultivo(cbo_TipoCultivo);
-        cargar_combobox.Cargar_Cosecha(cbo_Cosecha);
+
         cargar_combobox.Cargar_Area(cbo_Area);
         cargar_combobox.Cargar_TipoCosecha(cbo_TipoCosecha);
     }
@@ -64,7 +64,7 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame {
         cbo_Area = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         cbo_Cosecha = new javax.swing.JComboBox<>();
-        btn_nuevo2 = new javax.swing.JButton();
+        btn_CrearArea = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
@@ -120,12 +120,18 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame {
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel10.setText("Cosecha:");
 
-        btn_nuevo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Nuevo2.png"))); // NOI18N
-        btn_nuevo2.setText("Crear Area");
-        btn_nuevo2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btn_nuevo2.addActionListener(new java.awt.event.ActionListener() {
+        cbo_Cosecha.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbo_CosechaItemStateChanged(evt);
+            }
+        });
+
+        btn_CrearArea.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Nuevo2.png"))); // NOI18N
+        btn_CrearArea.setText("Crear Area");
+        btn_CrearArea.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_CrearArea.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_nuevo2ActionPerformed(evt);
+                btn_CrearAreaActionPerformed(evt);
             }
         });
 
@@ -149,9 +155,10 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Tipo de Cultivo:");
 
-        cbo_TipoCultivo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbo_TipoCultivoActionPerformed(evt);
+        cbo_TipoCultivo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "Transitorio", "Permanente" }));
+        cbo_TipoCultivo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbo_TipoCultivoItemStateChanged(evt);
             }
         });
 
@@ -183,7 +190,7 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel2)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(txt_fechaConsumo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(btn_nuevo2, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btn_CrearArea, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(33, 33, 33)
                         .addGroup(jP_DatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jP_DatosLayout.createSequentialGroup()
@@ -215,7 +222,7 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame {
                     .addGroup(jP_DatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3)
                         .addComponent(cbo_TipoCultivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(jP_DatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbo_Cosecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
@@ -225,7 +232,7 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame {
                 .addGroup(jP_DatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(cbo_TipoCosecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_nuevo2))
+                    .addComponent(btn_CrearArea))
                 .addGap(18, 18, 18)
                 .addGroup(jP_DatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jP_DatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -306,7 +313,7 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame {
                 .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
                 .addComponent(btn_elminar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         jP_BotonesLayout.setVerticalGroup(
             jP_BotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -333,8 +340,8 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame {
             .addGroup(jDP_RConsumoLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(jDP_RConsumoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jP_Botones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jP_Datos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jP_Botones, javax.swing.GroupLayout.DEFAULT_SIZE, 748, Short.MAX_VALUE)
+                    .addComponent(jP_Datos, javax.swing.GroupLayout.DEFAULT_SIZE, 748, Short.MAX_VALUE)
                     .addComponent(LogoCRUD)
                     .addComponent(jP_Listado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(28, Short.MAX_VALUE))
@@ -366,16 +373,27 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_nuevo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevo2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_nuevo2ActionPerformed
+    private void btn_CrearAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CrearAreaActionPerformed
+        Fmr_Area Area = new Fmr_Area();
+        MenuPrincipal.mostrar.add(Area);
+        Area.setVisible(true);
+        Area.toFront();
+    }//GEN-LAST:event_btn_CrearAreaActionPerformed
 
-    private void cbo_TipoCultivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_TipoCultivoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbo_TipoCultivoActionPerformed
+    private void cbo_CosechaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbo_CosechaItemStateChanged
+
+    }//GEN-LAST:event_cbo_CosechaItemStateChanged
+
+    private void cbo_TipoCultivoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbo_TipoCultivoItemStateChanged
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+
+            cargar_combobox.Cargar_Cosecha(cbo_Cosecha, cbo_TipoCultivo.getSelectedItem().toString());
+        }
+    }//GEN-LAST:event_cbo_TipoCultivoItemStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LogoCRUD;
+    private javax.swing.JButton btn_CrearArea;
     private javax.swing.JButton btn_buscar;
     private javax.swing.JButton btn_cancelar;
     private javax.swing.JButton btn_editar;
@@ -383,7 +401,6 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame {
     private javax.swing.JButton btn_guardar;
     private javax.swing.JButton btn_lista;
     private javax.swing.JButton btn_nuevo;
-    private javax.swing.JButton btn_nuevo2;
     private javax.swing.JComboBox<String> cbo_Area;
     private javax.swing.JComboBox<String> cbo_Cosecha;
     private javax.swing.JComboBox<String> cbo_TipoCosecha;
