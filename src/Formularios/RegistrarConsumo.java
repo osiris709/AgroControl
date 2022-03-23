@@ -377,7 +377,7 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame {
         Fmr_Area Area = new Fmr_Area();
         MenuPrincipal.mostrar.add(Area);
         Area.setVisible(true);
-        Area.toFront();
+        //Area.toFront();
     }//GEN-LAST:event_btn_CrearAreaActionPerformed
 
     private void cbo_CosechaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbo_CosechaItemStateChanged

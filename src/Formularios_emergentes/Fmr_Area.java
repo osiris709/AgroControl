@@ -8,7 +8,7 @@ public class Fmr_Area extends javax.swing.JInternalFrame {
     
     public Fmr_Area() {
         initComponents();
-        this.setTitle("AgroControl - Lista Cosechas");
+        setTitle("AgroControl - Crear Area");
         this.setLocation(0, 0);
         setResizable(false);
      
