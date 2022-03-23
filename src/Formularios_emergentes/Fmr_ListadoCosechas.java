@@ -24,7 +24,7 @@ public class Fmr_ListadoCosechas extends javax.swing.JFrame {
 
     public Fmr_ListadoCosechas() {
         initComponents();
-        this.setTitle("AgroControl - Lista Cosechas");
+        this.setTitle("Lista Cosechas");
         this.setLocationRelativeTo(null);
         setResizable(false);
         MostrarListaCosechas();
@@ -229,13 +229,15 @@ public class Fmr_ListadoCosechas extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
-
+        
         RegistrarCosecha.txt_IdCosecha.setText(TablaCosechas.getValueAt(TablaCosechas.getSelectedRow(), 0).toString());
-        //Control_Cosecha.txt_IdCosecha.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 0).toString());
         RegistrarCosecha.txt_NombreCosecha.setText(TablaCosechas.getModel().getValueAt(TablaCosechas.getSelectedRow(), 1).toString());
         RegistrarCosecha.cbo_TipoCultivo.setSelectedItem(TablaCosechas.getModel().getValueAt(TablaCosechas.getSelectedRow(), 2).toString());
         RegistrarCosecha.cbo_TipoCosecha.setSelectedItem(TablaCosechas.getModel().getValueAt(TablaCosechas.getSelectedRow(), 3).toString());
 
+        RegistrarCosecha.Desbloquear();
+        
+        
         this.hide();
     }//GEN-LAST:event_TablaCosechasMouseClicked
 

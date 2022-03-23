@@ -144,14 +144,21 @@ public class RegistrarCosecha  extends javax.swing.JInternalFrame implements Com
         }
     }
 
-    public void Desbloquear() {
+    public static void Desbloquear() {
 
-        this.txt_IdCosecha.setEnabled(true);
-        this.txt_NombreCosecha.setEnabled(true);
-        this.cbo_TipoCultivo.setEnabled(true);
-        this.cbo_TipoCosecha.setEnabled(true);
-        this.txt_FechaSiembra.setEnabled(true);
-        this.txt_FechaRecoleccion.setEnabled(true);
+        RegistrarCosecha.txt_IdCosecha.setEnabled(true);
+        RegistrarCosecha.txt_NombreCosecha.setEnabled(true);
+        RegistrarCosecha.cbo_TipoCultivo.setEnabled(true);
+        RegistrarCosecha.cbo_TipoCosecha.setEnabled(true);
+        RegistrarCosecha.txt_FechaSiembra.setEnabled(true);
+        RegistrarCosecha.txt_FechaRecoleccion.setEnabled(true);
+        RegistrarCosecha.btn_guardar.setEnabled(true);
+        RegistrarCosecha.btn_modificar.setEnabled(true);
+        RegistrarCosecha.btn_cancelar.setEnabled(true);
+        RegistrarCosecha.btn_eliminar.setEnabled(true);
+        RegistrarCosecha.btn_TipoCosecha.setEnabled(true);
+        RegistrarCosecha.btn_nuevo.setEnabled(false);
+        RegistrarCosecha.btn_guardar.setEnabled(false);
         txt_IdCosecha.requestFocus();
     }
 
@@ -163,6 +170,13 @@ public class RegistrarCosecha  extends javax.swing.JInternalFrame implements Com
         this.cbo_TipoCosecha.setEnabled(false);
         this.txt_FechaSiembra.setEnabled(false);
         this.txt_FechaRecoleccion.setEnabled(false);
+        this.btn_guardar.setEnabled(false);
+        this.btn_modificar.setEnabled(false);
+        this.btn_cancelar.setEnabled(false);
+        this.btn_eliminar.setEnabled(false);
+        this.btn_TipoCosecha.setEnabled(false);
+        this.btn_nuevo.setEnabled(true);
+        this.btn_buscar.setEnabled(true);
         txt_IdCosecha.requestFocus();
     }
 
@@ -230,9 +244,9 @@ public class RegistrarCosecha  extends javax.swing.JInternalFrame implements Com
         jP_Botones = new javax.swing.JPanel();
         btn_nuevo = new javax.swing.JButton();
         btn_guardar = new javax.swing.JButton();
-        btn_editar = new javax.swing.JButton();
+        btn_modificar = new javax.swing.JButton();
         btn_cancelar = new javax.swing.JButton();
-        btn_elminar = new javax.swing.JButton();
+        btn_eliminar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
@@ -311,7 +325,7 @@ public class RegistrarCosecha  extends javax.swing.JInternalFrame implements Com
         jLabel7.setPreferredSize(new java.awt.Dimension(96, 23));
 
         cbo_TipoCultivo.setEditable(true);
-        cbo_TipoCultivo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
+        cbo_TipoCultivo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Transitorio", "Permanente" }));
         cbo_TipoCultivo.setMinimumSize(new java.awt.Dimension(98, 23));
         cbo_TipoCultivo.setPreferredSize(new java.awt.Dimension(83, 23));
 
@@ -420,10 +434,10 @@ public class RegistrarCosecha  extends javax.swing.JInternalFrame implements Com
         );
         jP_ListadoLayout.setVerticalGroup(
             jP_ListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_ListadoLayout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+            .addGroup(jP_ListadoLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(btn_lista1)
-                .addContainerGap())
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         jP_Botones.setBackground(new java.awt.Color(240, 255, 240));
@@ -447,12 +461,12 @@ public class RegistrarCosecha  extends javax.swing.JInternalFrame implements Com
             }
         });
 
-        btn_editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/editar2.png"))); // NOI18N
-        btn_editar.setText("Modificar");
-        btn_editar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btn_editar.addActionListener(new java.awt.event.ActionListener() {
+        btn_modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/editar2.png"))); // NOI18N
+        btn_modificar.setText("Modificar");
+        btn_modificar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_editarActionPerformed(evt);
+                btn_modificarActionPerformed(evt);
             }
         });
 
@@ -465,12 +479,12 @@ public class RegistrarCosecha  extends javax.swing.JInternalFrame implements Com
             }
         });
 
-        btn_elminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/eliminar2.png"))); // NOI18N
-        btn_elminar.setText("Eliminar");
-        btn_elminar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btn_elminar.addActionListener(new java.awt.event.ActionListener() {
+        btn_eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/eliminar2.png"))); // NOI18N
+        btn_eliminar.setText("Eliminar");
+        btn_eliminar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_elminarActionPerformed(evt);
+                btn_eliminarActionPerformed(evt);
             }
         });
 
@@ -484,11 +498,11 @@ public class RegistrarCosecha  extends javax.swing.JInternalFrame implements Com
                 .addGap(40, 40, 40)
                 .addComponent(btn_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
-                .addComponent(btn_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49)
                 .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
-                .addComponent(btn_elminar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
         );
         jP_BotonesLayout.setVerticalGroup(
@@ -496,8 +510,8 @@ public class RegistrarCosecha  extends javax.swing.JInternalFrame implements Com
             .addGroup(jP_BotonesLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(jP_BotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_elminar)
-                    .addComponent(btn_editar)
+                    .addComponent(btn_eliminar)
+                    .addComponent(btn_modificar)
                     .addComponent(btn_guardar)
                     .addComponent(btn_nuevo)
                     .addComponent(btn_cancelar))
@@ -559,6 +573,7 @@ public class RegistrarCosecha  extends javax.swing.JInternalFrame implements Com
 
     private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
         Guardar();
+        Bloquear();
     }//GEN-LAST:event_btn_guardarActionPerformed
 
     private void btn_lista1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_lista1ActionPerformed
@@ -569,12 +584,19 @@ public class RegistrarCosecha  extends javax.swing.JInternalFrame implements Com
         Cosecha.TablaCosechas.setEnabled(false);
     }//GEN-LAST:event_btn_lista1ActionPerformed
 
-    private void btn_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editarActionPerformed
+    private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
         Modificar(txt_IdCosecha.getText(), txt_NombreCosecha.getText(), cbo_TipoCultivo.getSelectedItem().toString(), cbo_TipoCosecha.getSelectedItem().toString(), txt_FechaSiembra.getDate(), txt_FechaRecoleccion.getDate());
-    }//GEN-LAST:event_btn_editarActionPerformed
+        Limpiar();
+        
+    }//GEN-LAST:event_btn_modificarActionPerformed
 
     private void btn_nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevoActionPerformed
         Desbloquear();
+        Limpiar();
+        this.btn_nuevo.setEnabled(false);
+        this.btn_eliminar.setEnabled(false);
+        this.btn_buscar.setEnabled(false);
+        this.btn_modificar.setEnabled(false);
     }//GEN-LAST:event_btn_nuevoActionPerformed
 
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
@@ -582,6 +604,7 @@ public class RegistrarCosecha  extends javax.swing.JInternalFrame implements Com
         Cosecha.setVisible(true);
         Cosecha.toFront();
         Cosecha.setAlwaysOnTop(true);
+        
     }//GEN-LAST:event_btn_buscarActionPerformed
 
     private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
@@ -596,21 +619,22 @@ public class RegistrarCosecha  extends javax.swing.JInternalFrame implements Com
         }*/
     }//GEN-LAST:event_txt_IdCosechaKeyTyped
 
-    private void btn_elminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_elminarActionPerformed
+    private void btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarActionPerformed
         Eliminar(txt_IdCosecha.getText());
-    }//GEN-LAST:event_btn_elminarActionPerformed
+        Bloquear();
+    }//GEN-LAST:event_btn_eliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LogoCRUD;
-    private javax.swing.JButton btn_TipoCosecha;
+    private static javax.swing.JButton btn_TipoCosecha;
     private javax.swing.JButton btn_buscar;
-    private javax.swing.JButton btn_cancelar;
-    private javax.swing.JButton btn_editar;
-    private javax.swing.JButton btn_elminar;
-    private javax.swing.JButton btn_guardar;
+    private static javax.swing.JButton btn_cancelar;
+    private static javax.swing.JButton btn_eliminar;
+    private static javax.swing.JButton btn_guardar;
     private javax.swing.JButton btn_lista1;
-    private javax.swing.JButton btn_nuevo;
+    private static javax.swing.JButton btn_modificar;
+    private static javax.swing.JButton btn_nuevo;
     public static javax.swing.JComboBox<String> cbo_TipoCosecha;
     public static javax.swing.JComboBox<String> cbo_TipoCultivo;
     private javax.swing.JDesktopPane jDP_RCosecha;
