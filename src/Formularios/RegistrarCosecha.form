@@ -431,11 +431,6 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-<<<<<<< HEAD
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="btn_lista1" min="-2" max="-2" attributes="0"/>
-=======
                   <Group type="102" alignment="0" attributes="0">
 >>>>>>> 1d2a97d81a4aa78a5cf53f79f7f7ea82dd559759
                       <EmptySpace max="-2" attributes="0"/>
