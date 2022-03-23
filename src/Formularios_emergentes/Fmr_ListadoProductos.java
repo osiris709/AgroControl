@@ -29,6 +29,9 @@ public class Fmr_ListadoProductos extends javax.swing.JFrame {
 
     public Fmr_ListadoProductos() {
         initComponents();
+        this.setTitle("Lista Proveedores");
+        this.setLocationRelativeTo(null);
+        setResizable(false);
         MostrarlistadoProductos();
     }
 //        public void EliminarDatosTabla (){ //SELECCIONAR DATOS DE LA TABLA Y PODER ELIMINARLO
@@ -60,12 +63,9 @@ public class Fmr_ListadoProductos extends javax.swing.JFrame {
         tcliente.addColumn("Fecha de Vencimiento");
         tcliente.addColumn("Unidad de Medida");
         tcliente.addColumn("Tipo de Producto");
-                
-
-
 
         TablaCliente.setModel(tcliente);
-            
+
         String[] datos = new String[7];
 
         try {
@@ -80,10 +80,7 @@ public class Fmr_ListadoProductos extends javax.swing.JFrame {
                 datos[4] = resultado.getString(5);
                 datos[5] = resultado.getString(6);
                 datos[6] = resultado.getString(7);
-                
-            
-                
-               
+
                 tcliente.addRow(datos);
             }
             TablaCliente.setModel(tcliente);
@@ -194,25 +191,21 @@ public class Fmr_ListadoProductos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void TablaClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaClienteMouseClicked
-       
-         if (evt.getClickCount () ==1){
-             
-             JTable receptor = (JTable) evt.getSource();
-             RegistrarProducto.txt_codigoProducto.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(),0).toString());
-             RegistrarProducto.txt_nombreProducto.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(),1).toString());
-             RegistrarProducto.txt_descripcionProducto.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(),2).toString());
-             RegistrarProducto.txt_Ingredienteactivo.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(),3).toString());
-             RegistrarProducto.jDate_FechaVencimiento.setDateFormatString(receptor.getModel().getValueAt(receptor.getSelectedRow(),4).toString());
-             RegistrarProducto.cbo_unidadMedida.setSelectedItem(receptor.getModel().getValueAt(receptor.getSelectedRow(),5).toString());
-             RegistrarProducto.cbo_categoria.setSelectedItem(receptor.getModel().getValueAt(receptor.getSelectedRow(),6).toString());
-             
-             
-           //  RegistrarProductos.cbo_unidadMedida.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(),0).toString());
-          //   RegistrarProductos.cbo_categoria.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(),0).toString());
-             
-            
-                                     
-         }
+
+        if (evt.getClickCount() == 1) {
+
+            JTable receptor = (JTable) evt.getSource();
+            RegistrarProducto.txt_codigoProducto.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 0).toString());
+            RegistrarProducto.txt_nombreProducto.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 1).toString());
+            RegistrarProducto.txt_descripcionProducto.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 2).toString());
+            RegistrarProducto.txt_Ingredienteactivo.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 3).toString());
+            RegistrarProducto.jDate_FechaVencimiento.setDateFormatString(receptor.getModel().getValueAt(receptor.getSelectedRow(), 4).toString());
+            RegistrarProducto.cbo_unidadMedida.setSelectedItem(receptor.getModel().getValueAt(receptor.getSelectedRow(), 5).toString());
+            RegistrarProducto.cbo_categoria.setSelectedItem(receptor.getModel().getValueAt(receptor.getSelectedRow(), 6).toString());
+
+            //  RegistrarProductos.cbo_unidadMedida.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(),0).toString());
+            //   RegistrarProductos.cbo_categoria.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(),0).toString());
+        }
     }//GEN-LAST:event_TablaClienteMouseClicked
 
     /**
@@ -262,5 +255,4 @@ public class Fmr_ListadoProductos extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
-    
 }
