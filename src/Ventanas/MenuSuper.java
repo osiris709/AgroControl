@@ -1,5 +1,6 @@
 package Ventanas;
 
+import Clases.Metodos;
 import Formularios_emergentes.Fmr_ListadoUsuarios;
 import Conexion.conexion;
 import java.awt.HeadlessException;
@@ -530,9 +531,8 @@ public class MenuSuper extends javax.swing.JFrame {
         //para pedir solo letras.
         char carac = evt.getKeyChar();
         if ((carac < 'a' || carac > 'z') && (carac < 'A' || carac > 'Z') && (carac < ' ' || carac > ' ')) {
-            evt.consume();
-        }
-
+            evt.consume();            
+        }    
     }//GEN-LAST:event_txt_NomKeyTyped
 
     private void txt_TelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_TelKeyTyped
@@ -542,7 +542,6 @@ public class MenuSuper extends javax.swing.JFrame {
         if ((carac < '0' || carac > '9')) {
             evt.consume();
         }
-
     }//GEN-LAST:event_txt_TelKeyTyped
 
     private void txt_ApeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_ApeKeyTyped
@@ -551,7 +550,6 @@ public class MenuSuper extends javax.swing.JFrame {
         if ((carac < 'a' || carac > 'z') && (carac < 'A' || carac > 'Z') && (carac < ' ' || carac > ' ')) {
             evt.consume();
         }
-
     }//GEN-LAST:event_txt_ApeKeyTyped
 
     private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
@@ -575,7 +573,6 @@ public class MenuSuper extends javax.swing.JFrame {
         } else {
             modificar(txt_Alias.getText(), txt_Contra.getText(), txt_Nom.getText(), txt_Ape.getText(), txt_Direc.getText(),
                     txt_Tel.getText(), txt_Email.getText(), txt_Id.getText());
-
         }
     }//GEN-LAST:event_btn_editarActionPerformed
 
@@ -610,7 +607,6 @@ public class MenuSuper extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-
                 }
             }
         } catch (ClassNotFoundException ex) {
@@ -629,14 +625,6 @@ public class MenuSuper extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MenuSuper.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

@@ -3,7 +3,6 @@ package Formularios;
 import Clases.ComunicationPopUp;
 import Clases.Consumos;
 import Formularios_emergentes.Fmr_Area;
-import Ventanas.MenuPrincipal;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,10 +29,7 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
                 //System.out.println("item: " + cbo_TipoCultivo.getSelectedItem().toString());
             }
 
-        });
-
-        cargar_combobox.Cargar_Area(cbo_Area);
-        //cargar_combobox.Cargar_TipoCosecha(cbo_TipoCosecha);
+        });        
     }
 
     @Override
@@ -41,6 +37,7 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
 
         cargar_combobox.Cargar_TipoCosecha(cbo_TipoCosecha, cbo_Cosecha.getSelectedItem().toString());
         cargar_combobox.Cargar_Cosecha(cbo_Cosecha, cbo_TipoCultivo.getSelectedItem().toString());
+        cargar_combobox.Cargar_Area(cbo_Area);
 
     }
 
@@ -129,6 +126,11 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
         jLabel9.setText("Area:");
 
         cbo_Area.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
+        cbo_Area.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbo_AreaItemStateChanged(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel10.setText("Cosecha:");
@@ -411,6 +413,14 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
             cargar_combobox.Cargar_Cosecha(cbo_Cosecha, cbo_TipoCultivo.getSelectedItem().toString());
         }
     }//GEN-LAST:event_cbo_TipoCultivoItemStateChanged
+
+    private void cbo_AreaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbo_AreaItemStateChanged
+        cbo_Area.removeAllItems();
+        cbo_Area.addItem("Seleccionar");
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            cargar_combobox.Cargar_Area(cbo_Area);
+        }
+    }//GEN-LAST:event_cbo_AreaItemStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LogoCRUD;

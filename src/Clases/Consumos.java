@@ -69,7 +69,7 @@ public class Consumos {
 
     public void Cargar_Area(JComboBox cbo_Area) {
 
-        String SSQL = "SELECT Area FROM Consumos ORDER BY Area ASC";
+        String SSQL = "SELECT Nombre_Area FROM Area ORDER BY Nombre_Area ASC";
 
         try {
 
@@ -80,7 +80,7 @@ public class Consumos {
          
             while (resultado.next()) {
 
-                cbo_Area.addItem(resultado.getString("Area"));
+                cbo_Area.addItem(resultado.getString("Nombre_Area"));
             }
 
         } catch (SQLException e) {
