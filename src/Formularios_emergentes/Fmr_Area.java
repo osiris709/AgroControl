@@ -1,13 +1,9 @@
 package Formularios_emergentes;
 
 import Clases.ComunicationPopUp;
+import Clases.Consumos;
 import Conexion.conexion;
-import static Formularios.RegistrarCosecha.cbo_TipoCosecha;
-import static Formularios.RegistrarCosecha.cbo_TipoCultivo;
-import static Formularios.RegistrarCosecha.txt_FechaRecoleccion;
-import static Formularios.RegistrarCosecha.txt_FechaSiembra;
-import static Formularios.RegistrarCosecha.txt_IdCosecha;
-import static Formularios.RegistrarCosecha.txt_NombreCosecha;
+import Formularios.RegistrarConsumo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
@@ -16,14 +12,16 @@ import javax.swing.JOptionPane;
  *
  * @author Osiris
  */
-public class Fmr_Area extends javax.swing.JDialog implements ComunicationPopUp{
-    
+public class Fmr_Area extends javax.swing.JDialog implements ComunicationPopUp {
+
     conexion objConexion = new conexion();
     Connection con = objConexion.conexion();
+    Consumos cargar_combobox = new Consumos();
     private ComunicationPopUp comu;
 
     /**
      * Creates new form Fmr_Area2
+     *
      * @param parent
      * @param modal
      */
@@ -34,11 +32,14 @@ public class Fmr_Area extends javax.swing.JDialog implements ComunicationPopUp{
         this.setLocationRelativeTo(null);
         setResizable(false);
     }
-    
-    public void setComu(ComunicationPopUp comu) {
-        this.comu = comu;
+
+    @Override
+    public void updateBD() {
+        RegistrarConsumo.cbo_Area.removeAllItems();
+        RegistrarConsumo.cbo_Area.addItem("Seleccionar");
+        cargar_combobox.Cargar_Area(RegistrarConsumo.cbo_Area);
     }
-    
+
     public void Guardar() {
 
         if (txt_nombreArea.getText().equals("")) {
@@ -55,20 +56,20 @@ public class Fmr_Area extends javax.swing.JDialog implements ComunicationPopUp{
 
                 guardar.executeUpdate();
 
-                //comu.updateBD();
+                updateBD();
                 JOptionPane.showMessageDialog(null, "Area Registrada exitosamente");
                 Bloquear();
                 guardar.close();
                 Limpiar();
-                
-            this.hide();    
+
+                this.hide();
             } catch (Exception e) {
 
                 JOptionPane.showMessageDialog(null, e + "Error, No se registro el Tipo de Cosecha");
             }
         }
     }
-    
+
     public void Eliminar(String IdCosecha) {
         // Si hay algun campo vacio, genera mensaje de advertencia
         if (txt_nombreArea.getText().equals("") || (txt_AnchoArea.getText().equals("Seleccionar"))
@@ -87,7 +88,8 @@ public class Fmr_Area extends javax.swing.JDialog implements ComunicationPopUp{
 
                     // Ejecuta la sentencia y obtiene el resultado de eliminar
                     eliminar.executeUpdate();
-
+                    
+                    updateBD();
                     JOptionPane.showMessageDialog(null, "Area Eliminada exitosamente");
                     Limpiar();
                     eliminar.close();
@@ -99,18 +101,18 @@ public class Fmr_Area extends javax.swing.JDialog implements ComunicationPopUp{
             }
         }
     }
-    
+
     public void Bloquear() {
         this.txt_nombreArea.setEnabled(false);
         //txt_nombreTipoCosecha.requestFocus();
     }
-    
+
     public void Desbloquear() {
         this.txt_nombreArea.setEnabled(true);
         txt_nombreArea.requestFocus();
     }
-    
-    public void Limpiar() {    
+
+    public void Limpiar() {
         txt_nombreArea.setText("");
         txt_nombreArea.requestFocus();
     }
@@ -126,12 +128,14 @@ public class Fmr_Area extends javax.swing.JDialog implements ComunicationPopUp{
 
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        txt_nombreArea = new javax.swing.JTextField();
+        txt_ID_Area = new javax.swing.JTextField();
         btn_buscar = new javax.swing.JButton();
         txt_AnchoArea = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         txt_LargoArea = new javax.swing.JTextField();
+        ID_Area = new javax.swing.JLabel();
+        txt_nombreArea = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         btn_nuevo1 = new javax.swing.JButton();
@@ -148,6 +152,8 @@ public class Fmr_Area extends javax.swing.JDialog implements ComunicationPopUp{
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setText("Nombre:");
 
+        txt_ID_Area.setEditable(false);
+
         btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lupa.png"))); // NOI18N
         btn_buscar.setText("Buscar");
         btn_buscar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -159,6 +165,9 @@ public class Fmr_Area extends javax.swing.JDialog implements ComunicationPopUp{
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel7.setText("Largo:");
 
+        ID_Area.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        ID_Area.setText("ID:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -167,28 +176,36 @@ public class Fmr_Area extends javax.swing.JDialog implements ComunicationPopUp{
                 .addGap(43, 43, 43)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel6))
-                .addGap(28, 28, 28)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(txt_nombreArea, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txt_AnchoArea, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel7)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txt_LargoArea, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel6)
+                    .addComponent(ID_Area))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txt_ID_Area, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(txt_AnchoArea, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(47, 47, 47)
+                            .addComponent(jLabel7)
+                            .addGap(18, 18, 18)
+                            .addComponent(txt_LargoArea, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txt_nombreArea)))
                 .addContainerGap(60, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(167, 167, 167))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_nombreArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                    .addComponent(ID_Area, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(txt_ID_Area, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txt_nombreArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -197,7 +214,7 @@ public class Fmr_Area extends javax.swing.JDialog implements ComunicationPopUp{
                     .addComponent(txt_AnchoArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
                     .addComponent(txt_LargoArea, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addGap(26, 26, 26))
         );
 
         jLabel10.setBackground(new java.awt.Color(255, 255, 255));
@@ -293,10 +310,10 @@ public class Fmr_Area extends javax.swing.JDialog implements ComunicationPopUp{
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -313,7 +330,7 @@ public class Fmr_Area extends javax.swing.JDialog implements ComunicationPopUp{
     }//GEN-LAST:event_btn_GuardarActionPerformed
 
     private void btn_elminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_elminar1ActionPerformed
-       Eliminar(txt_nombreArea.getText());
+        Eliminar(txt_nombreArea.getText());
     }//GEN-LAST:event_btn_elminar1ActionPerformed
 
     /**
@@ -360,6 +377,7 @@ public class Fmr_Area extends javax.swing.JDialog implements ComunicationPopUp{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel ID_Area;
     private javax.swing.JButton btn_Guardar;
     private javax.swing.JButton btn_buscar;
     private javax.swing.JButton btn_cancelar1;
@@ -373,12 +391,9 @@ public class Fmr_Area extends javax.swing.JDialog implements ComunicationPopUp{
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JTextField txt_AnchoArea;
+    private javax.swing.JTextField txt_ID_Area;
     private javax.swing.JTextField txt_LargoArea;
     private javax.swing.JTextField txt_nombreArea;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void updateBD() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }

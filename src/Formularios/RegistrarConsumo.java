@@ -29,7 +29,9 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
                 //System.out.println("item: " + cbo_TipoCultivo.getSelectedItem().toString());
             }
 
-        });        
+        });  
+        
+        cargar_combobox.Cargar_Area(cbo_Area);
     }
 
     @Override
@@ -126,11 +128,6 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
         jLabel9.setText("Area:");
 
         cbo_Area.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
-        cbo_Area.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cbo_AreaItemStateChanged(evt);
-            }
-        });
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel10.setText("Cosecha:");
@@ -414,14 +411,6 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
         }
     }//GEN-LAST:event_cbo_TipoCultivoItemStateChanged
 
-    private void cbo_AreaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbo_AreaItemStateChanged
-        cbo_Area.removeAllItems();
-        cbo_Area.addItem("Seleccionar");
-        if (evt.getStateChange() == ItemEvent.SELECTED) {
-            cargar_combobox.Cargar_Area(cbo_Area);
-        }
-    }//GEN-LAST:event_cbo_AreaItemStateChanged
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LogoCRUD;
     private javax.swing.JButton btn_CrearArea;
@@ -432,7 +421,7 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
     private javax.swing.JButton btn_guardar;
     private javax.swing.JButton btn_lista;
     private javax.swing.JButton btn_nuevo;
-    private javax.swing.JComboBox<String> cbo_Area;
+    public static javax.swing.JComboBox<String> cbo_Area;
     private javax.swing.JComboBox<String> cbo_Cosecha;
     private javax.swing.JComboBox<String> cbo_TipoCosecha;
     private javax.swing.JComboBox<String> cbo_TipoCultivo;
