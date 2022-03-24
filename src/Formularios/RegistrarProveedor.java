@@ -3,6 +3,7 @@ package Formularios;
 import Clases.Proveedor;
 import Conexion.conexion;
 import Formularios_emergentes.Fmr_ListadoProveedores;
+import java.awt.Frame;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
@@ -27,7 +28,7 @@ public class RegistrarProveedor extends javax.swing.JInternalFrame {
         limpiar();
         bloquear();
         this.setTitle("AgroControl - Registro Proveedores");
-        
+        BloqInicio();
         
         Proveedor pro = new Proveedor();
         
@@ -41,6 +42,85 @@ public class RegistrarProveedor extends javax.swing.JInternalFrame {
         this.txt_nombre.setEnabled(false);
     }
 
+    public void mostrardatos() {
+        while (modelo.getRowCount() > 0) {
+            modelo.removeRow(0);
+        }
+        conexion objConexion = new conexion();
+        Connection con = objConexion.conexion();
+        try {
+            ResultSet resultado = objConexion.consultarRegistro("SELECT * FROM proveedores");
+            while (resultado.next()) {
+                /*System.out.println(resultado.getString("Nit"));
+                System.out.println(resultado.getString("Nombre"));
+                System.out.println(resultado.getString("Direccion"));
+                System.out.println(resultado.getString("Correo"));
+                System.out.println(resultado.getString("Telefono"));*/
+
+                Object[] oUsuario = {resultado.getString("Nit"), resultado.getString("Nombre"), resultado.getString("Direccion"), resultado.getString("Correo"), resultado.getString("Telefono")};
+                modelo.addRow(oUsuario);
+                desbloquear();
+
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public Proveedor recuperarDatosGUI() {
+        Proveedor oProveedor = new Proveedor();
+
+        oProveedor.setNIt(txt_nit.getText());
+        oProveedor.setNombre(txt_nombre.getText());
+        oProveedor.setDireccion(txt_direccion.getText());
+        oProveedor.setCorreo(txt_correo.getText());
+        oProveedor.setTelefono(txt_telefono.getText());
+
+        return oProveedor;
+    }
+
+    public void limpiar() {
+        txt_nit.setText("");
+        txt_nombre.setText("");
+        txt_direccion.setText("");
+        txt_correo.setText("");
+        txt_telefono.setText("");
+    }
+
+    public void desbloquear() {
+        this.txt_direccion.setEnabled(true);
+        this.txt_correo.setEnabled(true);
+        this.txt_telefono.setEnabled(true);
+        this.txt_nit.setEnabled(true);
+        this.txt_nombre.setEnabled(true);
+    }
+
+    public void BloqInicio() {
+        btn_buscar.setEnabled(true);
+        btn_nuevo.setEnabled(true);
+        btn_guardar.setEnabled(false);
+        btn_cancelar.setEnabled(false);
+        btn_eliminar.setEnabled(false);
+    }
+
+    public void BloqBotonNuevo() {
+        btn_buscar.setEnabled(false);
+        btn_nuevo.setEnabled(false);
+        btn_guardar.setEnabled(true);
+        btn_modificar.setEnabled(false);
+        btn_cancelar.setEnabled(true);
+        btn_eliminar.setEnabled(false);
+    }
+
+    public void BloqBotonBuscar(){
+        btn_buscar.setEnabled(true);
+        btn_nuevo.setEnabled(false);
+        btn_guardar.setEnabled(false);
+        btn_modificar.setEnabled(true);
+        btn_cancelar.setEnabled(true);
+        btn_eliminar.setEnabled(true);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -77,7 +157,7 @@ public class RegistrarProveedor extends javax.swing.JInternalFrame {
         jP_Botones = new javax.swing.JPanel();
         btn_nuevo = new javax.swing.JButton();
         btn_guardar = new javax.swing.JButton();
-        btn_editar = new javax.swing.JButton();
+        btn_modificar = new javax.swing.JButton();
         btn_cancelar = new javax.swing.JButton();
         btn_eliminar = new javax.swing.JButton();
 
@@ -241,12 +321,12 @@ public class RegistrarProveedor extends javax.swing.JInternalFrame {
             }
         });
 
-        btn_editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/editar2.png"))); // NOI18N
-        btn_editar.setText("Editar");
-        btn_editar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btn_editar.addActionListener(new java.awt.event.ActionListener() {
+        btn_modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/editar2.png"))); // NOI18N
+        btn_modificar.setText("Editar");
+        btn_modificar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_editarActionPerformed(evt);
+                btn_modificarActionPerformed(evt);
             }
         });
 
@@ -278,7 +358,7 @@ public class RegistrarProveedor extends javax.swing.JInternalFrame {
                 .addGap(35, 35, 35)
                 .addComponent(btn_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
-                .addComponent(btn_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
@@ -291,7 +371,7 @@ public class RegistrarProveedor extends javax.swing.JInternalFrame {
                 .addGap(19, 19, 19)
                 .addGroup(jP_BotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_eliminar)
-                    .addComponent(btn_editar)
+                    .addComponent(btn_modificar)
                     .addComponent(btn_guardar)
                     .addComponent(btn_cancelar)
                     .addComponent(btn_nuevo))
@@ -322,7 +402,7 @@ public class RegistrarProveedor extends javax.swing.JInternalFrame {
             .addGroup(jDP_RProveedorLayout.createSequentialGroup()
                 .addComponent(LogoCRUD)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jP_Datos, javax.swing.GroupLayout.DEFAULT_SIZE, 346, Short.MAX_VALUE)
+                .addComponent(jP_Datos, javax.swing.GroupLayout.DEFAULT_SIZE, 349, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jP_Listado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -345,7 +425,8 @@ public class RegistrarProveedor extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_lista1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_lista1ActionPerformed
-        Fmr_ListadoProveedores abrir = new Fmr_ListadoProveedores();
+        Frame listaProveedor = JOptionPane.getFrameForComponent(this);
+        Fmr_ListadoProveedores abrir = new Fmr_ListadoProveedores(listaProveedor, true);
         abrir.setVisible(true);
         abrir.txtBuscar.setEnabled(false);
     }//GEN-LAST:event_btn_lista1ActionPerformed
@@ -369,6 +450,7 @@ public class RegistrarProveedor extends javax.swing.JInternalFrame {
             mostrardatos();
             limpiar();
             bloquear();
+            BloqInicio();
         }
     }//GEN-LAST:event_btn_guardarActionPerformed
 
@@ -389,10 +471,11 @@ public class RegistrarProveedor extends javax.swing.JInternalFrame {
             objConexion.ejecutarSentenciaSQL(strSentenciaInsert);
             mostrardatos();
             limpiar();
+            BloqInicio();
         }
     }//GEN-LAST:event_btn_eliminarActionPerformed
 
-    private void btn_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editarActionPerformed
+    private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
 
         conexion objConexion = new conexion();
         Connection con = objConexion.conexion();
@@ -419,28 +502,29 @@ public class RegistrarProveedor extends javax.swing.JInternalFrame {
                 btn_nuevo.setEnabled(true);
                 btn_guardar.setEnabled(true);
                 btn_eliminar.setEnabled(true);
+                BloqInicio();
             }
         }
-    }//GEN-LAST:event_btn_editarActionPerformed
+    }//GEN-LAST:event_btn_modificarActionPerformed
 
     private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
         limpiar();
         bloquear();
+        BloqInicio();
     }//GEN-LAST:event_btn_cancelarActionPerformed
 
     private void btn_nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevoActionPerformed
-        txt_nit.setText("");
-        txt_nombre.setText("");
-        txt_direccion.setText("");
-        txt_correo.setText("");
-        txt_telefono.setText("");
+        limpiar();
         desbloquear();
+        BloqBotonNuevo();
     }//GEN-LAST:event_btn_nuevoActionPerformed
 
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
-        Fmr_ListadoProveedores abrir = new Fmr_ListadoProveedores();
+        Frame listaProveedor = JOptionPane.getFrameForComponent(this);
+        Fmr_ListadoProveedores abrir = new Fmr_ListadoProveedores(listaProveedor, true);
         abrir.setVisible(true);
         desbloquear();
+        BloqBotonBuscar();
     }//GEN-LAST:event_btn_buscarActionPerformed
 
     private void txt_telefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_telefonoKeyTyped
@@ -450,76 +534,14 @@ public class RegistrarProveedor extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_txt_telefonoKeyTyped
 
-    public void mostrardatos() {
-        while (modelo.getRowCount() > 0) {
-            modelo.removeRow(0);
-        }
-        conexion objConexion = new conexion();
-        Connection con = objConexion.conexion();
-        try {
-            ResultSet resultado = objConexion.consultarRegistro("SELECT * FROM proveedores");
-            while (resultado.next()) {
-                /*System.out.println(resultado.getString("Nit"));
-                System.out.println(resultado.getString("Nombre"));
-                System.out.println(resultado.getString("Direccion"));
-                System.out.println(resultado.getString("Correo"));
-                System.out.println(resultado.getString("Telefono"));*/
-
-                Object[] oUsuario = {resultado.getString("Nit"), resultado.getString("Nombre"), resultado.getString("Direccion"), resultado.getString("Correo"), resultado.getString("Telefono")};
-                modelo.addRow(oUsuario);
-                desbloquear();
-
-            }
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
-
-    public Proveedor recuperarDatosGUI() {
-        Proveedor oProveedor = new Proveedor();
-
-        oProveedor.setNIt(txt_nit.getText());
-        oProveedor.setNombre(txt_nombre.getText());
-        oProveedor.setDireccion(txt_direccion.getText());
-        oProveedor.setCorreo(txt_correo.getText());
-        oProveedor.setTelefono(txt_telefono.getText());
-
-        return oProveedor;
-    }
-
-    public void limpiar() {
-        txt_nit.setText("");
-        txt_nombre.setText("");
-        txt_direccion.setText("");
-        txt_correo.setText("");
-        txt_telefono.setText("");
-
-        btn_nuevo.setEnabled(true);
-        btn_guardar.setEnabled(true);
-        btn_editar.setEnabled(false);
-        btn_eliminar.setEnabled(true);
-    }
-
-    public void desbloquear() {
-        this.txt_direccion.setEnabled(true);
-        this.txt_correo.setEnabled(true);
-        this.txt_telefono.setEnabled(true);
-        this.txt_nit.setEnabled(true);
-        this.txt_nombre.setEnabled(true);
-    }
-
-    public void editar(String editar) {
-
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LogoCRUD;
     private javax.swing.JButton btn_buscar;
     private javax.swing.JButton btn_cancelar;
-    public static javax.swing.JButton btn_editar;
     private javax.swing.JButton btn_eliminar;
     public static javax.swing.JButton btn_guardar;
     private javax.swing.JButton btn_lista1;
+    public static javax.swing.JButton btn_modificar;
     public static javax.swing.JButton btn_nuevo;
     private javax.swing.JDesktopPane jDP_RProveedor;
     private javax.swing.JLabel jLabel4;

@@ -4,6 +4,7 @@ import Clases.ComunicationPopUp;
 import Conexion.conexion;
 import Formularios_emergentes.Fmr_ListadoCosechas;
 import Formularios_emergentes.Fmr_TipoCosecha;
+import java.awt.Frame;
 import javax.swing.ImageIcon;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -14,7 +15,7 @@ import java.text.DateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
-public class RegistrarCosecha  extends javax.swing.JInternalFrame implements ComunicationPopUp   {
+public class RegistrarCosecha extends javax.swing.JInternalFrame implements ComunicationPopUp {
 
     conexion objConexion = new conexion();
     Connection con = objConexion.conexion();
@@ -27,11 +28,12 @@ public class RegistrarCosecha  extends javax.swing.JInternalFrame implements Com
         this.setTitle("AgroControl - Control Cosechas");
         setResizable(false);
         Bloquear();
+        BloqInicio();
         LlamarComboBox();
     }
-    
+
     @Override
-    public void updateBD(){
+    public void updateBD() {
         LlamarComboBox();
     }
 
@@ -60,9 +62,7 @@ public class RegistrarCosecha  extends javax.swing.JInternalFrame implements Com
                     guardar.executeUpdate();
 
                     JOptionPane.showMessageDialog(null, "Cosecha Registrada exitosamente");
-                    Bloquear();
                     guardar.close();
-                    Limpiar();
 
                 } catch (Exception e) {
 
@@ -97,7 +97,6 @@ public class RegistrarCosecha  extends javax.swing.JInternalFrame implements Com
                     modificar.executeUpdate();
 
                     JOptionPane.showMessageDialog(null, "Cosecha Modificada exitosamente");
-                    Bloquear();
                     modificar.close();
 
                 } catch (Exception e) {
@@ -128,7 +127,6 @@ public class RegistrarCosecha  extends javax.swing.JInternalFrame implements Com
                     eliminar.executeUpdate();
 
                     JOptionPane.showMessageDialog(null, "Cosecha Eliminada exitosamente");
-                    Limpiar();
                     eliminar.close();
 
                 } catch (Exception e) {
@@ -147,13 +145,6 @@ public class RegistrarCosecha  extends javax.swing.JInternalFrame implements Com
         RegistrarCosecha.cbo_TipoCosecha.setEnabled(true);
         RegistrarCosecha.txt_FechaSiembra.setEnabled(true);
         RegistrarCosecha.txt_FechaRecoleccion.setEnabled(true);
-        RegistrarCosecha.btn_guardar.setEnabled(true);
-        RegistrarCosecha.btn_modificar.setEnabled(true);
-        RegistrarCosecha.btn_cancelar.setEnabled(true);
-        RegistrarCosecha.btn_eliminar.setEnabled(true);
-        RegistrarCosecha.btn_TipoCosecha.setEnabled(true);
-        RegistrarCosecha.btn_nuevo.setEnabled(false);
-        RegistrarCosecha.btn_guardar.setEnabled(false);
         txt_IdCosecha.requestFocus();
     }
 
@@ -165,13 +156,6 @@ public class RegistrarCosecha  extends javax.swing.JInternalFrame implements Com
         cbo_TipoCosecha.setEnabled(false);
         txt_FechaSiembra.setEnabled(false);
         txt_FechaRecoleccion.setEnabled(false);
-        btn_guardar.setEnabled(false);
-        btn_modificar.setEnabled(false);
-        btn_cancelar.setEnabled(false);
-        btn_eliminar.setEnabled(false);
-        btn_TipoCosecha.setEnabled(false);
-        btn_nuevo.setEnabled(true);
-        btn_buscar.setEnabled(true);
         txt_IdCosecha.requestFocus();
     }
 
@@ -205,6 +189,36 @@ public class RegistrarCosecha  extends javax.swing.JInternalFrame implements Com
         }
     }
 
+    public void BloqInicio() {
+        btn_buscar.setEnabled(true);
+        btn_TipoCosecha.setEnabled(false);
+        btn_nuevo.setEnabled(true);
+        btn_guardar.setEnabled(false);
+        btn_modificar.setEnabled(false);
+        btn_cancelar.setEnabled(false);
+        btn_eliminar.setEnabled(false);
+    }
+
+    public void BloqBotonNuevo() {
+        btn_buscar.setEnabled(false);
+        btn_TipoCosecha.setEnabled(true);
+        btn_nuevo.setEnabled(false);
+        btn_guardar.setEnabled(true);
+        btn_modificar.setEnabled(false);
+        btn_cancelar.setEnabled(true);
+        btn_eliminar.setEnabled(false);
+    }
+
+    public void BloqBotonBuscar(){
+        btn_buscar.setEnabled(true);
+        btn_TipoCosecha.setEnabled(true);
+        btn_nuevo.setEnabled(false);
+        btn_guardar.setEnabled(false);
+        btn_modificar.setEnabled(true);
+        btn_cancelar.setEnabled(true);
+        btn_eliminar.setEnabled(true);
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -235,7 +249,7 @@ public class RegistrarCosecha  extends javax.swing.JInternalFrame implements Com
         txt_IdCosecha = new javax.swing.JTextField();
         txt_NombreCosecha = new javax.swing.JTextField();
         jP_Listado = new javax.swing.JPanel();
-        btn_lista1 = new javax.swing.JButton();
+        btn_lista = new javax.swing.JButton();
         jP_Botones = new javax.swing.JPanel();
         btn_nuevo = new javax.swing.JButton();
         btn_guardar = new javax.swing.JButton();
@@ -407,12 +421,12 @@ public class RegistrarCosecha  extends javax.swing.JInternalFrame implements Com
         jP_Listado.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jP_Listado.setPreferredSize(new java.awt.Dimension(730, 52));
 
-        btn_lista1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lista.png"))); // NOI18N
-        btn_lista1.setText("Mostrar listado de los Cosechas");
-        btn_lista1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btn_lista1.addActionListener(new java.awt.event.ActionListener() {
+        btn_lista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lista.png"))); // NOI18N
+        btn_lista.setText("Mostrar listado de los Cosechas");
+        btn_lista.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_lista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_lista1ActionPerformed(evt);
+                btn_listaActionPerformed(evt);
             }
         });
 
@@ -421,16 +435,16 @@ public class RegistrarCosecha  extends javax.swing.JInternalFrame implements Com
         jP_ListadoLayout.setHorizontalGroup(
             jP_ListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_ListadoLayout.createSequentialGroup()
-                .addContainerGap(261, Short.MAX_VALUE)
-                .addComponent(btn_lista1)
+                .addContainerGap(277, Short.MAX_VALUE)
+                .addComponent(btn_lista)
                 .addGap(272, 272, 272))
         );
         jP_ListadoLayout.setVerticalGroup(
             jP_ListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jP_ListadoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btn_lista1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btn_lista)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         jP_Botones.setBackground(new java.awt.Color(240, 255, 240));
@@ -557,52 +571,50 @@ public class RegistrarCosecha  extends javax.swing.JInternalFrame implements Com
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_TipoCosechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TipoCosechaActionPerformed
-        Fmr_TipoCosecha TipoCosecha = new Fmr_TipoCosecha();
+        Frame tipoCosecha = JOptionPane.getFrameForComponent(this);
+        Fmr_TipoCosecha TipoCosecha = new Fmr_TipoCosecha(tipoCosecha, true);
         TipoCosecha.setComu(this);
         TipoCosecha.setVisible(true);
-        TipoCosecha.toFront();
-//        TipoCosecha.setAlwaysOnTop(true);
     }//GEN-LAST:event_btn_TipoCosechaActionPerformed
 
     private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
         Guardar();
         Bloquear();
+        Limpiar();
+        BloqInicio();
     }//GEN-LAST:event_btn_guardarActionPerformed
 
-    private void btn_lista1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_lista1ActionPerformed
-        Fmr_ListadoCosechas Cosecha = new Fmr_ListadoCosechas();
+    private void btn_listaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_listaActionPerformed
+        Frame ListaCosecha = JOptionPane.getFrameForComponent(this);
+        Fmr_ListadoCosechas Cosecha = new Fmr_ListadoCosechas(ListaCosecha, true);
         Cosecha.setVisible(true);
-        //Cosecha.toFront();
-        //Cosecha.setAlwaysOnTop(true);
         Cosecha.TablaCosechas.setEnabled(false);
-    }//GEN-LAST:event_btn_lista1ActionPerformed
+    }//GEN-LAST:event_btn_listaActionPerformed
 
     private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
         Modificar(txt_IdCosecha.getText(), txt_NombreCosecha.getText(), cbo_TipoCultivo.getSelectedItem().toString(), cbo_TipoCosecha.getSelectedItem().toString(), txt_FechaSiembra.getDate(), txt_FechaRecoleccion.getDate());
+        Bloquear();
         Limpiar();
-        
+        BloqInicio();
     }//GEN-LAST:event_btn_modificarActionPerformed
 
     private void btn_nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevoActionPerformed
         Desbloquear();
         Limpiar();
-        btn_nuevo.setEnabled(false);
-        btn_eliminar.setEnabled(false);
-        btn_buscar.setEnabled(false);
-        btn_modificar.setEnabled(false);
+        BloqBotonNuevo();
     }//GEN-LAST:event_btn_nuevoActionPerformed
 
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
-        Fmr_ListadoCosechas Cosecha = new Fmr_ListadoCosechas();
-        Cosecha.setVisible(true);
-        //Cosecha.toFront();
-        //Cosecha.setAlwaysOnTop(true);
-        
+        Frame ListaCosecha = JOptionPane.getFrameForComponent(this);
+        Fmr_ListadoCosechas Cosecha = new Fmr_ListadoCosechas(ListaCosecha, true);
+        Cosecha.show();
+        BloqBotonBuscar();
     }//GEN-LAST:event_btn_buscarActionPerformed
 
     private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
-        Limpiar();
         Bloquear();
+        Limpiar();
+        BloqInicio();
     }//GEN-LAST:event_btn_cancelarActionPerformed
 
     private void txt_IdCosechaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_IdCosechaKeyTyped
@@ -615,6 +627,8 @@ public class RegistrarCosecha  extends javax.swing.JInternalFrame implements Com
     private void btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarActionPerformed
         Eliminar(txt_IdCosecha.getText());
         Bloquear();
+        Limpiar();
+        BloqInicio();
     }//GEN-LAST:event_btn_eliminarActionPerformed
 
 
@@ -625,7 +639,7 @@ public class RegistrarCosecha  extends javax.swing.JInternalFrame implements Com
     private static javax.swing.JButton btn_cancelar;
     private static javax.swing.JButton btn_eliminar;
     private static javax.swing.JButton btn_guardar;
-    private javax.swing.JButton btn_lista1;
+    private javax.swing.JButton btn_lista;
     private static javax.swing.JButton btn_modificar;
     private static javax.swing.JButton btn_nuevo;
     public static javax.swing.JComboBox<String> cbo_TipoCosecha;
