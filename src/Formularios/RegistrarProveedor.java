@@ -99,6 +99,7 @@ public class RegistrarProveedor extends javax.swing.JInternalFrame {
         btn_buscar.setEnabled(true);
         btn_nuevo.setEnabled(true);
         btn_guardar.setEnabled(false);
+        btn_modificar.setEnabled(false);
         btn_cancelar.setEnabled(false);
         btn_eliminar.setEnabled(false);
     }
@@ -499,9 +500,6 @@ public class RegistrarProveedor extends javax.swing.JInternalFrame {
                 mostrardatos();
                 limpiar();
 
-                btn_nuevo.setEnabled(true);
-                btn_guardar.setEnabled(true);
-                btn_eliminar.setEnabled(true);
                 BloqInicio();
             }
         }
