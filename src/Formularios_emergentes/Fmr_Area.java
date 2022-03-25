@@ -4,6 +4,7 @@ import Clases.ComunicationPopUp;
 import Clases.Consumos;
 import Conexion.conexion;
 import Formularios.RegistrarConsumo;
+import java.awt.Frame;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
@@ -30,7 +31,6 @@ public class Fmr_Area extends javax.swing.JDialog implements ComunicationPopUp {
         initComponents();
         setTitle("AgroControl - Crear Area");
         this.setLocationRelativeTo(null);
-        setResizable(false);
     }
 
     @Override
@@ -158,6 +158,11 @@ public class Fmr_Area extends javax.swing.JDialog implements ComunicationPopUp {
         btn_buscar.setText("Buscar");
         btn_buscar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_buscar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btn_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_buscarActionPerformed(evt);
+            }
+        });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("Ancho:");
@@ -332,6 +337,12 @@ public class Fmr_Area extends javax.swing.JDialog implements ComunicationPopUp {
     private void btn_elminar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_elminar1ActionPerformed
         Eliminar(txt_nombreArea.getText());
     }//GEN-LAST:event_btn_elminar1ActionPerformed
+
+    private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
+        Frame Area = JOptionPane.getFrameForComponent(this);
+        Fmr_ListadoArea ventana = new Fmr_ListadoArea(Area, true);
+        ventana.show();
+    }//GEN-LAST:event_btn_buscarActionPerformed
 
     /**
      * @param args the command line arguments
