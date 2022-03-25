@@ -83,8 +83,8 @@ public class Fmr_Area extends javax.swing.JDialog implements ComunicationPopUp {
             if (confirmar == JOptionPane.YES_OPTION) {
                 try {
                     // Definir Sentencia en base de Datos SQL
-                    PreparedStatement eliminar = con.prepareStatement("DELETE FROM Area WHERE Nombre_Area=?");
-                    eliminar.setString(1, txt_nombreArea.getText());
+                    PreparedStatement eliminar = con.prepareStatement("DELETE FROM Area WHERE ID_Area=?");
+                    eliminar.setString(1, txt_ID_Area.getText());
 
                     // Ejecuta la sentencia y obtiene el resultado de eliminar
                     eliminar.executeUpdate();
