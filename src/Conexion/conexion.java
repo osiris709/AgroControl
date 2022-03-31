@@ -12,7 +12,7 @@ import java.sql.SQLException;
  */
 public class conexion {
 
-    String iniciarConexion = "jdbc:sqlite:C:\\Users\\Osiris\\Documents\\NetBeansProjects\\Repositorios\\AgroControl/Agrocontrol.s3db";
+    String iniciarConexion = "jdbc:sqlite:C:\\Users\\usuario\\Documents\\NetBeansProjects\\Repositorios\\AgroControl/Agrocontrol.s3db";
     Connection conn = null;
 
     public Connection conexion() {
@@ -53,7 +53,7 @@ public class conexion {
     
     public ResultSet consultarRegistro(String strSentenciaSQL){
         try {
-            PreparedStatement pstm= conn.prepareStatement(strSentenciaSQL);
+           PreparedStatement pstm= conn.prepareStatement(strSentenciaSQL);
            ResultSet respuesta = pstm.executeQuery();
            return respuesta;
         } catch (Exception e) {
