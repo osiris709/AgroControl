@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Formularios_emergentes;
 
 import Conexion.conexion;
@@ -18,42 +14,22 @@ import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
-/**
- *
- * @author ACER
- */
-public class Fmr_ListadoProductos extends javax.swing.JFrame {
+public class Fmr_ListadoProductos extends javax.swing.JDialog {
 
     conexion conn = new conexion();
     Connection iniciarConexion = conn.conexion();
-
-    public Fmr_ListadoProductos() {
+    
+    public Fmr_ListadoProductos(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
-        this.setTitle("Lista Proveedores");
+        this.setTitle("Lista Productos");
         this.setLocationRelativeTo(null);
         setResizable(false);
         MostrarlistadoProductos();
     }
-//        public void EliminarDatosTabla (){ //SELECCIONAR DATOS DE LA TABLA Y PODER ELIMINARLO
-//        try {
-//            int filaSeleccionada= TablaCliente.getSelectedRow();
-//            
-//            String Sql="delete From Usuarios where Codigo = " + TablaCliente.getValueAt(filaSeleccionada,0);
-//            
-//            Statement st= iniciarConexion.createStatement();
-//            
-//            int n = st.executeUpdate(Sql);
-//            
-//            if (n>=0){
-//                JOptionPane.showConfirmDialog(null, "Usuario eliminado Satisfactoriamente");
-//                
-//            }
-//        } catch (Exception e){
-//            JOptionPane.showConfirmDialog(null, "Error al Eliminar Usuario" + e.getMessage());
-//        }
-//        }
 
-    public void MostrarlistadoProductos() {
+
+        public void MostrarlistadoProductos() {
 
         DefaultTableModel tcliente = new DefaultTableModel();
         tcliente.addColumn("Codigo");
@@ -88,7 +64,7 @@ public class Fmr_ListadoProductos extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e + "Error en la Consulta");
         }
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -114,7 +90,6 @@ public class Fmr_ListadoProductos extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 600));
 
         jDP_ListaProductos.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -237,11 +212,22 @@ public class Fmr_ListadoProductos extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Fmr_ListadoProductos().setVisible(true);
+                Fmr_ListadoProductos dialog = new Fmr_ListadoProductos(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
@@ -254,5 +240,4 @@ public class Fmr_ListadoProductos extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
-
 }

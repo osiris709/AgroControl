@@ -1,8 +1,9 @@
 package Ventanas;
 
 import Clases.Metodos;
-import Formularios_emergentes.Fmr_ListadoUsuarios;
 import Conexion.conexion;
+import Formularios_emergentes.Fmr_ListadoUsuarios;
+import java.awt.Frame;
 import java.awt.HeadlessException;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -563,7 +564,8 @@ public class MenuSuper extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btn_listaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_listaActionPerformed
-        Fmr_ListadoUsuarios abrir = new Fmr_ListadoUsuarios();
+        Frame ListaUsuarios = JOptionPane.getFrameForComponent(this);
+        Fmr_ListadoUsuarios abrir = new Fmr_ListadoUsuarios(ListaUsuarios, true);
         abrir.setVisible(true);
     }//GEN-LAST:event_btn_listaActionPerformed
 

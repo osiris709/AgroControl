@@ -5,7 +5,8 @@ import java.awt.Component;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
-import Formularios_emergentes.Fmr_ListadoProductos ;
+import Formularios_emergentes.Fmr_ListadoProductos;
+import java.awt.Frame;
 import javax.swing.JTextField;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -21,10 +22,6 @@ public class RegistrarProducto extends javax.swing.JInternalFrame {
 
         this.setTitle("AgroControl - Registrar Productos");
         setResizable(false);
-
-        Fmr_ListadoProductos TablaListadoProductos = new Fmr_ListadoProductos();
-        TablaListadoProductos.setVisible(false);
-
     }
 
     public void bloquear() {
@@ -483,7 +480,8 @@ public class RegistrarProducto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_guardarActionPerformed
 
     private void btn_listaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_listaActionPerformed
-        Fmr_ListadoProductos ventana = new Fmr_ListadoProductos();
+        Frame ListaProductos = JOptionPane.getFrameForComponent(this);
+        Fmr_ListadoProductos ventana = new Fmr_ListadoProductos(ListaProductos, true);
         ventana.setVisible(true);
     }//GEN-LAST:event_btn_listaActionPerformed
 
