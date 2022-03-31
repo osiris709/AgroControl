@@ -22,7 +22,7 @@ public class Fmr_ListadoCosechas extends javax.swing.JDialog {
     public Fmr_ListadoCosechas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.setTitle("Lista Cosechas");
+        this.setTitle("Listado Cosechas");
         this.setLocationRelativeTo(null);
         setResizable(false);
         MostrarListaCosechas();

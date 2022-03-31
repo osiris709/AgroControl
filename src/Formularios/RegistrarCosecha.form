@@ -133,11 +133,11 @@
                               <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="txt_IdCosecha" min="-2" pref="200" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+                                      <Component id="txt_IdCosecha" min="-2" pref="185" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
                                       <Component id="btn_buscar" min="-2" pref="100" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="txt_NombreCosecha" alignment="0" min="-2" pref="522" max="-2" attributes="0"/>
+                                  <Component id="txt_NombreCosecha" min="-2" pref="522" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
