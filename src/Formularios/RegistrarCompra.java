@@ -19,10 +19,6 @@ import javax.swing.JTextField;
  */
 public class RegistrarCompra extends javax.swing.JInternalFrame {
 
-    public static void main(String[] args) {
-
-    }
-
     public RegistrarCompra() {
         initComponents();
         MostrarProducto();
@@ -331,7 +327,6 @@ public class RegistrarCompra extends javax.swing.JInternalFrame {
         ValorTotal.setText("");
         FechaCompra.setDate(null);
         //  jDate_FechaVencimiento.setText("yyyy-MM-dd");
-
     }
 
     private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
@@ -362,27 +357,22 @@ public class RegistrarCompra extends javax.swing.JInternalFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e + "No se logro registrar el usuario \n Intente nuevamente.");
         }
-
     }//GEN-LAST:event_btn_guardarActionPerformed
 
     private void btn_buscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarProductoActionPerformed
         Fmr_ProductosCompra ventana = new Fmr_ProductosCompra();
         ventana.setVisible(true);
-
-
     }//GEN-LAST:event_btn_buscarProductoActionPerformed
 
 
     private void btn_buscarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarProveedorActionPerformed
         Fmr_CompraProveedor ventana = new Fmr_CompraProveedor();
         ventana.setVisible(true);
-
     }//GEN-LAST:event_btn_buscarProveedorActionPerformed
 
     private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
         bloquear();
         borrar();
-
     }//GEN-LAST:event_btn_cancelarActionPerformed
 
     private void btn_listaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_listaActionPerformed
