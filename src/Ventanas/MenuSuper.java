@@ -1,10 +1,8 @@
 package Ventanas;
 
-<<<<<<< Updated upstream
+
 import Clases.Metodos;
-=======
 import Formularios_emergentes.Fmr_ListadoUsuarios;
->>>>>>> Stashed changes
 import Conexion.conexion;
 import Formularios_emergentes.Fmr_ListadoUsuarios;
 import java.awt.Frame;
@@ -62,6 +60,7 @@ public class MenuSuper extends javax.swing.JFrame {
             try {
                 PreparedStatement guardar = iniciarConexion.prepareStatement("INSERT INTO Usuarios (Id, TipoUsuario, Usuario, Contrasena, Nombres, Apellidos, Direccion, Telefono, Email) VALUES (?,?,?,?,?,?,?,?,?)");
 
+                guardar.setString(1, null);
                 guardar.setString(2, jTipo.getSelectedItem().toString());
                 guardar.setString(3, txt_Alias.getText());
                 guardar.setString(4, txt_Contra.getText());

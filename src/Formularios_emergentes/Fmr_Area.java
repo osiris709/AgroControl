@@ -50,6 +50,7 @@ public class Fmr_Area extends javax.swing.JDialog implements ComunicationPopUp {
             // Guardar datos en la base de datos
             try {
                 PreparedStatement guardar = con.prepareStatement("INSERT INTO Area (ID_Area, Nombre_Area, Ancho_Area, Largo_Area) VALUES (?,?,?,?)");
+                guardar.setString(1, null);
                 guardar.setString(2, txt_nombreArea.getText());
                 guardar.setString(3, txt_AnchoArea.getText());
                 guardar.setString(4, txt_LargoArea.getText());

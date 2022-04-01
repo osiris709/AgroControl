@@ -199,7 +199,7 @@ public class Fmr_ListadoCosechas extends javax.swing.JDialog {
 
     private void TablaCosechasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaCosechasMouseClicked
 
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
 
         String fechaSiembra = TablaCosechas.getValueAt(TablaCosechas.getSelectedRow(), 4).toString().trim();
         String fechaRecoleccion = TablaCosechas.getValueAt(TablaCosechas.getSelectedRow(), 5).toString().trim();
