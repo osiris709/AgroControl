@@ -1,10 +1,5 @@
 package Ventanas;
 
-<<<<<<< Updated upstream
-import Clases.Metodos;
-=======
-import Formularios_emergentes.Fmr_ListadoUsuarios;
->>>>>>> Stashed changes
 import Conexion.conexion;
 import Formularios_emergentes.Fmr_ListadoUsuarios;
 import java.awt.Frame;
