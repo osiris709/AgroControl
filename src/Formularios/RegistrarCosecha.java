@@ -148,7 +148,7 @@ public class RegistrarCosecha extends javax.swing.JInternalFrame implements Comu
         txt_IdCosecha.requestFocus();
     }
 
-    public void Bloquear() {
+    public static void Bloquear() {
 
         txt_IdCosecha.setEnabled(false);
         txt_NombreCosecha.setEnabled(false);
@@ -360,8 +360,8 @@ public class RegistrarCosecha extends javax.swing.JInternalFrame implements Comu
                         .addGap(78, 78, 78)
                         .addGroup(jP_DatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jP_DatosLayout.createSequentialGroup()
-                                .addComponent(txt_IdCosecha, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(54, 54, 54)
+                                .addComponent(txt_IdCosecha, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(69, 69, 69)
                                 .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txt_NombreCosecha, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jP_DatosLayout.createSequentialGroup()
@@ -586,9 +586,10 @@ public class RegistrarCosecha extends javax.swing.JInternalFrame implements Comu
 
     private void btn_listaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_listaActionPerformed
         Frame ListaCosecha = JOptionPane.getFrameForComponent(this);
-        Fmr_ListadoCosechas Cosecha = new Fmr_ListadoCosechas(ListaCosecha, true);
+        Fmr_ListadoCosechas Cosecha = new Fmr_ListadoCosechas(ListaCosecha, false);
         Cosecha.setVisible(true);
         Cosecha.TablaCosechas.setEnabled(false);
+        Cosecha.txt_buscar.setEnabled(false);
     }//GEN-LAST:event_btn_listaActionPerformed
 
     private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
