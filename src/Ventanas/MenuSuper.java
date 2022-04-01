@@ -1,11 +1,7 @@
 package Ventanas;
 
-<<<<<<< HEAD
 
-import Clases.Metodos;
 import Formularios_emergentes.Fmr_ListadoUsuarios;
-=======
->>>>>>> bd6c015d76fdb7525aac787f7305a9bd423a2fcc
 import Conexion.conexion;
 import Formularios_emergentes.Fmr_ListadoUsuarios;
 import java.awt.Frame;
