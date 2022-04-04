@@ -229,8 +229,6 @@ public final class RegistrarProducto extends javax.swing.JInternalFrame {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
-        setIconifiable(true);
-        setMaximizable(true);
         setResizable(true);
         setTitle("Registrar Productos");
         setAutoscrolls(true);
@@ -370,7 +368,7 @@ public final class RegistrarProducto extends javax.swing.JInternalFrame {
             .addGroup(Panel_ListadoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btn_lista)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         Panel_Botones.setBackground(new java.awt.Color(240, 255, 240));

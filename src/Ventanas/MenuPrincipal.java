@@ -14,17 +14,16 @@ import java.awt.Image;
 import java.awt.Graphics;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
-import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author SENA
+ * @author Osiris
  */
 public class MenuPrincipal extends javax.swing.JFrame {
 
-    /**
+     /**
      * Creates new form MenuPrincipal
      */
     public MenuPrincipal() {
@@ -50,7 +49,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.dispose();
     }
 
-    public boolean JInternalFrames_Abiertos(JInternalFrame jif) {
+    public static boolean JInternalFrames_Abiertos(JInternalFrame jif) {
         // Creamos un metodo publico de tipo boolean.
         JInternalFrame[] jif_Activos = MenuPrincipal.mostrar.getAllFrames();
         // Este arreglo almacena todos los JInternalFrames que esten abierto en el jDesktopPane.

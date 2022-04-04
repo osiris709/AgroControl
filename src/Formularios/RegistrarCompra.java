@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author USUARIO
+ * @author Osiris
  */
 public class RegistrarCompra extends javax.swing.JInternalFrame {
 
@@ -61,8 +61,6 @@ public class RegistrarCompra extends javax.swing.JInternalFrame {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
-        setIconifiable(true);
-        setMaximizable(true);
         setResizable(true);
         setTitle("Registrar Compras");
         setAutoscrolls(true);

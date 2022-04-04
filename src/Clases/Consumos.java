@@ -31,7 +31,7 @@ public class Consumos {
                     ResultSet resultado = leer.executeQuery(SSQL);
 
                     //LLenamos nuestro ComboBox
-
+                    //cbo_Cosecha.addItem("Seleccionar");
                     while (resultado.next()) {
 
                         cbo_Cosecha.addItem(resultado.getString("Nombre_Cosecha"));
@@ -53,7 +53,6 @@ public class Consumos {
                     ResultSet resultado = leer.executeQuery(SSQL2);
 
                     //LLenamos nuestro ComboBox
-    
                     while (resultado.next()) {
 
                         cbo_Cosecha.addItem(resultado.getString("Nombre_Cosecha"));
@@ -64,6 +63,9 @@ public class Consumos {
                     JOptionPane.showMessageDialog(null, e);
                 }
                 break;
+                
+            default:
+                cbo_Cosecha.addItem("Seleccionar");
         }
     }
 
@@ -77,7 +79,8 @@ public class Consumos {
             ResultSet resultado = leer.executeQuery(SSQL);
 
             //LLenamos nuestro ComboBox
-         
+            cbo_Area.addItem("Seleccionar");
+
             while (resultado.next()) {
 
                 cbo_Area.addItem(resultado.getString("Nombre_Area"));
@@ -91,7 +94,7 @@ public class Consumos {
 
     public void Cargar_TipoCosecha(JComboBox cbo_TipoCosecha, String Cosecha) {
 
-        String SSQL = "SELECT Tipo_Cosecha FROM Cosecha WHERE Nombre_Cosecha= '" +Cosecha+ "'ORDER BY Tipo_Cosecha ASC";
+        String SSQL = "SELECT Tipo_Cosecha FROM Cosecha WHERE Nombre_Cosecha= '" + Cosecha + "'ORDER BY Tipo_Cosecha ASC";
 
         try {
 
@@ -99,6 +102,7 @@ public class Consumos {
             ResultSet resultado = leer.executeQuery(SSQL);
 
             //LLenamos nuestro ComboBox
+            //cbo_TipoCosecha.addItem("Seleccionar");
 
             while (resultado.next()) {
 

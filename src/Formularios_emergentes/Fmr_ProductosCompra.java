@@ -5,78 +5,70 @@
 package Formularios_emergentes;
 
 import Conexion.conexion;
-import Formularios.RegistrarCompra;
-import static Formularios_emergentes.Fmr_MostrarListadoProductos.TablaCliente;
+import Formularios.RegistrarConsumo;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JTable;
-import Formularios.RegistrarProducto;
-
 
 public class Fmr_ProductosCompra extends javax.swing.JFrame {
 
     conexion conn = new conexion();
     Connection iniciarConexion = conn.conexion();
+
     /**
      * Creates new form Productos_compra
      */
     public Fmr_ProductosCompra() {
         initComponents();
-        
+
         this.setTitle("AgroControl");
         this.setLocationRelativeTo(null);
         setResizable(false);
-        
+
         MostrarDatosProductosCompra();
-        
+
     }
 
-   
-    
-    public void MostrarDatosProductosCompra () {
-            
-    DefaultTableModel tclienteProductosCompra = new DefaultTableModel();
-    tclienteProductosCompra.addColumn("Codigo");
-    tclienteProductosCompra.addColumn("Nombre Producto");
-    TablaDatosPC.setModel(tclienteProductosCompra);
-    
-    String[] datos = new String[2];
-    
-     try {
+    public void MostrarDatosProductosCompra() {
+
+        DefaultTableModel tclienteProductosCompra = new DefaultTableModel();
+        tclienteProductosCompra.addColumn("Codigo");
+        tclienteProductosCompra.addColumn("Nombre Producto");
+        TablaProductos.setModel(tclienteProductosCompra);
+
+        String[] datos = new String[2];
+
+        try {
             Statement leer = iniciarConexion.createStatement();
             ResultSet resultado = leer.executeQuery("SELECT Codigo,Nombre FROM Productos");
 
             while (resultado.next()) {
                 datos[0] = resultado.getString(1);
                 datos[1] = resultado.getString(2);
-               
+
                 tclienteProductosCompra.addRow(datos);
             }
-            TablaDatosPC.setModel(tclienteProductosCompra);
+            TablaProductos.setModel(tclienteProductosCompra);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e + "Error en la Consulta");
         }
-    
-}
-    
-    
-    
-    
-    
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        TablaDatosPC = new javax.swing.JTable();
+        TablaProductos = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setFocusable(false);
+        setFocusableWindowState(false);
 
-        TablaDatosPC.setModel(new javax.swing.table.DefaultTableModel(
+        TablaProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -92,15 +84,15 @@ public class Fmr_ProductosCompra extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        TablaDatosPC.addMouseListener(new java.awt.event.MouseAdapter() {
+        TablaProductos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TablaDatosPCMouseClicked(evt);
+                TablaProductosMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(TablaDatosPC);
-        if (TablaDatosPC.getColumnModel().getColumnCount() > 0) {
-            TablaDatosPC.getColumnModel().getColumn(1).setResizable(false);
-            TablaDatosPC.getColumnModel().getColumn(1).setPreferredWidth(300);
+        jScrollPane2.setViewportView(TablaProductos);
+        if (TablaProductos.getColumnModel().getColumnCount() > 0) {
+            TablaProductos.getColumnModel().getColumn(1).setResizable(false);
+            TablaProductos.getColumnModel().getColumn(1).setPreferredWidth(300);
         }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -128,17 +120,14 @@ public class Fmr_ProductosCompra extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TablaDatosPCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaDatosPCMouseClicked
-      
-        if (evt.getClickCount() ==1){
-           
-           JTable receptorProductos = (JTable) evt.getSource();
-           RegistrarCompra.Producto.setText(receptorProductos.getModel().getValueAt(receptorProductos.getSelectedRow(),0).toString());
-         //  RegistrarCompras.Producto.setText(receptorProductos.getModel().getValueAt(receptorProductos.getSelectedRow(),1).toString());
-           
-       }
-       this.hide();
-    }//GEN-LAST:event_TablaDatosPCMouseClicked
+    private void TablaProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaProductosMouseClicked
+
+        if (evt.getClickCount() == 1) {
+
+            RegistrarConsumo.txt_producto.setText(TablaProductos.getModel().getValueAt(TablaProductos.getSelectedRow(), 1).toString());
+        }
+        this.hide();
+    }//GEN-LAST:event_TablaProductosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -179,10 +168,9 @@ public class Fmr_ProductosCompra extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JTable TablaDatosPC;
+    public static javax.swing.JTable TablaProductos;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 
-   
 }

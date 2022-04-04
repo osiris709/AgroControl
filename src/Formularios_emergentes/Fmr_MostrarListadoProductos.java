@@ -23,6 +23,10 @@ public final class Fmr_MostrarListadoProductos extends javax.swing.JFrame {
 
     public Fmr_MostrarListadoProductos() {
         initComponents();
+        
+        setTitle("AgroControl - Lista de Productos");
+        setLocationRelativeTo(null);
+        
         MostrarlistadoProductos();
         bloquearListado();
     }
