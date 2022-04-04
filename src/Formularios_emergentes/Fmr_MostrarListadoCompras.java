@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Formularios_emergentes;
 
 import Conexion.conexion;
@@ -11,8 +7,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import java.util.Date;
-
 
 public class Fmr_MostrarListadoCompras extends javax.swing.JFrame {
 
@@ -21,9 +15,10 @@ public class Fmr_MostrarListadoCompras extends javax.swing.JFrame {
     
     public Fmr_MostrarListadoCompras() {
         initComponents();
+        setTitle("AgroControl - Listado de Compras");
+        setLocationRelativeTo(null);
         MostrarlistadoProductos();
     }
-
     
      public void MostrarlistadoProductos() {
 
@@ -35,10 +30,7 @@ public class Fmr_MostrarListadoCompras extends javax.swing.JFrame {
         tclienteListadoCompras.addColumn("Cantidad");
         tclienteListadoCompras.addColumn("Valor por Unidad");
         tclienteListadoCompras.addColumn("Valor Total");
-                
-
-
-
+              
         TablaCompras.setModel(tclienteListadoCompras);
             
         String[] datos = new String[7];
@@ -55,10 +47,7 @@ public class Fmr_MostrarListadoCompras extends javax.swing.JFrame {
                 datos[4] = resultado.getString(5);
                 datos[5] = resultado.getString(6);
                 datos[6] = resultado.getString(7);
-                
-            
-                
-               
+     
                 tclienteListadoCompras.addRow(datos);
             }
             TablaCompras.setModel(tclienteListadoCompras);
@@ -74,7 +63,7 @@ public class Fmr_MostrarListadoCompras extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaCompras = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         TablaCompras.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -98,8 +87,9 @@ public class Fmr_MostrarListadoCompras extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 25, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();

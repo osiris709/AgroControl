@@ -11,6 +11,7 @@ import java.awt.Image;
 import java.awt.event.ItemEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -23,14 +24,12 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
     public RegistrarConsumo() {
         initComponents();
         cbo_TipoCultivo.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                //System.out.println("item: " + cbo_TipoCultivo.getSelectedItem().toString());
             }
+        });
 
-        });  
-        
         cargar_combobox.Cargar_Area(cbo_Area);
     }
 
@@ -41,6 +40,34 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
         cargar_combobox.Cargar_Cosecha(cbo_Cosecha, cbo_TipoCultivo.getSelectedItem().toString());
         cargar_combobox.Cargar_Area(cbo_Area);
 
+    }
+
+    public void agregar() {
+
+        if (txt_producto.getText().equals("") || txt_cantidad.getText().equals("")) {
+
+            javax.swing.JOptionPane.showMessageDialog(this, "Obligatorio llenar todos los campos \n", "AVISO!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+
+        } else {
+
+            //obtener el modelo de la tabla sobre el cual trabajaremos y agregamos las columnas.
+            DefaultTableModel modelo = (DefaultTableModel) TablaProductos.getModel();
+
+            Object[] fila = new Object[2];
+
+            //Almacenamos los datos de acuerdo al orden de las columnas de la tabla.
+            fila[0] = txt_producto.getText();
+            fila[1] = txt_cantidad.getText();
+
+            //Agregamos el array al modelo de la tabla.
+            modelo.addRow(fila);
+
+            txt_producto.setText("");
+            txt_cantidad.setText("");
+
+            //Aplicamos el modelo a la tabla.
+            TablaProductos.setModel(modelo);
+        }
     }
 
     /**
@@ -76,18 +103,18 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
         cbo_Cosecha = new javax.swing.JComboBox<>();
         btn_CrearArea = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TablaProductos = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         cbo_TipoCultivo = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
-        txt_producto1 = new javax.swing.JTextField();
+        txt_cantidad = new javax.swing.JTextField();
+        btn_eliminar_producto = new javax.swing.JButton();
+        btn_agregar_producto = new javax.swing.JButton();
         jP_Listado = new javax.swing.JPanel();
         btn_lista = new javax.swing.JButton();
         jP_Botones = new javax.swing.JPanel();
         btn_nuevo = new javax.swing.JButton();
         btn_guardar = new javax.swing.JButton();
-        btn_editar = new javax.swing.JButton();
-        btn_elminar = new javax.swing.JButton();
         btn_cancelar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -148,22 +175,26 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
             }
         });
 
-        jTable1.setAutoCreateRowSorter(true);
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TablaProductos.setAutoCreateRowSorter(true);
+        TablaProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "PRODUCTO", "CANTIDAD"
             }
-        ));
-        jTable1.setToolTipText("");
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        TablaProductos.setToolTipText("");
+        TablaProductos.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(TablaProductos);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Tipo de Cultivo:");
@@ -178,6 +209,19 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel8.setText("Cantidad:");
 
+        btn_eliminar_producto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/eliminar2.png"))); // NOI18N
+        btn_eliminar_producto.setText("Eliminar");
+        btn_eliminar_producto.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        btn_agregar_producto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Nuevo2.png"))); // NOI18N
+        btn_agregar_producto.setText("Agregar");
+        btn_agregar_producto.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_agregar_producto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_agregar_productoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jP_DatosLayout = new javax.swing.GroupLayout(jP_Datos);
         jP_Datos.setLayout(jP_DatosLayout);
         jP_DatosLayout.setHorizontalGroup(
@@ -185,6 +229,10 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
             .addGroup(jP_DatosLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(jP_DatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jP_DatosLayout.createSequentialGroup()
+                        .addComponent(btn_agregar_producto, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btn_eliminar_producto, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 672, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jP_DatosLayout.createSequentialGroup()
                         .addGroup(jP_DatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -217,17 +265,17 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
                             .addGroup(jP_DatosLayout.createSequentialGroup()
                                 .addComponent(jLabel8)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(txt_producto1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txt_cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jP_DatosLayout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(cbo_TipoCultivo, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(0, 27, Short.MAX_VALUE))
+                .addGap(0, 45, Short.MAX_VALUE))
         );
         jP_DatosLayout.setVerticalGroup(
             jP_DatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jP_DatosLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
+                .addContainerGap()
                 .addGroup(jP_DatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jP_DatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(txt_fechaConsumo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -253,10 +301,14 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
                         .addComponent(txt_producto, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
-                    .addComponent(txt_producto1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                    .addComponent(txt_cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jP_DatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_eliminar_producto)
+                    .addComponent(btn_agregar_producto))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19))
+                .addContainerGap())
         );
 
         jP_Listado.setBackground(new java.awt.Color(240, 255, 240));
@@ -299,14 +351,6 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
         btn_guardar.setText("Guardar");
         btn_guardar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        btn_editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/editar2.png"))); // NOI18N
-        btn_editar.setText("Editar");
-        btn_editar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
-        btn_elminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/eliminar2.png"))); // NOI18N
-        btn_elminar.setText("Eliminar");
-        btn_elminar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-
         btn_cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/desactivar.png"))); // NOI18N
         btn_cancelar.setText("Cancelar");
         btn_cancelar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -316,25 +360,19 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
         jP_BotonesLayout.setHorizontalGroup(
             jP_BotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jP_BotonesLayout.createSequentialGroup()
-                .addGap(38, 38, 38)
+                .addGap(133, 133, 133)
                 .addComponent(btn_nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addGap(97, 97, 97)
                 .addComponent(btn_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addComponent(btn_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addComponent(btn_elminar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addGap(114, 114, 114))
         );
         jP_BotonesLayout.setVerticalGroup(
             jP_BotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jP_BotonesLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(jP_BotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_elminar)
-                    .addComponent(btn_editar)
                     .addComponent(btn_guardar)
                     .addComponent(btn_nuevo)
                     .addComponent(btn_cancelar))
@@ -357,7 +395,7 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
                     .addComponent(jP_Datos, javax.swing.GroupLayout.DEFAULT_SIZE, 748, Short.MAX_VALUE)
                     .addComponent(LogoCRUD)
                     .addComponent(jP_Listado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
         jDP_RConsumoLayout.setVerticalGroup(
             jDP_RConsumoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -411,13 +449,18 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
         }
     }//GEN-LAST:event_cbo_TipoCultivoItemStateChanged
 
+    private void btn_agregar_productoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregar_productoActionPerformed
+        agregar();
+    }//GEN-LAST:event_btn_agregar_productoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LogoCRUD;
+    private javax.swing.JTable TablaProductos;
     private javax.swing.JButton btn_CrearArea;
+    private javax.swing.JButton btn_agregar_producto;
     private javax.swing.JButton btn_buscar;
     private javax.swing.JButton btn_cancelar;
-    private javax.swing.JButton btn_editar;
-    private javax.swing.JButton btn_elminar;
+    private javax.swing.JButton btn_eliminar_producto;
     private javax.swing.JButton btn_guardar;
     private javax.swing.JButton btn_lista;
     private javax.swing.JButton btn_nuevo;
@@ -437,10 +480,9 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
     private javax.swing.JPanel jP_Datos;
     private javax.swing.JPanel jP_Listado;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField txt_cantidad;
     private com.toedter.calendar.JDateChooser txt_fechaConsumo;
     private javax.swing.JTextField txt_producto;
-    private javax.swing.JTextField txt_producto1;
     // End of variables declaration//GEN-END:variables
 
 }
