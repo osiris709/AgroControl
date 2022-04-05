@@ -3,7 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/Users/usuario/Documents/NetBeansProjects/Repositorios/AgroControl/src/Formularios/RegistrarCompra.java</file>
+=======
+            <file>file:/C:/Users/Osiris/Documents/NetBeansProjects/Repositorios/AgroControl/src/Formularios/RegistrarConsumo.java</file>
+            <file>file:/C:/Users/Osiris/Documents/NetBeansProjects/Repositorios/AgroControl/src/Formularios_emergentes/Fmr_ListadoArea.java</file>
+            <file>file:/C:/Users/Osiris/Documents/NetBeansProjects/Repositorios/AgroControl/src/Formularios_emergentes/Fmr_Area.java</file>
+            <file>file:/C:/Users/Osiris/Documents/NetBeansProjects/Repositorios/AgroControl/src/Clases/Consumos.java</file>
+>>>>>>> 9df3544830ce503c6b227497cbc02d6abfcc3311
         </group>
     </open-files>
 </project-private>

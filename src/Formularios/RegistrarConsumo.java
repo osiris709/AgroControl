@@ -269,8 +269,6 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setText("Area:");
 
-        cbo_Area.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
-
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel10.setText("Cosecha:");
 
