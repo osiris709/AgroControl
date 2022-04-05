@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import Formularios_emergentes.Fmr_ProductosCompra;
 import Formularios_emergentes.Fmr_MostrarListadoCompras;
 import java.awt.Component;
+import java.awt.Frame;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.table.DefaultTableModel;
@@ -364,6 +365,7 @@ public class RegistrarCompra extends javax.swing.JInternalFrame {
 
 
     private void btn_buscarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarProveedorActionPerformed
+
         Fmr_CompraProveedor ventana = new Fmr_CompraProveedor();
         ventana.setVisible(true);
     }//GEN-LAST:event_btn_buscarProveedorActionPerformed
