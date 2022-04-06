@@ -59,7 +59,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
             // Validamos con un if si nuestro arreglo en la posición i es igual al JInternalFrame que esta activo en el jDesktopPane, si es igual devolverá true.
             if (jif.getClass().isInstance(jif_Activos[i])) {
-                JOptionPane.showMessageDialog(null, "La ventana que esta intentando abrir ya esta abierta.", "Información", JOptionPane.INFORMATION_MESSAGE);
+                //JOptionPane.showMessageDialog(null, "La ventana que esta intentando abrir ya esta abierta.", "Información", JOptionPane.INFORMATION_MESSAGE);
                 return true;
             }
         }
@@ -412,42 +412,37 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void lbl_proveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_proveedoresMouseClicked
         RegistrarProveedor ventana = new RegistrarProveedor();
-        if (JInternalFrames_Abiertos(ventana) == false) {
+            mostrar.removeAll();
             mostrar.add(ventana);
             ventana.show();
-        }
     }//GEN-LAST:event_lbl_proveedoresMouseClicked
 
     private void lbl_productosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_productosMouseClicked
         RegistrarProducto ventana2 = new RegistrarProducto();
-        if (JInternalFrames_Abiertos(ventana2) == false) {
+            mostrar.removeAll();
             mostrar.add(ventana2);
             ventana2.show();
-        }
     }//GEN-LAST:event_lbl_productosMouseClicked
 
     private void lbl_comprasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_comprasMouseClicked
         RegistrarCompra ventana3 = new RegistrarCompra();
-        if (JInternalFrames_Abiertos(ventana3) == false) {
+            mostrar.removeAll();
             mostrar.add(ventana3);
             ventana3.show();
-        }
     }//GEN-LAST:event_lbl_comprasMouseClicked
 
     private void lbl_consumosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_consumosMouseClicked
         RegistrarConsumo ventana4 = new RegistrarConsumo();
-        if (JInternalFrames_Abiertos(ventana4) == false) {
+            mostrar.removeAll();
             mostrar.add(ventana4);
             ventana4.show();
-        }
     }//GEN-LAST:event_lbl_consumosMouseClicked
 
     private void lbl_cosechaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_cosechaMouseClicked
         RegistrarCosecha ventana5 = new RegistrarCosecha();
-        if (JInternalFrames_Abiertos(ventana5) == false) {
+            mostrar.removeAll();
             mostrar.add(ventana5);
             ventana5.show();
-        }
     }//GEN-LAST:event_lbl_cosechaMouseClicked
 
     private void lbl_salirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_salirMouseClicked
@@ -460,39 +455,36 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void jMI_RProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMI_RProveedorActionPerformed
         RegistrarProveedor ventana = new RegistrarProveedor();
-        if (JInternalFrames_Abiertos(ventana) == false) {
+            mostrar.removeAll();
             mostrar.add(ventana);
             ventana.show();
-        }
     }//GEN-LAST:event_jMI_RProveedorActionPerformed
 
     private void jMI_RProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMI_RProductoActionPerformed
         RegistrarProducto ventana2 = new RegistrarProducto();
-        if (JInternalFrames_Abiertos(ventana2) == false) {
+            mostrar.removeAll();
             mostrar.add(ventana2);
             ventana2.show();
-        }
     }//GEN-LAST:event_jMI_RProductoActionPerformed
 
     private void jMI_RCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMI_RCompraActionPerformed
         RegistrarCompra ventana3 = new RegistrarCompra();
-        if (JInternalFrames_Abiertos(ventana3) == false) {
+            mostrar.removeAll();
             mostrar.add(ventana3);
             ventana3.show();
-        }
     }//GEN-LAST:event_jMI_RCompraActionPerformed
 
     private void jMI_RConsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMI_RConsumoActionPerformed
         RegistrarConsumo ventana4 = new RegistrarConsumo();
-        if (JInternalFrames_Abiertos(ventana4) == false) {
+            mostrar.removeAll();
             mostrar.add(ventana4);
             ventana4.show();
-        }
     }//GEN-LAST:event_jMI_RConsumoActionPerformed
 
     private void jMI_RCosechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMI_RCosechaActionPerformed
         RegistrarCosecha ventana5 = new RegistrarCosecha();
         if (JInternalFrames_Abiertos(ventana5) == false) {
+            mostrar.removeAll();
             mostrar.add(ventana5);
             ventana5.show();
         }
