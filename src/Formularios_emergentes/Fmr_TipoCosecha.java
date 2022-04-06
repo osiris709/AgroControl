@@ -38,9 +38,10 @@ public class Fmr_TipoCosecha extends javax.swing.JDialog {
         } else {
             // Guardar datos en la base de datos
             try {
-                PreparedStatement guardar = con.prepareStatement("INSERT INTO Tipo_Cosecha (IDTipoCosecha, Nombre_TipoCosecha) VALUES (?,?)");
+                PreparedStatement guardar = con.prepareStatement("INSERT INTO Tipo_Cosecha (IDTipoCosecha, TipoCosecha, Nombre_TipoCosecha) VALUES (?,?,?)");
                 guardar.setString(1, null);
                 guardar.setString(2, txt_nombreTipoCosecha.getText());
+                guardar.setString(3, txt_nombreTipoCosecha.getText());
 
                 guardar.executeUpdate();
 

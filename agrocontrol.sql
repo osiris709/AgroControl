@@ -27,8 +27,9 @@ CREATE TABLE `area` (
   `Nombre_Area` varchar(25) DEFAULT NULL,
   `Ancho_Area` int(11) DEFAULT NULL,
   `Largo_Area` int(11) DEFAULT NULL,
-  PRIMARY KEY (`ID_Area`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+  PRIMARY KEY (`ID_Area`),
+  CONSTRAINT `area_ibfk_1` FOREIGN KEY (`ID_Area`) REFERENCES `consumos` (`IdAplicacion`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +38,6 @@ CREATE TABLE `area` (
 
 LOCK TABLES `area` WRITE;
 /*!40000 ALTER TABLE `area` DISABLE KEYS */;
-INSERT INTO `area` VALUES (1,'Area 1',30,30);
 /*!40000 ALTER TABLE `area` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -53,11 +53,6 @@ CREATE TABLE `compras` (
   `Fecha_compra` date DEFAULT NULL,
   `N_Factura` int(11) DEFAULT NULL,
   `Nombre_Proveedor` varchar(40) DEFAULT NULL,
-  `Nombre_producto` varchar(40) DEFAULT NULL,
-  `Cantidad_Producto` int(11) DEFAULT NULL,
-  `Valor_Unitario` int(11) DEFAULT NULL,
-  `Subtotal` int(11) DEFAULT NULL,
-  `Total_Compra` int(11) DEFAULT NULL,
   PRIMARY KEY (`IdCompra`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -87,8 +82,10 @@ CREATE TABLE `consumos` (
   `Tipo_Cosecha` varchar(40) DEFAULT NULL,
   `Nombre_Producto` varchar(40) DEFAULT NULL,
   `Cantidad_Producto` int(11) DEFAULT NULL,
-  PRIMARY KEY (`IdAplicacion`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+  PRIMARY KEY (`IdAplicacion`),
+  KEY `Tipo_Cosecha` (`Tipo_Cosecha`),
+  CONSTRAINT `consumos_ibfk_1` FOREIGN KEY (`IdAplicacion`) REFERENCES `tipo_cosecha` (`IDTipoCosecha`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,7 +94,6 @@ CREATE TABLE `consumos` (
 
 LOCK TABLES `consumos` WRITE;
 /*!40000 ALTER TABLE `consumos` DISABLE KEYS */;
-INSERT INTO `consumos` VALUES (1,'2022-04-01','Permanente','Mango','Area 1','Mango','Producto',12),(2,'2022-04-02','Transitorio','Tomate','Area 1','Tomate','uno',2),(3,'2022-04-02','Transitorio','Tomate','Area 1','Tomate','dos',4),(4,'2022-04-02','Transitorio','Tomate','Area 1','Tomate','tres',6);
 /*!40000 ALTER TABLE `consumos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -115,8 +111,10 @@ CREATE TABLE `cosecha` (
   `Tipo_Cosecha` varchar(40) DEFAULT NULL,
   `Fecha_Siembra` text DEFAULT NULL,
   `Fecha_Recoleccion` text DEFAULT NULL,
-  PRIMARY KEY (`IdCosecha`)
-) ENGINE=InnoDB AUTO_INCREMENT=876588 DEFAULT CHARSET=utf8mb4;
+  PRIMARY KEY (`IdCosecha`),
+  KEY `Tipo_Cosecha` (`Tipo_Cosecha`),
+  CONSTRAINT `cosecha_ibfk_1` FOREIGN KEY (`Tipo_Cosecha`) REFERENCES `tipo_cosecha` (`TipoCosecha`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -125,8 +123,35 @@ CREATE TABLE `cosecha` (
 
 LOCK TABLES `cosecha` WRITE;
 /*!40000 ALTER TABLE `cosecha` DISABLE KEYS */;
-INSERT INTO `cosecha` VALUES (2432,'Tomate','Transitorio','Tomate','1/02/2022','30/03/2022'),(876587,'Mango','Permanente','Mango','12/01/2022','22/03/2022');
 /*!40000 ALTER TABLE `cosecha` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `detallecompra`
+--
+
+DROP TABLE IF EXISTS `detallecompra`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `detallecompra` (
+  `id` int(11) NOT NULL,
+  `Nombre_producto` varchar(25) NOT NULL,
+  `Cantidad_Producto` int(15) NOT NULL,
+  `Valor_Unitario` int(20) NOT NULL,
+  `Subtotal` int(25) NOT NULL,
+  `Total_Compra` int(25) NOT NULL,
+  KEY `id` (`id`),
+  CONSTRAINT `detallecompra_ibfk_1` FOREIGN KEY (`id`) REFERENCES `compras` (`IdCompra`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `detallecompra`
+--
+
+LOCK TABLES `detallecompra` WRITE;
+/*!40000 ALTER TABLE `detallecompra` DISABLE KEYS */;
+/*!40000 ALTER TABLE `detallecompra` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -168,7 +193,9 @@ CREATE TABLE `productos` (
   `FechadeVencimiento` text DEFAULT NULL,
   `UnidaddeMedida` varchar(40) DEFAULT NULL,
   `TipodeProducto` varchar(40) DEFAULT NULL,
-  PRIMARY KEY (`Codigo`)
+  PRIMARY KEY (`Codigo`),
+  KEY `TipodeProducto` (`TipodeProducto`),
+  CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`Codigo`) REFERENCES `tipodeproducto` (`idtipoproducto`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -178,7 +205,6 @@ CREATE TABLE `productos` (
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
-INSERT INTO `productos` VALUES (54435,'producto','un producto','no','02/03/2023','Volumen','Insectisidas');
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -218,9 +244,11 @@ DROP TABLE IF EXISTS `tipo_cosecha`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tipo_cosecha` (
   `IDTipoCosecha` int(11) NOT NULL AUTO_INCREMENT,
+  `TipoCosecha` varchar(40) NOT NULL,
   `Nombre_TipoCosecha` varchar(40) DEFAULT NULL,
-  PRIMARY KEY (`IDTipoCosecha`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+  PRIMARY KEY (`IDTipoCosecha`),
+  KEY `TipoCosecha` (`TipoCosecha`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -229,7 +257,7 @@ CREATE TABLE `tipo_cosecha` (
 
 LOCK TABLES `tipo_cosecha` WRITE;
 /*!40000 ALTER TABLE `tipo_cosecha` DISABLE KEYS */;
-INSERT INTO `tipo_cosecha` VALUES (1,'Tomate'),(2,'Mango');
+INSERT INTO `tipo_cosecha` VALUES (6,'Tomate','Tomate');
 /*!40000 ALTER TABLE `tipo_cosecha` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -241,8 +269,10 @@ DROP TABLE IF EXISTS `tipodeproducto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tipodeproducto` (
-  `TipodeProductoo` varchar(25) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `idtipoproducto` int(11) NOT NULL AUTO_INCREMENT,
+  `TipodeProductoo` varchar(40) DEFAULT NULL,
+  PRIMARY KEY (`idtipoproducto`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -251,7 +281,7 @@ CREATE TABLE `tipodeproducto` (
 
 LOCK TABLES `tipodeproducto` WRITE;
 /*!40000 ALTER TABLE `tipodeproducto` DISABLE KEYS */;
-INSERT INTO `tipodeproducto` VALUES ('Pesticida'),('Insectisidas');
+INSERT INTO `tipodeproducto` VALUES (4,'Pesticida');
 /*!40000 ALTER TABLE `tipodeproducto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -317,4 +347,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-04 10:56:22
+-- Dump completed on 2022-04-06  0:15:03

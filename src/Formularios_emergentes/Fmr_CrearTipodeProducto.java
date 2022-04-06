@@ -390,10 +390,11 @@ public class Fmr_CrearTipodeProducto extends javax.swing.JFrame {
         } else {
 
             try {
-                PreparedStatement guardar = iniciarConexion.prepareStatement("INSERT INTO TipodeProducto(TipodeProductoo)VALUES (?)");
+                PreparedStatement guardar = iniciarConexion.prepareStatement("INSERT INTO TipodeProducto(idtipoproducto, TipodeProductoo)VALUES (?,?)");
                 /*consulta ingresar y guardar datos*/
 
-                guardar.setString(1, txt_CrearTipodeProducto.getText());
+                guardar.setString(1, null);
+                guardar.setString(2, txt_CrearTipodeProducto.getText());
 
                 guardar.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Datos Almacenados Correctamente.");
