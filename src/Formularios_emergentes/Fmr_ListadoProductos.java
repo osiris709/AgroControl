@@ -2,19 +2,20 @@ package Formularios_emergentes;
 
 import Conexion.conexion;
 import Formularios.RegistrarProducto;
-import static Formularios.RegistrarProducto.jDate_FechaVencimiento;
+import static Formularios.RegistrarProducto.txt_codigoProducto;
+import java.awt.Component;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.ImageIcon;
 import java.awt.Graphics;
 import java.awt.Image;
-import javax.swing.ImageIcon;
 
-public class Fmr_ListadoProductos extends javax.swing.JDialog {
+public final class Fmr_ListadoProductos extends javax.swing.JDialog {
 
     conexion conn = new conexion();
     Connection iniciarConexion = conn.conexion();
@@ -22,14 +23,14 @@ public class Fmr_ListadoProductos extends javax.swing.JDialog {
     public Fmr_ListadoProductos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.setTitle("Lista Productos");
-        this.setLocationRelativeTo(null);
-        setResizable(false);
+        setTitle("AgroControl - Lista de Productos");
+        setLocationRelativeTo(null);
+        
         MostrarlistadoProductos();
+        bloquearListado();
     }
 
-
-        public void MostrarlistadoProductos() {
+    public void MostrarlistadoProductos() {
 
         DefaultTableModel tcliente = new DefaultTableModel();
         tcliente.addColumn("Codigo");
@@ -65,6 +66,62 @@ public class Fmr_ListadoProductos extends javax.swing.JDialog {
         }
     }
     
+    public void BotonBuscar(String buscar) {
+
+        DefaultTableModel tclientee = new DefaultTableModel();
+        tclientee.addColumn("Codigo");
+        tclientee.addColumn("Nombre");
+        tclientee.addColumn("Descripcion");
+        tclientee.addColumn("Ingrediente Activo");
+        tclientee.addColumn("Fecha de Nacimiento");
+        tclientee.addColumn("Unidad de Medida");
+        tclientee.addColumn("Tipo de Producto");
+
+        TablaCliente.setModel(tclientee);
+
+        String[] datos = new String[7];
+
+        try {
+            Statement leer = iniciarConexion.createStatement();
+            ResultSet resultado = leer.executeQuery("SELECT * FROM Productos WHERE Codigo  LIKE '%" + buscar + "%' OR Nombre LIKE '%" + buscar + "%'  OR IngredienteActivo LIKE '%" + buscar + "%' OR UnidaddeMedida LIKE '%" + buscar + "%' OR TipodeProducto LIKE '%" + buscar + "%'  OR FechadeVencimiento LIKE '%" + buscar + "%'");
+
+            while (resultado.next()) {
+                datos[0] = resultado.getString(1);
+                datos[1] = resultado.getString(2);
+                datos[2] = resultado.getString(3);
+                datos[3] = resultado.getString(4);
+                datos[4] = resultado.getString(5);
+                datos[5] = resultado.getString(6);
+                datos[6] = resultado.getString(7);
+
+                tclientee.addRow(datos);
+            }
+            TablaCliente.setModel(tclientee);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e + "Error en la Consulta");
+        }
+    }
+
+    public void verificarcodigo() {
+
+        for (int i = 0; i < TablaCliente.getRowCount(); i++) {
+
+            if (TablaCliente.getValueAt(i, 1).equals(txt_codigoProducto.getText())) {
+                JOptionPane.showMessageDialog(null, "El Codigo ya Existe");
+
+            }
+
+        }
+
+    }
+    
+    public void bloquearListado() {
+
+        for (Component a : TablaCliente.getComponents()) {
+            a.setEnabled(true);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -87,7 +144,7 @@ public class Fmr_ListadoProductos extends javax.swing.JDialog {
         TablaCliente = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txt_buscar = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -114,10 +171,16 @@ public class Fmr_ListadoProductos extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Buscar:");
 
+        txt_buscar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_buscarKeyReleased(evt);
+            }
+        });
+
         jDP_ListaProductos.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDP_ListaProductos.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDP_ListaProductos.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDP_ListaProductos.setLayer(jTextField1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDP_ListaProductos.setLayer(txt_buscar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDP_ListaProductosLayout = new javax.swing.GroupLayout(jDP_ListaProductos);
         jDP_ListaProductos.setLayout(jDP_ListaProductosLayout);
@@ -129,7 +192,7 @@ public class Fmr_ListadoProductos extends javax.swing.JDialog {
                     .addGroup(jDP_ListaProductosLayout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(50, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDP_ListaProductosLayout.createSequentialGroup()
@@ -145,7 +208,7 @@ public class Fmr_ListadoProductos extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(jDP_ListaProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(352, Short.MAX_VALUE))
@@ -169,19 +232,35 @@ public class Fmr_ListadoProductos extends javax.swing.JDialog {
 
         if (evt.getClickCount() == 1) {
 
-            JTable receptor = (JTable) evt.getSource();
-            RegistrarProducto.txt_codigoProducto.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 0).toString());
-            RegistrarProducto.txt_nombreProducto.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 1).toString());
-            RegistrarProducto.txt_descripcionProducto.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 2).toString());
-            RegistrarProducto.txt_Ingredienteactivo.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(), 3).toString());
-            RegistrarProducto.jDate_FechaVencimiento.setDateFormatString(receptor.getModel().getValueAt(receptor.getSelectedRow(), 4).toString());
-            RegistrarProducto.cbo_unidadMedida.setSelectedItem(receptor.getModel().getValueAt(receptor.getSelectedRow(), 5).toString());
-            RegistrarProducto.cbo_categoria.setSelectedItem(receptor.getModel().getValueAt(receptor.getSelectedRow(), 6).toString());
+            SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 
-            //  RegistrarProductos.cbo_unidadMedida.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(),0).toString());
-            //   RegistrarProductos.cbo_categoria.setText(receptor.getModel().getValueAt(receptor.getSelectedRow(),0).toString());
+            String fechavencimiento = TablaCliente.getValueAt(TablaCliente.getSelectedRow(), 4).toString().trim();
+            Date dato = null;
+
+            try {
+                dato = (Date) formato.parse(fechavencimiento);
+                RegistrarProducto.jDate_FechaVencimiento.setDate(dato);
+
+            } catch (Exception e) {
+
+            }
+
+            RegistrarProducto.txt_codigoProducto.setText(TablaCliente.getModel().getValueAt(TablaCliente.getSelectedRow(), 0).toString());
+            RegistrarProducto.txt_nombreProducto.setText(TablaCliente.getModel().getValueAt(TablaCliente.getSelectedRow(), 1).toString());
+            RegistrarProducto.txt_descripcionProducto.setText(TablaCliente.getModel().getValueAt(TablaCliente.getSelectedRow(), 2).toString());
+            RegistrarProducto.txt_Ingredienteactivo.setText(TablaCliente.getModel().getValueAt(TablaCliente.getSelectedRow(), 3).toString());
+            RegistrarProducto.cbo_unidadMedida.setSelectedItem(TablaCliente.getModel().getValueAt(TablaCliente.getSelectedRow(), 5).toString());
+            RegistrarProducto.cbo_categoria.setSelectedItem(TablaCliente.getModel().getValueAt(TablaCliente.getSelectedRow(), 6).toString());
+
         }
+        this.hide();
+        RegistrarProducto.btn_elminar.setEnabled(true);
+        RegistrarProducto.btn_editar.setEnabled(true);
     }//GEN-LAST:event_TablaClienteMouseClicked
+
+    private void txt_buscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_buscarKeyReleased
+        BotonBuscar(txt_buscar.getText());
+    }//GEN-LAST:event_txt_buscarKeyReleased
 
     /**
      * @param args the command line arguments
@@ -238,6 +317,6 @@ public class Fmr_ListadoProductos extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField txt_buscar;
     // End of variables declaration//GEN-END:variables
 }

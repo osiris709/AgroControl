@@ -18,7 +18,6 @@ public class Fmr_CompraProveedor extends javax.swing.JFrame {
     conexion conn = new conexion ();
     Connection iniciarConexion = conn.conexion();
     
-  
     public Fmr_CompraProveedor() {
         initComponents();
         
