@@ -176,12 +176,12 @@ public class RegistrarCosecha extends javax.swing.JInternalFrame implements Comu
 
             cbo_TipoCosecha.removeAllItems();
             cbo_TipoCosecha.addItem("Seleccionar");
-            String consulta = "SELECT Nombre_TipoCosecha FROM Tipo_Cosecha ORDER BY Nombre_TipoCosecha ASC";
+            String consulta = "SELECT TipoCosecha FROM Tipo_Cosecha ORDER BY IDTipoCosecha";
             PreparedStatement leer = con.prepareStatement(consulta);
             ResultSet resultado = leer.executeQuery();
 
             while (resultado.next()) {
-                cbo_TipoCosecha.addItem(resultado.getString("Nombre_TipoCosecha"));
+                cbo_TipoCosecha.addItem(resultado.getString("TipoCosecha"));
             }
         } catch (Exception e) {
 

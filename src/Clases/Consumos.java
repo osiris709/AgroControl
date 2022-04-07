@@ -23,7 +23,7 @@ public class Consumos {
 
             case "Transitorio":
 
-                String SSQL = "SELECT Nombre_Cosecha FROM Cosecha WHERE Tipo_Cultivo= 'Transitorio' ORDER BY Nombre_Cosecha ASC";
+                String SSQL = "SELECT Nombre_Cosecha FROM Cosecha WHERE Tipo_Cultivo= 'Transitorio' ORDER BY Nombre_Cosecha";
 
                 try {
 
@@ -71,7 +71,7 @@ public class Consumos {
 
     public void Cargar_Area(JComboBox cbo_Area) {
 
-        String SSQL = "SELECT Nombre_Area FROM Area ORDER BY Nombre_Area ASC";
+        String SSQL = "SELECT Nombre_Area FROM Area ORDER BY ID_Area";
 
         try {
 

@@ -27,9 +27,8 @@ CREATE TABLE `area` (
   `Nombre_Area` varchar(25) DEFAULT NULL,
   `Ancho_Area` int(11) DEFAULT NULL,
   `Largo_Area` int(11) DEFAULT NULL,
-  PRIMARY KEY (`ID_Area`),
-  CONSTRAINT `area_ibfk_1` FOREIGN KEY (`ID_Area`) REFERENCES `consumos` (`IdAplicacion`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  PRIMARY KEY (`ID_Area`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,6 +37,7 @@ CREATE TABLE `area` (
 
 LOCK TABLES `area` WRITE;
 /*!40000 ALTER TABLE `area` DISABLE KEYS */;
+INSERT INTO `area` VALUES (1,'Area 1',20,20);
 /*!40000 ALTER TABLE `area` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -78,14 +78,14 @@ CREATE TABLE `consumos` (
   `Fecha_Aplicacion` date DEFAULT NULL,
   `Tipo_Cultivo` varchar(40) DEFAULT NULL,
   `Nombre_Cosecha` varchar(40) DEFAULT NULL,
-  `Area` varchar(40) DEFAULT NULL,
-  `Tipo_Cosecha` varchar(40) DEFAULT NULL,
-  `Nombre_Producto` varchar(40) DEFAULT NULL,
-  `Cantidad_Producto` int(11) DEFAULT NULL,
+  `Area` int(11) DEFAULT NULL,
+  `Tipo_Cosecha` int(11) DEFAULT NULL,
   PRIMARY KEY (`IdAplicacion`),
   KEY `Tipo_Cosecha` (`Tipo_Cosecha`),
-  CONSTRAINT `consumos_ibfk_1` FOREIGN KEY (`IdAplicacion`) REFERENCES `tipo_cosecha` (`IDTipoCosecha`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  KEY `Area` (`Area`),
+  CONSTRAINT `consumos_ibfk_1` FOREIGN KEY (`Tipo_Cosecha`) REFERENCES `tipo_cosecha` (`IDTipoCosecha`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `consumos_ibfk_2` FOREIGN KEY (`Area`) REFERENCES `area` (`ID_Area`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -94,6 +94,7 @@ CREATE TABLE `consumos` (
 
 LOCK TABLES `consumos` WRITE;
 /*!40000 ALTER TABLE `consumos` DISABLE KEYS */;
+INSERT INTO `consumos` VALUES (3,'2022-04-08','Transitorio','1',1,1),(4,'2022-04-08','Transitorio','1',1,1),(5,'2022-04-08','Transitorio','1',1,1),(6,'2022-04-08','Transitorio','1',1,1),(7,'2022-04-12','Transitorio','1',1,1),(8,'2022-04-17','Transitorio','1',1,1),(9,'2022-04-15','Transitorio','1',1,1);
 /*!40000 ALTER TABLE `consumos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -112,9 +113,8 @@ CREATE TABLE `cosecha` (
   `Fecha_Siembra` text DEFAULT NULL,
   `Fecha_Recoleccion` text DEFAULT NULL,
   PRIMARY KEY (`IdCosecha`),
-  KEY `Tipo_Cosecha` (`Tipo_Cosecha`),
-  CONSTRAINT `cosecha_ibfk_1` FOREIGN KEY (`Tipo_Cosecha`) REFERENCES `tipo_cosecha` (`TipoCosecha`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  KEY `Tipo_Cosecha` (`Tipo_Cosecha`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -123,6 +123,7 @@ CREATE TABLE `cosecha` (
 
 LOCK TABLES `cosecha` WRITE;
 /*!40000 ALTER TABLE `cosecha` DISABLE KEYS */;
+INSERT INTO `cosecha` VALUES (1,'Tomate Marzo','Transitorio','Tomate','1/03/2022','30/04/2022');
 /*!40000 ALTER TABLE `cosecha` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -152,6 +153,32 @@ CREATE TABLE `detallecompra` (
 LOCK TABLES `detallecompra` WRITE;
 /*!40000 ALTER TABLE `detallecompra` DISABLE KEYS */;
 /*!40000 ALTER TABLE `detallecompra` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `detalleconsumos`
+--
+
+DROP TABLE IF EXISTS `detalleconsumos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `detalleconsumos` (
+  `IDConsumos` int(11) NOT NULL,
+  `NombreProducto` varchar(40) NOT NULL,
+  `Cantidad` int(15) NOT NULL,
+  KEY `IDConsumos` (`IDConsumos`),
+  CONSTRAINT `detalleconsumos_ibfk_1` FOREIGN KEY (`IDConsumos`) REFERENCES `consumos` (`IdAplicacion`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `detalleconsumos`
+--
+
+LOCK TABLES `detalleconsumos` WRITE;
+/*!40000 ALTER TABLE `detalleconsumos` DISABLE KEYS */;
+INSERT INTO `detalleconsumos` VALUES (7,'dasfsd',45),(7,'dasfsd',78),(8,'dasfsd',45),(9,'dasfsd',56),(9,'dasfsd',54),(9,'dasfsd',5),(9,'dasfsd',787),(9,'dasfsd',578);
+/*!40000 ALTER TABLE `detalleconsumos` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -191,11 +218,13 @@ CREATE TABLE `productos` (
   `Descripcion` varchar(40) DEFAULT NULL,
   `IngredienteActivo` varchar(40) DEFAULT NULL,
   `FechadeVencimiento` text DEFAULT NULL,
-  `UnidaddeMedida` varchar(40) DEFAULT NULL,
-  `TipodeProducto` varchar(40) DEFAULT NULL,
+  `UnidaddeMedida` int(11) DEFAULT NULL,
+  `TipodeProducto` int(11) DEFAULT NULL,
   PRIMARY KEY (`Codigo`),
   KEY `TipodeProducto` (`TipodeProducto`),
-  CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`Codigo`) REFERENCES `tipodeproducto` (`idtipoproducto`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `UnidaddeMedida` (`UnidaddeMedida`),
+  CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`TipodeProducto`) REFERENCES `tipodeproducto` (`idtipoproducto`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `productos_ibfk_2` FOREIGN KEY (`UnidaddeMedida`) REFERENCES `unimedidatproducto` (`IDuniMedida`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -205,6 +234,7 @@ CREATE TABLE `productos` (
 
 LOCK TABLES `productos` WRITE;
 /*!40000 ALTER TABLE `productos` DISABLE KEYS */;
+INSERT INTO `productos` VALUES (1,'dasfsd','sdfasd','sdfsad','07/04/2022 ',2,3);
 /*!40000 ALTER TABLE `productos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -245,10 +275,9 @@ DROP TABLE IF EXISTS `tipo_cosecha`;
 CREATE TABLE `tipo_cosecha` (
   `IDTipoCosecha` int(11) NOT NULL AUTO_INCREMENT,
   `TipoCosecha` varchar(40) NOT NULL,
-  `Nombre_TipoCosecha` varchar(40) DEFAULT NULL,
   PRIMARY KEY (`IDTipoCosecha`),
   KEY `TipoCosecha` (`TipoCosecha`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -257,7 +286,7 @@ CREATE TABLE `tipo_cosecha` (
 
 LOCK TABLES `tipo_cosecha` WRITE;
 /*!40000 ALTER TABLE `tipo_cosecha` DISABLE KEYS */;
-INSERT INTO `tipo_cosecha` VALUES (6,'Tomate','Tomate');
+INSERT INTO `tipo_cosecha` VALUES (2,'Platano'),(1,'Tomate');
 /*!40000 ALTER TABLE `tipo_cosecha` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -270,9 +299,10 @@ DROP TABLE IF EXISTS `tipodeproducto`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tipodeproducto` (
   `idtipoproducto` int(11) NOT NULL AUTO_INCREMENT,
-  `TipodeProductoo` varchar(40) DEFAULT NULL,
-  PRIMARY KEY (`idtipoproducto`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+  `TipodeProducto` varchar(40) DEFAULT NULL,
+  PRIMARY KEY (`idtipoproducto`),
+  KEY `TipodeProductoo` (`TipodeProducto`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -281,7 +311,7 @@ CREATE TABLE `tipodeproducto` (
 
 LOCK TABLES `tipodeproducto` WRITE;
 /*!40000 ALTER TABLE `tipodeproducto` DISABLE KEYS */;
-INSERT INTO `tipodeproducto` VALUES (4,'Pesticida');
+INSERT INTO `tipodeproducto` VALUES (3,'Fungicidadas'),(1,'Otro'),(2,'Semillas');
 /*!40000 ALTER TABLE `tipodeproducto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -293,8 +323,10 @@ DROP TABLE IF EXISTS `unimedidatproducto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `unimedidatproducto` (
-  `UnidaddeMedidaDato` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `IDuniMedida` int(11) NOT NULL AUTO_INCREMENT,
+  `UnidaddeMedidaDato` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`IDuniMedida`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -303,7 +335,7 @@ CREATE TABLE `unimedidatproducto` (
 
 LOCK TABLES `unimedidatproducto` WRITE;
 /*!40000 ALTER TABLE `unimedidatproducto` DISABLE KEYS */;
-INSERT INTO `unimedidatproducto` VALUES ('Gramos'),('Volumen');
+INSERT INTO `unimedidatproducto` VALUES (1,'Gramos'),(2,'Volumen');
 /*!40000 ALTER TABLE `unimedidatproducto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -347,4 +379,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-06  0:15:03
+-- Dump completed on 2022-04-07  1:04:16

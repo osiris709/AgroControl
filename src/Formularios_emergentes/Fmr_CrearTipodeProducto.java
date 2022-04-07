@@ -390,7 +390,7 @@ public class Fmr_CrearTipodeProducto extends javax.swing.JFrame {
         } else {
 
             try {
-                PreparedStatement guardar = iniciarConexion.prepareStatement("INSERT INTO TipodeProducto(idtipoproducto, TipodeProductoo)VALUES (?,?)");
+                PreparedStatement guardar = iniciarConexion.prepareStatement("INSERT INTO TipodeProducto(idtipoproducto, TipodeProducto)VALUES (?,?)");
                 /*consulta ingresar y guardar datos*/
 
                 guardar.setString(1, null);

@@ -103,7 +103,7 @@ public final class RegistrarProducto extends javax.swing.JInternalFrame {
         try {
             cbo_unidadMedida.removeAllItems();
             cbo_unidadMedida.addItem("Seleccionar");
-            String consulta = "Select UnidaddeMedidaDato from UnimedidaTproducto Order by UnidaddeMedidaDato asc";
+            String consulta = "Select UnidaddeMedidaDato from UnimedidaTproducto Order by IDuniMedida";
             PreparedStatement leer = iniciarConexion.prepareStatement(consulta);
             ResultSet resultado = leer.executeQuery();
 
@@ -121,12 +121,12 @@ public final class RegistrarProducto extends javax.swing.JInternalFrame {
         try {
             cbo_categoria.removeAllItems();
             cbo_categoria.addItem("Seleccionar");
-            String consulta = "Select TipodeProductoo from TipodeProducto Order by TipodeProductoo asc";
+            String consulta = "Select TipodeProducto from TipodeProducto Order by idtipoproducto";
             PreparedStatement leer = iniciarConexion.prepareStatement(consulta);
             ResultSet resultado = leer.executeQuery();
 
             while (resultado.next()) {
-                cbo_categoria.addItem(resultado.getString("TipodeProductoo"));
+                cbo_categoria.addItem(resultado.getString("TipodeProducto"));
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e + "error");
@@ -609,8 +609,8 @@ public final class RegistrarProducto extends javax.swing.JInternalFrame {
                 guardar.setString(3, txt_descripcionProducto.getText());
                 guardar.setString(4, txt_Ingredienteactivo.getText());
                 guardar.setString(5, ((JTextField) jDate_FechaVencimiento.getDateEditor().getUiComponent()).getText());
-                guardar.setString(6, cbo_unidadMedida.getSelectedItem().toString());
-                guardar.setString(7, cbo_categoria.getSelectedItem().toString());
+                guardar.setString(6, String.valueOf(cbo_unidadMedida.getSelectedIndex()));                
+                guardar.setString(7, String.valueOf(cbo_categoria.getSelectedIndex()));
                 guardar.executeUpdate();
 
                 JOptionPane.showMessageDialog(null, "Datos Ingresados Correctamente.");
@@ -620,6 +620,8 @@ public final class RegistrarProducto extends javax.swing.JInternalFrame {
                 btn_nuevo.setEnabled(true);
 
             } catch (Exception e) {
+                
+                JOptionPane.showMessageDialog(null, e + " Error, No se registro el Producto");
             }
         }
     }//GEN-LAST:event_btn_guardarActionPerformed

@@ -137,8 +137,8 @@ public class Fmr_ProductosCompra extends javax.swing.JFrame {
             }
             this.hide();
         }*/
-        RegistrarConsumo ventana2 = new RegistrarConsumo();
-        if (JInternalFrames_Abiertos(ventana2) == true) {
+        //RegistrarConsumo ventana2 = new RegistrarConsumo();
+        //if (JInternalFrames_Abiertos(ventana2) == true) {
             //  if (evt.getClickCount() == 1) {
 
             System.out.println("Consumo");
@@ -146,7 +146,7 @@ public class Fmr_ProductosCompra extends javax.swing.JFrame {
 
             //}      
             this.hide();
-        }
+        //}
     }//GEN-LAST:event_TablaProductosMouseClicked
 
     /**
