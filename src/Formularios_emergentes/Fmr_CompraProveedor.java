@@ -4,6 +4,7 @@ package Formularios_emergentes;
 import javax.swing.table.DefaultTableModel;
 import Conexion.conexion;
 import Formularios.RegistrarCompra;
+import static Formularios.RegistrarCompra.txt_Proveedor;
 import Formularios.RegistrarProducto;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -18,6 +19,7 @@ public class Fmr_CompraProveedor extends javax.swing.JFrame {
     conexion conn = new conexion ();
     Connection iniciarConexion = conn.conexion();
     
+  
     public Fmr_CompraProveedor() {
         initComponents();
         
@@ -63,7 +65,7 @@ public class Fmr_CompraProveedor extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         TablaDatosCP = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         TablaDatosCP.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -102,9 +104,7 @@ public class Fmr_CompraProveedor extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,7 +118,7 @@ public class Fmr_CompraProveedor extends javax.swing.JFrame {
         if (evt.getClickCount() ==1){
            
            JTable receptorComprasProveedor = (JTable) evt.getSource();
-           RegistrarCompra.Proveedor.setText(receptorComprasProveedor.getModel().getValueAt(receptorComprasProveedor.getSelectedRow(),0).toString());
+           RegistrarCompra.txt_Proveedor.setText(receptorComprasProveedor.getModel().getValueAt(receptorComprasProveedor.getSelectedRow(),0).toString());
 //           RegistrarProveedor.txt_nombre.setText(receptorComprasProveedor.getModel().getValueAt(receptorComprasProveedor.getSelectedRow(),1).toString());
 
        
@@ -151,6 +151,18 @@ public class Fmr_CompraProveedor extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Fmr_CompraProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
