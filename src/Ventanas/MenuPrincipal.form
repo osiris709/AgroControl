@@ -225,8 +225,8 @@
                                   <Component id="lbl_productos" alignment="1" min="-2" pref="120" max="-2" attributes="0"/>
                                   <Component id="lbl_compras" alignment="1" min="-2" pref="120" max="-2" attributes="0"/>
                                   <Component id="lbl_consumos" alignment="1" min="-2" pref="120" max="-2" attributes="0"/>
-                                  <Component id="lbl_cosecha" alignment="1" min="-2" pref="120" max="-2" attributes="0"/>
                                   <Component id="lbl_reportes" alignment="1" min="-2" pref="120" max="-2" attributes="0"/>
+                                  <Component id="lbl_cosecha" alignment="1" min="-2" pref="120" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -255,16 +255,16 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="lbl_compras" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="lbl_consumos" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="lbl_cosecha" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              <Component id="lbl_consumos" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="lbl_reportes" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="lbl_salir" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="85" max="32767" attributes="0"/>
+                      <EmptySpace pref="92" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
