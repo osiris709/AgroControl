@@ -163,6 +163,9 @@
                   <Font name="Tahoma" size="11" style="1"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jClaveKeyPressed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnIngresar">
               <Properties>

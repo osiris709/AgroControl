@@ -203,7 +203,7 @@ public class Fmr_ListadoCosechas extends javax.swing.JDialog {
 
         String fechaSiembra = TablaCosechas.getValueAt(TablaCosechas.getSelectedRow(), 4).toString().trim();
         String fechaRecoleccion = TablaCosechas.getValueAt(TablaCosechas.getSelectedRow(), 5).toString().trim();
-        Date dato, dato1 = null;
+        Date dato, dato1;
 
         try {
             dato = (Date) formato.parse(fechaSiembra);
@@ -216,7 +216,7 @@ public class Fmr_ListadoCosechas extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, e);
         }
 
-        RegistrarCosecha.txt_IdCosecha.setText(TablaCosechas.getValueAt(TablaCosechas.getSelectedRow(), 0).toString());
+        //RegistrarCosecha.txt_IdCosecha.setText(TablaCosechas.getValueAt(TablaCosechas.getSelectedRow(), 0).toString());
         RegistrarCosecha.txt_NombreCosecha.setText(TablaCosechas.getModel().getValueAt(TablaCosechas.getSelectedRow(), 1).toString());
         RegistrarCosecha.cbo_TipoCultivo.setSelectedItem(TablaCosechas.getModel().getValueAt(TablaCosechas.getSelectedRow(), 2).toString());
         RegistrarCosecha.cbo_TipoCosecha.setSelectedItem(TablaCosechas.getModel().getValueAt(TablaCosechas.getSelectedRow(), 3).toString());

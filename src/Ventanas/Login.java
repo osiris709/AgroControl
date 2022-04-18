@@ -3,6 +3,7 @@ package Ventanas;
 import Conexion.conexion;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -125,6 +126,11 @@ public class Login extends javax.swing.JFrame {
         txtUsuario.setSelectionColor(new java.awt.Color(255, 255, 255));
 
         jClave.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jClave.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jClaveKeyPressed(evt);
+            }
+        });
 
         btnIngresar.setBackground(new java.awt.Color(51, 255, 51));
         btnIngresar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -190,6 +196,13 @@ public class Login extends javax.swing.JFrame {
 
         ingresar();
     }//GEN-LAST:event_btnIngresarActionPerformed
+
+    private void jClaveKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jClaveKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            ingresar();
+        }
+
+    }//GEN-LAST:event_jClaveKeyPressed
 
     /**
      * @param args the command line arguments
