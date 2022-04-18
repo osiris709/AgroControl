@@ -42,7 +42,7 @@ public final class RegistrarProducto extends javax.swing.JInternalFrame {
         cbo_categoria.setEnabled(false);
         btn_editar2.setEnabled(false);
         btn_editar1.setEnabled(false);
-        btn_buscar.setEnabled(false);
+        btn_buscar.setEnabled(true);
         btn_guardar.setEnabled(false);
         btn_editar.setEnabled(false);
         btn_cancelar.setEnabled(false);
@@ -172,7 +172,7 @@ public final class RegistrarProducto extends javax.swing.JInternalFrame {
             int confirmar = JOptionPane.showConfirmDialog(null, "¿Desea modificar los datos?");
             if (confirmar == JOptionPane.YES_OPTION) {
                 try {
-                    PreparedStatement modificar = iniciarConexion.prepareStatement("UPDATE Productos SET Nombre=?,Descripcion=?,IngredienteActivo=?,FechadeVencimiento=?,UnidaddeMedida=?,TipodeProducto =? WHERE codigo=?"); /// where codigo=?");/// WHERE IdCosecha=?");
+                    PreparedStatement modificar = iniciarConexion.prepareStatement("UPDATE Productos SET Nombre=?,Descripcion=?,IngredienteActivo=?,FechadeVencimiento=?,UnidaddeMedida=?,TipodeProducto =? WHERE codigo=?"); 
 
                     modificar.setString(1, txt_nombreProducto.getText());
                     modificar.setString(2, txt_descripcionProducto.getText());
@@ -609,7 +609,7 @@ public final class RegistrarProducto extends javax.swing.JInternalFrame {
                 guardar.setString(3, txt_descripcionProducto.getText());
                 guardar.setString(4, txt_Ingredienteactivo.getText());
                 guardar.setString(5, ((JTextField) jDate_FechaVencimiento.getDateEditor().getUiComponent()).getText());
-                guardar.setString(6, String.valueOf(cbo_unidadMedida.getSelectedIndex()));                
+                guardar.setString(6, String.valueOf(cbo_unidadMedida.getSelectedIndex()));            
                 guardar.setString(7, String.valueOf(cbo_categoria.getSelectedIndex()));
                 guardar.executeUpdate();
 
@@ -696,6 +696,7 @@ public final class RegistrarProducto extends javax.swing.JInternalFrame {
         Frame ListaProductos = JOptionPane.getFrameForComponent(this);
         Fmr_ListadoProductos ventana = new Fmr_ListadoProductos(ListaProductos, false);
         ventana.setVisible(true);
+        BotonNuevo();
     }//GEN-LAST:event_btn_buscarActionPerformed
 
 

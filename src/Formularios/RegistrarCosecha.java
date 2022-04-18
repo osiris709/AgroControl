@@ -11,16 +11,17 @@ import java.awt.Image;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 public class RegistrarCosecha extends javax.swing.JInternalFrame implements ComunicationPopUp {
 
     conexion objConexion = new conexion();
     Connection con = objConexion.conexion();
-
-    DateFormat df = DateFormat.getDateInstance();
+    
+    SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
 
     public RegistrarCosecha() {
         initComponents();
@@ -30,6 +31,7 @@ public class RegistrarCosecha extends javax.swing.JInternalFrame implements Comu
         Bloquear();
         BloqInicio();
         LlamarComboBox();
+        txt_Id.setVisible(false);
     }
 
     @Override
@@ -55,7 +57,7 @@ public class RegistrarCosecha extends javax.swing.JInternalFrame implements Comu
                     guardar.setString(1, null);
                     guardar.setString(2, txt_NombreCosecha.getText());
                     guardar.setString(3, cbo_TipoCultivo.getSelectedItem().toString());
-                    guardar.setString(4, cbo_TipoCosecha.getSelectedItem().toString());
+                    guardar.setString(4, String.valueOf(cbo_TipoCosecha.getSelectedIndex()));
                     guardar.setString(5, df.format(txt_FechaSiembra.getDate()));
                     guardar.setString(6, df.format(txt_FechaRecoleccion.getDate()));
 
@@ -90,10 +92,11 @@ public class RegistrarCosecha extends javax.swing.JInternalFrame implements Comu
                     PreparedStatement modificar = con.prepareStatement("UPDATE Cosecha SET Nombre_Cosecha=?,Tipo_Cultivo=?,Tipo_Cosecha=?,Fecha_Siembra=?,Fecha_Recoleccion=? WHERE IdCosecha=?");
                     modificar.setString(1, txt_NombreCosecha.getText());
                     modificar.setString(2, cbo_TipoCultivo.getSelectedItem().toString());
-                    modificar.setString(3, cbo_TipoCosecha.getSelectedItem().toString());
+                    modificar.setString(3, String.valueOf(cbo_TipoCosecha.getSelectedIndex()));
                     modificar.setString(4, df.format(txt_FechaSiembra.getDate()));
                     modificar.setString(5, df.format(txt_FechaRecoleccion.getDate()));
-                    //modificar.setString(6, txt_IdCosecha.getText());
+                    modificar.setString(6, txt_Id.getText());
+                    
 
                     // Ejecuta la sentencia y obtiene el resultado modificado
                     modificar.executeUpdate();
@@ -109,7 +112,7 @@ public class RegistrarCosecha extends javax.swing.JInternalFrame implements Comu
         }
     }
 
-    public void Eliminar(String IdCosecha) {
+    public void Eliminar() {
         // Si hay algun campo vacio, genera mensaje de advertencia
         if (txt_NombreCosecha.getText().equals("") || (cbo_TipoCultivo.getSelectedItem().equals("Seleccionar"))
                 || (cbo_TipoCosecha.getSelectedItem().equals("Seleccionar")) || txt_FechaSiembra.getDate().equals("") || txt_FechaRecoleccion.getDate().equals("")) {
@@ -123,7 +126,7 @@ public class RegistrarCosecha extends javax.swing.JInternalFrame implements Comu
                 try {
                     // Definir Sentencia en base de Datos SQL
                     PreparedStatement eliminar = con.prepareStatement("DELETE FROM Cosecha WHERE IdCosecha=?");
-                    //eliminar.setString(1, txt_IdCosecha.getText());
+                    eliminar.setString(1, txt_Id.getText());
 
                     // Ejecuta la sentencia y obtiene el resultado de eliminar
                     eliminar.executeUpdate();
@@ -245,6 +248,7 @@ public class RegistrarCosecha extends javax.swing.JInternalFrame implements Comu
         jLabel7 = new javax.swing.JLabel();
         cbo_TipoCultivo = new javax.swing.JComboBox<>();
         txt_NombreCosecha = new javax.swing.JTextField();
+        txt_Id = new javax.swing.JTextField();
         jP_Listado = new javax.swing.JPanel();
         btn_lista = new javax.swing.JButton();
         jP_Botones = new javax.swing.JPanel();
@@ -329,6 +333,8 @@ public class RegistrarCosecha extends javax.swing.JInternalFrame implements Comu
         cbo_TipoCultivo.setMinimumSize(new java.awt.Dimension(98, 23));
         cbo_TipoCultivo.setPreferredSize(new java.awt.Dimension(83, 23));
 
+        txt_Id.setEnabled(false);
+
         javax.swing.GroupLayout jP_DatosLayout = new javax.swing.GroupLayout(jP_Datos);
         jP_Datos.setLayout(jP_DatosLayout);
         jP_DatosLayout.setHorizontalGroup(
@@ -344,7 +350,9 @@ public class RegistrarCosecha extends javax.swing.JInternalFrame implements Comu
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(99, 99, 99)
                         .addComponent(txt_NombreCosecha, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(51, 51, 51)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txt_Id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
                         .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jP_DatosLayout.createSequentialGroup()
                         .addGroup(jP_DatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -374,7 +382,8 @@ public class RegistrarCosecha extends javax.swing.JInternalFrame implements Comu
                 .addGroup(jP_DatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_NombreCosecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_Id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39)
                 .addGroup(jP_DatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -393,7 +402,7 @@ public class RegistrarCosecha extends javax.swing.JInternalFrame implements Comu
                 .addGroup(jP_DatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txt_FechaRecoleccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         jP_Listado.setBackground(new java.awt.Color(240, 255, 240));
@@ -416,14 +425,14 @@ public class RegistrarCosecha extends javax.swing.JInternalFrame implements Comu
             .addGroup(jP_ListadoLayout.createSequentialGroup()
                 .addGap(261, 261, 261)
                 .addComponent(btn_lista)
-                .addContainerGap(273, Short.MAX_VALUE))
+                .addContainerGap(288, Short.MAX_VALUE))
         );
         jP_ListadoLayout.setVerticalGroup(
             jP_ListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jP_ListadoLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(btn_lista)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         jP_Botones.setBackground(new java.awt.Color(240, 255, 240));
@@ -520,7 +529,7 @@ public class RegistrarCosecha extends javax.swing.JInternalFrame implements Comu
                     .addComponent(jP_Listado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LogoCRUD)
                     .addComponent(jP_Datos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         jDP_RCosechaLayout.setVerticalGroup(
             jDP_RCosechaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -532,7 +541,7 @@ public class RegistrarCosecha extends javax.swing.JInternalFrame implements Comu
                 .addComponent(jP_Listado, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31)
                 .addComponent(jP_Botones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 32, Short.MAX_VALUE))
+                .addGap(0, 37, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -598,7 +607,7 @@ public class RegistrarCosecha extends javax.swing.JInternalFrame implements Comu
     }//GEN-LAST:event_btn_cancelarActionPerformed
 
     private void btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarActionPerformed
-        //Eliminar(txt_IdCosecha.getText());
+        Eliminar();
         Bloquear();
         Limpiar();
         BloqInicio();
@@ -628,6 +637,7 @@ public class RegistrarCosecha extends javax.swing.JInternalFrame implements Comu
     private javax.swing.JPanel jP_Listado;
     public static com.toedter.calendar.JDateChooser txt_FechaRecoleccion;
     public static com.toedter.calendar.JDateChooser txt_FechaSiembra;
+    public static javax.swing.JTextField txt_Id;
     public static javax.swing.JTextField txt_NombreCosecha;
     // End of variables declaration//GEN-END:variables
 

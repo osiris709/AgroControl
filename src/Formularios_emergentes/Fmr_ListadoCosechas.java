@@ -13,12 +13,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
 public class Fmr_ListadoCosechas extends javax.swing.JDialog {
 
     conexion objConexion = new conexion();
     Connection con = objConexion.conexion();
-    
+
     public Fmr_ListadoCosechas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -27,7 +26,6 @@ public class Fmr_ListadoCosechas extends javax.swing.JDialog {
         setResizable(false);
         MostrarListaCosechas();
     }
-
 
     public void MostrarListaCosechas() {
 
@@ -45,7 +43,9 @@ public class Fmr_ListadoCosechas extends javax.swing.JDialog {
 
         try {
             Statement leer = con.createStatement();
-            ResultSet resultado = leer.executeQuery("SELECT * FROM Cosecha");
+            ResultSet resultado = leer.executeQuery("SELECT IdCosecha, Nombre_Cosecha, Tipo_Cultivo, tipo_cosecha.TipoCosecha, Fecha_Siembra, Fecha_Recoleccion \n"
+                    + "FROM Cosecha JOIN tipo_cosecha \n"
+                    + "ON Cosecha.Tipo_Cosecha = tipo_cosecha.IDTipoCosecha");
 
             while (resultado.next()) {
                 datos[0] = resultado.getString(1);
@@ -94,8 +94,7 @@ public class Fmr_ListadoCosechas extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, e + "Error en la Consulta");
         }
     }
-   
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -216,7 +215,7 @@ public class Fmr_ListadoCosechas extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, e);
         }
 
-        //RegistrarCosecha.txt_IdCosecha.setText(TablaCosechas.getValueAt(TablaCosechas.getSelectedRow(), 0).toString());
+        RegistrarCosecha.txt_Id.setText(TablaCosechas.getValueAt(TablaCosechas.getSelectedRow(), 0).toString());
         RegistrarCosecha.txt_NombreCosecha.setText(TablaCosechas.getModel().getValueAt(TablaCosechas.getSelectedRow(), 1).toString());
         RegistrarCosecha.cbo_TipoCultivo.setSelectedItem(TablaCosechas.getModel().getValueAt(TablaCosechas.getSelectedRow(), 2).toString());
         RegistrarCosecha.cbo_TipoCosecha.setSelectedItem(TablaCosechas.getModel().getValueAt(TablaCosechas.getSelectedRow(), 3).toString());

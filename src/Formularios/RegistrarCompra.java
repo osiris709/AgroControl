@@ -8,11 +8,14 @@ import javax.swing.JOptionPane;
 import Formularios_emergentes.Fmr_ProductosCompra;
 import Formularios_emergentes.Fmr_MostrarListadoCompras;
 import java.awt.Component;
+import java.awt.Graphics;
 import java.awt.HeadlessException;
+import java.awt.Image;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTextField;
 
@@ -39,6 +42,15 @@ public class RegistrarCompra extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        ImageIcon icon1 = new ImageIcon(getClass().getResource("/Imagenes/fondo-submenu4.jpg"));
+        Image image1 = icon1.getImage();
+        jDP_RCompra = new javax.swing.JDesktopPane(){
+
+            public void paintComponent(Graphics g){
+                g.drawImage(image1,0,0,getWidth(),getHeight(),this);
+            }
+        }
+        ;
         Logo = new javax.swing.JLabel();
         PanelRegistrarCompras = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -77,39 +89,33 @@ public class RegistrarCompra extends javax.swing.JInternalFrame {
         setMaximumSize(new java.awt.Dimension(800, 600));
         setPreferredSize(new java.awt.Dimension(800, 600));
 
+        jDP_RCompra.setBackground(new java.awt.Color(255, 255, 255));
+        jDP_RCompra.setForeground(new java.awt.Color(255, 255, 255));
+
         Logo.setBackground(new java.awt.Color(255, 255, 255));
         Logo.setFont(new java.awt.Font("Calibri", 3, 24)); // NOI18N
-        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/LogoCRUD.png"))); // NOI18N
+        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/LogoCRUD2.png"))); // NOI18N
 
         PanelRegistrarCompras.setBackground(new java.awt.Color(240, 255, 240));
         PanelRegistrarCompras.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         PanelRegistrarCompras.setPreferredSize(new java.awt.Dimension(730, 436));
-        PanelRegistrarCompras.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel2.setText("Fecha de compra:");
-        PanelRegistrarCompras.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel4.setText("Proveedor:");
-        PanelRegistrarCompras.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel5.setText("Producto:");
-        PanelRegistrarCompras.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel6.setText("N° Factura:");
-        PanelRegistrarCompras.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 40, -1, -1));
 
         txt_Proveedor.setEditable(false);
-        PanelRegistrarCompras.add(txt_Proveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 200, -1));
-        PanelRegistrarCompras.add(txt_Producto, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 200, -1));
-        PanelRegistrarCompras.add(NFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 30, 110, -1));
 
         FechaCompra.setDateFormatString("dd/MM/yyyy");
-        PanelRegistrarCompras.add(FechaCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 30, 185, -1));
 
         btn_buscarProveedor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar2.png"))); // NOI18N
         btn_buscarProveedor.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -119,7 +125,6 @@ public class RegistrarCompra extends javax.swing.JInternalFrame {
                 btn_buscarProveedorActionPerformed(evt);
             }
         });
-        PanelRegistrarCompras.add(btn_buscarProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 70, 30, 30));
 
         btn_buscarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/buscar2.png"))); // NOI18N
         btn_buscarProducto.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -129,7 +134,6 @@ public class RegistrarCompra extends javax.swing.JInternalFrame {
                 btn_buscarProductoActionPerformed(evt);
             }
         });
-        PanelRegistrarCompras.add(btn_buscarProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 120, 30, 30));
 
         /*RC_Mostrarlistadocompras = new javax.swing.JTable(){
             public boolean isCellEditable(int rowIndex, int colIndex){
@@ -150,36 +154,28 @@ public class RegistrarCompra extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(RC_Mostrarlistadocompras);
         RC_Mostrarlistadocompras.getAccessibleContext().setAccessibleName("");
 
-        PanelRegistrarCompras.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 667, 180));
-
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel10.setText("Valor Total:");
-        PanelRegistrarCompras.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 380, -1, 20));
 
         txt_ValorTotal.setEditable(false);
-        PanelRegistrarCompras.add(txt_ValorTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 380, 170, -1));
 
         txt_cantidad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txt_cantidadKeyTyped(evt);
             }
         });
-        PanelRegistrarCompras.add(txt_cantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 80, 70, -1));
 
         txt_valorunidad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txt_valorunidadKeyTyped(evt);
             }
         });
-        PanelRegistrarCompras.add(txt_valorunidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 120, 70, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel1.setText("Cantidad:");
-        PanelRegistrarCompras.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 80, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel3.setText("Valor Unitario: ");
-        PanelRegistrarCompras.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 120, -1, -1));
 
         btn_elminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/eliminar2.png"))); // NOI18N
         btn_elminar.setText("Eliminar");
@@ -189,7 +185,6 @@ public class RegistrarCompra extends javax.swing.JInternalFrame {
                 btn_elminarActionPerformed(evt);
             }
         });
-        PanelRegistrarCompras.add(btn_elminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 160, 100, -1));
 
         btnAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Nuevo2.png"))); // NOI18N
         btnAgregar.setText("Agregar");
@@ -199,7 +194,107 @@ public class RegistrarCompra extends javax.swing.JInternalFrame {
                 btnAgregarActionPerformed(evt);
             }
         });
-        PanelRegistrarCompras.add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 160, 100, -1));
+
+        javax.swing.GroupLayout PanelRegistrarComprasLayout = new javax.swing.GroupLayout(PanelRegistrarCompras);
+        PanelRegistrarCompras.setLayout(PanelRegistrarComprasLayout);
+        PanelRegistrarComprasLayout.setHorizontalGroup(
+            PanelRegistrarComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelRegistrarComprasLayout.createSequentialGroup()
+                .addGroup(PanelRegistrarComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelRegistrarComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(PanelRegistrarComprasLayout.createSequentialGroup()
+                            .addGap(28, 28, 28)
+                            .addComponent(jLabel2)
+                            .addGap(24, 24, 24)
+                            .addComponent(FechaCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(52, 52, 52)
+                            .addGroup(PanelRegistrarComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel1)
+                                .addComponent(jLabel6))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                            .addGroup(PanelRegistrarComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(NFactura, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                                .addComponent(txt_cantidad)))
+                        .addGroup(PanelRegistrarComprasLayout.createSequentialGroup()
+                            .addGroup(PanelRegistrarComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(PanelRegistrarComprasLayout.createSequentialGroup()
+                                    .addGap(28, 28, 28)
+                                    .addGroup(PanelRegistrarComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel5)
+                                        .addComponent(jLabel4))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(PanelRegistrarComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txt_Producto, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                                        .addComponent(txt_Proveedor))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(PanelRegistrarComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(btn_buscarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(btn_buscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(205, 205, 205))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelRegistrarComprasLayout.createSequentialGroup()
+                                    .addContainerGap()
+                                    .addComponent(btn_elminar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(37, 37, 37)))
+                            .addGroup(PanelRegistrarComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txt_valorunidad, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(PanelRegistrarComprasLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 667, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(PanelRegistrarComprasLayout.createSequentialGroup()
+                        .addGap(438, 438, 438)
+                        .addComponent(jLabel10)
+                        .addGap(20, 20, 20)
+                        .addComponent(txt_ValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(10, 10, 10))
+        );
+        PanelRegistrarComprasLayout.setVerticalGroup(
+            PanelRegistrarComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelRegistrarComprasLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(PanelRegistrarComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(FechaCompra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(PanelRegistrarComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel6)
+                        .addComponent(NFactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(PanelRegistrarComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(PanelRegistrarComprasLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(PanelRegistrarComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PanelRegistrarComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(txt_Proveedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel4))
+                            .addGroup(PanelRegistrarComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel1)
+                                .addComponent(txt_cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(22, 22, 22))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelRegistrarComprasLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_buscarProveedor, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
+                .addGroup(PanelRegistrarComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_buscarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(PanelRegistrarComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txt_valorunidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3))
+                    .addGroup(PanelRegistrarComprasLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(PanelRegistrarComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txt_Producto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))))
+                .addGap(10, 10, 10)
+                .addGroup(PanelRegistrarComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_elminar)
+                    .addComponent(btnAgregar))
+                .addGap(15, 15, 15)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addGroup(PanelRegistrarComprasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txt_ValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        );
 
         jPanel3.setBackground(new java.awt.Color(240, 255, 240));
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -247,9 +342,9 @@ public class RegistrarCompra extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(btn_nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(btn_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52)
                 .addComponent(btn_lista)
                 .addGap(76, 76, 76)
                 .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -267,27 +362,42 @@ public class RegistrarCompra extends javax.swing.JInternalFrame {
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
+        jDP_RCompra.setLayer(Logo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDP_RCompra.setLayer(PanelRegistrarCompras, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDP_RCompra.setLayer(jPanel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jDP_RCompraLayout = new javax.swing.GroupLayout(jDP_RCompra);
+        jDP_RCompra.setLayout(jDP_RCompraLayout);
+        jDP_RCompraLayout.setHorizontalGroup(
+            jDP_RCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDP_RCompraLayout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addGroup(jDP_RCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(PanelRegistrarCompras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Logo)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+        jDP_RCompraLayout.setVerticalGroup(
+            jDP_RCompraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDP_RCompraLayout.createSequentialGroup()
+                .addComponent(Logo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(PanelRegistrarCompras, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 35, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Logo)
-                    .addComponent(PanelRegistrarCompras, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 27, Short.MAX_VALUE))
+            .addComponent(jDP_RCompra)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(Logo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PanelRegistrarCompras, javax.swing.GroupLayout.PREFERRED_SIZE, 413, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
+            .addComponent(jDP_RCompra)
         );
 
         pack();
@@ -548,6 +658,7 @@ public class RegistrarCompra extends javax.swing.JInternalFrame {
     private javax.swing.JButton btn_guardar;
     private javax.swing.JButton btn_lista;
     private javax.swing.JButton btn_nuevo;
+    private javax.swing.JDesktopPane jDP_RCompra;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

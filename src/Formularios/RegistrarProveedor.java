@@ -29,12 +29,12 @@ public class RegistrarProveedor extends javax.swing.JInternalFrame {
         bloquear();
         this.setTitle("AgroControl - Registro Proveedores");
         BloqInicio();
-        
+
         Proveedor pro = new Proveedor();
-        
+
     }
 
-    public  void bloquear() {
+    public void bloquear() {
         this.txt_direccion.setEnabled(false);
         this.txt_correo.setEnabled(false);
         this.txt_telefono.setEnabled(false);
@@ -113,7 +113,7 @@ public class RegistrarProveedor extends javax.swing.JInternalFrame {
         btn_eliminar.setEnabled(false);
     }
 
-    public void BloqBotonBuscar(){
+    public void BloqBotonBuscar() {
         btn_buscar.setEnabled(true);
         btn_nuevo.setEnabled(false);
         btn_guardar.setEnabled(false);
@@ -121,7 +121,7 @@ public class RegistrarProveedor extends javax.swing.JInternalFrame {
         btn_cancelar.setEnabled(true);
         btn_eliminar.setEnabled(true);
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -444,14 +444,18 @@ public class RegistrarProveedor extends javax.swing.JInternalFrame {
             javax.swing.JOptionPane.showMessageDialog(this, "Obligatorio llenar todos los campos \n", "AVISO!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
             txt_nit.requestFocus();
         } else {
-            String strSentenciaInsert = String.format("INSERT INTO proveedores (Nit,Nombre,Direccion,Correo,Telefono) "
-                    + "VALUES ('%s','%s','%s','%s','%s')", oProveedor.getNIt(), oProveedor.getNombre(), oProveedor.getDireccion(), oProveedor.getCorreo(), oProveedor.getTelefono());
+            int confirmar = JOptionPane.showConfirmDialog(null, "¿Desea Guardar los datos?");
+            if (confirmar == JOptionPane.YES_OPTION) {
+                String strSentenciaInsert = String.format("INSERT INTO proveedores (Nit,Nombre,Direccion,Correo,Telefono) "
+                        + "VALUES ('%s','%s','%s','%s','%s')", oProveedor.getNIt(), oProveedor.getNombre(), oProveedor.getDireccion(), oProveedor.getCorreo(), oProveedor.getTelefono());
 
-            objConexion.ejecutarSentenciaSQL(strSentenciaInsert);
-            mostrardatos();
-            limpiar();
-            bloquear();
-            BloqInicio();
+                objConexion.ejecutarSentenciaSQL(strSentenciaInsert);
+                JOptionPane.showMessageDialog(null, "Proveedor Registrado exitosamente");
+                mostrardatos();
+                limpiar();
+                bloquear();
+                BloqInicio();
+            }
         }
     }//GEN-LAST:event_btn_guardarActionPerformed
 
@@ -467,12 +471,15 @@ public class RegistrarProveedor extends javax.swing.JInternalFrame {
             javax.swing.JOptionPane.showMessageDialog(this, "Obligatorio llenar todos los campos \n", "AVISO!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
             txt_nit.requestFocus();
         } else {
-            String strSentenciaInsert = String.format("DELETE FROM proveedores WHERE Nit=%s ", oProveedor.getNIt());
+            int confirmar = JOptionPane.showConfirmDialog(null, "¿Desea Eliminar los datos?");
+            if (confirmar == JOptionPane.YES_OPTION) {
+                String strSentenciaInsert = String.format("DELETE FROM proveedores WHERE Nit=%s ", oProveedor.getNIt());
 
-            objConexion.ejecutarSentenciaSQL(strSentenciaInsert);
-            mostrardatos();
-            limpiar();
-            BloqInicio();
+                objConexion.ejecutarSentenciaSQL(strSentenciaInsert);
+                mostrardatos();
+                limpiar();
+                BloqInicio();
+            }
         }
     }//GEN-LAST:event_btn_eliminarActionPerformed
 
