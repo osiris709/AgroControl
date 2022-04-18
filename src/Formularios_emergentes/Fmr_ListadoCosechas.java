@@ -44,7 +44,7 @@ public class Fmr_ListadoCosechas extends javax.swing.JDialog {
         try {
             Statement leer = con.createStatement();
             ResultSet resultado = leer.executeQuery("SELECT IdCosecha, Nombre_Cosecha, Tipo_Cultivo, tipo_cosecha.TipoCosecha, Fecha_Siembra, Fecha_Recoleccion \n"
-                    + "FROM Cosecha JOIN tipo_cosecha \n"
+                    + "FROM Cosecha INNER JOIN tipo_cosecha \n"
                     + "ON Cosecha.Tipo_Cosecha = tipo_cosecha.IDTipoCosecha");
 
             while (resultado.next()) {

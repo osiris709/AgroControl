@@ -175,7 +175,6 @@ public class RegistrarCosecha extends javax.swing.JInternalFrame implements Comu
     public void LlamarComboBox() {
 
         try {
-
             cbo_TipoCosecha.removeAllItems();
             cbo_TipoCosecha.addItem("Seleccionar");
             String consulta = "SELECT TipoCosecha FROM Tipo_Cosecha ORDER BY IDTipoCosecha";

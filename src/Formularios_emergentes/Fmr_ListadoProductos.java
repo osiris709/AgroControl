@@ -19,13 +19,13 @@ public final class Fmr_ListadoProductos extends javax.swing.JDialog {
 
     conexion conn = new conexion();
     Connection iniciarConexion = conn.conexion();
-    
+
     public Fmr_ListadoProductos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setTitle("AgroControl - Lista de Productos");
         setLocationRelativeTo(null);
-        
+
         MostrarlistadoProductos();
         bloquearListado();
     }
@@ -47,7 +47,10 @@ public final class Fmr_ListadoProductos extends javax.swing.JDialog {
 
         try {
             Statement leer = iniciarConexion.createStatement();
-            ResultSet resultado = leer.executeQuery("SELECT * FROM Productos");
+            ResultSet resultado = leer.executeQuery("SELECT Codigo,Nombre,Descripcion,IngredienteActivo,FechadeVencimiento, unimedidatproducto.UnidaddeMedidaDato,tipodeproducto.TipodeProducto\n"
+                    + "FROM Productos INNER JOIN tipodeproducto\n"
+                    + "ON productos.TipodeProducto = tipodeproducto.idtipoproducto\n"
+                    + "INNER JOIN unimedidatproducto ON productos.UnidaddeMedida = unimedidatproducto.IDuniMedida");
 
             while (resultado.next()) {
                 datos[0] = resultado.getString(1);
@@ -65,7 +68,7 @@ public final class Fmr_ListadoProductos extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, e + "Error en la Consulta");
         }
     }
-    
+
     public void BotonBuscar(String buscar) {
 
         DefaultTableModel tclientee = new DefaultTableModel();
@@ -114,14 +117,14 @@ public final class Fmr_ListadoProductos extends javax.swing.JDialog {
         }
 
     }
-    
+
     public void bloquearListado() {
 
         for (Component a : TablaCliente.getComponents()) {
             a.setEnabled(true);
         }
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -254,7 +257,7 @@ public final class Fmr_ListadoProductos extends javax.swing.JDialog {
 
         }
         this.hide();
-        RegistrarProducto.btn_elminar.setEnabled(true);
+        RegistrarProducto.btn_eliminar.setEnabled(true);
         RegistrarProducto.btn_editar.setEnabled(true);
     }//GEN-LAST:event_TablaClienteMouseClicked
 

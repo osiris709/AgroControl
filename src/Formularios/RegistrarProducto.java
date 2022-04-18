@@ -26,13 +26,47 @@ public final class RegistrarProducto extends javax.swing.JInternalFrame {
 
         LeerDatosComboBoxUnidadMedida();
         LeerDatosComboBoxTipoProducto();
-        bloquearInicio();
+        Bloquear();
+        BloqInicio();
 
         this.setTitle("AgroControl - Registrar Productos");
         setResizable(false);
     }
 
-    public void bloquearInicio() {
+        public void BloqInicio() {
+        btn_buscar.setEnabled(true);
+        btn_crearUnidad.setEnabled(false);
+        btn_crearTipoProducto.setEnabled(false);
+        btn_nuevo.setEnabled(true);
+        btn_guardar.setEnabled(false);
+        btn_editar.setEnabled(false);
+        btn_cancelar.setEnabled(false);
+        btn_eliminar.setEnabled(false);
+    }
+
+    public void BloqBotonNuevo() {
+        btn_buscar.setEnabled(false);
+        btn_crearUnidad.setEnabled(true);
+        btn_crearTipoProducto.setEnabled(true);
+        btn_nuevo.setEnabled(false);
+        btn_guardar.setEnabled(true);
+        btn_editar.setEnabled(false);
+        btn_cancelar.setEnabled(true);
+        btn_eliminar.setEnabled(false);
+    }
+
+    public void BloqBotonBuscar(){
+        btn_buscar.setEnabled(true);
+        btn_crearUnidad.setEnabled(true);
+        btn_crearTipoProducto.setEnabled(true);
+        btn_nuevo.setEnabled(false);
+        btn_guardar.setEnabled(false);
+        btn_editar.setEnabled(true);
+        btn_cancelar.setEnabled(true);
+        btn_eliminar.setEnabled(true);
+    }
+    
+    public void Bloquear() {
         txt_codigoProducto.setEnabled(false);
         txt_nombreProducto.setEnabled(false);
         txt_Ingredienteactivo.setEnabled(false);
@@ -40,16 +74,9 @@ public final class RegistrarProducto extends javax.swing.JInternalFrame {
         txt_descripcionProducto.setEnabled(false);
         cbo_unidadMedida.setEnabled(false);
         cbo_categoria.setEnabled(false);
-        btn_editar2.setEnabled(false);
-        btn_editar1.setEnabled(false);
-        btn_buscar.setEnabled(true);
-        btn_guardar.setEnabled(false);
-        btn_editar.setEnabled(false);
-        btn_cancelar.setEnabled(false);
-        btn_elminar.setEnabled(false);
     }
 
-    public void BotonNuevo() {
+    public void Desbloquear() {
         txt_codigoProducto.setEnabled(true);
         txt_nombreProducto.setEnabled(true);
         txt_Ingredienteactivo.setEnabled(true);
@@ -57,22 +84,7 @@ public final class RegistrarProducto extends javax.swing.JInternalFrame {
         txt_descripcionProducto.setEnabled(true);
         cbo_unidadMedida.setEnabled(true);
         cbo_categoria.setEnabled(true);
-        btn_editar2.setEnabled(true);
-        btn_editar1.setEnabled(true);
-        btn_buscar.setEnabled(true);
-        btn_guardar.setEnabled(true);
-        btn_editar.setEnabled(false);
-        btn_cancelar.setEnabled(true);
-        btn_elminar.setEnabled(false);
-
-    }
-
-    public void bloquearBotones() {
-
-        btn_guardar.setEnabled(false);
-        btn_editar.setEnabled(false);
-        btn_cancelar.setEnabled(false);
-        btn_elminar.setEnabled(false);
+        txt_codigoProducto.requestFocus();
     }
 
     public void borrar() {
@@ -150,10 +162,9 @@ public final class RegistrarProducto extends javax.swing.JInternalFrame {
                     eliminar.executeUpdate();
 
                     JOptionPane.showMessageDialog(null, "Cosecha Eliminada exitosamente");
-
-                    borrar();
                     eliminar.close();
-
+                    borrar();
+                    
                 } catch (Exception e) {
 
                     JOptionPane.showMessageDialog(null, e + "Error, No se elimino la Cosecha");
@@ -178,14 +189,13 @@ public final class RegistrarProducto extends javax.swing.JInternalFrame {
                     modificar.setString(2, txt_descripcionProducto.getText());
                     modificar.setString(3, txt_Ingredienteactivo.getText());
                     modificar.setString(4, ((JTextField) jDate_FechaVencimiento.getDateEditor().getUiComponent()).getText());
-                    modificar.setString(5, cbo_unidadMedida.getSelectedItem().toString());
-                    modificar.setString(6, cbo_categoria.getSelectedItem().toString());
+                    modificar.setString(5, String.valueOf(cbo_unidadMedida.getSelectedIndex()));
+                    modificar.setString(6, String.valueOf(cbo_categoria.getSelectedIndex()));
                     modificar.setString(7, txt_codigoProducto.getText());
                     modificar.executeUpdate();
 
                     JOptionPane.showMessageDialog(null, "Ventana Productos Modificada Exitosamente");
 
-                    bloquearInicio();
                     modificar.close();
 
                 } catch (Exception e) {
@@ -221,8 +231,8 @@ public final class RegistrarProducto extends javax.swing.JInternalFrame {
         cbo_categoria = new javax.swing.JComboBox<>();
         txt_descripcionProducto = new javax.swing.JTextField();
         btn_buscar = new javax.swing.JButton();
-        btn_editar1 = new javax.swing.JButton();
-        btn_editar2 = new javax.swing.JButton();
+        btn_crearTipoProducto = new javax.swing.JButton();
+        btn_crearUnidad = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         txt_Ingredienteactivo = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
@@ -233,7 +243,7 @@ public final class RegistrarProducto extends javax.swing.JInternalFrame {
         Panel_Botones = new javax.swing.JPanel();
         btn_guardar = new javax.swing.JButton();
         btn_editar = new javax.swing.JButton();
-        btn_elminar = new javax.swing.JButton();
+        btn_eliminar = new javax.swing.JButton();
         btn_cancelar = new javax.swing.JButton();
         btn_nuevo = new javax.swing.JButton();
 
@@ -273,11 +283,6 @@ public final class RegistrarProducto extends javax.swing.JInternalFrame {
         });
 
         cbo_unidadMedida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Monoxido" }));
-        cbo_unidadMedida.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbo_unidadMedidaActionPerformed(evt);
-            }
-        });
 
         cbo_categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Semillas", "Abonos", "Insectisidas", "Otros" }));
         cbo_categoria.addActionListener(new java.awt.event.ActionListener() {
@@ -296,31 +301,21 @@ public final class RegistrarProducto extends javax.swing.JInternalFrame {
             }
         });
 
-        btn_editar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Nuevo2.png"))); // NOI18N
-        btn_editar1.setText("Crear tipo Producto");
-        btn_editar1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btn_editar1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_editar1MouseClicked(evt);
-            }
-        });
-        btn_editar1.addActionListener(new java.awt.event.ActionListener() {
+        btn_crearTipoProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Nuevo2.png"))); // NOI18N
+        btn_crearTipoProducto.setText("Crear tipo Producto");
+        btn_crearTipoProducto.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_crearTipoProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_editar1ActionPerformed(evt);
+                btn_crearTipoProductoActionPerformed(evt);
             }
         });
 
-        btn_editar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Nuevo2.png"))); // NOI18N
-        btn_editar2.setText("Crear Unidad de Medida");
-        btn_editar2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btn_editar2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_editar2MouseClicked(evt);
-            }
-        });
-        btn_editar2.addActionListener(new java.awt.event.ActionListener() {
+        btn_crearUnidad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Nuevo2.png"))); // NOI18N
+        btn_crearUnidad.setText("Crear Unidad de Medida");
+        btn_crearUnidad.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_crearUnidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_editar2ActionPerformed(evt);
+                btn_crearUnidadActionPerformed(evt);
             }
         });
 
@@ -352,7 +347,7 @@ public final class RegistrarProducto extends javax.swing.JInternalFrame {
                                 .addComponent(txt_descripcionProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelDatosLayout.createSequentialGroup()
                                 .addGroup(PanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btn_editar2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btn_crearUnidad, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(PanelDatosLayout.createSequentialGroup()
                                         .addComponent(jLabel5)
                                         .addGap(39, 39, 39)
@@ -365,7 +360,7 @@ public final class RegistrarProducto extends javax.swing.JInternalFrame {
                                         .addComponent(cbo_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelDatosLayout.createSequentialGroup()
                                         .addGap(157, 157, 157)
-                                        .addComponent(btn_editar1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(btn_crearTipoProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelDatosLayout.createSequentialGroup()
                                 .addGroup(PanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(PanelDatosLayout.createSequentialGroup()
@@ -419,8 +414,8 @@ public final class RegistrarProducto extends javax.swing.JInternalFrame {
                     .addComponent(cbo_categoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addGroup(PanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_editar2)
-                    .addComponent(btn_editar1))
+                    .addComponent(btn_crearUnidad)
+                    .addComponent(btn_crearTipoProducto))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
@@ -471,7 +466,7 @@ public final class RegistrarProducto extends javax.swing.JInternalFrame {
         });
 
         btn_editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/editar2.png"))); // NOI18N
-        btn_editar.setText("Editar");
+        btn_editar.setText("Modificar");
         btn_editar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btn_editar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -479,12 +474,12 @@ public final class RegistrarProducto extends javax.swing.JInternalFrame {
             }
         });
 
-        btn_elminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/eliminar2.png"))); // NOI18N
-        btn_elminar.setText("Eliminar");
-        btn_elminar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btn_elminar.addActionListener(new java.awt.event.ActionListener() {
+        btn_eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/eliminar2.png"))); // NOI18N
+        btn_eliminar.setText("Eliminar");
+        btn_eliminar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_elminarActionPerformed(evt);
+                btn_eliminarActionPerformed(evt);
             }
         });
 
@@ -520,7 +515,7 @@ public final class RegistrarProducto extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
-                .addComponent(btn_elminar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36))
         );
         Panel_BotonesLayout.setVerticalGroup(
@@ -528,7 +523,7 @@ public final class RegistrarProducto extends javax.swing.JInternalFrame {
             .addGroup(Panel_BotonesLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(Panel_BotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_elminar)
+                    .addComponent(btn_eliminar)
                     .addComponent(btn_editar)
                     .addComponent(btn_guardar)
                     .addComponent(btn_cancelar)
@@ -615,9 +610,9 @@ public final class RegistrarProducto extends javax.swing.JInternalFrame {
 
                 JOptionPane.showMessageDialog(null, "Datos Ingresados Correctamente.");
                 guardar.close();
-                bloquearInicio();
+                Bloquear();
                 borrar();
-                btn_nuevo.setEnabled(true);
+                BloqInicio();
 
             } catch (Exception e) {
                 
@@ -634,11 +629,11 @@ public final class RegistrarProducto extends javax.swing.JInternalFrame {
         Fmr_ListadoProductos.TablaCliente.setEnabled(false);
     }//GEN-LAST:event_btn_listaActionPerformed
 
-
     private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
         borrar();
-        bloquearInicio();
+        Bloquear();
         btn_nuevo.setEnabled(true);
+        BloqInicio();
     }//GEN-LAST:event_btn_cancelarActionPerformed
 
     private void txt_codigoProductoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_codigoProductoKeyTyped
@@ -653,50 +648,40 @@ public final class RegistrarProducto extends javax.swing.JInternalFrame {
         Modificar(txt_codigoProducto.getText(), txt_nombreProducto.getText(), txt_descripcionProducto.getText(), txt_Ingredienteactivo.getText(), jDate_FechaVencimiento.getDate(), cbo_unidadMedida.getSelectedItem().toString(), cbo_categoria.getSelectedItem().toString());
         btn_nuevo.setEnabled(true);
         borrar();
-
+        Bloquear();
+        BloqInicio();
     }//GEN-LAST:event_btn_editarActionPerformed
 
     private void btn_nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_nuevoActionPerformed
         borrar();
-        BotonNuevo();
-        btn_nuevo.setEnabled(false);
+        Desbloquear();
+        BloqBotonNuevo();
     }//GEN-LAST:event_btn_nuevoActionPerformed
 
-    private void btn_editar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_editar2MouseClicked
-
-    }//GEN-LAST:event_btn_editar2MouseClicked
-
-    private void btn_editar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editar2ActionPerformed
+    private void btn_crearUnidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_crearUnidadActionPerformed
         Fmr_CrearUnidadMedida ventana = new Fmr_CrearUnidadMedida();
         ventana.setVisible(true);
 
-    }//GEN-LAST:event_btn_editar2ActionPerformed
+    }//GEN-LAST:event_btn_crearUnidadActionPerformed
 
-    private void btn_editar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_editar1MouseClicked
-
-    }//GEN-LAST:event_btn_editar1MouseClicked
-
-    private void btn_elminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_elminarActionPerformed
+    private void btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarActionPerformed
         Eliminar(txt_codigoProducto.getText());
         borrar();
-        bloquearInicio();
-        btn_nuevo.setEnabled(true);
-    }//GEN-LAST:event_btn_elminarActionPerformed
+        Bloquear();
+        BloqInicio();
+    }//GEN-LAST:event_btn_eliminarActionPerformed
 
-    private void btn_editar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editar1ActionPerformed
+    private void btn_crearTipoProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_crearTipoProductoActionPerformed
         Fmr_CrearTipodeProducto ventana = new Fmr_CrearTipodeProducto();
         ventana.setVisible(true);
-    }//GEN-LAST:event_btn_editar1ActionPerformed
-
-    private void cbo_unidadMedidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_unidadMedidaActionPerformed
-
-    }//GEN-LAST:event_cbo_unidadMedidaActionPerformed
+    }//GEN-LAST:event_btn_crearTipoProductoActionPerformed
 
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
         Frame ListaProductos = JOptionPane.getFrameForComponent(this);
         Fmr_ListadoProductos ventana = new Fmr_ListadoProductos(ListaProductos, false);
         ventana.setVisible(true);
-        BotonNuevo();
+        BloqBotonBuscar();
+        Desbloquear();
     }//GEN-LAST:event_btn_buscarActionPerformed
 
 
@@ -706,10 +691,10 @@ public final class RegistrarProducto extends javax.swing.JInternalFrame {
     private javax.swing.JPanel Panel_Listado;
     private javax.swing.JButton btn_buscar;
     private javax.swing.JButton btn_cancelar;
+    private javax.swing.JButton btn_crearTipoProducto;
+    private javax.swing.JButton btn_crearUnidad;
     public static javax.swing.JButton btn_editar;
-    private javax.swing.JButton btn_editar1;
-    private javax.swing.JButton btn_editar2;
-    public static javax.swing.JButton btn_elminar;
+    public static javax.swing.JButton btn_eliminar;
     private javax.swing.JButton btn_guardar;
     private javax.swing.JButton btn_lista;
     private javax.swing.JButton btn_nuevo;
