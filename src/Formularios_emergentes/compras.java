@@ -36,7 +36,7 @@ public class compras extends javax.swing.JFrame {
     public compras() {
         initComponents();
         Connect();
-        this.setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
         setResizable(false);
     }
     Connection conn;

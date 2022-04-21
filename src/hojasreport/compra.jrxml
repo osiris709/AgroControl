@@ -64,7 +64,7 @@ WHERE
 		<band splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="85" splitType="Stretch">
+		<band height="103" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="0" width="89" height="20" uuid="7bb62df2-2309-43c7-aa03-3d4c0ca8c743"/>
 				<textElement>
@@ -104,28 +104,38 @@ WHERE
 				<textFieldExpression><![CDATA[$F{compras_Nombre_Proveedor}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="115" y="65" width="100" height="20" uuid="3105d97d-7ccf-43d1-9227-8768dd8e6b01"/>
-				<textElement textAlignment="Center"/>
+				<reportElement x="115" y="83" width="100" height="20" uuid="3105d97d-7ccf-43d1-9227-8768dd8e6b01"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
 				<text><![CDATA[Nombre producto]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="378" y="65" width="77" height="20" uuid="d0dd992d-8331-4fd4-bf63-9cc5a2db681b"/>
-				<textElement textAlignment="Center"/>
+				<reportElement x="378" y="83" width="77" height="20" uuid="d0dd992d-8331-4fd4-bf63-9cc5a2db681b"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
 				<text><![CDATA[Valor Unitario]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="284" y="65" width="63" height="20" uuid="c1500972-2838-4eb8-aeee-a9a8b749134f"/>
-				<textElement textAlignment="Center"/>
+				<reportElement x="284" y="83" width="63" height="20" uuid="c1500972-2838-4eb8-aeee-a9a8b749134f"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
 				<text><![CDATA[Cantidad]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="65" width="100" height="20" uuid="0911a360-d761-45c5-9a18-c4ecd6fdecb0"/>
-				<textElement textAlignment="Center"/>
+				<reportElement x="0" y="83" width="100" height="20" uuid="0911a360-d761-45c5-9a18-c4ecd6fdecb0"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
 				<text><![CDATA[Codigo]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="482" y="65" width="63" height="20" uuid="f33d252f-e864-45da-9fb0-68227e032328"/>
-				<textElement textAlignment="Center"/>
+				<reportElement x="482" y="83" width="63" height="20" uuid="f33d252f-e864-45da-9fb0-68227e032328"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
 				<text><![CDATA[Subtotal]]></text>
 			</staticText>
 			<staticText>
@@ -140,30 +150,30 @@ WHERE
 	<detail>
 		<band height="33" splitType="Stretch">
 			<line>
-				<reportElement x="0" y="26" width="567" height="1" uuid="5dd41873-606a-43c2-b239-0f1fc842abda"/>
+				<reportElement x="0" y="19" width="567" height="1" uuid="5dd41873-606a-43c2-b239-0f1fc842abda"/>
 			</line>
 			<textField>
-				<reportElement x="115" y="6" width="100" height="20" uuid="f31e34a0-b0df-4124-866f-392c8685dade"/>
+				<reportElement x="115" y="0" width="100" height="20" uuid="f31e34a0-b0df-4124-866f-392c8685dade"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{productos_Nombre}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="284" y="6" width="63" height="20" uuid="76bea790-54e8-4936-9809-d7a160db8c5c"/>
+				<reportElement x="284" y="0" width="63" height="20" uuid="76bea790-54e8-4936-9809-d7a160db8c5c"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{detallecompra_Cantidad_Producto}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="378" y="7" width="77" height="20" uuid="b96d10da-c623-41e7-85bd-b221feae685c"/>
+				<reportElement x="378" y="0" width="77" height="20" uuid="b96d10da-c623-41e7-85bd-b221feae685c"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{detallecompra_Valor_Unitario}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="482" y="6" width="63" height="20" uuid="968ea0d0-e471-40fd-8122-47c22172f329"/>
+				<reportElement x="482" y="0" width="63" height="20" uuid="968ea0d0-e471-40fd-8122-47c22172f329"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{detallecompra_Subtotal}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="6" width="100" height="20" uuid="84b8cb16-f785-4704-b0c3-89fae196ab62"/>
+				<reportElement x="0" y="0" width="100" height="20" uuid="84b8cb16-f785-4704-b0c3-89fae196ab62"/>
 				<textElement textAlignment="Center"/>
 				<textFieldExpression><![CDATA[$F{productos_Codigo}]]></textFieldExpression>
 			</textField>
@@ -172,19 +182,22 @@ WHERE
 	<columnFooter>
 		<band height="53" splitType="Stretch">
 			<staticText>
-				<reportElement x="445" y="11" width="100" height="20" uuid="823daf5b-a828-4bb3-9582-ae72a6fc6339"/>
+				<reportElement x="455" y="11" width="90" height="20" uuid="823daf5b-a828-4bb3-9582-ae72a6fc6339"/>
 				<textElement textAlignment="Center">
-					<font size="12" isBold="true"/>
+					<font size="12" isBold="true" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="true"/>
 				</textElement>
 				<text><![CDATA[Total Compra]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="445" y="31" width="100" height="20" uuid="83623f1c-e232-4e66-95ce-cd891e84c505"/>
+				<reportElement x="455" y="31" width="90" height="20" uuid="83623f1c-e232-4e66-95ce-cd891e84c505"/>
 				<textElement textAlignment="Center">
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{compras_Total_Compra}]]></textFieldExpression>
 			</textField>
+			<line>
+				<reportElement x="455" y="10" width="90" height="1" uuid="7e88f675-9123-48f2-8c35-578c285f35a6"/>
+			</line>
 		</band>
 	</columnFooter>
 	<pageFooter>
