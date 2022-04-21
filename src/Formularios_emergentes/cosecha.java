@@ -73,7 +73,7 @@ public class cosecha extends javax.swing.JFrame {
         jPanel1.revalidate();
 
         try {
-            JasperDesign jdesign = JRXmlLoader.load("C:\\Users\\usuario\\Documents\\NetBeansProjects\\AgroControl\\src\\hojasreport\\reportcosecha.jrxml");
+            JasperDesign jdesign = JRXmlLoader.load("C:\\Users\\usuario\\Documents\\NetBeansProjects\\Repositorios\\AgroControl\\src\\hojasreport\\reportcosecha.jrxml");
             JasperReport jreport = JasperCompileManager.compileReport(jdesign);
 
             JasperPrint jprint = JasperFillManager.fillReport(jreport, a, conn);
@@ -105,7 +105,7 @@ public class cosecha extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtinicio = new com.toedter.calendar.JDateChooser();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel3.setText("fecha fin");
 

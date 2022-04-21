@@ -64,7 +64,7 @@ public class consumo extends javax.swing.JFrame {
         jPanel1.revalidate();
         
         try {
-            JasperDesign jdesing = JRXmlLoader.load("C:\\Users\\usuario\\Documents\\NetBeansProjects\\AgroControl\\src\\hojasreport\\consumo.jrxml");
+            JasperDesign jdesing = JRXmlLoader.load("C:\\Users\\usuario\\Documents\\NetBeansProjects\\Repositorios\\AgroControl\\src\\hojasreport\\consumo.jrxml");
             JasperReport jreport = JasperCompileManager.compileReport(jdesing);
             JasperPrint jprint = JasperFillManager.fillReport(jreport, a, conn);
             
@@ -95,7 +95,7 @@ public class consumo extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         bnBuscar.setText("Buscar");
         bnBuscar.addActionListener(new java.awt.event.ActionListener() {

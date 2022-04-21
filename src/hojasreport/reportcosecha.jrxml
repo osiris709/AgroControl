@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="387321dc-4353-45fd-927f-405a08bbe74e">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="168"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="inicio" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
@@ -41,8 +41,8 @@ FROM
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement x="14" y="0" width="153" height="91" uuid="ad8d00ea-595a-4649-91f6-002c969ed060"/>
-				<imageExpression><![CDATA["C:\Users\usuario\Documents\NetBeansProjects\AgroControl\src\Imagenes\\Primera-login.png"]]></imageExpression>
+				<reportElement x="0" y="0" width="96" height="85" uuid="953567a1-84be-4d58-9a78-8ce0034bedc4"/>
+				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\Repositorios\\AgroControl\\src\\Imagenes\\Primera-login.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>
