@@ -21,6 +21,8 @@ public class Fmr_ListadoUsuarios extends javax.swing.JDialog {
 
     public Fmr_ListadoUsuarios(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        this.setLocationRelativeTo(null);
+        setResizable(false);
         initComponents();
         listarUsuarios();
     }

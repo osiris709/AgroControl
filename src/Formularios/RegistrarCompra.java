@@ -6,7 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 import Formularios_emergentes.Fmr_ProductosCompra;
-import Formularios_emergentes.Fmr_MostrarListadoCompras;
+import Formularios_emergentes.Fmr_ListadoCompras;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.HeadlessException;
@@ -608,7 +608,7 @@ public class RegistrarCompra extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_cancelarActionPerformed
 
     private void btn_listaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_listaActionPerformed
-        Fmr_MostrarListadoCompras ventana = new Fmr_MostrarListadoCompras();
+        Fmr_ListadoCompras ventana = new Fmr_ListadoCompras();
         ventana.setVisible(true);
     }//GEN-LAST:event_btn_listaActionPerformed
 

@@ -24,8 +24,8 @@ public final class Fmr_ListadoProductos extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setTitle("AgroControl - Lista de Productos");
-        setLocationRelativeTo(null);
-
+        this.setLocationRelativeTo(null);
+        setResizable(false);
         MostrarlistadoProductos();
         bloquearListado();
     }

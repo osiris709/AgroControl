@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8f0e70ac-4ccc-4985-8d95-75de570c51c1">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="nombre" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     consumos.`Fecha_Aplicacion` AS consumos_Fecha_Aplicacion,
+     consumos.`Nombre_Cosecha` AS consumos_Nombre_Cosecha,
+     detalleconsumos.`NombreProducto` AS detalleconsumos_NombreProducto
+FROM
+     `consumos` consumos INNER JOIN `detalleconsumos` detalleconsumos ON  detalleconsumos.`IDConsumos =  consumos.`Nombre_Cosecha`
+
+where consumos.`Nombre_Cosecha`= $P{nombre}]]>
+	</queryString>
+	<field name="consumos_Fecha_Aplicacion" class="java.sql.Date"/>
+	<field name="consumos_Nombre_Cosecha" class="java.lang.Integer"/>
+	<field name="detalleconsumos_NombreProducto" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="91" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="153" height="91" uuid="491edbd3-e467-42aa-bc4e-a8cd9d211bdb"/>
+				<imageExpression><![CDATA["C:\Users\usuario\Documents\NetBeansProjects\AgroControl\src\Imagenes\\Primera-login.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="212" y="35" width="152" height="20" uuid="bd9e273b-9443-4bbf-ade6-ce5ee9c90bb6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reportes de cosecha]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="455" y="0" width="100" height="20" uuid="e3fcf216-e4b2-4ca3-84db-095966f278f0"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="28" splitType="Stretch">
+			<staticText>
+				<reportElement x="212" y="0" width="100" height="20" uuid="f39744ef-a477-45c3-ad74-3ff8a69f05f6"/>
+				<text><![CDATA[consumos_Fecha_Aplicacion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="33" y="2" width="100" height="20" uuid="3bab7c31-ac63-4b34-9c80-39448043d195"/>
+				<text><![CDATA[consumos_Nombre_Cosecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="383" y="2" width="100" height="20" uuid="9702b914-1b9b-4bba-97b1-de19711e8e3d"/>
+				<text><![CDATA[detalleconsumos_NombreProducto]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="22" width="571" height="1" uuid="415e5e0c-de12-4973-9184-938b1650e42c"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="33" splitType="Stretch">
+			<textField>
+				<reportElement x="212" y="0" width="100" height="20" uuid="82118a44-9d23-4891-a0a8-18693963d44d"/>
+				<textFieldExpression><![CDATA[$F{consumos_Fecha_Aplicacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="33" y="0" width="100" height="20" uuid="ada339e2-924b-46e6-86b5-a5a5d0ec6cdd"/>
+				<textFieldExpression><![CDATA[$F{consumos_Nombre_Cosecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="383" y="0" width="100" height="20" uuid="feedcba5-ad57-40fb-855e-e51dc7444ddc"/>
+				<textFieldExpression><![CDATA[$F{detalleconsumos_NombreProducto}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="28" width="571" height="1" uuid="676b127e-2245-49b6-9914-1a29bd7a8c80"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

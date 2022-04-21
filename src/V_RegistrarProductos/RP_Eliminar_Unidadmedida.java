@@ -18,6 +18,7 @@ public final class RP_Eliminar_Unidadmedida extends javax.swing.JFrame {
         MostrarListadoUnidadMedida();
 
         this.setTitle("AgroControl");
+        this.setLocationRelativeTo(null);
         setResizable(false);
     }
 
@@ -28,7 +29,7 @@ public final class RP_Eliminar_Unidadmedida extends javax.swing.JFrame {
 
         Tabla_eliminarUnidadMedida.setModel(tclientee);
 
-        String[] datos = new String[1];
+        String[] datos = new String[2];
 
         try {
             Statement leer = iniciarConexion.createStatement();
@@ -36,6 +37,7 @@ public final class RP_Eliminar_Unidadmedida extends javax.swing.JFrame {
 
             while (resultado.next()) {
                 datos[0] = resultado.getString(1);
+                datos[1] = resultado.getString(1);
 
                 tclientee.addRow(datos);
             }
@@ -79,19 +81,19 @@ public final class RP_Eliminar_Unidadmedida extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(77, 77, 77)
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 283, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(73, 73, 73)
+                .addComponent(jLabel2)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43))
         );
@@ -109,7 +111,7 @@ public final class RP_Eliminar_Unidadmedida extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         pack();

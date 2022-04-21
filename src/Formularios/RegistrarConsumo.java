@@ -169,6 +169,7 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
         cbo_TipoCosecha.setEnabled(false);
         txt_producto.setEnabled(false);
         txt_cantidad.setEnabled(false);
+        btn_nuevo.setEnabled(true);
         btn_guardar.setEnabled(false);
         btn_cancelar.setEnabled(false);
         btn_CrearArea.setEnabled(false);
@@ -420,7 +421,7 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
                     .addGroup(jP_DatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3)
                         .addComponent(cbo_TipoCultivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(jP_DatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbo_Cosecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
@@ -454,6 +455,11 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
         btn_lista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lista.png"))); // NOI18N
         btn_lista.setText("Mostrar listado de los Consumos");
         btn_lista.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_lista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_listaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jP_ListadoLayout = new javax.swing.GroupLayout(jP_Listado);
         jP_Listado.setLayout(jP_ListadoLayout);
@@ -528,7 +534,7 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
                     .addComponent(btn_guardar)
                     .addComponent(btn_nuevo)
                     .addComponent(btn_cancelar))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         jDP_RConsumo.setLayer(LogoCRUD, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -547,7 +553,7 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
                     .addComponent(jP_Datos, javax.swing.GroupLayout.DEFAULT_SIZE, 748, Short.MAX_VALUE)
                     .addComponent(LogoCRUD)
                     .addComponent(jP_Listado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jDP_RConsumoLayout.setVerticalGroup(
             jDP_RConsumoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -620,6 +626,7 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
 
     private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
         Borrar();
+        Bloquear();
     }//GEN-LAST:event_btn_cancelarActionPerformed
 
     private void txt_cantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_cantidadKeyTyped
@@ -629,6 +636,10 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
             evt.consume();
         }
     }//GEN-LAST:event_txt_cantidadKeyTyped
+
+    private void btn_listaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_listaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_listaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LogoCRUD;

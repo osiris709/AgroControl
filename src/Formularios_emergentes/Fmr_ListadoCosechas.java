@@ -4,12 +4,12 @@ import Conexion.conexion;
 import Formularios.RegistrarCosecha;
 import java.awt.Graphics;
 import java.awt.Image;
+import javax.swing.ImageIcon;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -154,19 +154,19 @@ public class Fmr_ListadoCosechas extends javax.swing.JDialog {
         jDP_ListaCosechas.setLayout(jDP_ListaCosechasLayout);
         jDP_ListaCosechasLayout.setHorizontalGroup(
             jDP_ListaCosechasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDP_ListaCosechasLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(jDP_ListaCosechasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jDP_ListaCosechasLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE))
-                .addGap(50, 50, 50))
             .addGroup(jDP_ListaCosechasLayout.createSequentialGroup()
                 .addGap(280, 280, 280)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDP_ListaCosechasLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(jDP_ListaCosechasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2)
+                    .addGroup(jDP_ListaCosechasLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
+                        .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(50, 50, 50))
         );
         jDP_ListaCosechasLayout.setVerticalGroup(
             jDP_ListaCosechasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

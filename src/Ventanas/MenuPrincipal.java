@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Ventanas;
 
 import Formularios.RegistrarCosecha;
@@ -10,6 +5,14 @@ import Formularios.RegistrarCompra;
 import Formularios.RegistrarConsumo;
 import Formularios.RegistrarProducto;
 import Formularios.RegistrarProveedor;
+import Formularios.Reporte;
+import Formularios_emergentes.Fmr_ListadoArea;
+import Formularios_emergentes.Fmr_ListadoCosechas;
+import Formularios_emergentes.Fmr_ListadoProductos;
+import Formularios_emergentes.Fmr_ListadoProveedores;
+import Formularios_emergentes.Fmr_ListadoCompras;
+import V_RegistrarProductos.RP_Eliminar_Unidadmedida;
+import java.awt.Frame;
 import java.awt.Image;
 import java.awt.Graphics;
 import java.awt.Toolkit;
@@ -23,7 +26,7 @@ import javax.swing.JOptionPane;
  */
 public class MenuPrincipal extends javax.swing.JFrame {
 
-     /**
+    /**
      * Creates new form MenuPrincipal
      */
     public MenuPrincipal() {
@@ -107,7 +110,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMI_RCompra = new javax.swing.JMenuItem();
         jMI_RConsumo = new javax.swing.JMenuItem();
         jMI_RCosecha = new javax.swing.JMenuItem();
-        jMenuItem13 = new javax.swing.JMenuItem();
+        jMI_Salir = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMI_LProveedores = new javax.swing.JMenuItem();
         jMI_LProductos = new javax.swing.JMenuItem();
@@ -115,9 +118,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jMI_LConsumos = new javax.swing.JMenuItem();
         jMI_LCosechas = new javax.swing.JMenuItem();
         jMI_LAreas = new javax.swing.JMenuItem();
-        jMI_LTipoProductos = new javax.swing.JMenuItem();
         jMI_LUnidaddeMedida = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -223,6 +224,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         lbl_reportes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         lbl_reportes.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         lbl_reportes.setOpaque(true);
+        lbl_reportes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl_reportesMouseClicked(evt);
+            }
+        });
 
         mostrar.setBackground(new java.awt.Color(240, 255, 240));
         mostrar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -353,46 +359,75 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(jMI_RCosecha);
 
-        jMenuItem13.setText("Salir");
-        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+        jMI_Salir.setText("Salir");
+        jMI_Salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem13ActionPerformed(evt);
+                jMI_SalirActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem13);
+        jMenu1.add(jMI_Salir);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Ver");
 
         jMI_LProveedores.setText("Listado de Proveedores");
+        jMI_LProveedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMI_LProveedoresActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMI_LProveedores);
 
         jMI_LProductos.setText("Listado de Productos");
+        jMI_LProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMI_LProductosActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMI_LProductos);
 
         jMI_LCompras.setText("Listado de Compras");
+        jMI_LCompras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMI_LComprasActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMI_LCompras);
 
         jMI_LConsumos.setText("Listado de Consumos");
+        jMI_LConsumos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMI_LConsumosActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMI_LConsumos);
 
         jMI_LCosechas.setText("Listado de Cosechas");
+        jMI_LCosechas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMI_LCosechasActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMI_LCosechas);
 
         jMI_LAreas.setText("Listado de Areas");
+        jMI_LAreas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMI_LAreasActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMI_LAreas);
 
-        jMI_LTipoProductos.setText("Listado Tipo de Productos");
-        jMenu2.add(jMI_LTipoProductos);
-
         jMI_LUnidaddeMedida.setText("Listado Unidades de Medida");
+        jMI_LUnidaddeMedida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMI_LUnidaddeMedidaActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMI_LUnidaddeMedida);
 
         jMenuBar1.add(jMenu2);
-
-        jMenu3.setText("Consultas");
-        jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
 
@@ -412,73 +447,73 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void lbl_proveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_proveedoresMouseClicked
         RegistrarProveedor ventana = new RegistrarProveedor();
-            mostrar.removeAll();
-            mostrar.add(ventana);
-            ventana.show();
+        mostrar.removeAll();
+        mostrar.add(ventana);
+        ventana.show();
     }//GEN-LAST:event_lbl_proveedoresMouseClicked
 
     private void lbl_productosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_productosMouseClicked
         RegistrarProducto ventana2 = new RegistrarProducto();
-            mostrar.removeAll();
-            mostrar.add(ventana2);
-            ventana2.show();
+        mostrar.removeAll();
+        mostrar.add(ventana2);
+        ventana2.show();
     }//GEN-LAST:event_lbl_productosMouseClicked
 
     private void lbl_comprasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_comprasMouseClicked
         RegistrarCompra ventana3 = new RegistrarCompra();
-            mostrar.removeAll();
-            mostrar.add(ventana3);
-            ventana3.show();
+        mostrar.removeAll();
+        mostrar.add(ventana3);
+        ventana3.show();
     }//GEN-LAST:event_lbl_comprasMouseClicked
 
     private void lbl_consumosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_consumosMouseClicked
         RegistrarConsumo ventana4 = new RegistrarConsumo();
-            mostrar.removeAll();
-            mostrar.add(ventana4);
-            ventana4.show();
+        mostrar.removeAll();
+        mostrar.add(ventana4);
+        ventana4.show();
     }//GEN-LAST:event_lbl_consumosMouseClicked
 
     private void lbl_cosechaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_cosechaMouseClicked
         RegistrarCosecha ventana5 = new RegistrarCosecha();
-            mostrar.removeAll();
-            mostrar.add(ventana5);
-            ventana5.show();
+        mostrar.removeAll();
+        mostrar.add(ventana5);
+        ventana5.show();
     }//GEN-LAST:event_lbl_cosechaMouseClicked
 
     private void lbl_salirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_salirMouseClicked
         salir();
     }//GEN-LAST:event_lbl_salirMouseClicked
 
-    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+    private void jMI_SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMI_SalirActionPerformed
         salir();
-    }//GEN-LAST:event_jMenuItem13ActionPerformed
+    }//GEN-LAST:event_jMI_SalirActionPerformed
 
     private void jMI_RProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMI_RProveedorActionPerformed
         RegistrarProveedor ventana = new RegistrarProveedor();
-            mostrar.removeAll();
-            mostrar.add(ventana);
-            ventana.show();
+        mostrar.removeAll();
+        mostrar.add(ventana);
+        ventana.show();
     }//GEN-LAST:event_jMI_RProveedorActionPerformed
 
     private void jMI_RProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMI_RProductoActionPerformed
         RegistrarProducto ventana2 = new RegistrarProducto();
-            mostrar.removeAll();
-            mostrar.add(ventana2);
-            ventana2.show();
+        mostrar.removeAll();
+        mostrar.add(ventana2);
+        ventana2.show();
     }//GEN-LAST:event_jMI_RProductoActionPerformed
 
     private void jMI_RCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMI_RCompraActionPerformed
         RegistrarCompra ventana3 = new RegistrarCompra();
-            mostrar.removeAll();
-            mostrar.add(ventana3);
-            ventana3.show();
+        mostrar.removeAll();
+        mostrar.add(ventana3);
+        ventana3.show();
     }//GEN-LAST:event_jMI_RCompraActionPerformed
 
     private void jMI_RConsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMI_RConsumoActionPerformed
         RegistrarConsumo ventana4 = new RegistrarConsumo();
-            mostrar.removeAll();
-            mostrar.add(ventana4);
-            ventana4.show();
+        mostrar.removeAll();
+        mostrar.add(ventana4);
+        ventana4.show();
     }//GEN-LAST:event_jMI_RConsumoActionPerformed
 
     private void jMI_RCosechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMI_RCosechaActionPerformed
@@ -489,6 +524,51 @@ public class MenuPrincipal extends javax.swing.JFrame {
             ventana5.show();
         }
     }//GEN-LAST:event_jMI_RCosechaActionPerformed
+
+    private void lbl_reportesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_reportesMouseClicked
+        Reporte ventana6 = new Reporte();
+        mostrar.removeAll();
+        mostrar.add(ventana6);
+        ventana6.show();
+    }//GEN-LAST:event_lbl_reportesMouseClicked
+
+    private void jMI_LProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMI_LProveedoresActionPerformed
+        Frame listaProveedor = JOptionPane.getFrameForComponent(this);
+        Fmr_ListadoProveedores abrir = new Fmr_ListadoProveedores(listaProveedor, true);
+        abrir.setVisible(true);
+    }//GEN-LAST:event_jMI_LProveedoresActionPerformed
+
+    private void jMI_LProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMI_LProductosActionPerformed
+        Frame ListaProductos = JOptionPane.getFrameForComponent(this);
+        Fmr_ListadoProductos ventana = new Fmr_ListadoProductos(ListaProductos, false);
+        ventana.setVisible(true);
+    }//GEN-LAST:event_jMI_LProductosActionPerformed
+
+    private void jMI_LComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMI_LComprasActionPerformed
+        Fmr_ListadoCompras ventana = new Fmr_ListadoCompras();
+        ventana.setVisible(true);
+    }//GEN-LAST:event_jMI_LComprasActionPerformed
+
+    private void jMI_LConsumosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMI_LConsumosActionPerformed
+
+    }//GEN-LAST:event_jMI_LConsumosActionPerformed
+
+    private void jMI_LCosechasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMI_LCosechasActionPerformed
+        Frame ListaCosecha = JOptionPane.getFrameForComponent(this);
+        Fmr_ListadoCosechas Cosecha = new Fmr_ListadoCosechas(ListaCosecha, true);
+        Cosecha.show();
+    }//GEN-LAST:event_jMI_LCosechasActionPerformed
+
+    private void jMI_LAreasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMI_LAreasActionPerformed
+        Frame Area = JOptionPane.getFrameForComponent(this);
+        Fmr_ListadoArea ventana = new Fmr_ListadoArea(Area, true);
+        ventana.show();
+    }//GEN-LAST:event_jMI_LAreasActionPerformed
+
+    private void jMI_LUnidaddeMedidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMI_LUnidaddeMedidaActionPerformed
+        RP_Eliminar_Unidadmedida ventana = new RP_Eliminar_Unidadmedida();
+        ventana.setVisible(true);
+    }//GEN-LAST:event_jMI_LUnidaddeMedidaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -533,18 +613,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMI_LCosechas;
     private javax.swing.JMenuItem jMI_LProductos;
     private javax.swing.JMenuItem jMI_LProveedores;
-    private javax.swing.JMenuItem jMI_LTipoProductos;
     private javax.swing.JMenuItem jMI_LUnidaddeMedida;
     private javax.swing.JMenuItem jMI_RCompra;
     private javax.swing.JMenuItem jMI_RConsumo;
     private javax.swing.JMenuItem jMI_RCosecha;
     private javax.swing.JMenuItem jMI_RProducto;
     private javax.swing.JMenuItem jMI_RProveedor;
+    private javax.swing.JMenuItem jMI_Salir;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem13;
     public javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbl_compras;
     private javax.swing.JLabel lbl_consumos;

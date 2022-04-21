@@ -30,7 +30,8 @@ public class Fmr_Area extends javax.swing.JDialog implements ComunicationPopUp {
         super(parent, modal);
         initComponents();
         setTitle("AgroControl - Crear Area");
-        setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
+        setResizable(false);
     }
 
     @Override
