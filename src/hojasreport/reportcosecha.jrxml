@@ -42,7 +42,7 @@ FROM
 			</textField>
 			<image>
 				<reportElement x="0" y="0" width="96" height="85" uuid="953567a1-84be-4d58-9a78-8ce0034bedc4"/>
-				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\Repositorios\\AgroControl\\src\\Imagenes\\Primera-login.png"]]></imageExpression>
+				<imageExpression><![CDATA["C:\\Users\\Osiris\\Documents\\NetBeansProjects\\Repositorios\\AgroControl\\src\\Imagenes\\Primera-login.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>

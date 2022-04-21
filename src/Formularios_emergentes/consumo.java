@@ -57,7 +57,7 @@ public class consumo extends javax.swing.JFrame {
         jPanel1.revalidate();
         
         try {
-            JasperDesign jdesing = JRXmlLoader.load("C:\\Users\\usuario\\Documents\\NetBeansProjects\\Repositorios\\AgroControl\\src\\hojasreport\\consumo.jrxml");
+            JasperDesign jdesing = JRXmlLoader.load("C:\\Users\\Osiris\\Documents\\NetBeansProjects\\Repositorios\\AgroControl\\src\\hojasreport\\consumo.jrxml");
             JasperReport jreport = JasperCompileManager.compileReport(jdesing);
             JasperPrint jprint = JasperFillManager.fillReport(jreport, a, conn);
             

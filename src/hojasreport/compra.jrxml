@@ -39,7 +39,7 @@ where   compras.`Nombre_Proveedor` = $P{nombre}]]>
 			</textField>
 			<image>
 				<reportElement x="0" y="0" width="115" height="86" uuid="e369b89f-13b0-42a9-9322-56de182ca3c6"/>
-				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\Repositorios\\AgroControl\\src\\Imagenes\\Primera-login.png"]]></imageExpression>
+				<imageExpression><![CDATA["C:\\Users\\Osiris\\Documents\\NetBeansProjects\\Repositorios\\AgroControl\\src\\Imagenes\\Primera-login.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>

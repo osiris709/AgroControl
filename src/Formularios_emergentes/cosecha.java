@@ -73,7 +73,7 @@ public class cosecha extends javax.swing.JFrame {
         jPanel1.revalidate();
 
         try {
-            JasperDesign jdesign = JRXmlLoader.load("C:\\Users\\usuario\\Documents\\NetBeansProjects\\Repositorios\\AgroControl\\src\\hojasreport\\reportcosecha.jrxml");
+            JasperDesign jdesign = JRXmlLoader.load("C:\\Users\\Osiris\\Documents\\NetBeansProjects\\Repositorios\\AgroControl\\src\\hojasreport\\reportcosecha.jrxml");
             JasperReport jreport = JasperCompileManager.compileReport(jdesign);
 
             JasperPrint jprint = JasperFillManager.fillReport(jreport, a, conn);

@@ -36,10 +36,6 @@ WHERE
 				<reportElement x="455" y="0" width="100" height="20" uuid="e3fcf216-e4b2-4ca3-84db-095966f278f0"/>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
-			<image>
-				<reportElement x="0" y="0" width="114" height="71" uuid="e5d9ce51-8300-4d79-b7df-c890fda24ebb"/>
-				<imageExpression><![CDATA["C:\\Users\\usuario\\Documents\\NetBeansProjects\\Repositorios\\AgroControl\\src\\Imagenes\\Primera-login.png"]]></imageExpression>
-			</image>
 		</band>
 	</title>
 	<pageHeader>
