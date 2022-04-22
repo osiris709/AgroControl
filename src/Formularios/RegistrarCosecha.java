@@ -14,7 +14,6 @@ import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
 public class RegistrarCosecha extends javax.swing.JInternalFrame implements ComunicationPopUp {
 

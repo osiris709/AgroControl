@@ -17,7 +17,6 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import javax.swing.ImageIcon;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JTextField;
 
 /**
  *
@@ -114,6 +113,8 @@ public class RegistrarCompra extends javax.swing.JInternalFrame {
         jLabel6.setText("N° Factura:");
 
         txt_Proveedor.setEditable(false);
+
+        txt_Producto.setEditable(false);
 
         FechaCompra.setDateFormatString("dd/MM/yyyy");
 

@@ -1,19 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Formularios_emergentes;
 
 import Conexion.conexion;
 import Formularios.RegistrarCompra;
 import Formularios.RegistrarConsumo;
-import Formularios.RegistrarCosecha;
+import Ventanas.MenuPrincipal;
 import static Ventanas.MenuPrincipal.JInternalFrames_Abiertos;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class Fmr_ProductosCompra extends javax.swing.JFrame {
@@ -126,27 +122,17 @@ public class Fmr_ProductosCompra extends javax.swing.JFrame {
 
     private void TablaProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaProductosMouseClicked
 
-        /*RegistrarCompra ventana = new RegistrarCompra();
+        RegistrarCompra.txt_Producto.setText(TablaProductos.getModel().getValueAt(TablaProductos.getSelectedRow(), 1).toString());
+        this.hide();
+
+        RegistrarCompra ventana = new RegistrarCompra();
+
         if (JInternalFrames_Abiertos(ventana) == true) {
-            if (evt.getClickCount() == 1) {
 
-                System.out.println("productos");
-                JTable receptorProductos = (JTable) evt.getSource();
-                RegistrarCompra.Producto.setText(receptorProductos.getModel().getValueAt(receptorProductos.getSelectedRow(), 0).toString());
-                //  RegistrarCompras.Producto.setText(receptorProductos.getModel().getValueAt(receptorProductos.getSelectedRow(),1).toString());
-            }
-            this.hide();
-        }*/
-        //RegistrarConsumo ventana2 = new RegistrarConsumo();
-        //if (JInternalFrames_Abiertos(ventana2) == true) {
-            //  if (evt.getClickCount() == 1) {
-
-            System.out.println("Consumo");
+        } else {
             RegistrarConsumo.txt_producto.setText(TablaProductos.getModel().getValueAt(TablaProductos.getSelectedRow(), 1).toString());
-
-            //}      
             this.hide();
-        //}
+        }
     }//GEN-LAST:event_TablaProductosMouseClicked
 
     /**

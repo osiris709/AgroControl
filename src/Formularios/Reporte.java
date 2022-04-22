@@ -5,11 +5,11 @@
  */
 package Formularios;
 
-import Formularios_emergentes.compras;
-import Formularios_emergentes.consumo;
+import Reportes.Compras;
+import Reportes.Consumo;
 import java.awt.Frame;
 import javax.swing.JOptionPane;
-import Formularios_emergentes.cosecha;
+import Reportes.Cosecha;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -190,17 +190,17 @@ public class Reporte extends javax.swing.JInternalFrame {
     private void btCosechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCosechaActionPerformed
 
         Frame listaProveedor = JOptionPane.getFrameForComponent(this);
-        cosecha abrir = new cosecha();
+        Cosecha abrir = new Cosecha();
         abrir.setVisible(true);
     }//GEN-LAST:event_btCosechaActionPerformed
 
     private void bncomprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bncomprasActionPerformed
-        compras abrir = new compras();
+        Compras abrir = new Compras();
         abrir.setVisible(true);
     }//GEN-LAST:event_bncomprasActionPerformed
 
     private void BnconsumoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BnconsumoActionPerformed
-        consumo abrir = new consumo();
+        Consumo abrir = new Consumo();
         abrir.setVisible(true);
     }//GEN-LAST:event_BnconsumoActionPerformed
 
