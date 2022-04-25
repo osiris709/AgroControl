@@ -4,7 +4,8 @@ import Clases.ComunicationPopUp;
 import Clases.Consumos;
 import Conexion.conexion;
 import Formularios_emergentes.Fmr_Area;
-import Formularios_emergentes.Fmr_ProductosCompra;
+import Formularios_emergentes.Fmr_ListadoConsumos;
+import Formularios_emergentes.Fmr_ProductosConsumos;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,7 +21,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
 /**
  *
  * @author Osiris
@@ -33,7 +33,7 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
     Consumos cargar_combobox = new Consumos();
 
     SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
-    private int IdAplicacion;
+    private int IdAplicacion, IdProducto, IdTipoCosecha, IdCosecha;
 
     public RegistrarConsumo() {
         initComponents();
@@ -105,9 +105,35 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
                     guardar.setString(1, null);
                     guardar.setString(2, formato.format(fechaConsumo.getDate()));
                     guardar.setString(3, cbo_TipoCultivo.getSelectedItem().toString());
-                    guardar.setString(4, String.valueOf(cbo_Cosecha.getSelectedIndex()));
+                    
+                    String Cosecha = String.valueOf(cbo_Cosecha.getSelectedItem());
+                    String ConsultaCosecha = "SELECT idCosecha FROM cosecha WHERE Nombre_Cosecha = '" + Cosecha + "'";
+
+                    Statement cos = con.createStatement();
+                    ResultSet rscos = cos.executeQuery(ConsultaCosecha);
+
+                    if (rscos.next()) {
+
+                        IdCosecha = rscos.getInt(1);
+                        System.out.println("aplicacion " + IdCosecha);
+                    }
+                    
+                    guardar.setString(4, String.valueOf(IdCosecha));
                     guardar.setString(5, String.valueOf(cbo_Area.getSelectedIndex()));
-                    guardar.setString(6, String.valueOf(cbo_TipoCosecha.getSelectedIndex()));
+
+                    String TipoCosecha = String.valueOf(cbo_TipoCosecha.getSelectedItem());
+                    String ConsultaTipo = "SELECT IDTipoCosecha FROM tipo_cosecha WHERE TipoCosecha = '" + TipoCosecha + "'";
+
+                    Statement tc = con.createStatement();
+                    ResultSet rstc = tc.executeQuery(ConsultaTipo);
+
+                    if (rstc.next()) {
+
+                        IdTipoCosecha = rstc.getInt(1);
+                        System.out.println("aplicacion " + IdTipoCosecha);
+                    }
+
+                    guardar.setString(6, String.valueOf(IdTipoCosecha));
 
                     guardar.executeUpdate();
 
@@ -115,18 +141,30 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
 
                     Statement st = con.createStatement();
                     ResultSet rs = st.executeQuery(ConsultaID);
-                    
+
                     if (rs.next()) {
-                        
+
                         IdAplicacion = rs.getInt(1);
-                        System.out.println(IdAplicacion);
+                        System.out.println("aplicacion " + IdAplicacion);
                     }
 
                     if (TablaProductos.getRowCount() > 0) {
                         for (int i = 0; i < TablaProductos.getRowCount(); i++) {
 
+                            String producto = TablaProductos.getValueAt(i, 0).toString();
+                            //System.out.println("tabla "+producto);
+                            String ConsultaProducto = "SELECT Codigo FROM productos WHERE Nombre = '" + producto + "'";
+                            Statement pro = con.createStatement();
+                            ResultSet rspro = pro.executeQuery(ConsultaProducto);
+
+                            if (rspro.next()) {
+
+                                IdProducto = rspro.getInt(1);
+                                //System.out.println("producto " +IdProducto);
+                            }
+
                             guardar2.setString(1, String.valueOf(IdAplicacion));
-                            guardar2.setString(2, TablaProductos.getValueAt(i, 0).toString());
+                            guardar2.setString(2, String.valueOf(IdProducto));
                             guardar2.setString(3, TablaProductos.getValueAt(i, 1).toString());
 
                             // Ejecuta la sentencia y obtiene el resultado
@@ -136,6 +174,9 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
 
                     JOptionPane.showMessageDialog(null, "Consumo Registrado exitosamente");
                     guardar.close();
+                    
+                    Borrar();
+                    Bloquear();
 
                 } catch (Exception e) {
 
@@ -616,7 +657,7 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
     }//GEN-LAST:event_btn_guardarActionPerformed
 
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
-        Fmr_ProductosCompra ventana = new Fmr_ProductosCompra();
+        Fmr_ProductosConsumos ventana = new Fmr_ProductosConsumos();
         ventana.show();
     }//GEN-LAST:event_btn_buscarActionPerformed
 
@@ -638,7 +679,9 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
     }//GEN-LAST:event_txt_cantidadKeyTyped
 
     private void btn_listaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_listaActionPerformed
-        // TODO add your handling code here:
+        Frame ListaConsumos = JOptionPane.getFrameForComponent(this);
+        Fmr_ListadoConsumos Consumo = new Fmr_ListadoConsumos(ListaConsumos, false);
+        Consumo.setVisible(true);
     }//GEN-LAST:event_btn_listaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

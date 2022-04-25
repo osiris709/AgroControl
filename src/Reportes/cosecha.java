@@ -7,7 +7,6 @@ package Reportes;
  */
 
 
-import java.awt.BorderLayout;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -18,12 +17,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
-import net.sf.jasperreports.swing.JRViewer;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -68,24 +68,19 @@ public class Cosecha extends javax.swing.JFrame {
         a.put("inicio", fdate);
         a.put("fin", todate);
 
-        jPanel1.removeAll();
-        jPanel1.repaint();
-        jPanel1.revalidate();
-
         try {
-            JasperDesign jdesign = JRXmlLoader.load("C:\\Users\\Osiris\\Documents\\NetBeansProjects\\Repositorios\\AgroControl\\src\\hojasreport\\reportcosecha.jrxml");
-            JasperReport jreport = JasperCompileManager.compileReport(jdesign);
-
+            JasperDesign jdesing = JRXmlLoader.load("C:\\Users\\Osiris\\Documents\\NetBeansProjects\\Repositorios\\AgroControl\\src\\Reportes\\JasperReport\\reportcosecha.jrxml");
+            JasperReport jreport = JasperCompileManager.compileReport(jdesing);
             JasperPrint jprint = JasperFillManager.fillReport(jreport, a, conn);
 
-            JRViewer v = new JRViewer(jprint);
-            jPanel1.setLayout(new BorderLayout());
-            jPanel1.add(v);
-                    
-        } catch (JRException ex) {
-            Logger.getLogger(Cosecha.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            JasperViewer reporte = new JasperViewer(jprint, false);
+            reporte.setTitle("Reporte de Cosechas");
+            reporte.setVisible(true);
+            JasperExportManager.exportReportToPdfFile(jprint, "C:\\Users\\Osiris\\Documents\\NetBeansProjects\\Repositorios\\AgroControl\\src\\Reportes\\JasperReport\\cosecha.pdf");
 
+        } catch (JRException ex) {
+            Logger.getLogger(Compras.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

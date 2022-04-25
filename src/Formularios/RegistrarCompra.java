@@ -35,7 +35,7 @@ public class RegistrarCompra extends javax.swing.JInternalFrame {
     Connection con = objConexion.conexion();
 
     SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
-    private int IdCompra;
+    private int IdCompra, IdProducto;
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -482,11 +482,22 @@ public class RegistrarCompra extends javax.swing.JInternalFrame {
                         for (int i = 0; i < RC_Mostrarlistadocompras.getRowCount(); i++) {
 
                             guardar2.setString(1, String.valueOf(IdCompra));
-                            guardar2.setString(2, RC_Mostrarlistadocompras.getValueAt(i, 0).toString());
+
+                            String Producto = String.valueOf(RC_Mostrarlistadocompras.getValueAt(i, 0).toString());
+                            String ConsultaProducto = "SELECT Codigo FROM productos WHERE Nombre = '" + Producto + "'";
+
+                            Statement pro = con.createStatement();
+                            ResultSet rspro = pro.executeQuery(ConsultaProducto);
+
+                            if (rspro.next()) {
+
+                                IdProducto = rspro.getInt(1);
+                                System.out.println("aplicacion " + IdProducto);
+                            }
+                            guardar2.setString(2, String.valueOf(IdProducto));
                             guardar2.setString(3, RC_Mostrarlistadocompras.getValueAt(i, 1).toString());
                             guardar2.setString(4, RC_Mostrarlistadocompras.getValueAt(i, 2).toString());
                             guardar2.setString(5, RC_Mostrarlistadocompras.getValueAt(i, 3).toString());
-                            
 
                             // Ejecuta la sentencia y obtiene el resultado
                             guardar2.executeUpdate();

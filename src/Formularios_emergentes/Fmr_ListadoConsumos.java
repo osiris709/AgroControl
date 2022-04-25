@@ -1,17 +1,13 @@
 package Formularios_emergentes;
 
 import Conexion.conexion;
-import Formularios.RegistrarConsumo;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class Fmr_ListadoConsumos extends javax.swing.JDialog {
@@ -22,8 +18,8 @@ public class Fmr_ListadoConsumos extends javax.swing.JDialog {
     public Fmr_ListadoConsumos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.setTitle("AgroControl - Lista Consumos");
-        this.setLocationRelativeTo(null);
+        setTitle("AgroControl - Lista Consumos");
+        setLocationRelativeTo(null);
         setResizable(false);
         MostrarListaConsumos();
     }
@@ -44,7 +40,7 @@ public class Fmr_ListadoConsumos extends javax.swing.JDialog {
 
         try {
             Statement leer = con.createStatement();
-            ResultSet resultado = leer.executeQuery("SELECT * FROM Consumos");
+            ResultSet resultado = leer.executeQuery("SELECT idAplicacion, Fecha_Aplicacion, consumos.Tipo_Cultivo, cosecha.Nombre_Cosecha, area.Nombre_Area, tipo_cosecha.TipoCosecha FROM consumos INNER JOIN cosecha ON consumos.Nombre_Cosecha = cosecha.IdCosecha INNER JOIN area ON consumos.Area = area.ID_Area INNER JOIN tipo_cosecha ON consumos.Tipo_Cosecha = tipo_cosecha.IDTipoCosecha");
 
             while (resultado.next()) {
                 datos[0] = resultado.getString(1);

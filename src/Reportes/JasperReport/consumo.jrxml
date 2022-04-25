@@ -1,82 +1,247 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8f0e70ac-4ccc-4985-8d95-75de570c51c1">
-	<property name="ireport.zoom" value="2.0"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
-	<parameter name="nombre" class="java.lang.String">
-		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
-	</parameter>
-	<queryString>
-		<![CDATA[SELECT
-     consumos.`Fecha_Aplicacion` AS consumos_Fecha_Aplicacion,
-     consumos.`Nombre_Cosecha` AS consumos_Nombre_Cosecha,
-     detalleconsumos.`NombreProducto` AS detalleconsumos_NombreProducto
-FROM
-     `consumos` consumos INNER JOIN `detalleconsumos` detalleconsumos ON consumos.`IdAplicacion` = detalleconsumos.`IDConsumos`
-
-WHERE
-     consumos.`Nombre_Cosecha` = $P{nombre}]]>
+<!-- Created with Jaspersoft Studio version 6.19.1.final using JasperReports Library version 6.19.1-867c00bf88cd4d784d404379d6c05e1b419e8a4c  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="consumo" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="725ae34c-5106-4d7d-ba84-da9af0681a3d">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MySQL"/>
+	<parameter name="nombre" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT agrocontrol.detalleconsumos.`Cantidad`,
+	agrocontrol.productos.`Nombre`,
+	agrocontrol.consumos.`Fecha_Aplicacion`,
+	agrocontrol.consumos.`Tipo_Cultivo`,
+	agrocontrol.cosecha.`Nombre_Cosecha`,
+	agrocontrol.tipo_cosecha.`TipoCosecha`,
+	agrocontrol.area.`Nombre_Area`,
+	agrocontrol.tipodeproducto.`TipodeProducto`,
+	agrocontrol.unimedidatproducto.`UnidaddeMedidaDato`
+FROM agrocontrol.detalleconsumos
+	INNER JOIN agrocontrol.consumos ON 
+	 agrocontrol.detalleconsumos.`IDConsumos` = agrocontrol.consumos.`IdAplicacion` 
+	INNER JOIN agrocontrol.cosecha ON 
+	 agrocontrol.consumos.`Nombre_Cosecha` = agrocontrol.cosecha.`IdCosecha` 
+	INNER JOIN agrocontrol.area ON 
+	 agrocontrol.consumos.`Area` = agrocontrol.area.`ID_Area` 
+	INNER JOIN agrocontrol.tipo_cosecha ON 
+	 agrocontrol.cosecha.`Tipo_Cosecha` = agrocontrol.tipo_cosecha.`IDTipoCosecha` 
+	 AND agrocontrol.consumos.`Tipo_Cosecha` = agrocontrol.tipo_cosecha.`IDTipoCosecha` 
+	INNER JOIN agrocontrol.productos ON 
+	 agrocontrol.detalleconsumos.`NombreProducto` = agrocontrol.productos.`Codigo` 
+	INNER JOIN agrocontrol.tipodeproducto ON 
+	 agrocontrol.productos.`TipodeProducto` = agrocontrol.tipodeproducto.idtipoproducto 
+	INNER JOIN agrocontrol.unimedidatproducto ON 
+	 agrocontrol.productos.`UnidaddeMedida` = agrocontrol.unimedidatproducto.`IDuniMedida` 
+WHERE 
+	 agrocontrol.tipo_cosecha.`TipoCosecha` = $P{nombre}]]>
 	</queryString>
-	<field name="consumos_Fecha_Aplicacion" class="java.sql.Date"/>
-	<field name="consumos_Nombre_Cosecha" class="java.lang.Integer"/>
-	<field name="detalleconsumos_NombreProducto" class="java.lang.Integer"/>
+	<field name="Cantidad" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="Cantidad"/>
+		<property name="com.jaspersoft.studio.field.label" value="Cantidad"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="detalleconsumos"/>
+	</field>
+	<field name="Nombre" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Nombre"/>
+		<property name="com.jaspersoft.studio.field.label" value="Nombre"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="productos"/>
+	</field>
+	<field name="Fecha_Aplicacion" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="Fecha_Aplicacion"/>
+		<property name="com.jaspersoft.studio.field.label" value="Fecha_Aplicacion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="consumos"/>
+	</field>
+	<field name="Tipo_Cultivo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Tipo_Cultivo"/>
+		<property name="com.jaspersoft.studio.field.label" value="Tipo_Cultivo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="consumos"/>
+	</field>
+	<field name="Nombre_Cosecha" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Nombre_Cosecha"/>
+		<property name="com.jaspersoft.studio.field.label" value="Nombre_Cosecha"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cosecha"/>
+	</field>
+	<field name="TipoCosecha" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="TipoCosecha"/>
+		<property name="com.jaspersoft.studio.field.label" value="TipoCosecha"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tipo_cosecha"/>
+	</field>
+	<field name="Nombre_Area" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Nombre_Area"/>
+		<property name="com.jaspersoft.studio.field.label" value="Nombre_Area"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="area"/>
+	</field>
+	<field name="TipodeProducto" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="TipodeProducto"/>
+		<property name="com.jaspersoft.studio.field.label" value="TipodeProducto"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tipodeproducto"/>
+	</field>
+	<field name="UnidaddeMedidaDato" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="UnidaddeMedidaDato"/>
+		<property name="com.jaspersoft.studio.field.label" value="UnidaddeMedidaDato"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="unimedidatproducto"/>
+	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="91" splitType="Stretch">
+		<band height="108" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="90" height="79" uuid="f8b55635-b406-4906-9370-331c69506445"/>
+				<imageExpression><![CDATA["C:\\Users\\Osiris\\Documents\\NetBeansProjects\\Repositorios\\AgroControl\\src\\Imagenes\\Primera-login.png"]]></imageExpression>
+			</image>
 			<staticText>
-				<reportElement x="212" y="35" width="152" height="20" uuid="bd9e273b-9443-4bbf-ade6-ce5ee9c90bb6"/>
+				<reportElement x="188" y="20" width="184" height="40" uuid="1298d0c5-55a6-486a-8291-3ca4f4470a8c"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Arial" size="14" isBold="true"/>
+					<font fontName="Arial" size="16" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Reportes de cosecha]]></text>
+				<text><![CDATA[Reportes de Consumos]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="455" y="0" width="100" height="20" uuid="e3fcf216-e4b2-4ca3-84db-095966f278f0"/>
+				<reportElement x="433" y="0" width="122" height="20" uuid="154c7ceb-1ba7-4dc1-aef7-7af82f865f31"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None">
+					<font size="12"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
 	<pageHeader>
-		<band splitType="Stretch"/>
+		<band height="76" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="120" height="20" uuid="8783cbdb-0053-4a96-be18-83659d07d223"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre Cosecha]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="140" y="0" width="195" height="20" uuid="f8ab8f36-7231-4ab8-ba74-b8924f340b86"/>
+				<textElement>
+					<font size="14" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Nombre_Cosecha}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="28" width="120" height="20" uuid="de77203c-a175-46d8-8804-dab73b8bcf27"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo de Cultivo]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="140" y="28" width="99" height="20" uuid="c31dc3eb-15bc-414b-b0d1-25c376e0046f"/>
+				<textElement>
+					<font size="14" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Tipo_Cultivo}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="340" y="0" width="138" height="30" uuid="ccb00940-d6ad-43ed-9e97-a1787dd05b88"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo de Cosecha]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="478" y="0" width="77" height="30" uuid="7199d7a1-6a0a-41ee-9a96-c059c68f5255"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TipoCosecha}]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="28" splitType="Stretch">
+		<band height="55" splitType="Stretch">
 			<staticText>
-				<reportElement x="212" y="0" width="100" height="20" uuid="f39744ef-a477-45c3-ad74-3ff8a69f05f6"/>
-				<text><![CDATA[consumos_Fecha_Aplicacion]]></text>
+				<reportElement x="-1" y="10" width="71" height="30" uuid="d2b24e51-15e3-409e-9e8d-9316634a2790"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Area]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="33" y="2" width="100" height="20" uuid="3bab7c31-ac63-4b34-9c80-39448043d195"/>
-				<text><![CDATA[consumos_Nombre_Cosecha]]></text>
+				<reportElement x="70" y="10" width="87" height="30" uuid="a859039e-3d83-4968-b03a-ef592b27c58b"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Producto]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="383" y="2" width="100" height="20" uuid="9702b914-1b9b-4bba-97b1-de19711e8e3d"/>
-				<text><![CDATA[detalleconsumos_NombreProducto]]></text>
+				<reportElement x="283" y="10" width="80" height="30" uuid="23add678-40b2-4356-ab7b-af250a6552bb"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="160" y="10" width="113" height="30" uuid="2ceb7f7b-260e-45ba-8755-47730a0efa09"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Tipo de Producto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="367" y="10" width="85" height="30" uuid="2f13cd34-2753-443d-93ff-25f04f835de4"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Unidad Medida]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="22" width="571" height="1" uuid="415e5e0c-de12-4973-9184-938b1650e42c"/>
+				<reportElement x="0" y="43" width="555" height="1" uuid="e9077704-5c4f-4fca-ac47-c084e3b8fa0d"/>
 			</line>
+			<staticText>
+				<reportElement x="452" y="10" width="103" height="20" uuid="b2cb29f5-3e50-43e6-9973-59080d9f92cb"/>
+				<textElement textAlignment="Center">
+					<font size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Fecha de Aplicacion]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="33" splitType="Stretch">
+		<band height="36" splitType="Stretch">
 			<textField>
-				<reportElement x="212" y="0" width="100" height="20" uuid="82118a44-9d23-4891-a0a8-18693963d44d"/>
-				<textFieldExpression><![CDATA[$F{consumos_Fecha_Aplicacion}]]></textFieldExpression>
+				<reportElement x="0" y="0" width="70" height="30" uuid="56d46c40-1878-4351-ae3b-441b0830b0f8"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Nombre_Area}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="33" y="0" width="100" height="20" uuid="ada339e2-924b-46e6-86b5-a5a5d0ec6cdd"/>
-				<textFieldExpression><![CDATA[$F{consumos_Nombre_Cosecha}]]></textFieldExpression>
+				<reportElement x="70" y="0" width="87" height="30" uuid="38ff30dc-f73d-471f-bc72-459fc65365b6"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Nombre}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="383" y="0" width="100" height="20" uuid="feedcba5-ad57-40fb-855e-e51dc7444ddc"/>
-				<textFieldExpression><![CDATA[$F{detalleconsumos_NombreProducto}]]></textFieldExpression>
+				<reportElement x="160" y="0" width="112" height="30" uuid="dac5fd6e-36b8-4cc9-9129-b634af2bd934"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TipodeProducto}]]></textFieldExpression>
 			</textField>
-			<line>
-				<reportElement x="0" y="28" width="571" height="1" uuid="676b127e-2245-49b6-9914-1a29bd7a8c80"/>
-			</line>
+			<textField>
+				<reportElement x="282" y="0" width="80" height="30" uuid="ffbb99b9-6962-4175-9ce4-1fb61d62d4ea"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Cantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="367" y="0" width="85" height="30" uuid="75dbb142-d036-4650-afe6-e84c854ada30"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{UnidaddeMedidaDato}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="452" y="0" width="103" height="20" uuid="b0b48f55-c2c5-4e1a-a6f5-6f3f2cf69b25"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Fecha_Aplicacion}.toString()]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>

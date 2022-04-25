@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.19.1.final using JasperReports Library version 6.19.1-867c00bf88cd4d784d404379d6c05e1b419e8a4c  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="387321dc-4353-45fd-927f-405a08bbe74e">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MySQL"/>
+	<property name="com.jaspersoft.studio.data.sql.tables">
+		<![CDATA[YWdyb2NvbnRyb2wuY29zZWNoYSAsMTUsMTUsMzFmZGQ1ZjYtMDQ4Yy00MWIzLTk2YTEtOWFjMDVj
+YzVjMjc1O2Fncm9jb250cm9sLnRpcG9fY29zZWNoYSAsMTgxLDY3LGE5ODM1ZmM1LTIxMmYtNDA5
+NC05NWZiLWM4YjMzYmQyYmM3NTs=]]>
+	</property>
 	<parameter name="inicio" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -10,25 +17,47 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT
-     cosecha.`Nombre_Cosecha` AS cosecha_Nombre_Cosecha,
-     cosecha.`Tipo_Cultivo` AS cosecha_Tipo_Cultivo,
-     cosecha.`Tipo_Cosecha` AS cosecha_Tipo_Cosecha,
-     cosecha.`Fecha_Siembra` AS cosecha_Fecha_Siembra,
-     cosecha.`Fecha_Recoleccion` AS cosecha_Fecha_Recoleccion
-FROM
-     `cosecha` cosecha  where   cosecha.`Fecha_Siembra` between $P{inicio} and $P{fin}]]>
+		<![CDATA[SELECT agrocontrol.cosecha.`Nombre_Cosecha`,
+	agrocontrol.cosecha.`Tipo_Cultivo`,
+	agrocontrol.cosecha.`Fecha_Siembra`,
+	agrocontrol.cosecha.`Fecha_Recoleccion`,
+	agrocontrol.tipo_cosecha.`TipoCosecha`
+FROM agrocontrol.cosecha
+	INNER JOIN agrocontrol.tipo_cosecha ON 
+	 agrocontrol.cosecha.`Tipo_Cosecha` = agrocontrol.tipo_cosecha.`IDTipoCosecha` 
+WHERE 
+	 agrocontrol.cosecha.`Fecha_Siembra` BETWEEN $P{inicio} AND $P{fin}]]>
 	</queryString>
-	<field name="cosecha_Nombre_Cosecha" class="java.lang.String"/>
-	<field name="cosecha_Tipo_Cultivo" class="java.lang.String"/>
-	<field name="cosecha_Tipo_Cosecha" class="java.lang.Integer"/>
-	<field name="cosecha_Fecha_Siembra" class="java.lang.String"/>
-	<field name="cosecha_Fecha_Recoleccion" class="java.lang.String"/>
+	<field name="Nombre_Cosecha" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Nombre_Cosecha"/>
+		<property name="com.jaspersoft.studio.field.label" value="Nombre_Cosecha"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cosecha"/>
+	</field>
+	<field name="Tipo_Cultivo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Tipo_Cultivo"/>
+		<property name="com.jaspersoft.studio.field.label" value="Tipo_Cultivo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cosecha"/>
+	</field>
+	<field name="Fecha_Siembra" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Fecha_Siembra"/>
+		<property name="com.jaspersoft.studio.field.label" value="Fecha_Siembra"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cosecha"/>
+	</field>
+	<field name="Fecha_Recoleccion" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Fecha_Recoleccion"/>
+		<property name="com.jaspersoft.studio.field.label" value="Fecha_Recoleccion"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cosecha"/>
+	</field>
+	<field name="TipoCosecha" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="TipoCosecha"/>
+		<property name="com.jaspersoft.studio.field.label" value="TipoCosecha"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="tipo_cosecha"/>
+	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="91" splitType="Stretch">
+		<band height="126" splitType="Stretch">
 			<staticText>
 				<reportElement x="222" y="30" width="152" height="20" uuid="7d53d3a2-b91f-40b1-aa3d-da98f01cec16"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -38,6 +67,7 @@ FROM
 			</staticText>
 			<textField>
 				<reportElement x="454" y="0" width="100" height="20" uuid="777893e7-1032-4cb4-bc53-f727d23711e3"/>
+				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<image>
@@ -53,22 +83,27 @@ FROM
 		<band height="34" splitType="Stretch">
 			<staticText>
 				<reportElement x="7" y="2" width="100" height="20" uuid="ed49ee1f-b2a5-4516-bd0f-8fc0355e7afb"/>
+				<textElement textAlignment="Center"/>
 				<text><![CDATA[Nombre Cosecha]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="122" y="2" width="100" height="20" uuid="b1f52c5e-f926-4149-b6bc-9ac2d70ce82f"/>
+				<textElement textAlignment="Center"/>
 				<text><![CDATA[Tipo Cultivo]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="237" y="2" width="100" height="20" uuid="a8991d56-ba2e-4dfa-9c33-5f7612f6f2bf"/>
+				<textElement textAlignment="Center"/>
 				<text><![CDATA[Tipo Cosecha]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="354" y="0" width="100" height="20" uuid="cf771891-cbe0-4bbb-8e0b-580f51907983"/>
+				<textElement textAlignment="Center"/>
 				<text><![CDATA[Fecha Siembra]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="472" y="0" width="100" height="20" uuid="c091bb50-acc6-4cf0-9aad-a3ca9a18d42a"/>
+				<textElement textAlignment="Center"/>
 				<text><![CDATA[Fecha Recoleccion]]></text>
 			</staticText>
 			<line>
@@ -80,23 +115,28 @@ FROM
 		<band height="37" splitType="Stretch">
 			<textField>
 				<reportElement x="7" y="5" width="100" height="20" uuid="6c6220fc-d44c-4531-b608-37c6855b8daa"/>
-				<textFieldExpression><![CDATA[$F{cosecha_Nombre_Cosecha}]]></textFieldExpression>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Nombre_Cosecha}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="122" y="5" width="100" height="20" uuid="38d03054-6222-40f9-b00d-9c7256063bca"/>
-				<textFieldExpression><![CDATA[$F{cosecha_Tipo_Cultivo}]]></textFieldExpression>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Tipo_Cultivo}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="237" y="5" width="100" height="20" uuid="478be37c-074f-41c1-a046-65a52e533641"/>
-				<textFieldExpression><![CDATA[$F{cosecha_Tipo_Cosecha}]]></textFieldExpression>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{TipoCosecha}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="354" y="5" width="100" height="20" uuid="88688dcf-d762-4c46-a700-34e688af0ea3"/>
-				<textFieldExpression><![CDATA[$F{cosecha_Fecha_Siembra}]]></textFieldExpression>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Fecha_Siembra}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="472" y="5" width="100" height="20" uuid="20be6536-94e9-4d0a-bedc-2ef995015f82"/>
-				<textFieldExpression><![CDATA[$F{cosecha_Fecha_Recoleccion}]]></textFieldExpression>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{Fecha_Recoleccion}]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="-18" y="31" width="590" height="1" uuid="2be362c9-7c26-4802-9f95-9549df75abc6"/>
@@ -107,7 +147,15 @@ FROM
 		<band height="45" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="230" y="20" width="100" height="20" uuid="aa62ec82-2276-4af3-a751-90f32e4906a9"/>
+				<textElement textAlignment="Center">
+					<font size="12" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[AgroControl 2022]]></text>
+			</staticText>
+		</band>
 	</pageFooter>
 	<summary>
 		<band height="42" splitType="Stretch"/>

@@ -37,7 +37,7 @@ public class Fmr_Area extends javax.swing.JDialog implements ComunicationPopUp {
     @Override
     public void updateBD() {
         RegistrarConsumo.cbo_Area.removeAllItems();
-        RegistrarConsumo.cbo_Area.addItem("Seleccionar");
+        //RegistrarConsumo.cbo_Area.addItem("Seleccionar");
         cargar_combobox.Cargar_Area(RegistrarConsumo.cbo_Area);
     }
 

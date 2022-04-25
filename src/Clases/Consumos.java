@@ -94,7 +94,7 @@ public class Consumos {
 
     public void Cargar_TipoCosecha(JComboBox cbo_TipoCosecha, String Cosecha) {
 
-        String SSQL = "SELECT Tipo_Cosecha FROM Cosecha WHERE Nombre_Cosecha= '" + Cosecha + "'ORDER BY Tipo_Cosecha ASC";
+        String SSQL = "SELECT tipo_cosecha.TipoCosecha FROM tipo_cosecha INNER JOIN cosecha ON cosecha.Tipo_Cosecha = tipo_cosecha.IDTipoCosecha WHERE Nombre_Cosecha= '"+ Cosecha +"'";
 
         try {
 
@@ -106,7 +106,7 @@ public class Consumos {
 
             while (resultado.next()) {
 
-                cbo_TipoCosecha.addItem(resultado.getString("Tipo_Cosecha"));
+                cbo_TipoCosecha.addItem(resultado.getString("tipo_cosecha.TipoCosecha"));
             }
 
         } catch (SQLException e) {
