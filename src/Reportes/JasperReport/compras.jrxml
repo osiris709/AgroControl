@@ -5,38 +5,85 @@
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="MySQL"/>
+	<property name="com.jaspersoft.studio.data.sql.tables">
+		<![CDATA[YWdyb2NvbnRyb2wuZGV0YWxsZWNvbXByYSAsMTUsMTI2LDRjOGE1ZDhhLTA2NzEtNDRlMi1hNjlk
+LWEyZTJiOTlkODAwYjthZ3JvY29udHJvbC5wcm92ZWVkb3JlcyAsMzg2LDEyNiw4Y2E4NWJiOS0w
+Y2ZiLTQxNzMtYjUyMC04OTk0YzQ3MWNkY2Q7YWdyb2NvbnRyb2wucHJvZHVjdG9zICwxOTgsMjEw
+LDdjMmI4YTQxLTEzMWMtNGFlNy05OWJlLWJhYTIwMGMzZjc2MTthZ3JvY29udHJvbC5jb21wcmFz
+ICwxOTgsMTUsNWJmNDhkZjctNGExYS00MzJlLTg1OTItMWY2MzJlZTU3MjQ4Ow==]]>
+	</property>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="252"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="741"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w1" value="718"/>
+	<property name="com.jaspersoft.studio.property.dataset.dialog.DatasetDialog.sash.w2" value="268"/>
 	<parameter name="nombre" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[SELECT
-     compras.`N_Factura` AS compras_N_Factura,
-     compras.`Nombre_Proveedor` AS compras_Nombre_Proveedor,
-     compras.`Total_Compra` AS compras_Total_Compra,
-     detallecompra.`Nombre_producto` AS detallecompra_Nombre_producto,
-     productos.`Codigo` AS productos_Codigo,
-     productos.`Nombre` AS productos_Nombre,
-     proveedores.`Nombre` AS proveedores_Nombre,
-     detallecompra.`Cantidad_Producto` AS detallecompra_Cantidad_Producto,
-     detallecompra.`Valor_Unitario` AS detallecompra_Valor_Unitario,
-     detallecompra.`Subtotal` AS detallecompra_Subtotal
-FROM
-     `compras` compras INNER JOIN `detallecompra` detallecompra ON compras.`IdCompra` = detallecompra.`id`
-     INNER JOIN `productos` productos ON detallecompra.`Nombre_producto` = productos.`Codigo`
-     INNER JOIN `proveedores` proveedores ON compras.`Nombre_Proveedor` = proveedores.`Nit`
-WHERE
-     compras.`Nombre_Proveedor` = $P{nombre}]]>
+		<![CDATA[SELECT agrocontrol.compras.`N_Factura`,
+	agrocontrol.compras.`Total_Compra`,
+	agrocontrol.detallecompra.`Cantidad_Producto`,
+	agrocontrol.detallecompra.`Valor_Unitario`,
+	agrocontrol.detallecompra.`Subtotal`,
+	agrocontrol.proveedores.`Nit`,
+	agrocontrol.productos.`Codigo`,
+	agrocontrol.proveedores.`Nombre`,
+	agrocontrol.productos.`Nombre`
+FROM agrocontrol.detallecompra
+	INNER JOIN agrocontrol.compras ON 
+	 agrocontrol.detallecompra.id = agrocontrol.compras.`IdCompra` 
+	INNER JOIN agrocontrol.productos ON 
+	 agrocontrol.detallecompra.`Nombre_producto` = agrocontrol.productos.`Codigo` 
+	INNER JOIN agrocontrol.proveedores ON 
+	 agrocontrol.compras.`Nombre_Proveedor` = agrocontrol.proveedores.`Nit` 
+WHERE 
+	 agrocontrol.compras.`Nombre_Proveedor` = $P{nombre}]]>
 	</queryString>
-	<field name="compras_N_Factura" class="java.lang.String"/>
-	<field name="compras_Nombre_Proveedor" class="java.lang.String"/>
-	<field name="compras_Total_Compra" class="java.lang.Integer"/>
-	<field name="detallecompra_Nombre_producto" class="java.lang.Integer"/>
-	<field name="productos_Codigo" class="java.lang.Integer"/>
-	<field name="productos_Nombre" class="java.lang.String"/>
-	<field name="proveedores_Nombre" class="java.lang.String"/>
-	<field name="detallecompra_Cantidad_Producto" class="java.lang.Integer"/>
-	<field name="detallecompra_Valor_Unitario" class="java.lang.Integer"/>
-	<field name="detallecompra_Subtotal" class="java.lang.Integer"/>
+	<field name="N_Factura" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="N_Factura"/>
+		<property name="com.jaspersoft.studio.field.label" value="N_Factura"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="compras"/>
+	</field>
+	<field name="Total_Compra" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="Total_Compra"/>
+		<property name="com.jaspersoft.studio.field.label" value="Total_Compra"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="compras"/>
+	</field>
+	<field name="Cantidad_Producto" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="Cantidad_Producto"/>
+		<property name="com.jaspersoft.studio.field.label" value="Cantidad_Producto"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="detallecompra"/>
+	</field>
+	<field name="Valor_Unitario" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="Valor_Unitario"/>
+		<property name="com.jaspersoft.studio.field.label" value="Valor_Unitario"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="detallecompra"/>
+	</field>
+	<field name="Subtotal" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="Subtotal"/>
+		<property name="com.jaspersoft.studio.field.label" value="Subtotal"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="detallecompra"/>
+	</field>
+	<field name="Nit" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Nit"/>
+		<property name="com.jaspersoft.studio.field.label" value="Nit"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="proveedores"/>
+	</field>
+	<field name="Codigo" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="Codigo"/>
+		<property name="com.jaspersoft.studio.field.label" value="Codigo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="productos"/>
+	</field>
+	<field name="Nombre" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Nombre"/>
+		<property name="com.jaspersoft.studio.field.label" value="Nombre"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="proveedores"/>
+	</field>
+	<field name="COLUMN_9" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="Nombre"/>
+		<property name="com.jaspersoft.studio.field.label" value="Nombre"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="productos"/>
+	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -82,7 +129,7 @@ WHERE
 				<textElement>
 					<font size="14" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{proveedores_Nombre}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Nombre}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="445" y="0" width="53" height="20" uuid="4c3591d3-e620-4c22-bf5b-1386763fe38d"/>
@@ -96,14 +143,14 @@ WHERE
 				<textElement textAlignment="Right">
 					<font size="14" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{compras_N_Factura}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{N_Factura}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="89" y="20" width="99" height="20" uuid="4af22b23-7d5e-4ef3-8e75-3d1afdf56f88"/>
 				<textElement>
 					<font size="14" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{compras_Nombre_Proveedor}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Nit}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="115" y="83" width="100" height="20" uuid="3105d97d-7ccf-43d1-9227-8768dd8e6b01"/>
@@ -158,27 +205,27 @@ WHERE
 			<textField>
 				<reportElement x="115" y="0" width="100" height="20" uuid="f31e34a0-b0df-4124-866f-392c8685dade"/>
 				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{productos_Nombre}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{COLUMN_9}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="284" y="0" width="63" height="20" uuid="76bea790-54e8-4936-9809-d7a160db8c5c"/>
 				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{detallecompra_Cantidad_Producto}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Cantidad_Producto}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="378" y="0" width="77" height="20" uuid="b96d10da-c623-41e7-85bd-b221feae685c"/>
 				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{detallecompra_Valor_Unitario}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Valor_Unitario}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="482" y="0" width="63" height="20" uuid="968ea0d0-e471-40fd-8122-47c22172f329"/>
 				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{detallecompra_Subtotal}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Subtotal}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="0" y="0" width="100" height="20" uuid="84b8cb16-f785-4704-b0c3-89fae196ab62"/>
 				<textElement textAlignment="Center"/>
-				<textFieldExpression><![CDATA[$F{productos_Codigo}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Codigo}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
@@ -224,7 +271,7 @@ WHERE
 				<textElement textAlignment="Center">
 					<font size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{compras_Total_Compra}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Total_Compra}]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>

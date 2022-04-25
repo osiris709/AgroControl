@@ -65,7 +65,7 @@ public class Compras extends javax.swing.JFrame {
             JasperViewer reporte = new JasperViewer(jprint, false);
             reporte.setTitle("Reporte de Compra");
             reporte.setVisible(true);
-            JasperExportManager.exportReportToPdfFile(jprint, "C:\\Users\\Osiris\\Documents\\NetBeansProjects\\Repositorios\\AgroControl\\src\\Reportes\\JasperReport\\reporte.pdf");
+            JasperExportManager.exportReportToPdfFile(jprint, "C:\\Users\\Osiris\\Documents\\NetBeansProjects\\Repositorios\\AgroControl\\src\\Reportes\\JasperReport\\compras.pdf");
 
         } catch (JRException ex) {
             Logger.getLogger(Compras.class.getName()).log(Level.SEVERE, null, ex);
