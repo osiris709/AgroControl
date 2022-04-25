@@ -2,6 +2,7 @@ package Formularios;
 
 import Clases.ComunicationPopUp;
 import Clases.Consumos;
+import Clases.Metodos;
 import Conexion.conexion;
 import Formularios_emergentes.Fmr_Area;
 import Formularios_emergentes.Fmr_ListadoConsumos;
@@ -26,49 +27,51 @@ import javax.swing.table.DefaultTableModel;
  * @author Osiris
  */
 public class RegistrarConsumo extends javax.swing.JInternalFrame implements ComunicationPopUp {
-
+    
     conexion objConexion = new conexion();
     Connection con = objConexion.conexion();
-
+    
     Consumos cargar_combobox = new Consumos();
-
+    
     SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
-    private int IdAplicacion, IdProducto, IdTipoCosecha, IdCosecha;
-
+    private int IdAplicacion, IdProducto, IdCosecha;
+    
+    Metodos Consultas = new Metodos();
+    
     public RegistrarConsumo() {
         initComponents();
         cbo_TipoCultivo.addActionListener(new ActionListener() {
-
+            
             @Override
             public void actionPerformed(ActionEvent e) {
             }
         });
-
+        
         cargar_combobox.Cargar_Area(cbo_Area);
-
+        
         Bloquear();
     }
-
+    
     @Override
     public void updateBD() {
-
+        
         cargar_combobox.Cargar_Cosecha(cbo_Cosecha, cbo_TipoCultivo.getSelectedItem().toString());
         cargar_combobox.Cargar_TipoCosecha(cbo_TipoCosecha, cbo_Cosecha.getSelectedItem().toString());
         cargar_combobox.Cargar_Area(cbo_Area);
-
+        
     }
-
+    
     public void agregar() {
-
+        
         if (txt_producto.getText().equals("") || txt_cantidad.getText().equals("")) {
-
+            
             javax.swing.JOptionPane.showMessageDialog(this, "Obligatorio llenar todos los campos \n", "AVISO!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-
+            
         } else {
 
             //obtener el modelo de la tabla sobre el cual trabajaremos y agregamos las columnas.
             DefaultTableModel modelo = (DefaultTableModel) TablaProductos.getModel();
-
+            
             Object[] fila = new Object[2];
 
             //Almacenamos los datos de acuerdo al orden de las columnas de la tabla.
@@ -77,7 +80,7 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
 
             //Agregamos el array al modelo de la tabla.
             modelo.addRow(fila);
-
+            
             txt_producto.setText("");
             txt_cantidad.setText("");
 
@@ -85,12 +88,12 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
             TablaProductos.setModel(modelo);
         }
     }
-
+    
     public void Guardar() {
         // Si hay algun campo vacio, genera mensaje de advertencia
         if ((cbo_Cosecha.getSelectedItem().equals("Seleccionar"))
                 || fechaConsumo.getDate().equals("") || cbo_TipoCultivo.getSelectedItem().equals("Seleccionar") || (cbo_Area.getSelectedItem().equals("Seleccionar")) || cbo_TipoCosecha.getSelectedItem().equals("Seleccionar")) {
-
+            
             javax.swing.JOptionPane.showMessageDialog(this, "Obligatorio llenar todos los campos \n", "AVISO!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
             fechaConsumo.requestFocus();
         } else {
@@ -101,68 +104,67 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
                     // Definir Sentencia en base de Datos SQL
                     PreparedStatement guardar = con.prepareStatement("INSERT INTO consumos (IdAplicacion,Fecha_Aplicacion,Tipo_Cultivo,Nombre_Cosecha,Area,Tipo_Cosecha) VALUES (?,?,?,?,?,?)");
                     PreparedStatement guardar2 = con.prepareStatement("INSERT INTO detalleconsumos (IDConsumos,NombreProducto,Cantidad) VALUES (?,?,?)");
-
+                    
                     guardar.setString(1, null);
                     guardar.setString(2, formato.format(fechaConsumo.getDate()));
                     guardar.setString(3, cbo_TipoCultivo.getSelectedItem().toString());
                     
                     String Cosecha = String.valueOf(cbo_Cosecha.getSelectedItem());
                     String ConsultaCosecha = "SELECT idCosecha FROM cosecha WHERE Nombre_Cosecha = '" + Cosecha + "'";
-
+                    
                     Statement cos = con.createStatement();
                     ResultSet rscos = cos.executeQuery(ConsultaCosecha);
-
+                    
                     if (rscos.next()) {
-
+                        
                         IdCosecha = rscos.getInt(1);
                         System.out.println("aplicacion " + IdCosecha);
                     }
                     
                     guardar.setString(4, String.valueOf(IdCosecha));
                     guardar.setString(5, String.valueOf(cbo_Area.getSelectedIndex()));
-
+                    
                     String TipoCosecha = String.valueOf(cbo_TipoCosecha.getSelectedItem());
                     String ConsultaTipo = "SELECT IDTipoCosecha FROM tipo_cosecha WHERE TipoCosecha = '" + TipoCosecha + "'";
 
-                    Statement tc = con.createStatement();
+                    /*Statement tc = con.createStatement();
                     ResultSet rstc = tc.executeQuery(ConsultaTipo);
 
                     if (rstc.next()) {
 
                         IdTipoCosecha = rstc.getInt(1);
                         System.out.println("aplicacion " + IdTipoCosecha);
-                    }
-
-                    guardar.setString(6, String.valueOf(IdTipoCosecha));
-
+                    }*/
+                    guardar.setString(6, String.valueOf(Consultas.Consultar(ConsultaTipo)));
+                    
                     guardar.executeUpdate();
-
+                    
                     String ConsultaID = "SELECT MAX(IdAplicacion) FROM consumos";
-
+                    
                     Statement st = con.createStatement();
                     ResultSet rs = st.executeQuery(ConsultaID);
-
+                    
                     if (rs.next()) {
-
+                        
                         IdAplicacion = rs.getInt(1);
                         System.out.println("aplicacion " + IdAplicacion);
                     }
-
+                    
                     if (TablaProductos.getRowCount() > 0) {
                         for (int i = 0; i < TablaProductos.getRowCount(); i++) {
-
+                            
                             String producto = TablaProductos.getValueAt(i, 0).toString();
                             //System.out.println("tabla "+producto);
                             String ConsultaProducto = "SELECT Codigo FROM productos WHERE Nombre = '" + producto + "'";
                             Statement pro = con.createStatement();
                             ResultSet rspro = pro.executeQuery(ConsultaProducto);
-
+                            
                             if (rspro.next()) {
-
+                                
                                 IdProducto = rspro.getInt(1);
                                 //System.out.println("producto " +IdProducto);
                             }
-
+                            
                             guardar2.setString(1, String.valueOf(IdAplicacion));
                             guardar2.setString(2, String.valueOf(IdProducto));
                             guardar2.setString(3, TablaProductos.getValueAt(i, 1).toString());
@@ -171,23 +173,23 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
                             guardar2.executeUpdate();
                         }
                     }
-
+                    
                     JOptionPane.showMessageDialog(null, "Consumo Registrado exitosamente");
                     guardar.close();
                     
                     Borrar();
                     Bloquear();
-
+                    
                 } catch (Exception e) {
-
+                    
                     JOptionPane.showMessageDialog(null, e + " Error, No se registro el Consumo");
                 }
             }
         }
     }
-
+    
     public void Borrar() {
-
+        
         fechaConsumo.setDate(null);
         cbo_TipoCultivo.setSelectedIndex(0);
         cbo_Cosecha.removeAllItems();
@@ -200,9 +202,9 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
         modelo.getDataVector().removeAllElements();
         modelo.fireTableDataChanged();
     }
-
+    
     public void Bloquear() {
-
+        
         fechaConsumo.setEnabled(false);
         cbo_TipoCultivo.setEnabled(false);
         cbo_Cosecha.setEnabled(false);
@@ -218,9 +220,9 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
         btn_agregar_producto.setEnabled(false);
         btn_eliminar_producto.setEnabled(false);
     }
-
+    
     public void Desbloquear() {
-
+        
         fechaConsumo.setEnabled(true);
         cbo_TipoCultivo.setEnabled(true);
         cbo_Cosecha.setEnabled(true);
@@ -462,7 +464,7 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
                     .addGroup(jP_DatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3)
                         .addComponent(cbo_TipoCultivo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addGroup(jP_DatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbo_Cosecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
@@ -575,7 +577,7 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
                     .addComponent(btn_guardar)
                     .addComponent(btn_nuevo)
                     .addComponent(btn_cancelar))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jDP_RConsumo.setLayer(LogoCRUD, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -630,7 +632,7 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
     }//GEN-LAST:event_btn_CrearAreaActionPerformed
 
     private void cbo_CosechaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbo_CosechaItemStateChanged
-
+        
         cbo_TipoCosecha.removeAllItems();
         cbo_TipoCosecha.addItem("Seleccionar");
         if (evt.getStateChange() == ItemEvent.SELECTED) {
@@ -639,11 +641,11 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
     }//GEN-LAST:event_cbo_CosechaItemStateChanged
 
     private void cbo_TipoCultivoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbo_TipoCultivoItemStateChanged
-
+        
         cbo_Cosecha.removeAllItems();
         cbo_Cosecha.addItem("Seleccionar");
         if (evt.getStateChange() == ItemEvent.SELECTED) {
-
+            
             cargar_combobox.Cargar_Cosecha(cbo_Cosecha, cbo_TipoCultivo.getSelectedItem().toString());
         }
     }//GEN-LAST:event_cbo_TipoCultivoItemStateChanged
@@ -696,7 +698,7 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
     private javax.swing.JButton btn_lista;
     private javax.swing.JButton btn_nuevo;
     public static javax.swing.JComboBox<String> cbo_Area;
-    private javax.swing.JComboBox<String> cbo_Cosecha;
+    public static javax.swing.JComboBox<String> cbo_Cosecha;
     private javax.swing.JComboBox<String> cbo_TipoCosecha;
     private javax.swing.JComboBox<String> cbo_TipoCultivo;
     private com.toedter.calendar.JDateChooser fechaConsumo;
