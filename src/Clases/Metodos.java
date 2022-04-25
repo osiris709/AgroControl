@@ -1,7 +1,6 @@
 package Clases;
 
 import Conexion.conexion;
-import Formularios.RegistrarConsumo;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -21,12 +20,12 @@ public class Metodos {
         int Id = 0;
         try {
 
-            Statement cos = con.createStatement();
-            ResultSet rscos = cos.executeQuery(SQL);
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(SQL);
 
-            if (rscos.next()) {
+            if (rs.next()) {
 
-                Id = rscos.getInt(1);
+                Id = rs.getInt(1);
                 System.out.println("aplicacion " + Id);
             }
 
