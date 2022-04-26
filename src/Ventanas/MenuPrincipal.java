@@ -11,7 +11,8 @@ import Formularios_emergentes.Fmr_ListadoCosechas;
 import Formularios_emergentes.Fmr_ListadoProductos;
 import Formularios_emergentes.Fmr_ListadoProveedores;
 import Formularios_emergentes.Fmr_ListadoCompras;
-import V_RegistrarProductos.RP_Eliminar_Unidadmedida;
+import Formularios_emergentes.Fmr_ListadoConsumos;
+import V_RegistrarProductos.Fmr_ListadoUnidadmedida;
 import java.awt.Frame;
 import java.awt.Image;
 import java.awt.Graphics;
@@ -545,12 +546,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMI_LProductosActionPerformed
 
     private void jMI_LComprasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMI_LComprasActionPerformed
-        Fmr_ListadoCompras ventana = new Fmr_ListadoCompras();
+        Frame ListaCompras = JOptionPane.getFrameForComponent(this);
+        Fmr_ListadoCompras ventana = new Fmr_ListadoCompras(ListaCompras, true);
         ventana.setVisible(true);
     }//GEN-LAST:event_jMI_LComprasActionPerformed
 
     private void jMI_LConsumosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMI_LConsumosActionPerformed
-
+        Frame ListaConsumos = JOptionPane.getFrameForComponent(this);
+        Fmr_ListadoConsumos Consumo = new Fmr_ListadoConsumos(ListaConsumos, false);
+        Consumo.setVisible(true);
     }//GEN-LAST:event_jMI_LConsumosActionPerformed
 
     private void jMI_LCosechasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMI_LCosechasActionPerformed
@@ -566,7 +570,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMI_LAreasActionPerformed
 
     private void jMI_LUnidaddeMedidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMI_LUnidaddeMedidaActionPerformed
-        RP_Eliminar_Unidadmedida ventana = new RP_Eliminar_Unidadmedida();
+        Frame ListadoUnidadMedida = JOptionPane.getFrameForComponent(this);
+        Fmr_ListadoUnidadmedida ventana = new Fmr_ListadoUnidadmedida(ListadoUnidadMedida, false);
         ventana.setVisible(true);
     }//GEN-LAST:event_jMI_LUnidaddeMedidaActionPerformed
 

@@ -659,7 +659,8 @@ public final class RegistrarProducto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_nuevoActionPerformed
 
     private void btn_crearUnidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_crearUnidadActionPerformed
-        Fmr_CrearUnidadMedida ventana = new Fmr_CrearUnidadMedida();
+        Frame CrearUM = JOptionPane.getFrameForComponent(this);
+        Fmr_CrearUnidadMedida ventana = new Fmr_CrearUnidadMedida(CrearUM, true);
         ventana.setVisible(true);
 
     }//GEN-LAST:event_btn_crearUnidadActionPerformed
@@ -672,7 +673,8 @@ public final class RegistrarProducto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_eliminarActionPerformed
 
     private void btn_crearTipoProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_crearTipoProductoActionPerformed
-        Fmr_CrearTipodeProducto ventana = new Fmr_CrearTipodeProducto();
+        Frame CrearTP = JOptionPane.getFrameForComponent(this);
+        Fmr_CrearTipodeProducto ventana = new Fmr_CrearTipodeProducto(CrearTP, true);
         ventana.setVisible(true);
     }//GEN-LAST:event_btn_crearTipoProductoActionPerformed
 

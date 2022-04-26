@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import Formularios_emergentes.Fmr_ProductosCompra;
 import Formularios_emergentes.Fmr_ListadoCompras;
 import java.awt.Component;
+import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.HeadlessException;
 import java.awt.Image;
@@ -620,8 +621,9 @@ public class RegistrarCompra extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btn_cancelarActionPerformed
 
     private void btn_listaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_listaActionPerformed
-        Fmr_ListadoCompras ventana = new Fmr_ListadoCompras();
-        ventana.setVisible(true);
+        Frame ListaCompras = JOptionPane.getFrameForComponent(this);
+        Fmr_ListadoCompras Cosecha = new Fmr_ListadoCompras(ListaCompras, false);
+        Cosecha.setVisible(true);
     }//GEN-LAST:event_btn_listaActionPerformed
 
     private void btn_elminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_elminarActionPerformed

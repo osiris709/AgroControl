@@ -58,14 +58,14 @@ public class Compras extends javax.swing.JFrame {
         a.put("nombre", txtNombre.getText());
 
         try {
-            JasperDesign jdesing = JRXmlLoader.load("C:\\Users\\Osiris\\Documents\\NetBeansProjects\\Repositorios\\AgroControl\\src\\Reportes\\JasperReport\\compras.jrxml");
+            JasperDesign jdesing = JRXmlLoader.load("C:\\Users\\usuario\\Documents\\NetBeansProjects\\Repositorios\\AgroControl\\src\\Reportes\\JasperReport\\compras.jrxml");
             JasperReport jreport = JasperCompileManager.compileReport(jdesing);
             JasperPrint jprint = JasperFillManager.fillReport(jreport, a, conn);
 
             JasperViewer reporte = new JasperViewer(jprint, false);
             reporte.setTitle("Reporte de Compra");
             reporte.setVisible(true);
-            JasperExportManager.exportReportToPdfFile(jprint, "C:\\Users\\Osiris\\Documents\\NetBeansProjects\\Repositorios\\AgroControl\\src\\Reportes\\JasperReport\\compras.pdf");
+            JasperExportManager.exportReportToPdfFile(jprint, "C:\\Users\\usuario\\Documents\\NetBeansProjects\\Repositorios\\AgroControl\\src\\Reportes\\JasperReport\\compras.pdf");
 
         } catch (JRException ex) {
             Logger.getLogger(Compras.class.getName()).log(Level.SEVERE, null, ex);

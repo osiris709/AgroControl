@@ -8,12 +8,12 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public final class RP_Eliminar_Tipoproducto extends javax.swing.JFrame {
+public final class Fmr_ListadoTipoproducto extends javax.swing.JFrame {
 
     conexion conn = new conexion();
     Connection iniciarConexion = conn.conexion();
 
-    public RP_Eliminar_Tipoproducto() {
+    public Fmr_ListadoTipoproducto() {
         initComponents();
         MostrarListadoTipoProducto();
 
@@ -123,7 +123,7 @@ public final class RP_Eliminar_Tipoproducto extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 186, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE))
         );
 
         pack();
@@ -159,20 +159,21 @@ public final class RP_Eliminar_Tipoproducto extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RP_Eliminar_Tipoproducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fmr_ListadoTipoproducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RP_Eliminar_Tipoproducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fmr_ListadoTipoproducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RP_Eliminar_Tipoproducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fmr_ListadoTipoproducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RP_Eliminar_Tipoproducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Fmr_ListadoTipoproducto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RP_Eliminar_Tipoproducto().setVisible(true);
+                new Fmr_ListadoTipoproducto().setVisible(true);
             }
         });
     }
