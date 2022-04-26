@@ -21,7 +21,7 @@ public class Fmr_ListadoUsuarios extends javax.swing.JDialog {
 
     public Fmr_ListadoUsuarios(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        this.setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
         setResizable(false);
         initComponents();
         listarUsuarios();
@@ -57,7 +57,6 @@ public class Fmr_ListadoUsuarios extends javax.swing.JDialog {
                 registros[7] = resultado.getString(8);
                 registros[8] = resultado.getString(9);
                 tlista.addRow(registros);
-
             }
 
             tblD_Usuarios.setModel(tlista);
