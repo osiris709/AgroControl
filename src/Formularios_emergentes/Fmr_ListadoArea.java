@@ -1,7 +1,16 @@
 package Formularios_emergentes;
+
+import Conexion.conexion;
 import java.awt.Graphics;
+import java.awt.HeadlessException;
 import java.awt.Image;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -11,15 +20,48 @@ public class Fmr_ListadoArea extends javax.swing.JDialog {
 
     /**
      * Creates new form Fmr_ListadoArea
+     *
      * @param parent
      * @param modal
      */
+    conexion conn = new conexion();
+    Connection iniciarConexion = conn.conexion();
+
     public Fmr_ListadoArea(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setTitle("AgroControl - Listado de Area");
-        this.setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
         setResizable(false);
+        cargarDatos();
+    }
+
+    public void cargarDatos() {
+        DefaultTableModel tlista = new DefaultTableModel();
+        tlista.addColumn("Nombre");
+        tlista.addColumn("Ancho");
+        tlista.addColumn("Largo");
+        Lista_Area.setModel(tlista);
+
+        String[] registros = new String[3];
+
+        try {
+            Statement leer = iniciarConexion.createStatement();
+            ResultSet resultado = leer.executeQuery("SELECT Nombre_Area, Ancho_Area, Largo_Area FROM area");
+
+            while (resultado.next()) {
+                registros[0] = resultado.getString(1);
+                registros[1] = resultado.getString(2);
+                registros[2] = resultado.getString(3);
+                tlista.addRow(registros);
+            }
+
+            Lista_Area.setModel(tlista);
+
+        } catch (SQLException e) {
+
+            JOptionPane.showMessageDialog(null, e, "Error durante la consulta", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**
@@ -33,23 +75,23 @@ public class Fmr_ListadoArea extends javax.swing.JDialog {
 
         ImageIcon icon1 = new ImageIcon(getClass().getResource("/Imagenes/fondo-submenu2.jpg"));
         Image image1 = icon1.getImage();
-        jDesktopPane1 = new javax.swing.JDesktopPane(){
+        jDesktopPane = new javax.swing.JDesktopPane(){
 
             public void paintComponent(Graphics g){
                 g.drawImage(image1,0,0,getWidth(),getHeight(),this);
             }
         }
         ;
-        jLabel1 = new javax.swing.JLabel();
+        txt_Titulo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Lista_Area = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jDesktopPane1.setBackground(new java.awt.Color(255, 255, 255));
+        jDesktopPane.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Listado Areas");
+        txt_Titulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txt_Titulo.setText("Listado Areas");
 
         Lista_Area.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -59,30 +101,35 @@ public class Fmr_ListadoArea extends javax.swing.JDialog {
 
             }
         ));
+        Lista_Area.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Lista_AreaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(Lista_Area);
 
-        jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane.setLayer(txt_Titulo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jDesktopPaneLayout = new javax.swing.GroupLayout(jDesktopPane);
+        jDesktopPane.setLayout(jDesktopPaneLayout);
+        jDesktopPaneLayout.setHorizontalGroup(
+            jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPaneLayout.createSequentialGroup()
+                .addGroup(jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDesktopPaneLayout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                    .addGroup(jDesktopPaneLayout.createSequentialGroup()
                         .addGap(168, 168, 168)
-                        .addComponent(jLabel1)))
+                        .addComponent(txt_Titulo)))
                 .addContainerGap(52, Short.MAX_VALUE))
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
+        jDesktopPaneLayout.setVerticalGroup(
+            jDesktopPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPaneLayout.createSequentialGroup()
                 .addContainerGap(29, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(txt_Titulo)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44))
@@ -92,15 +139,55 @@ public class Fmr_ListadoArea extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(jDesktopPane)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(jDesktopPane)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void Lista_AreaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Lista_AreaMouseClicked
+        int filaseleccionada;
+
+        try {
+
+            filaseleccionada = Lista_Area.getSelectedRow();
+
+            if (filaseleccionada == -1) {
+
+                JOptionPane.showMessageDialog(null, "No se ha seleccionado ninguna fila");
+
+            } else {
+
+                DefaultTableModel modelotabla = (DefaultTableModel) Lista_Area.getModel();
+
+                String Nombre = (String) modelotabla.getValueAt(filaseleccionada, 0);
+                String Ancho = (String) modelotabla.getValueAt(filaseleccionada, 1);
+                String Largo = (String) modelotabla.getValueAt(filaseleccionada, 2);
+
+                Fmr_Area.txt_nombreArea.setText(Nombre);
+                Fmr_Area.txt_AnchoArea.setText(Ancho);
+                Fmr_Area.txt_LargoArea.setText(Largo);
+
+                Fmr_Area.txt_nombreArea.setEnabled(true);
+                Fmr_Area.txt_AnchoArea.setEnabled(true);
+                Fmr_Area.txt_LargoArea.setEnabled(true);
+                Fmr_Area.btn_editar.setEnabled(true);
+                Fmr_Area.btn_cancelar.setEnabled(true);
+                Fmr_Area.btn_elminar.setEnabled(true);
+
+                this.dispose();
+            }
+
+        } catch (HeadlessException ex) {
+
+            JOptionPane.showMessageDialog(null, "Error: " + ex + "\nInténtelo nuevamente", " .::Error En la Operacion::.", JOptionPane.ERROR_MESSAGE);
+
+        }
+    }//GEN-LAST:event_Lista_AreaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -146,8 +233,8 @@ public class Fmr_ListadoArea extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Lista_Area;
-    private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JDesktopPane jDesktopPane;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel txt_Titulo;
     // End of variables declaration//GEN-END:variables
 }

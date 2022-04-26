@@ -18,18 +18,21 @@ public class Fmr_ListadoUnidadmedida extends javax.swing.JDialog {
 
     /**
      * Creates new form Fmr_ListadoUnidadmedid
+     *
+     * @param parent
+     * @param modal
      */
     public Fmr_ListadoUnidadmedida(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         MostrarListadoUnidadMedida();
 
-        this.setTitle("AgroControl");
-        this.setLocationRelativeTo(null);
+        setTitle("AgroControl - Unidad de Medida");
+        setLocationRelativeTo(null);
         setResizable(false);
     }
 
-        public void MostrarListadoUnidadMedida() {
+    public void MostrarListadoUnidadMedida() {
 
         DefaultTableModel tclientee = new DefaultTableModel();
         tclientee.addColumn("Unidades De Medida");

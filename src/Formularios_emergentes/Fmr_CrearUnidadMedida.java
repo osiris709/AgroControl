@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
- */
 package Formularios_emergentes;
 
 import java.awt.Image;
@@ -20,17 +16,16 @@ public class Fmr_CrearUnidadMedida extends javax.swing.JDialog {
 
     conexion conn = new conexion();
     Connection iniciarConexion = conn.conexion();
-    
+
     public Fmr_CrearUnidadMedida(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
 
-        this.setTitle("AgroControl");
-        this.setLocationRelativeTo(null);
+        setTitle("AgroControl - Crear Unidad de Medida");
+        setLocationRelativeTo(null);
         setResizable(false);
     }
 
-    
     public void borrar() {
 
         txt_CrearUnidadMedida.setText("");
@@ -277,7 +272,7 @@ public class Fmr_CrearUnidadMedida extends javax.swing.JDialog {
 
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
         Frame ListadoUnidadMedida = JOptionPane.getFrameForComponent(this);
-        Fmr_ListadoUnidadmedida ventana = new Fmr_ListadoUnidadmedida(ListadoUnidadMedida, false);
+        Fmr_ListadoUnidadmedida ventana = new Fmr_ListadoUnidadmedida(ListadoUnidadMedida, true);
         ventana.setVisible(true);
     }//GEN-LAST:event_btn_buscarActionPerformed
 

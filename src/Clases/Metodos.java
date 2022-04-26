@@ -26,7 +26,6 @@ public class Metodos {
             if (rs.next()) {
 
                 Id = rs.getInt(1);
-                System.out.println("aplicacion " + Id);
             }
 
         } catch (Exception e) {

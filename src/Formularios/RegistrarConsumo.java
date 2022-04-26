@@ -54,8 +54,8 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
 
         cargar_combobox.Cargar_Cosecha(cbo_Cosecha, cbo_TipoCultivo.getSelectedItem().toString());
         cargar_combobox.Cargar_TipoCosecha(cbo_TipoCosecha, cbo_Cosecha.getSelectedItem().toString());
+        cbo_Area.addItem("Seleccionar");
         cargar_combobox.Cargar_Area(cbo_Area);
-
     }
 
     public void agregar() {
@@ -108,13 +108,14 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
 
                     String Cosecha = String.valueOf(cbo_Cosecha.getSelectedItem());
                     String ConsultaCosecha = "SELECT idCosecha FROM cosecha WHERE Nombre_Cosecha = '" + Cosecha + "'";
-
                     guardar.setString(4, String.valueOf(Consultas.Consultar(ConsultaCosecha)));
-                    guardar.setString(5, String.valueOf(cbo_Area.getSelectedIndex()));
+
+                    String Area = String.valueOf(cbo_Area.getSelectedItem());
+                    String ConsultaArea = "SELECT ID_Area FROM area WHERE Nombre_Area = '" + Area + "'";
+                    guardar.setString(5, String.valueOf(Consultas.Consultar(ConsultaArea)));
 
                     String TipoCosecha = String.valueOf(cbo_TipoCosecha.getSelectedItem());
                     String ConsultaTipo = "SELECT IDTipoCosecha FROM tipo_cosecha WHERE TipoCosecha = '" + TipoCosecha + "'";
-
                     guardar.setString(6, String.valueOf(Consultas.Consultar(ConsultaTipo)));
 
                     guardar.executeUpdate();
@@ -137,8 +138,8 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
                     }
 
                     JOptionPane.showMessageDialog(null, "Consumo Registrado exitosamente");
-                    guardar.close();
 
+                    guardar.close();
                     Borrar();
                     Bloquear();
 
@@ -150,13 +151,31 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
         }
     }
 
+    public void eliminarProducto() {
+        DefaultTableModel modelo = (DefaultTableModel) TablaProductos.getModel();
+        int a = (TablaProductos.getSelectedRow());
+        System.out.println(a);
+
+        if (a < 0) {
+            JOptionPane.showMessageDialog(null, "¡Debe seleccionar un producto o su tabla se encuentra vacia!");
+        } else {
+
+            int confirmar = JOptionPane.showConfirmDialog(null, "¿Desea eliminar el registro seleccionado?");
+            if (confirmar == JOptionPane.OK_OPTION) {
+                for (int i = a; i >= 0; i--) {
+                    modelo.removeRow(TablaProductos.getSelectedRow());
+                }
+            }
+        }
+    }
+
     public void Borrar() {
 
         fechaConsumo.setDate(null);
         cbo_TipoCultivo.setSelectedIndex(0);
         cbo_Cosecha.removeAllItems();
-        cbo_Area.removeAllItems();
         cbo_TipoCosecha.removeAllItems();
+        cbo_Area.removeAllItems();
         updateBD();
         txt_producto.setText("");
         txt_cantidad.setText("");
@@ -293,6 +312,8 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setText("Area:");
 
+        cbo_Area.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar" }));
+
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel10.setText("Cosecha:");
 
@@ -355,6 +376,11 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
         btn_eliminar_producto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/eliminar2.png"))); // NOI18N
         btn_eliminar_producto.setText("Eliminar");
         btn_eliminar_producto.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btn_eliminar_producto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_eliminar_productoActionPerformed(evt);
+            }
+        });
 
         btn_agregar_producto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Nuevo2.png"))); // NOI18N
         btn_agregar_producto.setText("Agregar");
@@ -648,6 +674,10 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
         Consumo.setVisible(true);
     }//GEN-LAST:event_btn_listaActionPerformed
 
+    private void btn_eliminar_productoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminar_productoActionPerformed
+        eliminarProducto();
+    }//GEN-LAST:event_btn_eliminar_productoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel LogoCRUD;
     private javax.swing.JTable TablaProductos;
@@ -679,5 +709,4 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
     private javax.swing.JTextField txt_cantidad;
     public static javax.swing.JTextField txt_producto;
     // End of variables declaration//GEN-END:variables
-
 }
