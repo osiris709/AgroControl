@@ -21,7 +21,7 @@ public class Login extends javax.swing.JFrame {
 
     public Login() {
         initComponents();
-        this.setTitle("AgroControl");
+        this.setTitle("AgroControl - Inicio");
         this.setLocationRelativeTo(null);
         setResizable(false);
     }
