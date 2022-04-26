@@ -27,7 +27,6 @@ public class Fmr_ListadoCompras extends javax.swing.JDialog {
         initComponents();
         setTitle("AgroControl - Listado de Compras");
         this.setLocationRelativeTo(null);
-        setResizable(false);
         MostrarlistadoProductos();
     }
 

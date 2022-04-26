@@ -29,7 +29,6 @@ public class Fmr_ListadoUnidadmedida extends javax.swing.JDialog {
 
         setTitle("AgroControl - Unidad de Medida");
         setLocationRelativeTo(null);
-        setResizable(false);
     }
 
     public void MostrarListadoUnidadMedida() {

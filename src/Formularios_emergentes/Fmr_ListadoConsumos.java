@@ -20,7 +20,6 @@ public class Fmr_ListadoConsumos extends javax.swing.JDialog {
         initComponents();
         setTitle("AgroControl - Lista Consumos");
         setLocationRelativeTo(null);
-        setResizable(false);
         MostrarListaConsumos();
     }
 
@@ -121,11 +120,6 @@ public class Fmr_ListadoConsumos extends javax.swing.JDialog {
 
             }
         ));
-        TablaConsumos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TablaConsumosMouseClicked(evt);
-            }
-        });
         jScrollPane2.setViewportView(TablaConsumos);
 
         jLabel1.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
@@ -190,30 +184,6 @@ public class Fmr_ListadoConsumos extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void TablaConsumosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaConsumosMouseClicked
-        /*
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-
-        String fechaSiembra = TablaConsumos.getValueAt(TablaConsumos.getSelectedRow(), 2).toString().trim();
-        Date dato = null;
-
-        try {
-            dato = (Date) formato.parse(fechaSiembra);
-
-            RegistrarConsumo.txt_fechaConsumo.setDate(dato);
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
-        }
-
-        RegistrarConsumo.txt_IdCosecha.setText(TablaConsumos.getValueAt(TablaConsumos.getSelectedRow(), 0).toString());
-        RegistrarConsumo.cbo_TipoCultivo.setSelectedItem(TablaConsumos.getModel().getValueAt(TablaConsumos.getSelectedRow(), 1).toString());
-        RegistrarConsumo.cbo_TipoCultivo.setSelectedItem(TablaConsumos.getModel().getValueAt(TablaConsumos.getSelectedRow(), 2).toString());
-        RegistrarConsumo.cbo_TipoCosecha.setSelectedItem(TablaConsumos.getModel().getValueAt(TablaConsumos.getSelectedRow(), 3).toString());
-         */
-        this.hide();
-    }//GEN-LAST:event_TablaConsumosMouseClicked
 
     private void txt_buscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_buscarKeyReleased
         busqueda(txt_buscar.getText());

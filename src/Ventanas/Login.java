@@ -193,7 +193,6 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-
         ingresar();
     }//GEN-LAST:event_btnIngresarActionPerformed
 
@@ -201,7 +200,6 @@ public class Login extends javax.swing.JFrame {
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             ingresar();
         }
-
     }//GEN-LAST:event_jClaveKeyPressed
 
     /**

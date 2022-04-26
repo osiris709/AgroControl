@@ -32,7 +32,6 @@ public class Fmr_ListadoArea extends javax.swing.JDialog {
         initComponents();
         setTitle("AgroControl - Listado de Area");
         setLocationRelativeTo(null);
-        setResizable(false);
         cargarDatos();
     }
 

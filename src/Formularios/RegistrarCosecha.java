@@ -25,7 +25,7 @@ public class RegistrarCosecha extends javax.swing.JInternalFrame implements Comu
     public RegistrarCosecha() {
         initComponents();
 
-        this.setTitle("AgroControl - Control Cosechas");
+        setTitle("AgroControl - Control Cosechas");
         setResizable(false);
         Bloquear();
         BloqInicio();
@@ -96,7 +96,6 @@ public class RegistrarCosecha extends javax.swing.JInternalFrame implements Comu
                     modificar.setString(5, df.format(txt_FechaRecoleccion.getDate()));
                     modificar.setString(6, txt_Id.getText());
                     
-
                     // Ejecuta la sentencia y obtiene el resultado modificado
                     modificar.executeUpdate();
 
@@ -638,5 +637,4 @@ public class RegistrarCosecha extends javax.swing.JInternalFrame implements Comu
     public static javax.swing.JTextField txt_Id;
     public static javax.swing.JTextField txt_NombreCosecha;
     // End of variables declaration//GEN-END:variables
-
 }

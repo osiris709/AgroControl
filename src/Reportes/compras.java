@@ -5,6 +5,8 @@ package Reportes;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -34,8 +36,17 @@ public class Compras extends javax.swing.JFrame {
     public Compras() {
         initComponents();
         Connect();
+        setTitle("AgroControl - Reporte Compras");
         setLocationRelativeTo(null);
         setResizable(false);
+    }
+    
+    @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().
+                getImage(ClassLoader.getSystemResource("Imagenes/icono.png"));
+
+        return retValue;
     }
     Connection conn;
     PreparedStatement pst;
@@ -50,7 +61,6 @@ public class Compras extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Compras.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     public void report() {
@@ -88,6 +98,7 @@ public class Compras extends javax.swing.JFrame {
         txtNombre = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setIconImage(getIconImage());
 
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 

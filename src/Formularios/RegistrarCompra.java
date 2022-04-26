@@ -1,5 +1,6 @@
 package Formularios;
 
+import Clases.Metodos;
 import Conexion.conexion;
 import Formularios_emergentes.Fmr_CompraProveedor;
 import java.sql.Connection;
@@ -21,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author USUARIO
+ * @author Osiris
  */
 public class RegistrarCompra extends javax.swing.JInternalFrame {
 
@@ -29,14 +30,14 @@ public class RegistrarCompra extends javax.swing.JInternalFrame {
         initComponents();
         txt_ValorTotal.setText("0");
         Bloquear();
-
     }
 
     conexion objConexion = new conexion();
     Connection con = objConexion.conexion();
 
     SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
-    private int IdCompra, IdProducto;
+
+    Metodos Consultas = new Metodos();
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -84,7 +85,7 @@ public class RegistrarCompra extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Registrar Compras");
+        setTitle("AgroControl - Registrar Compras");
         setAutoscrolls(true);
         setMaximumSize(new java.awt.Dimension(800, 600));
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -470,32 +471,15 @@ public class RegistrarCompra extends javax.swing.JInternalFrame {
 
                     String ConsultaID = "SELECT MAX(IdCompra) FROM compras";
 
-                    Statement st = con.createStatement();
-                    ResultSet rs = st.executeQuery(ConsultaID);
-
-                    if (rs.next()) {
-
-                        IdCompra = rs.getInt(1);
-//                        System.out.println(IdCompra);
-                    }
-
                     if (RC_Mostrarlistadocompras.getRowCount() > 0) {
                         for (int i = 0; i < RC_Mostrarlistadocompras.getRowCount(); i++) {
 
-                            guardar2.setString(1, String.valueOf(IdCompra));
+                            guardar2.setString(1, String.valueOf(Consultas.Consultar(ConsultaID)));
 
                             String Producto = String.valueOf(RC_Mostrarlistadocompras.getValueAt(i, 0).toString());
                             String ConsultaProducto = "SELECT Codigo FROM productos WHERE Nombre = '" + Producto + "'";
 
-                            Statement pro = con.createStatement();
-                            ResultSet rspro = pro.executeQuery(ConsultaProducto);
-
-                            if (rspro.next()) {
-
-                                IdProducto = rspro.getInt(1);
-                                System.out.println("aplicacion " + IdProducto);
-                            }
-                            guardar2.setString(2, String.valueOf(IdProducto));
+                            guardar2.setString(2, String.valueOf(Consultas.Consultar(ConsultaProducto)));
                             guardar2.setString(3, RC_Mostrarlistadocompras.getValueAt(i, 1).toString());
                             guardar2.setString(4, RC_Mostrarlistadocompras.getValueAt(i, 2).toString());
                             guardar2.setString(5, RC_Mostrarlistadocompras.getValueAt(i, 3).toString());
@@ -688,5 +672,4 @@ public class RegistrarCompra extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txt_cantidad;
     private javax.swing.JTextField txt_valorunidad;
     // End of variables declaration//GEN-END:variables
-
 }

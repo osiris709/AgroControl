@@ -2,7 +2,7 @@ package Clases;
 
 /**
  *
- * @author SENA
+ * @author Andres
  */
 public class Proveedor {
 
@@ -16,9 +16,6 @@ public class Proveedor {
         this.Telefono = Telefono;
     }
     
-    
-    
-
     public Proveedor() {
         
     }

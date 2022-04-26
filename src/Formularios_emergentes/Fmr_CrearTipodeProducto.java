@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.JOptionPane;
 import static Formularios.RegistrarProducto.cbo_categoria;
-import V_RegistrarProductos.Fmr_ListadoTipoproducto;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import java.awt.Graphics;
@@ -20,7 +19,6 @@ public class Fmr_CrearTipodeProducto extends javax.swing.JDialog {
         initComponents();
         this.setTitle("AgroControl");
         this.setLocationRelativeTo(null);
-        setResizable(false);
     }
 
     public void borrar() {
@@ -54,7 +52,6 @@ public class Fmr_CrearTipodeProducto extends javax.swing.JDialog {
 
                 }
             }
-
         }
     }
 

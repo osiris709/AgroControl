@@ -11,14 +11,12 @@ import java.sql.SQLException;
  * @author Osiris
  */
 public class conexion {
-
-    //String iniciarConexion = "jdbc:sqlite:C:\\Users\\usuario\\Documents\\NetBeansProjects\\Repositorios\\AgroControl/Agrocontrol.s3db";
+    
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String USER = "root";
     private static final String PASSWORD = "";
     private static final String URL = "jdbc:mysql://localhost:3306/agrocontrol";
 
-    //String iniciarConexion = "jdbc:sqlite:C:\\Users\\Osiris\\Documents\\NetBeansProjects\\Repositorios\\AgroControl/Agrocontrol.s3db";
     Connection conn = null;
 
     public Connection conexion() {
@@ -26,7 +24,6 @@ public class conexion {
             Class.forName(DRIVER);
             conn = DriverManager.getConnection(URL, USER, PASSWORD);
 
-            //System.out.println("Conexion Exitosa");
         } catch (Exception e) {
 
             System.out.println("Error de conexion" + e);

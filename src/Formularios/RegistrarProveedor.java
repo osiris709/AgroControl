@@ -27,7 +27,7 @@ public class RegistrarProveedor extends javax.swing.JInternalFrame {
         mostrardatos();
         limpiar();
         bloquear();
-        this.setTitle("AgroControl - Registro Proveedores");
+        setTitle("AgroControl - Registro Proveedores");
         BloqInicio();
 
         Proveedor pro = new Proveedor();
@@ -35,11 +35,11 @@ public class RegistrarProveedor extends javax.swing.JInternalFrame {
     }
 
     public void bloquear() {
-        this.txt_direccion.setEnabled(false);
-        this.txt_correo.setEnabled(false);
-        this.txt_telefono.setEnabled(false);
-        this.txt_nit.setEnabled(false);
-        this.txt_nombre.setEnabled(false);
+        txt_direccion.setEnabled(false);
+        txt_correo.setEnabled(false);
+        txt_telefono.setEnabled(false);
+        txt_nit.setEnabled(false);
+        txt_nombre.setEnabled(false);
     }
 
     public void mostrardatos() {
@@ -51,16 +51,10 @@ public class RegistrarProveedor extends javax.swing.JInternalFrame {
         try {
             ResultSet resultado = objConexion.consultarRegistro("SELECT * FROM proveedores");
             while (resultado.next()) {
-                /*System.out.println(resultado.getString("Nit"));
-                System.out.println(resultado.getString("Nombre"));
-                System.out.println(resultado.getString("Direccion"));
-                System.out.println(resultado.getString("Correo"));
-                System.out.println(resultado.getString("Telefono"));*/
 
                 Object[] oUsuario = {resultado.getString("Nit"), resultado.getString("Nombre"), resultado.getString("Direccion"), resultado.getString("Correo"), resultado.getString("Telefono")};
                 modelo.addRow(oUsuario);
                 desbloquear();
-
             }
         } catch (Exception e) {
             System.out.println(e);
@@ -88,11 +82,11 @@ public class RegistrarProveedor extends javax.swing.JInternalFrame {
     }
 
     public void desbloquear() {
-        this.txt_direccion.setEnabled(true);
-        this.txt_correo.setEnabled(true);
-        this.txt_telefono.setEnabled(true);
-        this.txt_nit.setEnabled(true);
-        this.txt_nombre.setEnabled(true);
+        txt_direccion.setEnabled(true);
+        txt_correo.setEnabled(true);
+        txt_telefono.setEnabled(true);
+        txt_nit.setEnabled(true);
+        txt_nombre.setEnabled(true);
     }
 
     public void BloqInicio() {
@@ -563,5 +557,4 @@ public class RegistrarProveedor extends javax.swing.JInternalFrame {
     public static javax.swing.JTextField txt_nombre;
     public static javax.swing.JTextField txt_telefono;
     // End of variables declaration//GEN-END:variables
-
 }

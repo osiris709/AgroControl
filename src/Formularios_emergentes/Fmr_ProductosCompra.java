@@ -2,6 +2,8 @@ package Formularios_emergentes;
 
 import Conexion.conexion;
 import Formularios.RegistrarCompra;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -19,12 +21,18 @@ public class Fmr_ProductosCompra extends javax.swing.JFrame {
     public Fmr_ProductosCompra() {
         initComponents();
 
-        this.setTitle("AgroControl");
+        this.setTitle("AgroControl - Productos");
         this.setLocationRelativeTo(null);
-        setResizable(false);
 
         MostrarDatosProductosCompra();
+    }
+    
+        @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().
+                getImage(ClassLoader.getSystemResource("Imagenes/icono.png"));
 
+        return retValue;
     }
 
     public void MostrarDatosProductosCompra() {
@@ -63,6 +71,7 @@ public class Fmr_ProductosCompra extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setFocusable(false);
         setFocusableWindowState(false);
+        setIconImage(getIconImage());
 
         TablaProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -117,7 +126,6 @@ public class Fmr_ProductosCompra extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void TablaProductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaProductosMouseClicked
-
         RegistrarCompra.txt_Producto.setText(TablaProductos.getModel().getValueAt(TablaProductos.getSelectedRow(), 1).toString());
         this.hide();
     }//GEN-LAST:event_TablaProductosMouseClicked
@@ -147,10 +155,6 @@ public class Fmr_ProductosCompra extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Fmr_ProductosCompra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -165,5 +169,4 @@ public class Fmr_ProductosCompra extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
-
 }

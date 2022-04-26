@@ -23,7 +23,6 @@ public class Fmr_CrearUnidadMedida extends javax.swing.JDialog {
 
         setTitle("AgroControl - Crear Unidad de Medida");
         setLocationRelativeTo(null);
-        setResizable(false);
     }
 
     public void borrar() {
@@ -57,7 +56,6 @@ public class Fmr_CrearUnidadMedida extends javax.swing.JDialog {
 
                 }
             }
-
         }
     }
 

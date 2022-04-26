@@ -20,15 +20,12 @@ public class Fmr_TipoCosecha extends javax.swing.JDialog {
         initComponents();
         this.setTitle("AgroControl - Tipo Cosechas");
         this.setLocationRelativeTo(null);
-        setResizable(false);
         Bloquear();
     }
-
         public void setComu(ComunicationPopUp comu) {
         this.comu = comu;
     }
     
-
     public void Guardar() {
 
         if (txt_nombreTipoCosecha.getText().equals("")) {
@@ -60,7 +57,6 @@ public class Fmr_TipoCosecha extends javax.swing.JDialog {
 
     public void Bloquear() {
         this.txt_nombreTipoCosecha.setEnabled(false);
-        //txt_nombreTipoCosecha.requestFocus();
     }
 
     public void Desbloquear() {

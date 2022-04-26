@@ -24,7 +24,6 @@ public class Fmr_ListadoProveedores extends javax.swing.JDialog {
         tblProveedor.setModel(modelo);
         mostrardatos();
         this.setLocationRelativeTo(null);
-        setResizable(false);
         this.setTitle("AgroControl - Tabla Proveedores");
 
     }
@@ -37,11 +36,6 @@ public class Fmr_ListadoProveedores extends javax.swing.JDialog {
         try {
             ResultSet resultado = objConexion.consultarRegistro("SELECT * FROM proveedores");
             while (resultado.next()) {
-                /*System.out.println(resultado.getString("Nit"));
-                System.out.println(resultado.getString("Nombre"));
-                System.out.println(resultado.getString("Direccion"));
-                System.out.println(resultado.getString("Correo"));
-                System.out.println(resultado.getString("Telefono"));*/
 
                 Object[] oUsuario = {resultado.getString("Nit"), resultado.getString("Nombre"), resultado.getString("Direccion"), resultado.getString("Correo"), resultado.getString("Telefono")};
                 modelo.addRow(oUsuario);
@@ -218,7 +212,6 @@ public class Fmr_ListadoProveedores extends javax.swing.JDialog {
             RegistrarProveedor.btn_nuevo.setEnabled(false);
 
             this.hide();
-            //RegistrarProveedor.txt_nit.setEnabled(false);
         }
     }//GEN-LAST:event_tblProveedorMouseClicked
 

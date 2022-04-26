@@ -25,7 +25,6 @@ public final class Fmr_ListadoProductos extends javax.swing.JDialog {
         initComponents();
         setTitle("AgroControl - Lista de Productos");
         this.setLocationRelativeTo(null);
-        setResizable(false);
         MostrarlistadoProductos();
         bloquearListado();
     }
@@ -111,11 +110,8 @@ public final class Fmr_ListadoProductos extends javax.swing.JDialog {
 
             if (TablaCliente.getValueAt(i, 1).equals(txt_codigoProducto.getText())) {
                 JOptionPane.showMessageDialog(null, "El Codigo ya Existe");
-
             }
-
         }
-
     }
 
     public void bloquearListado() {

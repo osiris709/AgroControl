@@ -5,7 +5,7 @@ import Formularios.RegistrarCompra;
 import Formularios.RegistrarConsumo;
 import Formularios.RegistrarProducto;
 import Formularios.RegistrarProveedor;
-import Formularios.Reporte;
+import Formularios.Reportes;
 import Formularios_emergentes.Fmr_ListadoArea;
 import Formularios_emergentes.Fmr_ListadoCosechas;
 import Formularios_emergentes.Fmr_ListadoProductos;
@@ -53,7 +53,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         this.dispose();
     }
 
-    public static boolean JInternalFrames_Abiertos(JInternalFrame jif) {
+    public boolean JInternalFrames_Abiertos(JInternalFrame jif) {
         // Creamos un metodo publico de tipo boolean.
         JInternalFrame[] jif_Activos = MenuPrincipal.mostrar.getAllFrames();
         // Este arreglo almacena todos los JInternalFrames que esten abierto en el jDesktopPane.
@@ -63,7 +63,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
             // Validamos con un if si nuestro arreglo en la posición i es igual al JInternalFrame que esta activo en el jDesktopPane, si es igual devolverá true.
             if (jif.getClass().isInstance(jif_Activos[i])) {
-                //JOptionPane.showMessageDialog(null, "La ventana que esta intentando abrir ya esta abierta.", "Información", JOptionPane.INFORMATION_MESSAGE);
                 return true;
             }
         }
@@ -527,7 +526,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMI_RCosechaActionPerformed
 
     private void lbl_reportesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl_reportesMouseClicked
-        Reporte ventana6 = new Reporte();
+        Reportes ventana6 = new Reportes();
         mostrar.removeAll();
         mostrar.add(ventana6);
         ventana6.show();
@@ -639,5 +638,4 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lbl_salir;
     public static javax.swing.JDesktopPane mostrar;
     // End of variables declaration//GEN-END:variables
-
 }

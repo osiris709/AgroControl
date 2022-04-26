@@ -1,6 +1,5 @@
 package Ventanas;
 
-
 import Conexion.conexion;
 import Formularios_emergentes.Fmr_ListadoUsuarios;
 import java.awt.Frame;
@@ -24,15 +23,12 @@ public class MenuSuper extends javax.swing.JFrame {
 
     DefaultTableModel modelo = new DefaultTableModel();
 
-    /*Connection conn = null;
-    Statement stmt = null;*/
     public MenuSuper() {
         initComponents();
 
         this.setTitle("AgroControl - Registrar Usuario");
         this.setLocationRelativeTo(null);
         setResizable(false);
-
     }
 
     @Override
@@ -147,7 +143,6 @@ public class MenuSuper extends javax.swing.JFrame {
                     }
                 }
             }
-
         }
     }
 
@@ -198,7 +193,6 @@ public class MenuSuper extends javax.swing.JFrame {
                     }
                 }
             }
-
         }
     }
 
@@ -529,16 +523,14 @@ public class MenuSuper extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txt_NomKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_NomKeyTyped
-
         //para pedir solo letras.
         char carac = evt.getKeyChar();
         if ((carac < 'a' || carac > 'z') && (carac < 'A' || carac > 'Z') && (carac < ' ' || carac > ' ')) {
-            evt.consume();            
-        }    
+            evt.consume();
+        }
     }//GEN-LAST:event_txt_NomKeyTyped
 
     private void txt_TelKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_TelKeyTyped
-
         //para pedir solo numeros.
         char carac = evt.getKeyChar();
         if ((carac < '0' || carac > '9')) {
@@ -547,7 +539,6 @@ public class MenuSuper extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_TelKeyTyped
 
     private void txt_ApeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_ApeKeyTyped
-
         char carac = evt.getKeyChar();
         if ((carac < 'a' || carac > 'z') && (carac < 'A' || carac > 'Z') && (carac < ' ' || carac > ' ')) {
             evt.consume();

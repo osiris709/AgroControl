@@ -1,7 +1,6 @@
 package Formularios;
 
 import Clases.ComunicationPopUp;
-import Clases.Consumos;
 import Clases.Metodos;
 import Conexion.conexion;
 import Formularios_emergentes.Fmr_Area;
@@ -29,10 +28,9 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
     conexion objConexion = new conexion();
     Connection con = objConexion.conexion();
 
-    Consumos cargar_combobox = new Consumos();
-
     SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
-
+    
+    Metodos cargar_combobox = new Metodos();
     Metodos Consultas = new Metodos();
 
     public RegistrarConsumo() {
@@ -270,7 +268,7 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
         setBackground(new java.awt.Color(255, 255, 255));
         setClosable(true);
         setResizable(true);
-        setTitle("Registar Consumos");
+        setTitle("AgroControl - Registar Consumos");
         setToolTipText("");
         setAutoscrolls(true);
         setPreferredSize(new java.awt.Dimension(800, 600));
@@ -620,7 +618,6 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
     }//GEN-LAST:event_btn_CrearAreaActionPerformed
 
     private void cbo_CosechaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbo_CosechaItemStateChanged
-
         cbo_TipoCosecha.removeAllItems();
         cbo_TipoCosecha.addItem("Seleccionar");
         if (evt.getStateChange() == ItemEvent.SELECTED) {
@@ -629,7 +626,6 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
     }//GEN-LAST:event_cbo_CosechaItemStateChanged
 
     private void cbo_TipoCultivoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbo_TipoCultivoItemStateChanged
-
         cbo_Cosecha.removeAllItems();
         cbo_Cosecha.addItem("Seleccionar");
         if (evt.getStateChange() == ItemEvent.SELECTED) {

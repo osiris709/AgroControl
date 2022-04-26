@@ -29,7 +29,7 @@ public final class RegistrarProducto extends javax.swing.JInternalFrame {
         Bloquear();
         BloqInicio();
 
-        this.setTitle("AgroControl - Registrar Productos");
+        setTitle("AgroControl - Registrar Productos");
         setResizable(false);
     }
 
@@ -285,11 +285,6 @@ public final class RegistrarProducto extends javax.swing.JInternalFrame {
         cbo_unidadMedida.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Monoxido" }));
 
         cbo_categoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar", "Semillas", "Abonos", "Insectisidas", "Otros" }));
-        cbo_categoria.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbo_categoriaActionPerformed(evt);
-            }
-        });
 
         btn_buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lupa.png"))); // NOI18N
         btn_buscar.setText("Buscar");
@@ -416,7 +411,7 @@ public final class RegistrarProducto extends javax.swing.JInternalFrame {
                 .addGroup(PanelDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_crearUnidad)
                     .addComponent(btn_crearTipoProducto))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
@@ -441,7 +436,7 @@ public final class RegistrarProducto extends javax.swing.JInternalFrame {
         Panel_ListadoLayout.setHorizontalGroup(
             Panel_ListadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Panel_ListadoLayout.createSequentialGroup()
-                .addContainerGap(270, Short.MAX_VALUE)
+                .addContainerGap(255, Short.MAX_VALUE)
                 .addComponent(btn_lista)
                 .addGap(293, 293, 293))
         );
@@ -450,7 +445,7 @@ public final class RegistrarProducto extends javax.swing.JInternalFrame {
             .addGroup(Panel_ListadoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btn_lista)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         Panel_Botones.setBackground(new java.awt.Color(240, 255, 240));
@@ -575,10 +570,6 @@ public final class RegistrarProducto extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void cbo_categoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_categoriaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbo_categoriaActionPerformed
 
     private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
         String cp, np, dp, um, catg, ia;
@@ -717,5 +708,4 @@ public final class RegistrarProducto extends javax.swing.JInternalFrame {
     public static javax.swing.JTextField txt_descripcionProducto;
     public static javax.swing.JTextField txt_nombreProducto;
     // End of variables declaration//GEN-END:variables
-
 }

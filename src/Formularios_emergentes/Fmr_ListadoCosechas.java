@@ -21,9 +21,8 @@ public class Fmr_ListadoCosechas extends javax.swing.JDialog {
     public Fmr_ListadoCosechas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        this.setTitle("Listado Cosechas");
+        this.setTitle("AgroControl - Listado Cosechas");
         this.setLocationRelativeTo(null);
-        setResizable(false);
         MostrarListaCosechas();
     }
 
@@ -280,5 +279,4 @@ public class Fmr_ListadoCosechas extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane2;
     public static javax.swing.JTextField txt_buscar;
     // End of variables declaration//GEN-END:variables
-
 }

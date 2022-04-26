@@ -1,7 +1,6 @@
 package Formularios_emergentes;
 
 import Clases.ComunicationPopUp;
-import Clases.Consumos;
 import Clases.Metodos;
 import Conexion.conexion;
 import Formularios.RegistrarConsumo;
@@ -23,13 +22,13 @@ public class Fmr_Area extends javax.swing.JDialog implements ComunicationPopUp {
 
     conexion objConexion = new conexion();
     Connection con = objConexion.conexion();
-    Consumos cargar_combobox = new Consumos();
+    Metodos cargar_combobox = new Metodos();
     Metodos Consultas = new Metodos();
     private ComunicationPopUp comu;
     private int ID;
 
     /**
-     * Creates new form Fmr_Area2
+     * Creates new form Fmr_Area
      *
      * @param parent
      * @param modal
@@ -39,7 +38,6 @@ public class Fmr_Area extends javax.swing.JDialog implements ComunicationPopUp {
         initComponents();
         setTitle("AgroControl - Crear Area");
         setLocationRelativeTo(null);
-        setResizable(false);
         Bloquear();
     }
 
@@ -157,7 +155,6 @@ public class Fmr_Area extends javax.swing.JDialog implements ComunicationPopUp {
                     }
                 }
             }
-
         }
     }
 
@@ -452,7 +449,6 @@ public class Fmr_Area extends javax.swing.JDialog implements ComunicationPopUp {
     }//GEN-LAST:event_btn_cancelarActionPerformed
 
     private void btn_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editarActionPerformed
-
         Modificar(ID);
     }//GEN-LAST:event_btn_editarActionPerformed
 
@@ -523,5 +519,4 @@ public class Fmr_Area extends javax.swing.JDialog implements ComunicationPopUp {
     public static javax.swing.JTextField txt_LargoArea;
     public static javax.swing.JTextField txt_nombreArea;
     // End of variables declaration//GEN-END:variables
-
 }

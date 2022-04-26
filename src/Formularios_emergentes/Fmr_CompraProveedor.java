@@ -1,63 +1,53 @@
-
 package Formularios_emergentes;
 
 import javax.swing.table.DefaultTableModel;
 import Conexion.conexion;
 import Formularios.RegistrarCompra;
-import static Formularios.RegistrarCompra.txt_Proveedor;
-import Formularios.RegistrarProducto;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import Formularios.RegistrarProveedor;
-import static Formularios.RegistrarProveedor.txt_nit;
 
 public class Fmr_CompraProveedor extends javax.swing.JFrame {
 
-    conexion conn = new conexion ();
+    conexion conn = new conexion();
     Connection iniciarConexion = conn.conexion();
-    
-  
+
     public Fmr_CompraProveedor() {
         initComponents();
-        
+
         this.setTitle("AgroControl");
         this.setLocationRelativeTo(null);
-        setResizable(false);
-        
+
         MostrarDatosProveedoresProductosCompra();
     }
 
-    
-    public void MostrarDatosProveedoresProductosCompra (){
-        
+    public void MostrarDatosProveedoresProductosCompra() {
+
         DefaultTableModel tclienteProveedoresProductosCompra = new DefaultTableModel();
         tclienteProveedoresProductosCompra.addColumn("NIT");
         tclienteProveedoresProductosCompra.addColumn("Razon Social");
         TablaDatosCP.setModel(tclienteProveedoresProductosCompra);
-        
-        String [] datos = new String [2];
-        
+
+        String[] datos = new String[2];
+
         try {
             Statement leer = iniciarConexion.createStatement();
             ResultSet resultado = leer.executeQuery("SELECT * FROM Proveedores ");
-            
+
             while (resultado.next()) {
-                datos [0] = resultado.getString(1);
-                datos [1] = resultado.getString(2);
-                
-                    tclienteProveedoresProductosCompra.addRow(datos);    
-                }
-        TablaDatosCP.setModel(tclienteProveedoresProductosCompra);        
+                datos[0] = resultado.getString(1);
+                datos[1] = resultado.getString(2);
+
+                tclienteProveedoresProductosCompra.addRow(datos);
+            }
+            TablaDatosCP.setModel(tclienteProveedoresProductosCompra);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e + "Error en la Consulta");           
-                }     
+            JOptionPane.showMessageDialog(null, e + "Error en la Consulta");
+        }
     }
-    
-     
-   
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -115,14 +105,11 @@ public class Fmr_CompraProveedor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void TablaDatosCPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaDatosCPMouseClicked
-        if (evt.getClickCount() ==1){
-           
-           JTable receptorComprasProveedor = (JTable) evt.getSource();
-           RegistrarCompra.txt_Proveedor.setText(receptorComprasProveedor.getModel().getValueAt(receptorComprasProveedor.getSelectedRow(),0).toString());
-//           RegistrarProveedor.txt_nombre.setText(receptorComprasProveedor.getModel().getValueAt(receptorComprasProveedor.getSelectedRow(),1).toString());
+        if (evt.getClickCount() == 1) {
 
-       
-       }
+            JTable receptorComprasProveedor = (JTable) evt.getSource();
+            RegistrarCompra.txt_Proveedor.setText(receptorComprasProveedor.getModel().getValueAt(receptorComprasProveedor.getSelectedRow(), 0).toString());
+        }
         this.hide();
     }//GEN-LAST:event_TablaDatosCPMouseClicked
 
@@ -151,22 +138,6 @@ public class Fmr_CompraProveedor extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Fmr_CompraProveedor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

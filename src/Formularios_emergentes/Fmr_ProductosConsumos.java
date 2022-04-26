@@ -2,6 +2,8 @@ package Formularios_emergentes;
 
 import Conexion.conexion;
 import Formularios.RegistrarConsumo;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -19,12 +21,18 @@ public class Fmr_ProductosConsumos extends javax.swing.JFrame {
     public Fmr_ProductosConsumos() {
         initComponents();
 
-        this.setTitle("AgroControl");
+        this.setTitle("AgroControl - Productos");
         this.setLocationRelativeTo(null);
-        setResizable(false);
-
+        
         MostrarDatosProductosCompra();
+    }
+    
+        @Override
+    public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().
+                getImage(ClassLoader.getSystemResource("Imagenes/icono.png"));
 
+        return retValue;
     }
 
     public void MostrarDatosProductosCompra() {
@@ -63,6 +71,7 @@ public class Fmr_ProductosConsumos extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setFocusable(false);
         setFocusableWindowState(false);
+        setIconImage(getIconImage());
 
         TablaProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -147,23 +156,7 @@ public class Fmr_ProductosConsumos extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Fmr_ProductosConsumos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
+ 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -177,5 +170,4 @@ public class Fmr_ProductosConsumos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
-
 }
