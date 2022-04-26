@@ -15,8 +15,6 @@ import java.awt.Image;
 import java.awt.event.ItemEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -34,7 +32,6 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
     Consumos cargar_combobox = new Consumos();
 
     SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
-    private int IdAplicacion, IdProducto, IdCosecha;
 
     Metodos Consultas = new Metodos();
 
@@ -112,56 +109,23 @@ public class RegistrarConsumo extends javax.swing.JInternalFrame implements Comu
                     String Cosecha = String.valueOf(cbo_Cosecha.getSelectedItem());
                     String ConsultaCosecha = "SELECT idCosecha FROM cosecha WHERE Nombre_Cosecha = '" + Cosecha + "'";
 
-                    /*Statement cos = con.createStatement();
-                    ResultSet rscos = cos.executeQuery(ConsultaCosecha);
-                    
-                    if (rscos.next()) {
-                        
-                        IdCosecha = rscos.getInt(1);
-                        System.out.println("aplicacion " + IdCosecha);
-                    }*/
                     guardar.setString(4, String.valueOf(Consultas.Consultar(ConsultaCosecha)));
                     guardar.setString(5, String.valueOf(cbo_Area.getSelectedIndex()));
 
                     String TipoCosecha = String.valueOf(cbo_TipoCosecha.getSelectedItem());
                     String ConsultaTipo = "SELECT IDTipoCosecha FROM tipo_cosecha WHERE TipoCosecha = '" + TipoCosecha + "'";
 
-                    /*Statement tc = con.createStatement();
-                    ResultSet rstc = tc.executeQuery(ConsultaTipo);
-
-                    if (rstc.next()) {
-
-                        IdTipoCosecha = rstc.getInt(1);
-                        System.out.println("aplicacion " + IdTipoCosecha);
-                    }*/
                     guardar.setString(6, String.valueOf(Consultas.Consultar(ConsultaTipo)));
 
                     guardar.executeUpdate();
 
                     String ConsultaID = "SELECT MAX(IdAplicacion) FROM consumos";
 
-                    /*Statement st = con.createStatement();
-                    ResultSet rs = st.executeQuery(ConsultaID);
-                    
-                    if (rs.next()) {
-                        
-                        IdAplicacion = rs.getInt(1);
-                        System.out.println("aplicacion " + IdAplicacion);
-                    }*/
                     if (TablaProductos.getRowCount() > 0) {
                         for (int i = 0; i < TablaProductos.getRowCount(); i++) {
 
                             String producto = TablaProductos.getValueAt(i, 0).toString();
-                            //System.out.println("tabla "+producto);
                             String ConsultaProducto = "SELECT Codigo FROM productos WHERE Nombre = '" + producto + "'";
-                            /*Statement pro = con.createStatement();
-                            ResultSet rspro = pro.executeQuery(ConsultaProducto);
-                            
-                            if (rspro.next()) {
-                                
-                                IdProducto = rspro.getInt(1);
-                                //System.out.println("producto " +IdProducto);
-                            }*/
 
                             guardar2.setString(1, String.valueOf(Consultas.Consultar(ConsultaID)));
                             guardar2.setString(2, String.valueOf(Consultas.Consultar(ConsultaProducto)));

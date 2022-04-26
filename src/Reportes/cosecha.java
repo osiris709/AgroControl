@@ -69,14 +69,14 @@ public class Cosecha extends javax.swing.JFrame {
         a.put("fin", todate);
 
         try {
-            JasperDesign jdesing = JRXmlLoader.load("C:\\Users\\usuario\\Documents\\NetBeansProjects\\Repositorios\\AgroControl\\src\\Reportes\\JasperReport\\reportcosecha.jrxml");
+            JasperDesign jdesing = JRXmlLoader.load("C:\\Users\\Osiris\\Documents\\NetBeansProjects\\Repositorios\\AgroControl\\src\\Reportes\\JasperReport\\reportcosecha.jrxml");
             JasperReport jreport = JasperCompileManager.compileReport(jdesing);
             JasperPrint jprint = JasperFillManager.fillReport(jreport, a, conn);
 
             JasperViewer reporte = new JasperViewer(jprint, false);
             reporte.setTitle("Reporte de Cosechas");
             reporte.setVisible(true);
-            JasperExportManager.exportReportToPdfFile(jprint, "C:\\Users\\usuario\\Documents\\NetBeansProjects\\Repositorios\\AgroControl\\src\\Reportes\\JasperReport\\cosecha.pdf");
+            JasperExportManager.exportReportToPdfFile(jprint, "C:\\Users\\Osiris\\Documents\\NetBeansProjects\\Repositorios\\AgroControl\\src\\Reportes\\JasperReport\\cosecha.pdf");
 
         } catch (JRException ex) {
             Logger.getLogger(Compras.class.getName()).log(Level.SEVERE, null, ex);
